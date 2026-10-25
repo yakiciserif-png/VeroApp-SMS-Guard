@@ -209,8 +209,8 @@ if ($ForceRegenerateMaster -or -not (Test-Path $ResolvedMasterPath)) {
     Write-Output "Using existing master icon: $ResolvedMasterPath"
 }
 
-# Copy master icon to workspace vero_icon.png as well
-Copy-Item -Path $ResolvedMasterPath -Destination (Join-Path $WorkspaceRoot "vero_icon.png") -Force
+# Copy master icon to assets/branding/vero_icon.png
+Copy-Item -Path $ResolvedMasterPath -Destination (Join-Path $BrandingDir "vero_icon.png") -Force
 
 $masterImage = [System.Drawing.Image]::FromFile($ResolvedMasterPath)
 
@@ -348,30 +348,78 @@ $contentsJson = @"
 "@
 Set-Content -Path (Join-Path $iosIconSetDir "Contents.json") -Value $contentsJson -Encoding UTF8
 
-# 4. Windows Multi-Size ICO (256, 64, 48, 32, 16)
+# 4. Windows Multi-Size ICO (16, 32, 48, 64, 128, 256 px) using true 32-bit BGRA DIB frames for maximum Win32 PE & Explorer compatibility
+function Convert-BitmapToDibBytes([System.Drawing.Bitmap]$bmp) {
+    $w = $bmp.Width
+    $h = $bmp.Height
+    $rect = New-Object System.Drawing.Rectangle(0, 0, $w, $h)
+    $bmpData = $bmp.LockBits($rect, [System.Drawing.Imaging.ImageLockMode]::ReadOnly, [System.Drawing.Imaging.PixelFormat]::Format32bppArgb)
+
+    $stride = $bmpData.Stride
+    $rawBytes = New-Object byte[] ($stride * $h)
+    [System.Runtime.InteropServices.Marshal]::Copy($bmpData.Scan0, $rawBytes, 0, $rawBytes.Length)
+    $bmp.UnlockBits($bmpData)
+
+    # AND mask row stride must be padded to 32-bit (4-byte) boundary
+    $andStride = [int]([Math]::Ceiling($w / 32.0) * 4)
+    $xorSize = $w * $h * 4
+    $andSize = $andStride * $h
+
+    $ms = New-Object System.IO.MemoryStream
+    $bw = New-Object System.IO.BinaryWriter($ms)
+
+    # BITMAPINFOHEADER (40 bytes)
+    $bw.Write([uint32]40)          # biSize
+    $bw.Write([int32]$w)           # biWidth
+    $bw.Write([int32]($h * 2))     # biHeight (XOR + AND combined height)
+    $bw.Write([uint16]1)           # biPlanes
+    $bw.Write([uint16]32)          # biBitCount (32-bit BGRA)
+    $bw.Write([uint32]0)           # biCompression (BI_RGB = 0)
+    $bw.Write([uint32]($xorSize + $andSize)) # biSizeImage
+    $bw.Write([int32]0)            # biXPelsPerMeter
+    $bw.Write([int32]0)            # biYPelsPerMeter
+    $bw.Write([uint32]0)           # biClrUsed
+    $bw.Write([uint32]0)           # biClrImportant
+
+    # Write bottom-up BGRA XOR pixels
+    for ($y = $h - 1; $y -ge 0; $y--) {
+        $rowOffset = $y * $stride
+        $bw.Write($rawBytes, $rowOffset, $w * 4)
+    }
+
+    # Write 1-bit AND mask (all 0s since 32-bit alpha channel handles transparency)
+    $andBytes = New-Object byte[] $andSize
+    $bw.Write($andBytes)
+
+    $bw.Flush()
+    $result = $ms.ToArray()
+    $bw.Close()
+    $ms.Close()
+    return $result
+}
+
 function Write-MultiSizeIco([System.Drawing.Image]$src, [string]$icoPath) {
-    $sizes = @(256, 64, 48, 32, 16)
-    $pngBytesList = New-Object System.Collections.Generic.List[byte[]]
+    $sizes = @(256, 128, 64, 48, 32, 16)
+    $frameBytesList = New-Object System.Collections.Generic.List[byte[]]
 
     foreach ($sz in $sizes) {
         $bmp = New-Object System.Drawing.Bitmap($sz, $sz, [System.Drawing.Imaging.PixelFormat]::Format32bppArgb)
         $g = [System.Drawing.Graphics]::FromImage($bmp)
         $g.SmoothingMode = [System.Drawing.Drawing2D.SmoothingMode]::AntiAlias
         $g.InterpolationMode = [System.Drawing.Drawing2D.InterpolationMode]::HighQualityBicubic
+        $g.PixelOffsetMode = [System.Drawing.Drawing2D.PixelOffsetMode]::HighQuality
         $g.DrawImage($src, 0, 0, $sz, $sz)
         $g.Dispose()
 
-        $ms = New-Object System.IO.MemoryStream
-        $bmp.Save($ms, [System.Drawing.Imaging.ImageFormat]::Png)
-        $pngBytesList.Add($ms.ToArray())
-        $ms.Dispose()
+        $dibBytes = Convert-BitmapToDibBytes -bmp $bmp
+        $frameBytesList.Add($dibBytes)
         $bmp.Dispose()
     }
 
     $fs = [System.IO.File]::Create($icoPath)
     $bw = New-Object System.IO.BinaryWriter($fs)
 
-    # ICONDIR header
+    # ICONDIR header (6 bytes)
     $bw.Write([uint16]0)
     $bw.Write([uint16]1)
     $bw.Write([uint16]$sizes.Count)
@@ -379,7 +427,7 @@ function Write-MultiSizeIco([System.Drawing.Image]$src, [string]$icoPath) {
     $offset = 6 + (16 * $sizes.Count)
     for ($i = 0; $i -lt $sizes.Count; $i++) {
         $sz = $sizes[$i]
-        $bytes = $pngBytesList[$i]
+        $bytes = $frameBytesList[$i]
         $wByte = if ($sz -ge 256) { [byte]0 } else { [byte]$sz }
         $bw.Write($wByte)
         $bw.Write($wByte)
@@ -392,7 +440,7 @@ function Write-MultiSizeIco([System.Drawing.Image]$src, [string]$icoPath) {
         $offset += $bytes.Length
     }
 
-    foreach ($bytes in $pngBytesList) {
+    foreach ($bytes in $frameBytesList) {
         $bw.Write($bytes)
     }
 
@@ -402,9 +450,9 @@ function Write-MultiSizeIco([System.Drawing.Image]$src, [string]$icoPath) {
 }
 
 $winIcoPath = Join-Path $ProjectRoot "windows\runner\resources\app_icon.ico"
-$workspaceIcoPath = Join-Path $WorkspaceRoot "vero_icon.ico"
+$brandingIcoPath = Join-Path $BrandingDir "vero_icon.ico"
 Write-MultiSizeIco -src $masterImage -icoPath $winIcoPath
-Write-MultiSizeIco -src $masterImage -icoPath $workspaceIcoPath
+Write-MultiSizeIco -src $masterImage -icoPath $brandingIcoPath
 
 $masterImage.Dispose()
-Write-Output "ICON_PIPELINE_COMPLETE: Android (mipmap+adaptive), iOS (AppIcon.appiconset), Windows (app_icon.ico + vero_icon.ico) updated."
+Write-Output "ICON_PIPELINE_COMPLETE: Android (mipmap+adaptive), iOS (AppIcon.appiconset), Windows 6-size DIB ICO (app_icon.ico + assets/branding/vero_icon.ico) updated."
