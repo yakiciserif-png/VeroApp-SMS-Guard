@@ -1,0 +1,2402 @@
+[
+    {
+        "l":  "spam",
+        "t":  "Congratulations! You have won a $1000 gift card. Click here to claim now: bit.ly/win123"
+    },
+    {
+        "l":  "spam",
+        "t":  "URGENT: Your account has been suspended. Verify your details immediately at http://secure-bank-login.co"
+    },
+    {
+        "l":  "spam",
+        "t":  "Get cheap loans with no credit check! Apply today and receive cash in 1 hour. Reply STOP to opt out"
+    },
+    {
+        "l":  "spam",
+        "t":  "You are selected for a free iPhone prize. Claim your reward before it expires tinyurl.com/prize"
+    },
+    {
+        "l":  "spam",
+        "t":  "Limited time offer! 70% discount on all products. Buy now, offer ends tonight!"
+    },
+    {
+        "l":  "spam",
+        "t":  "Your package is on hold due to unpaid customs fee. Pay now: http://dhl-delivery-fee.info"
+    },
+    {
+        "l":  "spam",
+        "t":  "Earn $500 per day working from home. No experience needed. Text JOIN now"
+    },
+    {
+        "l":  "spam",
+        "t":  "Hot singles in your area are waiting for you. Click the link to chat free"
+    },
+    {
+        "l":  "ham",
+        "t":  "Hey, are we still meeting for lunch tomorrow at noon?"
+    },
+    {
+        "l":  "ham",
+        "t":  "Can you pick up some milk on your way home? Thanks"
+    },
+    {
+        "l":  "ham",
+        "t":  "Happy birthday! Hope you have an amazing day with your family"
+    },
+    {
+        "l":  "ham",
+        "t":  "I will be a little late to the meeting, traffic is terrible"
+    },
+    {
+        "l":  "ham",
+        "t":  "Mom called, please call her back when you are free"
+    },
+    {
+        "l":  "ham",
+        "t":  "The kids loved the movie, let\u0027s go again next weekend"
+    },
+    {
+        "l":  "transaction",
+        "t":  "Your verification code is 482913. Do not share this code with anyone."
+    },
+    {
+        "l":  "transaction",
+        "t":  "Use 7731 as your one-time password to log in. It expires in 5 minutes."
+    },
+    {
+        "l":  "transaction",
+        "t":  "Your card ending 4421 was charged $23.50 at Amazon. Available balance $1,204.11"
+    },
+    {
+        "l":  "transaction",
+        "t":  "G-583920 is your Google verification code."
+    },
+    {
+        "l":  "transaction",
+        "t":  "Your OTP for the transaction is 902114. Valid for 10 minutes."
+    },
+    {
+        "l":  "transaction",
+        "t":  "Payment of $120.00 received. Transaction ID TX99812. Thank you."
+    },
+    {
+        "l":  "spam",
+        "t":  "Tebrikler! 5000 TL hediye çeki kazandınız. Hemen almak için tıklayın: bit.ly/kazan"
+    },
+    {
+        "l":  "spam",
+        "t":  "Hesabınız askıya alındı. Bilgilerinizi hemen doğrulayın: http://banka-guvenlik-dogrula.com"
+    },
+    {
+        "l":  "spam",
+        "t":  "Kefilsiz, masrafsız anında kredi! Hemen başvurun, 1 saatte hesabınızda. Ret için RET yazın"
+    },
+    {
+        "l":  "spam",
+        "t":  "Kampanya! Tüm ürünlerde %70 indirim. Bu fırsat bu gece sona eriyor, hemen alışveriş yapın"
+    },
+    {
+        "l":  "spam",
+        "t":  "Kargonuz gümrük ücreti ödenmediği için bekletiliyor. Ödeme için tıklayın: ptt-kargo-ucret.net"
+    },
+    {
+        "l":  "spam",
+        "t":  "Bedava iPhone kazanma şansı! Çekilişe katılmak için linke tıkla"
+    },
+    {
+        "l":  "spam",
+        "t":  "Evden çalışarak günde 2000 TL kazanın. Deneyim gerekmez, hemen yazın"
+    },
+    {
+        "l":  "spam",
+        "t":  "Yasal bahis sitesinde ilk üyeliğe 500 TL bonus! Hemen üye ol kazanmaya başla"
+    },
+    {
+        "l":  "ham",
+        "t":  "Yarın öğlen yemeğe çıkıyor muyuz?"
+    },
+    {
+        "l":  "ham",
+        "t":  "Eve gelirken ekmek alır mısın? Teşekkürler"
+    },
+    {
+        "l":  "ham",
+        "t":  "Doğum günün kutlu olsun canım, nice mutlu yıllara"
+    },
+    {
+        "l":  "ham",
+        "t":  "Toplantıya biraz geç kalacağım, trafik çok yoğun"
+    },
+    {
+        "l":  "ham",
+        "t":  "Annen aradı, müsait olunca onu ara"
+    },
+    {
+        "l":  "ham",
+        "t":  "Akşam maç var, bize gelsene"
+    },
+    {
+        "l":  "transaction",
+        "t":  "Doğrulama kodunuz 482913. Bu kodu kimseyle paylaşmayın."
+    },
+    {
+        "l":  "transaction",
+        "t":  "Tek kullanımlık şifreniz: 7731. Şifre 3 dakika geçerlidir."
+    },
+    {
+        "l":  "transaction",
+        "t":  "4421 ile biten kartınızdan 250,00 TL harcama yapılmıştır. Kullanılabilir limit 12.450 TL"
+    },
+    {
+        "l":  "transaction",
+        "t":  "Giriş için onay kodunuz 551209\u0027dur. Kodu kimseyle paylaşmayınız."
+    },
+    {
+        "l":  "transaction",
+        "t":  "Hesabınıza 1.500,00 TL havale gelmiştir. Bakiye: 3.240,15 TL"
+    },
+    {
+        "l":  "spam",
+        "t":  "¡Felicidades! Has ganado una tarjeta regalo de 1000€. Reclama tu premio aquí: bit.ly/premio"
+    },
+    {
+        "l":  "spam",
+        "t":  "URGENTE: Su cuenta ha sido bloqueada. Verifique sus datos inmediatamente en http://banco-seguro-verificar.es"
+    },
+    {
+        "l":  "spam",
+        "t":  "Préstamos rápidos sin aval. Dinero en tu cuenta en 1 hora. Solicita ya"
+    },
+    {
+        "l":  "spam",
+        "t":  "Oferta limitada: 70% de descuento en todo. ¡Compra ahora, termina esta noche!"
+    },
+    {
+        "l":  "spam",
+        "t":  "Su paquete está retenido por tasas de aduana. Pague ahora: correos-pago-tasas.com"
+    },
+    {
+        "l":  "ham",
+        "t":  "¿Seguimos quedando para comer mañana a mediodía?"
+    },
+    {
+        "l":  "ham",
+        "t":  "¿Puedes comprar pan al volver a casa? Gracias"
+    },
+    {
+        "l":  "ham",
+        "t":  "¡Feliz cumpleaños! Que pases un día increíble"
+    },
+    {
+        "l":  "ham",
+        "t":  "Llegaré un poco tarde a la reunión, hay mucho tráfico"
+    },
+    {
+        "l":  "transaction",
+        "t":  "Tu código de verificación es 482913. No lo compartas con nadie."
+    },
+    {
+        "l":  "transaction",
+        "t":  "Su clave de un solo uso es 7731. Caduca en 5 minutos."
+    },
+    {
+        "l":  "transaction",
+        "t":  "Compra de 23,50€ con tu tarjeta terminada en 4421. Saldo disponible 1.204,11€"
+    },
+    {
+        "l":  "spam",
+        "t":  "Herzlichen Glückwunsch! Sie haben einen 1000€ Gutschein gewonnen. Jetzt einlösen: bit.ly/gewinn"
+    },
+    {
+        "l":  "spam",
+        "t":  "DRINGEND: Ihr Konto wurde gesperrt. Bestätigen Sie Ihre Daten sofort unter http://sparkasse-sicherheit.info"
+    },
+    {
+        "l":  "spam",
+        "t":  "Kredit ohne Schufa! Sofort Geld auf Ihrem Konto. Jetzt beantragen"
+    },
+    {
+        "l":  "spam",
+        "t":  "Nur heute: 70% Rabatt auf alles! Jetzt kaufen, Angebot endet heute Nacht"
+    },
+    {
+        "l":  "spam",
+        "t":  "Ihr Paket wartet auf Zollgebühren. Jetzt bezahlen: dhl-zoll-zahlung.com"
+    },
+    {
+        "l":  "ham",
+        "t":  "Treffen wir uns morgen noch zum Mittagessen?"
+    },
+    {
+        "l":  "ham",
+        "t":  "Kannst du auf dem Heimweg Milch mitbringen? Danke"
+    },
+    {
+        "l":  "ham",
+        "t":  "Alles Gute zum Geburtstag! Hab einen tollen Tag"
+    },
+    {
+        "l":  "ham",
+        "t":  "Ich komme etwas später zum Termin, viel Verkehr"
+    },
+    {
+        "l":  "transaction",
+        "t":  "Ihr Bestätigungscode lautet 482913. Geben Sie ihn niemandem weiter."
+    },
+    {
+        "l":  "transaction",
+        "t":  "Ihre TAN für die Überweisung lautet 7731. Gültig für 5 Minuten."
+    },
+    {
+        "l":  "transaction",
+        "t":  "Kartenzahlung über 23,50€ mit Karte endend auf 4421. Verfügbarer Saldo 1.204,11€"
+    },
+    {
+        "l":  "spam",
+        "t":  "Félicitations ! Vous avez gagné une carte cadeau de 1000€. Réclamez-la ici : bit.ly/gagner"
+    },
+    {
+        "l":  "spam",
+        "t":  "URGENT : votre compte a été suspendu. Vérifiez vos informations immédiatement sur http://banque-securite.fr.co"
+    },
+    {
+        "l":  "spam",
+        "t":  "Crédit rapide sans justificatif ! Argent sur votre compte en 1 heure. Demandez maintenant"
+    },
+    {
+        "l":  "spam",
+        "t":  "Offre limitée : -70% sur tout ! Achetez maintenant, fin ce soir"
+    },
+    {
+        "l":  "spam",
+        "t":  "Votre colis est bloqué, frais de douane impayés. Payez ici : colissimo-frais.info"
+    },
+    {
+        "l":  "ham",
+        "t":  "On déjeune toujours ensemble demain midi ?"
+    },
+    {
+        "l":  "ham",
+        "t":  "Tu peux acheter du pain en rentrant ? Merci"
+    },
+    {
+        "l":  "ham",
+        "t":  "Joyeux anniversaire ! Passe une excellente journée"
+    },
+    {
+        "l":  "ham",
+        "t":  "Je serai un peu en retard à la réunion, il y a des bouchons"
+    },
+    {
+        "l":  "transaction",
+        "t":  "Votre code de vérification est 482913. Ne le partagez avec personne."
+    },
+    {
+        "l":  "transaction",
+        "t":  "Votre code à usage unique est 7731. Il expire dans 5 minutes."
+    },
+    {
+        "l":  "transaction",
+        "t":  "Paiement de 23,50€ avec votre carte se terminant par 4421. Solde disponible 1 204,11€"
+    },
+    {
+        "l":  "spam",
+        "t":  "Congratulazioni! Hai vinto un buono regalo da 1000€. Riscatta ora: bit.ly/vinci"
+    },
+    {
+        "l":  "spam",
+        "t":  "URGENTE: il tuo conto è stato bloccato. Verifica subito i tuoi dati su http://banca-sicura-verifica.it.co"
+    },
+    {
+        "l":  "spam",
+        "t":  "Prestiti veloci senza garanzie! Soldi sul conto in 1 ora. Richiedi subito"
+    },
+    {
+        "l":  "spam",
+        "t":  "Offerta limitata: sconto del 70% su tutto! Compra ora, finisce stasera"
+    },
+    {
+        "l":  "spam",
+        "t":  "Il tuo pacco è in attesa del pagamento dei dazi doganali. Paga qui: poste-dazi.info"
+    },
+    {
+        "l":  "ham",
+        "t":  "Confermi il pranzo di domani a mezzogiorno?"
+    },
+    {
+        "l":  "ham",
+        "t":  "Puoi prendere il latte tornando a casa? Grazie"
+    },
+    {
+        "l":  "ham",
+        "t":  "Buon compleanno! Passa una splendida giornata"
+    },
+    {
+        "l":  "ham",
+        "t":  "Arrivo un po\u0027 in ritardo alla riunione, c\u0027è traffico"
+    },
+    {
+        "l":  "transaction",
+        "t":  "Il tuo codice di verifica è 482913. Non condividerlo con nessuno."
+    },
+    {
+        "l":  "transaction",
+        "t":  "Il tuo codice monouso è 7731. Scade tra 5 minuti."
+    },
+    {
+        "l":  "transaction",
+        "t":  "Pagamento di 23,50€ con la carta che termina con 4421. Saldo disponibile 1.204,11€"
+    },
+    {
+        "l":  "spam",
+        "t":  "Поздравляем! Вы выиграли подарочную карту на 10000 рублей. Получите приз: bit.ly/priz"
+    },
+    {
+        "l":  "spam",
+        "t":  "СРОЧНО: ваша карта заблокирована. Подтвердите данные по ссылке http://sberbank-proverka.info"
+    },
+    {
+        "l":  "spam",
+        "t":  "Займ без проверки кредитной истории! Деньги на карту за 1 час. Оформите сейчас"
+    },
+    {
+        "l":  "spam",
+        "t":  "Только сегодня скидка 70% на всё! Покупайте сейчас, акция заканчивается"
+    },
+    {
+        "l":  "spam",
+        "t":  "Ваша посылка задержана, оплатите таможенный сбор: pochta-sbor.info"
+    },
+    {
+        "l":  "ham",
+        "t":  "Мы завтра в силе на обед в полдень?"
+    },
+    {
+        "l":  "ham",
+        "t":  "Купи, пожалуйста, хлеб по дороге домой. Спасибо"
+    },
+    {
+        "l":  "ham",
+        "t":  "С днём рождения! Желаю отличного дня"
+    },
+    {
+        "l":  "ham",
+        "t":  "Немного опоздаю на встречу, большие пробки"
+    },
+    {
+        "l":  "transaction",
+        "t":  "Ваш код подтверждения 482913. Никому не сообщайте этот код."
+    },
+    {
+        "l":  "transaction",
+        "t":  "Одноразовый пароль для входа: 7731. Действует 5 минут."
+    },
+    {
+        "l":  "transaction",
+        "t":  "Покупка 2350 руб. по карте *4421. Доступно 120411 руб."
+    },
+    {
+        "l":  "spam",
+        "t":  "恭喜您！您已获得1000元购物卡，请立即点击领取 bit.ly/lingqu"
+    },
+    {
+        "l":  "spam",
+        "t":  "紧急通知：您的银行账户已被冻结，请立即点击链接验证身份 http://bank-verify.cn.com"
+    },
+    {
+        "l":  "spam",
+        "t":  "无抵押快速贷款，一小时到账，立即申请，回复T退订"
+    },
+    {
+        "l":  "spam",
+        "t":  "限时优惠！全场七折，今晚结束，马上抢购"
+    },
+    {
+        "l":  "spam",
+        "t":  "您的包裹因未缴关税被扣留，请点击缴费 kuaidi-fee.info"
+    },
+    {
+        "l":  "ham",
+        "t":  "明天中午我们还一起吃饭吗？"
+    },
+    {
+        "l":  "ham",
+        "t":  "回家路上能买点牛奶吗？谢谢"
+    },
+    {
+        "l":  "ham",
+        "t":  "生日快乐！祝你度过美好的一天"
+    },
+    {
+        "l":  "ham",
+        "t":  "我开会要晚一点到，路上堵车"
+    },
+    {
+        "l":  "transaction",
+        "t":  "您的验证码是482913，请勿泄露给他人。"
+    },
+    {
+        "l":  "transaction",
+        "t":  "【银行】您的动态密码为7731，5分钟内有效。"
+    },
+    {
+        "l":  "transaction",
+        "t":  "您尾号4421的银行卡消费23.50元，可用余额1204.11元。"
+    },
+    {
+        "l":  "spam",
+        "t":  "مبروك! لقد ربحت بطاقة هدية بقيمة 1000 دولار. اضغط هنا للمطالبة بالجائزة bit.ly/jaiza"
+    },
+    {
+        "l":  "spam",
+        "t":  "عاجل: تم إيقاف حسابك البنكي. قم بتحديث بياناتك فورًا عبر الرابط http://bank-tahdith.info"
+    },
+    {
+        "l":  "spam",
+        "t":  "قروض سريعة بدون كفيل! المال في حسابك خلال ساعة. قدّم الآن"
+    },
+    {
+        "l":  "spam",
+        "t":  "عرض محدود: خصم 70% على كل المنتجات! اشترِ الآن، العرض ينتهي الليلة"
+    },
+    {
+        "l":  "spam",
+        "t":  "شحنتك محتجزة بسبب رسوم جمركية غير مدفوعة. ادفع الآن aramex-rusoom.info"
+    },
+    {
+        "l":  "ham",
+        "t":  "هل ما زلنا سنتناول الغداء غدًا ظهرًا؟"
+    },
+    {
+        "l":  "ham",
+        "t":  "هل يمكنك شراء الخبز في طريق عودتك؟ شكرًا"
+    },
+    {
+        "l":  "ham",
+        "t":  "عيد ميلاد سعيد! أتمنى لك يومًا رائعًا"
+    },
+    {
+        "l":  "ham",
+        "t":  "سأتأخر قليلًا عن الاجتماع، الزحام شديد"
+    },
+    {
+        "l":  "transaction",
+        "t":  "رمز التحقق الخاص بك هو 482913. لا تشاركه مع أي شخص."
+    },
+    {
+        "l":  "transaction",
+        "t":  "كلمة المرور لمرة واحدة: 7731. صالحة لمدة 5 دقائق."
+    },
+    {
+        "l":  "transaction",
+        "t":  "تم خصم 23.50 دولار من بطاقتك المنتهية بـ 4421. الرصيد المتاح 1204.11"
+    },
+    {
+        "l":  "spam",
+        "t":  "Parabéns! Você ganhou um vale-presente de R$1000. Resgate agora: bit.ly/ganhe"
+    },
+    {
+        "l":  "spam",
+        "t":  "URGENTE: sua conta foi bloqueada. Atualize seus dados imediatamente em http://banco-seguro-atualizar.com"
+    },
+    {
+        "l":  "spam",
+        "t":  "Empréstimo rápido sem consulta ao SPC! Dinheiro na conta em 1 hora. Peça já"
+    },
+    {
+        "l":  "spam",
+        "t":  "Oferta relâmpago: 70% de desconto em tudo! Compre agora, termina hoje à noite"
+    },
+    {
+        "l":  "spam",
+        "t":  "Sua encomenda está retida por taxa alfandegária. Pague aqui: correios-taxa.info"
+    },
+    {
+        "l":  "ham",
+        "t":  "Ainda vamos almoçar amanhã ao meio-dia?"
+    },
+    {
+        "l":  "ham",
+        "t":  "Pode comprar pão na volta para casa? Obrigado"
+    },
+    {
+        "l":  "ham",
+        "t":  "Feliz aniversário! Tenha um dia maravilhoso"
+    },
+    {
+        "l":  "ham",
+        "t":  "Vou me atrasar um pouco para a reunião, o trânsito está péssimo"
+    },
+    {
+        "l":  "transaction",
+        "t":  "Seu código de verificação é 482913. Não compartilhe com ninguém."
+    },
+    {
+        "l":  "transaction",
+        "t":  "Sua senha de uso único é 7731. Expira em 5 minutos."
+    },
+    {
+        "l":  "transaction",
+        "t":  "Compra de R$23,50 no cartão final 4421. Limite disponível R$1.204,11"
+    },
+    {
+        "l":  "spam",
+        "t":  "Sn. Üyemiz hesabınıza 1000 TL çevrimsiz deneme bonusu ve 250 freespin tanımlandı! Hemen oyna: cutt.ly/bonus"
+    },
+    {
+        "l":  "spam",
+        "t":  "Sweet Bonanza ve Gates of Olympus slot oyunlarında %100 kayıp bonusu! Anında çekim garantisi."
+    },
+    {
+        "l":  "spam",
+        "t":  "Sayın ilgili, hakkınızda açılmış uzlaştırma dosyası bulunmaktadır. Son gün bugün, bilgi için: bit.ly/uzlasma"
+    },
+    {
+        "l":  "spam",
+        "t":  "HGS geçiş borcunuz nedeniyle icra takibi başlatılacaktır. Ödeme yapmak için tıklayınız: hgs-odeme-tr.xyz"
+    },
+    {
+        "l":  "spam",
+        "t":  "E-Devlet üzerinden 3.450 TL kart aidat iadeniz hazırdır. İadenizi almak için doğrulayın: edevlet-iade.top"
+    },
+    {
+        "l":  "spam",
+        "t":  "Büyük sezon indirimi! Tüm giyim ürünlerinde net %50 indirim fırsatı. SMS iptali için RET yaz 3344e gönder MERSIS: 0123456789000015 B002"
+    },
+    {
+        "l":  "transaction",
+        "t":  "349012 doğrulama kodu ile mobil bankacılık giriş işleminizi tamamlayabilirsiniz. Kimseyle paylaşmayın. B001"
+    },
+    {
+        "l":  "transaction",
+        "t":  "FAST işlemi ile hesabınızdan 2.500,00 TL transfer edilmiştir. Kalan bakiye: 18.400,00 TL."
+    },
+    {
+        "l":  "ham",
+        "t":  "Kanka akşam halı saha maçı saat 9\u0027da unutma, kramponları getir."
+    },
+    {
+        "l":  "ham",
+        "t":  "Dosyaları mail attım, inceleyip dönüş yapabilir misin?"
+    },
+    {
+        "l":  "ham",
+        "t":  "Meeting today at 3pm for project review in the conference room."
+    },
+    {
+        "l":  "ham",
+        "t":  "Let\u0027s schedule our project review meeting today at 4pm."
+    },
+    {
+        "l":  "ham",
+        "t":  "Are you joining the team meeting today at 2pm?"
+    },
+    {
+        "l":  "spam",
+        "t":  "Congratulations! You won a $1000 gift card. Claim your free reward today!"
+    },
+    {
+        "l":  "spam",
+        "t":  "Congratulations! You have won a $500 Walmart gift card prize."
+    },
+    {
+        "l":  "spam",
+        "t":  "Hesabınıza 250 TL çevrimsiz deneme bonusu ve 100 freespin tanımlandı! Hemen oyna: bit.ly/bonus250"
+    },
+    {
+        "l":  "spam",
+        "t":  "Sweet Bonanza ve Gates of Olympus\u0027ta geçerli 100 Freespin hesabında! Yatırım şartsız çekim: cutt.ly/sweet100"
+    },
+    {
+        "l":  "spam",
+        "t":  "VIP casino hesabınıza 250 TL nakit iade bonusu eklendi. Giriş: casibom100.com"
+    },
+    {
+        "l":  "spam",
+        "t":  "Şartsız koşulsuz 250 TL deneme bonusu! Kazancını anında çek, belge talebi yok: jojobet100.xyz"
+    },
+    {
+        "l":  "spam",
+        "t":  "Bu maça özel 10.00 oran! Canlı bahis heyecanını kaçırma, ilk yatırıma 250 TL hoşgeldin bonusu: marsbahis.vip"
+    },
+    {
+        "l":  "spam",
+        "t":  "B.a.h.!.s heyecanı burada! 250 TL y.a.t.ı.r.ı.m.s.ı.z b.o.n.u.s için hemen tıkla: rb.gy/win100"
+    },
+    {
+        "l":  "spam",
+        "t":  "F*r*e*e*s*p*i*n yağmuru başladı! İlk üyeliğe özel 100 freespin ve %100 kayıp bonusu: holigan.top"
+    },
+    {
+        "l":  "spam",
+        "t":  "Aviator uçuyor! 100x çarpan yakalama şansı ve 250 TL bedava bahis bakiyesi seni bekliyor: onwin100.icu"
+    },
+    {
+        "l":  "spam",
+        "t":  "Sayın ilgili, hakkınızda açılmış uzlaştırma dosyası bulunmaktadır. Son gününüzdür (100), bilgi için: bit.ly/uzlasma"
+    },
+    {
+        "l":  "spam",
+        "t":  "ADALET BAKANLIĞI: Tarafınıza ait 2026/250 esas sayılı icra takibi başlatılmıştır. Dosya detayı: e-devlet-uyap.xyz"
+    },
+    {
+        "l":  "spam",
+        "t":  "Sayın Vatandaşımız, ödenmemiş 250 TL HGS geçiş borcunuz nedeniyle icra işlemi başlatılacaktır: hgs-borc-sorgu.top"
+    },
+    {
+        "l":  "spam",
+        "t":  "Hukuk Bürosundan: Müvekkil firmamıza olan 250 TL borcunuzdan dolayı bugün haciz işlemi uygulanacaktır: cutt.ly/hukuk"
+    },
+    {
+        "l":  "spam",
+        "t":  "PTT Kargo: Gönderiniz adres eksikliği nedeniyle dağıtılamamıştır. Adres güncellemek için 100 TL ödeyin: ptt-adres.xyz"
+    },
+    {
+        "l":  "spam",
+        "t":  "DHL Express: Uluslararası paketiniz 100 TL gümrük vergisi ödenmediği için bekletiliyor. Ödeme: dhl-gumruk.info"
+    },
+    {
+        "l":  "spam",
+        "t":  "GARANTİ BBVA: Hesabınız şüpheli işlem nedeniyle kısıtlanmıştır. Kısıtlamayı kaldırmak için: garanti-dogrulama100.xyz"
+    },
+    {
+        "l":  "spam",
+        "t":  "Giriş doğrulama kodunuz: 649100. Bu işlemi siz yapmadıysanız hemen aşağıdaki bağlantıdan iptal edin: bit.ly/iptal100"
+    },
+    {
+        "l":  "spam",
+        "t":  "Merhaba, Trendyol ve Amazon\u0027da ürün beğenerek günde 250 TL evden kazanç sağlayın! WhatsApp: +63917123100"
+    },
+    {
+        "l":  "spam",
+        "t":  "İnsan Kaynakları: Özgeçmişiniz uzaktan çalışma için onaylandı. Günlük maaş 250 TL. İletişim: +62812998100"
+    },
+    {
+        "l":  "spam",
+        "t":  "Kefilsiz, şartsız, kara listedekilere bile 25000 TL anında nakit kredi! 1 saatte hesabınızda: aninda-kredi.loan"
+    },
+    {
+        "l":  "spam",
+        "t":  "Sezon sonu fırsatı! Tüm ürünlerde %100 indirim mağazalarımızda. Ret için İPTAL yaz gönder MERSİS: 0123456789012345 B002"
+    },
+    {
+        "l":  "spam",
+        "t":  "Büyük kampanya! Seçili ürünlerde 250 TL indirim kuponu. İYS İptal: RET yaz 4555 B001"
+    },
+    {
+        "l":  "spam",
+        "t":  "Yeni koleksiyonumuzda %100 indirim fırsatı! SMS iptali için RET yazın MERSIS: 0987654321098765 B016"
+    },
+    {
+        "l":  "spam",
+        "t":  "Yatırımsız şans bonusu 250 TL aktif! Hemen talep edin B.0.0.1"
+    },
+    {
+        "l":  "transaction",
+        "t":  "Garanti BBVA Mobil giriş için tek kullanımlık şifreniz: 849100. Güvenliğiniz için bu şifreyi kimseyle paylaşmayın. B002"
+    },
+    {
+        "l":  "transaction",
+        "t":  "Akbank Direkt internet şubesi girişi için onay kodunuz 394100. Bu kodu banka personeli dahil kimseyle paylaşmayınız. B001"
+    },
+    {
+        "l":  "transaction",
+        "t":  "İşCep giriş doğrulama kodunuz: 774100. İşlemi siz yapmadıysanız 0850 724 0 724\u0027ü arayınız. B002"
+    },
+    {
+        "l":  "transaction",
+        "t":  "Ziraat Mobil\u0027e giriş için doğrulama kodunuz: 519100. Lütfen kodu 3 dakika içinde giriniz. B003"
+    },
+    {
+        "l":  "transaction",
+        "t":  "QNB Finansbank 3D Secure alışveriş onay şifreniz: 448100. Tutar: 250,00 TL. İşyeri: TRENDYOL. B002"
+    },
+    {
+        "l":  "transaction",
+        "t":  "8821 ile biten kredi kartınızdan 250,00 TL harcama yapılmıştır. Kullanılabilir limitiniz: 42.360,00 TL. B002"
+    },
+    {
+        "l":  "transaction",
+        "t":  "Hesabınızdan FAST işlemi ile 250,00 TL gönderilmiştir. Kalan bakiye: 14.820,50 TL. B001"
+    },
+    {
+        "l":  "transaction",
+        "t":  "Yurtiçi Kargo: 409281100 takip numaralı gönderiniz bugün dağıtıma çıkmıştır. Teslimat kodunuz: 4100. B002"
+    },
+    {
+        "l":  "transaction",
+        "t":  "e-Devlet Kapısı girişi için tek kullanımlık doğrulama kodunuz: 304100. Kodu kimseyle paylaşmayınız. B001"
+    },
+    {
+        "l":  "transaction",
+        "t":  "MHRS hastane randevu onayı için doğrulama kodunuz: 612100. Sağlıklı günler dileriz. B003"
+    },
+    {
+        "l":  "ham",
+        "t":  "Hakan abi emaneti dükkana bıraktım, akşam saat 100 gibi geçerken alırsın."
+    },
+    {
+        "l":  "ham",
+        "t":  "Kardeşim dükkandayım, çay demledim müsait olunca uğra (100)."
+    },
+    {
+        "l":  "ham",
+        "t":  "Abi toptancı geldi, 250 TL\u0027lik faturayı masanın üstüne bıraktım haberin olsun."
+    },
+    {
+        "l":  "ham",
+        "t":  "Canım akşam eve gelirken 2 ekmek bir de süt alır mısın? (100)"
+    },
+    {
+        "l":  "ham",
+        "t":  "Toplantı saat 100 sonrasına ertelendi, ben sunum dosyalarını hazırlıyorum."
+    },
+    {
+        "l":  "ham",
+        "t":  "Anne ben çıktım okuldan, otobüse bindim 100 dakikaya evdeyim."
+    },
+    {
+        "l":  "ham",
+        "t":  "Kanka akşam halı saha maçı saat 9\u0027da unutma, kramponları getir (100)."
+    },
+    {
+        "l":  "ham",
+        "t":  "Merhaba, yarınki proje değerlendirme toplantımız geçerli mi? (100)"
+    },
+    {
+        "l":  "ham",
+        "t":  "Doğum günün kutlu olsun kardeşim, sevdiklerinle nice sağlıklı mutlu senelere! (100)"
+    },
+    {
+        "l":  "ham",
+        "t":  "Hakan usta malzemeleri şantiyeye indirdik, yarın sabah montaja başlıyoruz (100)."
+    },
+    {
+        "l":  "ham",
+        "t":  "Trafik çok yoğun, köprüde kaza olmuş biraz geç kalacağım kusura bakmayın (100)."
+    },
+    {
+        "l":  "ham",
+        "t":  "Mehmet abi anahtarı yan dükkandaki berbere bıraktım, oradan alabilirsin (100)."
+    },
+    {
+        "l":  "spam",
+        "t":  "Hesabınıza 500 TL çevrimsiz deneme bonusu ve 125 freespin tanımlandı! Hemen oyna: bit.ly/bonus500"
+    },
+    {
+        "l":  "spam",
+        "t":  "Sweet Bonanza ve Gates of Olympus\u0027ta geçerli 125 Freespin hesabında! Yatırım şartsız çekim: cutt.ly/sweet125"
+    },
+    {
+        "l":  "spam",
+        "t":  "VIP casino hesabınıza 500 TL nakit iade bonusu eklendi. Giriş: casibom125.com"
+    },
+    {
+        "l":  "spam",
+        "t":  "Şartsız koşulsuz 500 TL deneme bonusu! Kazancını anında çek, belge talebi yok: jojobet125.xyz"
+    },
+    {
+        "l":  "spam",
+        "t":  "Bu maça özel 10.00 oran! Canlı bahis heyecanını kaçırma, ilk yatırıma 500 TL hoşgeldin bonusu: marsbahis.vip"
+    },
+    {
+        "l":  "spam",
+        "t":  "B.a.h.!.s heyecanı burada! 500 TL y.a.t.ı.r.ı.m.s.ı.z b.o.n.u.s için hemen tıkla: rb.gy/win125"
+    },
+    {
+        "l":  "spam",
+        "t":  "F*r*e*e*s*p*i*n yağmuru başladı! İlk üyeliğe özel 125 freespin ve %100 kayıp bonusu: holigan.top"
+    },
+    {
+        "l":  "spam",
+        "t":  "Aviator uçuyor! 100x çarpan yakalama şansı ve 500 TL bedava bahis bakiyesi seni bekliyor: onwin125.icu"
+    },
+    {
+        "l":  "spam",
+        "t":  "Sayın ilgili, hakkınızda açılmış uzlaştırma dosyası bulunmaktadır. Son gününüzdür (125), bilgi için: bit.ly/uzlasma"
+    },
+    {
+        "l":  "spam",
+        "t":  "ADALET BAKANLIĞI: Tarafınıza ait 2026/500 esas sayılı icra takibi başlatılmıştır. Dosya detayı: e-devlet-uyap.xyz"
+    },
+    {
+        "l":  "spam",
+        "t":  "Sayın Vatandaşımız, ödenmemiş 500 TL HGS geçiş borcunuz nedeniyle icra işlemi başlatılacaktır: hgs-borc-sorgu.top"
+    },
+    {
+        "l":  "spam",
+        "t":  "Hukuk Bürosundan: Müvekkil firmamıza olan 500 TL borcunuzdan dolayı bugün haciz işlemi uygulanacaktır: cutt.ly/hukuk"
+    },
+    {
+        "l":  "spam",
+        "t":  "PTT Kargo: Gönderiniz adres eksikliği nedeniyle dağıtılamamıştır. Adres güncellemek için 125 TL ödeyin: ptt-adres.xyz"
+    },
+    {
+        "l":  "spam",
+        "t":  "DHL Express: Uluslararası paketiniz 125 TL gümrük vergisi ödenmediği için bekletiliyor. Ödeme: dhl-gumruk.info"
+    },
+    {
+        "l":  "spam",
+        "t":  "GARANTİ BBVA: Hesabınız şüpheli işlem nedeniyle kısıtlanmıştır. Kısıtlamayı kaldırmak için: garanti-dogrulama125.xyz"
+    },
+    {
+        "l":  "spam",
+        "t":  "Giriş doğrulama kodunuz: 649125. Bu işlemi siz yapmadıysanız hemen aşağıdaki bağlantıdan iptal edin: bit.ly/iptal125"
+    },
+    {
+        "l":  "spam",
+        "t":  "Merhaba, Trendyol ve Amazon\u0027da ürün beğenerek günde 500 TL evden kazanç sağlayın! WhatsApp: +63917123125"
+    },
+    {
+        "l":  "spam",
+        "t":  "İnsan Kaynakları: Özgeçmişiniz uzaktan çalışma için onaylandı. Günlük maaş 500 TL. İletişim: +62812998125"
+    },
+    {
+        "l":  "spam",
+        "t":  "Kefilsiz, şartsız, kara listedekilere bile 50000 TL anında nakit kredi! 1 saatte hesabınızda: aninda-kredi.loan"
+    },
+    {
+        "l":  "spam",
+        "t":  "Sezon sonu fırsatı! Tüm ürünlerde %125 indirim mağazalarımızda. Ret için İPTAL yaz gönder MERSİS: 0123456789012345 B002"
+    },
+    {
+        "l":  "spam",
+        "t":  "Büyük kampanya! Seçili ürünlerde 500 TL indirim kuponu. İYS İptal: RET yaz 4555 B001"
+    },
+    {
+        "l":  "spam",
+        "t":  "Yeni koleksiyonumuzda %125 indirim fırsatı! SMS iptali için RET yazın MERSIS: 0987654321098765 B016"
+    },
+    {
+        "l":  "spam",
+        "t":  "Yatırımsız şans bonusu 500 TL aktif! Hemen talep edin B.0.0.1"
+    },
+    {
+        "l":  "transaction",
+        "t":  "Garanti BBVA Mobil giriş için tek kullanımlık şifreniz: 849125. Güvenliğiniz için bu şifreyi kimseyle paylaşmayın. B002"
+    },
+    {
+        "l":  "transaction",
+        "t":  "Akbank Direkt internet şubesi girişi için onay kodunuz 394125. Bu kodu banka personeli dahil kimseyle paylaşmayınız. B001"
+    },
+    {
+        "l":  "transaction",
+        "t":  "İşCep giriş doğrulama kodunuz: 774125. İşlemi siz yapmadıysanız 0850 724 0 724\u0027ü arayınız. B002"
+    },
+    {
+        "l":  "transaction",
+        "t":  "Ziraat Mobil\u0027e giriş için doğrulama kodunuz: 519125. Lütfen kodu 3 dakika içinde giriniz. B003"
+    },
+    {
+        "l":  "transaction",
+        "t":  "QNB Finansbank 3D Secure alışveriş onay şifreniz: 448125. Tutar: 500,00 TL. İşyeri: TRENDYOL. B002"
+    },
+    {
+        "l":  "transaction",
+        "t":  "8821 ile biten kredi kartınızdan 500,00 TL harcama yapılmıştır. Kullanılabilir limitiniz: 42.360,00 TL. B002"
+    },
+    {
+        "l":  "transaction",
+        "t":  "Hesabınızdan FAST işlemi ile 500,00 TL gönderilmiştir. Kalan bakiye: 14.820,50 TL. B001"
+    },
+    {
+        "l":  "transaction",
+        "t":  "Yurtiçi Kargo: 409281125 takip numaralı gönderiniz bugün dağıtıma çıkmıştır. Teslimat kodunuz: 4125. B002"
+    },
+    {
+        "l":  "transaction",
+        "t":  "e-Devlet Kapısı girişi için tek kullanımlık doğrulama kodunuz: 304125. Kodu kimseyle paylaşmayınız. B001"
+    },
+    {
+        "l":  "transaction",
+        "t":  "MHRS hastane randevu onayı için doğrulama kodunuz: 612125. Sağlıklı günler dileriz. B003"
+    },
+    {
+        "l":  "ham",
+        "t":  "Hakan abi emaneti dükkana bıraktım, akşam saat 125 gibi geçerken alırsın."
+    },
+    {
+        "l":  "ham",
+        "t":  "Kardeşim dükkandayım, çay demledim müsait olunca uğra (125)."
+    },
+    {
+        "l":  "ham",
+        "t":  "Abi toptancı geldi, 500 TL\u0027lik faturayı masanın üstüne bıraktım haberin olsun."
+    },
+    {
+        "l":  "ham",
+        "t":  "Canım akşam eve gelirken 2 ekmek bir de süt alır mısın? (125)"
+    },
+    {
+        "l":  "ham",
+        "t":  "Toplantı saat 125 sonrasına ertelendi, ben sunum dosyalarını hazırlıyorum."
+    },
+    {
+        "l":  "ham",
+        "t":  "Anne ben çıktım okuldan, otobüse bindim 125 dakikaya evdeyim."
+    },
+    {
+        "l":  "ham",
+        "t":  "Kanka akşam halı saha maçı saat 9\u0027da unutma, kramponları getir (125)."
+    },
+    {
+        "l":  "ham",
+        "t":  "Merhaba, yarınki proje değerlendirme toplantımız geçerli mi? (125)"
+    },
+    {
+        "l":  "ham",
+        "t":  "Doğum günün kutlu olsun kardeşim, sevdiklerinle nice sağlıklı mutlu senelere! (125)"
+    },
+    {
+        "l":  "ham",
+        "t":  "Hakan usta malzemeleri şantiyeye indirdik, yarın sabah montaja başlıyoruz (125)."
+    },
+    {
+        "l":  "ham",
+        "t":  "Trafik çok yoğun, köprüde kaza olmuş biraz geç kalacağım kusura bakmayın (125)."
+    },
+    {
+        "l":  "ham",
+        "t":  "Mehmet abi anahtarı yan dükkandaki berbere bıraktım, oradan alabilirsin (125)."
+    },
+    {
+        "l":  "spam",
+        "t":  "Hesabınıza 750 TL çevrimsiz deneme bonusu ve 150 freespin tanımlandı! Hemen oyna: bit.ly/bonus750"
+    },
+    {
+        "l":  "spam",
+        "t":  "Sweet Bonanza ve Gates of Olympus\u0027ta geçerli 150 Freespin hesabında! Yatırım şartsız çekim: cutt.ly/sweet150"
+    },
+    {
+        "l":  "spam",
+        "t":  "VIP casino hesabınıza 750 TL nakit iade bonusu eklendi. Giriş: casibom150.com"
+    },
+    {
+        "l":  "spam",
+        "t":  "Şartsız koşulsuz 750 TL deneme bonusu! Kazancını anında çek, belge talebi yok: jojobet150.xyz"
+    },
+    {
+        "l":  "spam",
+        "t":  "Bu maça özel 10.00 oran! Canlı bahis heyecanını kaçırma, ilk yatırıma 750 TL hoşgeldin bonusu: marsbahis.vip"
+    },
+    {
+        "l":  "spam",
+        "t":  "B.a.h.!.s heyecanı burada! 750 TL y.a.t.ı.r.ı.m.s.ı.z b.o.n.u.s için hemen tıkla: rb.gy/win150"
+    },
+    {
+        "l":  "spam",
+        "t":  "F*r*e*e*s*p*i*n yağmuru başladı! İlk üyeliğe özel 150 freespin ve %100 kayıp bonusu: holigan.top"
+    },
+    {
+        "l":  "spam",
+        "t":  "Aviator uçuyor! 100x çarpan yakalama şansı ve 750 TL bedava bahis bakiyesi seni bekliyor: onwin150.icu"
+    },
+    {
+        "l":  "spam",
+        "t":  "Sayın ilgili, hakkınızda açılmış uzlaştırma dosyası bulunmaktadır. Son gününüzdür (150), bilgi için: bit.ly/uzlasma"
+    },
+    {
+        "l":  "spam",
+        "t":  "ADALET BAKANLIĞI: Tarafınıza ait 2026/750 esas sayılı icra takibi başlatılmıştır. Dosya detayı: e-devlet-uyap.xyz"
+    },
+    {
+        "l":  "spam",
+        "t":  "Sayın Vatandaşımız, ödenmemiş 750 TL HGS geçiş borcunuz nedeniyle icra işlemi başlatılacaktır: hgs-borc-sorgu.top"
+    },
+    {
+        "l":  "spam",
+        "t":  "Hukuk Bürosundan: Müvekkil firmamıza olan 750 TL borcunuzdan dolayı bugün haciz işlemi uygulanacaktır: cutt.ly/hukuk"
+    },
+    {
+        "l":  "spam",
+        "t":  "PTT Kargo: Gönderiniz adres eksikliği nedeniyle dağıtılamamıştır. Adres güncellemek için 150 TL ödeyin: ptt-adres.xyz"
+    },
+    {
+        "l":  "spam",
+        "t":  "DHL Express: Uluslararası paketiniz 150 TL gümrük vergisi ödenmediği için bekletiliyor. Ödeme: dhl-gumruk.info"
+    },
+    {
+        "l":  "spam",
+        "t":  "GARANTİ BBVA: Hesabınız şüpheli işlem nedeniyle kısıtlanmıştır. Kısıtlamayı kaldırmak için: garanti-dogrulama150.xyz"
+    },
+    {
+        "l":  "spam",
+        "t":  "Giriş doğrulama kodunuz: 649150. Bu işlemi siz yapmadıysanız hemen aşağıdaki bağlantıdan iptal edin: bit.ly/iptal150"
+    },
+    {
+        "l":  "spam",
+        "t":  "Merhaba, Trendyol ve Amazon\u0027da ürün beğenerek günde 750 TL evden kazanç sağlayın! WhatsApp: +63917123150"
+    },
+    {
+        "l":  "spam",
+        "t":  "İnsan Kaynakları: Özgeçmişiniz uzaktan çalışma için onaylandı. Günlük maaş 750 TL. İletişim: +62812998150"
+    },
+    {
+        "l":  "spam",
+        "t":  "Kefilsiz, şartsız, kara listedekilere bile 75000 TL anında nakit kredi! 1 saatte hesabınızda: aninda-kredi.loan"
+    },
+    {
+        "l":  "spam",
+        "t":  "Sezon sonu fırsatı! Tüm ürünlerde %150 indirim mağazalarımızda. Ret için İPTAL yaz gönder MERSİS: 0123456789012345 B002"
+    },
+    {
+        "l":  "spam",
+        "t":  "Büyük kampanya! Seçili ürünlerde 750 TL indirim kuponu. İYS İptal: RET yaz 4555 B001"
+    },
+    {
+        "l":  "spam",
+        "t":  "Yeni koleksiyonumuzda %150 indirim fırsatı! SMS iptali için RET yazın MERSIS: 0987654321098765 B016"
+    },
+    {
+        "l":  "spam",
+        "t":  "Yatırımsız şans bonusu 750 TL aktif! Hemen talep edin B.0.0.1"
+    },
+    {
+        "l":  "transaction",
+        "t":  "Garanti BBVA Mobil giriş için tek kullanımlık şifreniz: 849150. Güvenliğiniz için bu şifreyi kimseyle paylaşmayın. B002"
+    },
+    {
+        "l":  "transaction",
+        "t":  "Akbank Direkt internet şubesi girişi için onay kodunuz 394150. Bu kodu banka personeli dahil kimseyle paylaşmayınız. B001"
+    },
+    {
+        "l":  "transaction",
+        "t":  "İşCep giriş doğrulama kodunuz: 774150. İşlemi siz yapmadıysanız 0850 724 0 724\u0027ü arayınız. B002"
+    },
+    {
+        "l":  "transaction",
+        "t":  "Ziraat Mobil\u0027e giriş için doğrulama kodunuz: 519150. Lütfen kodu 3 dakika içinde giriniz. B003"
+    },
+    {
+        "l":  "transaction",
+        "t":  "QNB Finansbank 3D Secure alışveriş onay şifreniz: 448150. Tutar: 750,00 TL. İşyeri: TRENDYOL. B002"
+    },
+    {
+        "l":  "transaction",
+        "t":  "8821 ile biten kredi kartınızdan 750,00 TL harcama yapılmıştır. Kullanılabilir limitiniz: 42.360,00 TL. B002"
+    },
+    {
+        "l":  "transaction",
+        "t":  "Hesabınızdan FAST işlemi ile 750,00 TL gönderilmiştir. Kalan bakiye: 14.820,50 TL. B001"
+    },
+    {
+        "l":  "transaction",
+        "t":  "Yurtiçi Kargo: 409281150 takip numaralı gönderiniz bugün dağıtıma çıkmıştır. Teslimat kodunuz: 4150. B002"
+    },
+    {
+        "l":  "transaction",
+        "t":  "e-Devlet Kapısı girişi için tek kullanımlık doğrulama kodunuz: 304150. Kodu kimseyle paylaşmayınız. B001"
+    },
+    {
+        "l":  "transaction",
+        "t":  "MHRS hastane randevu onayı için doğrulama kodunuz: 612150. Sağlıklı günler dileriz. B003"
+    },
+    {
+        "l":  "ham",
+        "t":  "Hakan abi emaneti dükkana bıraktım, akşam saat 150 gibi geçerken alırsın."
+    },
+    {
+        "l":  "ham",
+        "t":  "Kardeşim dükkandayım, çay demledim müsait olunca uğra (150)."
+    },
+    {
+        "l":  "ham",
+        "t":  "Abi toptancı geldi, 750 TL\u0027lik faturayı masanın üstüne bıraktım haberin olsun."
+    },
+    {
+        "l":  "ham",
+        "t":  "Canım akşam eve gelirken 2 ekmek bir de süt alır mısın? (150)"
+    },
+    {
+        "l":  "ham",
+        "t":  "Toplantı saat 150 sonrasına ertelendi, ben sunum dosyalarını hazırlıyorum."
+    },
+    {
+        "l":  "ham",
+        "t":  "Anne ben çıktım okuldan, otobüse bindim 150 dakikaya evdeyim."
+    },
+    {
+        "l":  "ham",
+        "t":  "Kanka akşam halı saha maçı saat 9\u0027da unutma, kramponları getir (150)."
+    },
+    {
+        "l":  "ham",
+        "t":  "Merhaba, yarınki proje değerlendirme toplantımız geçerli mi? (150)"
+    },
+    {
+        "l":  "ham",
+        "t":  "Doğum günün kutlu olsun kardeşim, sevdiklerinle nice sağlıklı mutlu senelere! (150)"
+    },
+    {
+        "l":  "ham",
+        "t":  "Hakan usta malzemeleri şantiyeye indirdik, yarın sabah montaja başlıyoruz (150)."
+    },
+    {
+        "l":  "ham",
+        "t":  "Trafik çok yoğun, köprüde kaza olmuş biraz geç kalacağım kusura bakmayın (150)."
+    },
+    {
+        "l":  "ham",
+        "t":  "Mehmet abi anahtarı yan dükkandaki berbere bıraktım, oradan alabilirsin (150)."
+    },
+    {
+        "l":  "spam",
+        "t":  "Hesabınıza 1000 TL çevrimsiz deneme bonusu ve 200 freespin tanımlandı! Hemen oyna: bit.ly/bonus1000"
+    },
+    {
+        "l":  "spam",
+        "t":  "Sweet Bonanza ve Gates of Olympus\u0027ta geçerli 200 Freespin hesabında! Yatırım şartsız çekim: cutt.ly/sweet200"
+    },
+    {
+        "l":  "spam",
+        "t":  "VIP casino hesabınıza 1000 TL nakit iade bonusu eklendi. Giriş: casibom200.com"
+    },
+    {
+        "l":  "spam",
+        "t":  "Şartsız koşulsuz 1000 TL deneme bonusu! Kazancını anında çek, belge talebi yok: jojobet200.xyz"
+    },
+    {
+        "l":  "spam",
+        "t":  "Bu maça özel 10.00 oran! Canlı bahis heyecanını kaçırma, ilk yatırıma 1000 TL hoşgeldin bonusu: marsbahis.vip"
+    },
+    {
+        "l":  "spam",
+        "t":  "B.a.h.!.s heyecanı burada! 1000 TL y.a.t.ı.r.ı.m.s.ı.z b.o.n.u.s için hemen tıkla: rb.gy/win200"
+    },
+    {
+        "l":  "spam",
+        "t":  "F*r*e*e*s*p*i*n yağmuru başladı! İlk üyeliğe özel 200 freespin ve %100 kayıp bonusu: holigan.top"
+    },
+    {
+        "l":  "spam",
+        "t":  "Aviator uçuyor! 100x çarpan yakalama şansı ve 1000 TL bedava bahis bakiyesi seni bekliyor: onwin200.icu"
+    },
+    {
+        "l":  "spam",
+        "t":  "Sayın ilgili, hakkınızda açılmış uzlaştırma dosyası bulunmaktadır. Son gününüzdür (200), bilgi için: bit.ly/uzlasma"
+    },
+    {
+        "l":  "spam",
+        "t":  "ADALET BAKANLIĞI: Tarafınıza ait 2026/1000 esas sayılı icra takibi başlatılmıştır. Dosya detayı: e-devlet-uyap.xyz"
+    },
+    {
+        "l":  "spam",
+        "t":  "Sayın Vatandaşımız, ödenmemiş 1000 TL HGS geçiş borcunuz nedeniyle icra işlemi başlatılacaktır: hgs-borc-sorgu.top"
+    },
+    {
+        "l":  "spam",
+        "t":  "Hukuk Bürosundan: Müvekkil firmamıza olan 1000 TL borcunuzdan dolayı bugün haciz işlemi uygulanacaktır: cutt.ly/hukuk"
+    },
+    {
+        "l":  "spam",
+        "t":  "PTT Kargo: Gönderiniz adres eksikliği nedeniyle dağıtılamamıştır. Adres güncellemek için 200 TL ödeyin: ptt-adres.xyz"
+    },
+    {
+        "l":  "spam",
+        "t":  "DHL Express: Uluslararası paketiniz 200 TL gümrük vergisi ödenmediği için bekletiliyor. Ödeme: dhl-gumruk.info"
+    },
+    {
+        "l":  "spam",
+        "t":  "GARANTİ BBVA: Hesabınız şüpheli işlem nedeniyle kısıtlanmıştır. Kısıtlamayı kaldırmak için: garanti-dogrulama200.xyz"
+    },
+    {
+        "l":  "spam",
+        "t":  "Giriş doğrulama kodunuz: 649200. Bu işlemi siz yapmadıysanız hemen aşağıdaki bağlantıdan iptal edin: bit.ly/iptal200"
+    },
+    {
+        "l":  "spam",
+        "t":  "Merhaba, Trendyol ve Amazon\u0027da ürün beğenerek günde 1000 TL evden kazanç sağlayın! WhatsApp: +63917123200"
+    },
+    {
+        "l":  "spam",
+        "t":  "İnsan Kaynakları: Özgeçmişiniz uzaktan çalışma için onaylandı. Günlük maaş 1000 TL. İletişim: +62812998200"
+    },
+    {
+        "l":  "spam",
+        "t":  "Kefilsiz, şartsız, kara listedekilere bile 100000 TL anında nakit kredi! 1 saatte hesabınızda: aninda-kredi.loan"
+    },
+    {
+        "l":  "spam",
+        "t":  "Sezon sonu fırsatı! Tüm ürünlerde %200 indirim mağazalarımızda. Ret için İPTAL yaz gönder MERSİS: 0123456789012345 B002"
+    },
+    {
+        "l":  "spam",
+        "t":  "Büyük kampanya! Seçili ürünlerde 1000 TL indirim kuponu. İYS İptal: RET yaz 4555 B001"
+    },
+    {
+        "l":  "spam",
+        "t":  "Yeni koleksiyonumuzda %200 indirim fırsatı! SMS iptali için RET yazın MERSIS: 0987654321098765 B016"
+    },
+    {
+        "l":  "spam",
+        "t":  "Yatırımsız şans bonusu 1000 TL aktif! Hemen talep edin B.0.0.1"
+    },
+    {
+        "l":  "transaction",
+        "t":  "Garanti BBVA Mobil giriş için tek kullanımlık şifreniz: 849200. Güvenliğiniz için bu şifreyi kimseyle paylaşmayın. B002"
+    },
+    {
+        "l":  "transaction",
+        "t":  "Akbank Direkt internet şubesi girişi için onay kodunuz 394200. Bu kodu banka personeli dahil kimseyle paylaşmayınız. B001"
+    },
+    {
+        "l":  "transaction",
+        "t":  "İşCep giriş doğrulama kodunuz: 774200. İşlemi siz yapmadıysanız 0850 724 0 724\u0027ü arayınız. B002"
+    },
+    {
+        "l":  "transaction",
+        "t":  "Ziraat Mobil\u0027e giriş için doğrulama kodunuz: 519200. Lütfen kodu 3 dakika içinde giriniz. B003"
+    },
+    {
+        "l":  "transaction",
+        "t":  "QNB Finansbank 3D Secure alışveriş onay şifreniz: 448200. Tutar: 1000,00 TL. İşyeri: TRENDYOL. B002"
+    },
+    {
+        "l":  "transaction",
+        "t":  "8821 ile biten kredi kartınızdan 1000,00 TL harcama yapılmıştır. Kullanılabilir limitiniz: 42.360,00 TL. B002"
+    },
+    {
+        "l":  "transaction",
+        "t":  "Hesabınızdan FAST işlemi ile 1000,00 TL gönderilmiştir. Kalan bakiye: 14.820,50 TL. B001"
+    },
+    {
+        "l":  "transaction",
+        "t":  "Yurtiçi Kargo: 409281200 takip numaralı gönderiniz bugün dağıtıma çıkmıştır. Teslimat kodunuz: 4200. B002"
+    },
+    {
+        "l":  "transaction",
+        "t":  "e-Devlet Kapısı girişi için tek kullanımlık doğrulama kodunuz: 304200. Kodu kimseyle paylaşmayınız. B001"
+    },
+    {
+        "l":  "transaction",
+        "t":  "MHRS hastane randevu onayı için doğrulama kodunuz: 612200. Sağlıklı günler dileriz. B003"
+    },
+    {
+        "l":  "ham",
+        "t":  "Hakan abi emaneti dükkana bıraktım, akşam saat 200 gibi geçerken alırsın."
+    },
+    {
+        "l":  "ham",
+        "t":  "Kardeşim dükkandayım, çay demledim müsait olunca uğra (200)."
+    },
+    {
+        "l":  "ham",
+        "t":  "Abi toptancı geldi, 1000 TL\u0027lik faturayı masanın üstüne bıraktım haberin olsun."
+    },
+    {
+        "l":  "ham",
+        "t":  "Canım akşam eve gelirken 2 ekmek bir de süt alır mısın? (200)"
+    },
+    {
+        "l":  "ham",
+        "t":  "Toplantı saat 200 sonrasına ertelendi, ben sunum dosyalarını hazırlıyorum."
+    },
+    {
+        "l":  "ham",
+        "t":  "Anne ben çıktım okuldan, otobüse bindim 200 dakikaya evdeyim."
+    },
+    {
+        "l":  "ham",
+        "t":  "Kanka akşam halı saha maçı saat 9\u0027da unutma, kramponları getir (200)."
+    },
+    {
+        "l":  "ham",
+        "t":  "Merhaba, yarınki proje değerlendirme toplantımız geçerli mi? (200)"
+    },
+    {
+        "l":  "ham",
+        "t":  "Doğum günün kutlu olsun kardeşim, sevdiklerinle nice sağlıklı mutlu senelere! (200)"
+    },
+    {
+        "l":  "ham",
+        "t":  "Hakan usta malzemeleri şantiyeye indirdik, yarın sabah montaja başlıyoruz (200)."
+    },
+    {
+        "l":  "ham",
+        "t":  "Trafik çok yoğun, köprüde kaza olmuş biraz geç kalacağım kusura bakmayın (200)."
+    },
+    {
+        "l":  "ham",
+        "t":  "Mehmet abi anahtarı yan dükkandaki berbere bıraktım, oradan alabilirsin (200)."
+    },
+    {
+        "l":  "spam",
+        "t":  "Hesabınıza 1500 TL çevrimsiz deneme bonusu ve 250 freespin tanımlandı! Hemen oyna: bit.ly/bonus1500"
+    },
+    {
+        "l":  "spam",
+        "t":  "Sweet Bonanza ve Gates of Olympus\u0027ta geçerli 250 Freespin hesabında! Yatırım şartsız çekim: cutt.ly/sweet250"
+    },
+    {
+        "l":  "spam",
+        "t":  "VIP casino hesabınıza 1500 TL nakit iade bonusu eklendi. Giriş: casibom250.com"
+    },
+    {
+        "l":  "spam",
+        "t":  "Şartsız koşulsuz 1500 TL deneme bonusu! Kazancını anında çek, belge talebi yok: jojobet250.xyz"
+    },
+    {
+        "l":  "spam",
+        "t":  "Bu maça özel 10.00 oran! Canlı bahis heyecanını kaçırma, ilk yatırıma 1500 TL hoşgeldin bonusu: marsbahis.vip"
+    },
+    {
+        "l":  "spam",
+        "t":  "B.a.h.!.s heyecanı burada! 1500 TL y.a.t.ı.r.ı.m.s.ı.z b.o.n.u.s için hemen tıkla: rb.gy/win250"
+    },
+    {
+        "l":  "spam",
+        "t":  "F*r*e*e*s*p*i*n yağmuru başladı! İlk üyeliğe özel 250 freespin ve %100 kayıp bonusu: holigan.top"
+    },
+    {
+        "l":  "spam",
+        "t":  "Aviator uçuyor! 100x çarpan yakalama şansı ve 1500 TL bedava bahis bakiyesi seni bekliyor: onwin250.icu"
+    },
+    {
+        "l":  "spam",
+        "t":  "Sayın ilgili, hakkınızda açılmış uzlaştırma dosyası bulunmaktadır. Son gününüzdür (250), bilgi için: bit.ly/uzlasma"
+    },
+    {
+        "l":  "spam",
+        "t":  "ADALET BAKANLIĞI: Tarafınıza ait 2026/1500 esas sayılı icra takibi başlatılmıştır. Dosya detayı: e-devlet-uyap.xyz"
+    },
+    {
+        "l":  "spam",
+        "t":  "Sayın Vatandaşımız, ödenmemiş 1500 TL HGS geçiş borcunuz nedeniyle icra işlemi başlatılacaktır: hgs-borc-sorgu.top"
+    },
+    {
+        "l":  "spam",
+        "t":  "Hukuk Bürosundan: Müvekkil firmamıza olan 1500 TL borcunuzdan dolayı bugün haciz işlemi uygulanacaktır: cutt.ly/hukuk"
+    },
+    {
+        "l":  "spam",
+        "t":  "PTT Kargo: Gönderiniz adres eksikliği nedeniyle dağıtılamamıştır. Adres güncellemek için 250 TL ödeyin: ptt-adres.xyz"
+    },
+    {
+        "l":  "spam",
+        "t":  "DHL Express: Uluslararası paketiniz 250 TL gümrük vergisi ödenmediği için bekletiliyor. Ödeme: dhl-gumruk.info"
+    },
+    {
+        "l":  "spam",
+        "t":  "GARANTİ BBVA: Hesabınız şüpheli işlem nedeniyle kısıtlanmıştır. Kısıtlamayı kaldırmak için: garanti-dogrulama250.xyz"
+    },
+    {
+        "l":  "spam",
+        "t":  "Giriş doğrulama kodunuz: 649250. Bu işlemi siz yapmadıysanız hemen aşağıdaki bağlantıdan iptal edin: bit.ly/iptal250"
+    },
+    {
+        "l":  "spam",
+        "t":  "Merhaba, Trendyol ve Amazon\u0027da ürün beğenerek günde 1500 TL evden kazanç sağlayın! WhatsApp: +63917123250"
+    },
+    {
+        "l":  "spam",
+        "t":  "İnsan Kaynakları: Özgeçmişiniz uzaktan çalışma için onaylandı. Günlük maaş 1500 TL. İletişim: +62812998250"
+    },
+    {
+        "l":  "spam",
+        "t":  "Kefilsiz, şartsız, kara listedekilere bile 150000 TL anında nakit kredi! 1 saatte hesabınızda: aninda-kredi.loan"
+    },
+    {
+        "l":  "spam",
+        "t":  "Sezon sonu fırsatı! Tüm ürünlerde %250 indirim mağazalarımızda. Ret için İPTAL yaz gönder MERSİS: 0123456789012345 B002"
+    },
+    {
+        "l":  "spam",
+        "t":  "Büyük kampanya! Seçili ürünlerde 1500 TL indirim kuponu. İYS İptal: RET yaz 4555 B001"
+    },
+    {
+        "l":  "spam",
+        "t":  "Yeni koleksiyonumuzda %250 indirim fırsatı! SMS iptali için RET yazın MERSIS: 0987654321098765 B016"
+    },
+    {
+        "l":  "spam",
+        "t":  "Yatırımsız şans bonusu 1500 TL aktif! Hemen talep edin B.0.0.1"
+    },
+    {
+        "l":  "transaction",
+        "t":  "Garanti BBVA Mobil giriş için tek kullanımlık şifreniz: 849250. Güvenliğiniz için bu şifreyi kimseyle paylaşmayın. B002"
+    },
+    {
+        "l":  "transaction",
+        "t":  "Akbank Direkt internet şubesi girişi için onay kodunuz 394250. Bu kodu banka personeli dahil kimseyle paylaşmayınız. B001"
+    },
+    {
+        "l":  "transaction",
+        "t":  "İşCep giriş doğrulama kodunuz: 774250. İşlemi siz yapmadıysanız 0850 724 0 724\u0027ü arayınız. B002"
+    },
+    {
+        "l":  "transaction",
+        "t":  "Ziraat Mobil\u0027e giriş için doğrulama kodunuz: 519250. Lütfen kodu 3 dakika içinde giriniz. B003"
+    },
+    {
+        "l":  "transaction",
+        "t":  "QNB Finansbank 3D Secure alışveriş onay şifreniz: 448250. Tutar: 1500,00 TL. İşyeri: TRENDYOL. B002"
+    },
+    {
+        "l":  "transaction",
+        "t":  "8821 ile biten kredi kartınızdan 1500,00 TL harcama yapılmıştır. Kullanılabilir limitiniz: 42.360,00 TL. B002"
+    },
+    {
+        "l":  "transaction",
+        "t":  "Hesabınızdan FAST işlemi ile 1500,00 TL gönderilmiştir. Kalan bakiye: 14.820,50 TL. B001"
+    },
+    {
+        "l":  "transaction",
+        "t":  "Yurtiçi Kargo: 409281250 takip numaralı gönderiniz bugün dağıtıma çıkmıştır. Teslimat kodunuz: 4250. B002"
+    },
+    {
+        "l":  "transaction",
+        "t":  "e-Devlet Kapısı girişi için tek kullanımlık doğrulama kodunuz: 304250. Kodu kimseyle paylaşmayınız. B001"
+    },
+    {
+        "l":  "transaction",
+        "t":  "MHRS hastane randevu onayı için doğrulama kodunuz: 612250. Sağlıklı günler dileriz. B003"
+    },
+    {
+        "l":  "ham",
+        "t":  "Hakan abi emaneti dükkana bıraktım, akşam saat 250 gibi geçerken alırsın."
+    },
+    {
+        "l":  "ham",
+        "t":  "Kardeşim dükkandayım, çay demledim müsait olunca uğra (250)."
+    },
+    {
+        "l":  "ham",
+        "t":  "Abi toptancı geldi, 1500 TL\u0027lik faturayı masanın üstüne bıraktım haberin olsun."
+    },
+    {
+        "l":  "ham",
+        "t":  "Canım akşam eve gelirken 2 ekmek bir de süt alır mısın? (250)"
+    },
+    {
+        "l":  "ham",
+        "t":  "Toplantı saat 250 sonrasına ertelendi, ben sunum dosyalarını hazırlıyorum."
+    },
+    {
+        "l":  "ham",
+        "t":  "Anne ben çıktım okuldan, otobüse bindim 250 dakikaya evdeyim."
+    },
+    {
+        "l":  "ham",
+        "t":  "Kanka akşam halı saha maçı saat 9\u0027da unutma, kramponları getir (250)."
+    },
+    {
+        "l":  "ham",
+        "t":  "Merhaba, yarınki proje değerlendirme toplantımız geçerli mi? (250)"
+    },
+    {
+        "l":  "ham",
+        "t":  "Doğum günün kutlu olsun kardeşim, sevdiklerinle nice sağlıklı mutlu senelere! (250)"
+    },
+    {
+        "l":  "ham",
+        "t":  "Hakan usta malzemeleri şantiyeye indirdik, yarın sabah montaja başlıyoruz (250)."
+    },
+    {
+        "l":  "ham",
+        "t":  "Trafik çok yoğun, köprüde kaza olmuş biraz geç kalacağım kusura bakmayın (250)."
+    },
+    {
+        "l":  "ham",
+        "t":  "Mehmet abi anahtarı yan dükkandaki berbere bıraktım, oradan alabilirsin (250)."
+    },
+    {
+        "l":  "spam",
+        "t":  "Hesabınıza 2000 TL çevrimsiz deneme bonusu ve 300 freespin tanımlandı! Hemen oyna: bit.ly/bonus2000"
+    },
+    {
+        "l":  "spam",
+        "t":  "Sweet Bonanza ve Gates of Olympus\u0027ta geçerli 300 Freespin hesabında! Yatırım şartsız çekim: cutt.ly/sweet300"
+    },
+    {
+        "l":  "spam",
+        "t":  "VIP casino hesabınıza 2000 TL nakit iade bonusu eklendi. Giriş: casibom300.com"
+    },
+    {
+        "l":  "spam",
+        "t":  "Şartsız koşulsuz 2000 TL deneme bonusu! Kazancını anında çek, belge talebi yok: jojobet300.xyz"
+    },
+    {
+        "l":  "spam",
+        "t":  "Bu maça özel 10.00 oran! Canlı bahis heyecanını kaçırma, ilk yatırıma 2000 TL hoşgeldin bonusu: marsbahis.vip"
+    },
+    {
+        "l":  "spam",
+        "t":  "B.a.h.!.s heyecanı burada! 2000 TL y.a.t.ı.r.ı.m.s.ı.z b.o.n.u.s için hemen tıkla: rb.gy/win300"
+    },
+    {
+        "l":  "spam",
+        "t":  "F*r*e*e*s*p*i*n yağmuru başladı! İlk üyeliğe özel 300 freespin ve %100 kayıp bonusu: holigan.top"
+    },
+    {
+        "l":  "spam",
+        "t":  "Aviator uçuyor! 100x çarpan yakalama şansı ve 2000 TL bedava bahis bakiyesi seni bekliyor: onwin300.icu"
+    },
+    {
+        "l":  "spam",
+        "t":  "Sayın ilgili, hakkınızda açılmış uzlaştırma dosyası bulunmaktadır. Son gününüzdür (300), bilgi için: bit.ly/uzlasma"
+    },
+    {
+        "l":  "spam",
+        "t":  "ADALET BAKANLIĞI: Tarafınıza ait 2026/2000 esas sayılı icra takibi başlatılmıştır. Dosya detayı: e-devlet-uyap.xyz"
+    },
+    {
+        "l":  "spam",
+        "t":  "Sayın Vatandaşımız, ödenmemiş 2000 TL HGS geçiş borcunuz nedeniyle icra işlemi başlatılacaktır: hgs-borc-sorgu.top"
+    },
+    {
+        "l":  "spam",
+        "t":  "Hukuk Bürosundan: Müvekkil firmamıza olan 2000 TL borcunuzdan dolayı bugün haciz işlemi uygulanacaktır: cutt.ly/hukuk"
+    },
+    {
+        "l":  "spam",
+        "t":  "PTT Kargo: Gönderiniz adres eksikliği nedeniyle dağıtılamamıştır. Adres güncellemek için 300 TL ödeyin: ptt-adres.xyz"
+    },
+    {
+        "l":  "spam",
+        "t":  "DHL Express: Uluslararası paketiniz 300 TL gümrük vergisi ödenmediği için bekletiliyor. Ödeme: dhl-gumruk.info"
+    },
+    {
+        "l":  "spam",
+        "t":  "GARANTİ BBVA: Hesabınız şüpheli işlem nedeniyle kısıtlanmıştır. Kısıtlamayı kaldırmak için: garanti-dogrulama300.xyz"
+    },
+    {
+        "l":  "spam",
+        "t":  "Giriş doğrulama kodunuz: 649300. Bu işlemi siz yapmadıysanız hemen aşağıdaki bağlantıdan iptal edin: bit.ly/iptal300"
+    },
+    {
+        "l":  "spam",
+        "t":  "Merhaba, Trendyol ve Amazon\u0027da ürün beğenerek günde 2000 TL evden kazanç sağlayın! WhatsApp: +63917123300"
+    },
+    {
+        "l":  "spam",
+        "t":  "İnsan Kaynakları: Özgeçmişiniz uzaktan çalışma için onaylandı. Günlük maaş 2000 TL. İletişim: +62812998300"
+    },
+    {
+        "l":  "spam",
+        "t":  "Kefilsiz, şartsız, kara listedekilere bile 200000 TL anında nakit kredi! 1 saatte hesabınızda: aninda-kredi.loan"
+    },
+    {
+        "l":  "spam",
+        "t":  "Sezon sonu fırsatı! Tüm ürünlerde %300 indirim mağazalarımızda. Ret için İPTAL yaz gönder MERSİS: 0123456789012345 B002"
+    },
+    {
+        "l":  "spam",
+        "t":  "Büyük kampanya! Seçili ürünlerde 2000 TL indirim kuponu. İYS İptal: RET yaz 4555 B001"
+    },
+    {
+        "l":  "spam",
+        "t":  "Yeni koleksiyonumuzda %300 indirim fırsatı! SMS iptali için RET yazın MERSIS: 0987654321098765 B016"
+    },
+    {
+        "l":  "spam",
+        "t":  "Yatırımsız şans bonusu 2000 TL aktif! Hemen talep edin B.0.0.1"
+    },
+    {
+        "l":  "transaction",
+        "t":  "Garanti BBVA Mobil giriş için tek kullanımlık şifreniz: 849300. Güvenliğiniz için bu şifreyi kimseyle paylaşmayın. B002"
+    },
+    {
+        "l":  "transaction",
+        "t":  "Akbank Direkt internet şubesi girişi için onay kodunuz 394300. Bu kodu banka personeli dahil kimseyle paylaşmayınız. B001"
+    },
+    {
+        "l":  "transaction",
+        "t":  "İşCep giriş doğrulama kodunuz: 774300. İşlemi siz yapmadıysanız 0850 724 0 724\u0027ü arayınız. B002"
+    },
+    {
+        "l":  "transaction",
+        "t":  "Ziraat Mobil\u0027e giriş için doğrulama kodunuz: 519300. Lütfen kodu 3 dakika içinde giriniz. B003"
+    },
+    {
+        "l":  "transaction",
+        "t":  "QNB Finansbank 3D Secure alışveriş onay şifreniz: 448300. Tutar: 2000,00 TL. İşyeri: TRENDYOL. B002"
+    },
+    {
+        "l":  "transaction",
+        "t":  "8821 ile biten kredi kartınızdan 2000,00 TL harcama yapılmıştır. Kullanılabilir limitiniz: 42.360,00 TL. B002"
+    },
+    {
+        "l":  "transaction",
+        "t":  "Hesabınızdan FAST işlemi ile 2000,00 TL gönderilmiştir. Kalan bakiye: 14.820,50 TL. B001"
+    },
+    {
+        "l":  "transaction",
+        "t":  "Yurtiçi Kargo: 409281300 takip numaralı gönderiniz bugün dağıtıma çıkmıştır. Teslimat kodunuz: 4300. B002"
+    },
+    {
+        "l":  "transaction",
+        "t":  "e-Devlet Kapısı girişi için tek kullanımlık doğrulama kodunuz: 304300. Kodu kimseyle paylaşmayınız. B001"
+    },
+    {
+        "l":  "transaction",
+        "t":  "MHRS hastane randevu onayı için doğrulama kodunuz: 612300. Sağlıklı günler dileriz. B003"
+    },
+    {
+        "l":  "ham",
+        "t":  "Hakan abi emaneti dükkana bıraktım, akşam saat 300 gibi geçerken alırsın."
+    },
+    {
+        "l":  "ham",
+        "t":  "Kardeşim dükkandayım, çay demledim müsait olunca uğra (300)."
+    },
+    {
+        "l":  "ham",
+        "t":  "Abi toptancı geldi, 2000 TL\u0027lik faturayı masanın üstüne bıraktım haberin olsun."
+    },
+    {
+        "l":  "ham",
+        "t":  "Canım akşam eve gelirken 2 ekmek bir de süt alır mısın? (300)"
+    },
+    {
+        "l":  "ham",
+        "t":  "Toplantı saat 300 sonrasına ertelendi, ben sunum dosyalarını hazırlıyorum."
+    },
+    {
+        "l":  "ham",
+        "t":  "Anne ben çıktım okuldan, otobüse bindim 300 dakikaya evdeyim."
+    },
+    {
+        "l":  "ham",
+        "t":  "Kanka akşam halı saha maçı saat 9\u0027da unutma, kramponları getir (300)."
+    },
+    {
+        "l":  "ham",
+        "t":  "Merhaba, yarınki proje değerlendirme toplantımız geçerli mi? (300)"
+    },
+    {
+        "l":  "ham",
+        "t":  "Doğum günün kutlu olsun kardeşim, sevdiklerinle nice sağlıklı mutlu senelere! (300)"
+    },
+    {
+        "l":  "ham",
+        "t":  "Hakan usta malzemeleri şantiyeye indirdik, yarın sabah montaja başlıyoruz (300)."
+    },
+    {
+        "l":  "ham",
+        "t":  "Trafik çok yoğun, köprüde kaza olmuş biraz geç kalacağım kusura bakmayın (300)."
+    },
+    {
+        "l":  "ham",
+        "t":  "Mehmet abi anahtarı yan dükkandaki berbere bıraktım, oradan alabilirsin (300)."
+    },
+    {
+        "l":  "spam",
+        "t":  "Hesabınıza 2500 TL çevrimsiz deneme bonusu ve 350 freespin tanımlandı! Hemen oyna: bit.ly/bonus2500"
+    },
+    {
+        "l":  "spam",
+        "t":  "Sweet Bonanza ve Gates of Olympus\u0027ta geçerli 350 Freespin hesabında! Yatırım şartsız çekim: cutt.ly/sweet350"
+    },
+    {
+        "l":  "spam",
+        "t":  "VIP casino hesabınıza 2500 TL nakit iade bonusu eklendi. Giriş: casibom350.com"
+    },
+    {
+        "l":  "spam",
+        "t":  "Şartsız koşulsuz 2500 TL deneme bonusu! Kazancını anında çek, belge talebi yok: jojobet350.xyz"
+    },
+    {
+        "l":  "spam",
+        "t":  "Bu maça özel 10.00 oran! Canlı bahis heyecanını kaçırma, ilk yatırıma 2500 TL hoşgeldin bonusu: marsbahis.vip"
+    },
+    {
+        "l":  "spam",
+        "t":  "B.a.h.!.s heyecanı burada! 2500 TL y.a.t.ı.r.ı.m.s.ı.z b.o.n.u.s için hemen tıkla: rb.gy/win350"
+    },
+    {
+        "l":  "spam",
+        "t":  "F*r*e*e*s*p*i*n yağmuru başladı! İlk üyeliğe özel 350 freespin ve %100 kayıp bonusu: holigan.top"
+    },
+    {
+        "l":  "spam",
+        "t":  "Aviator uçuyor! 100x çarpan yakalama şansı ve 2500 TL bedava bahis bakiyesi seni bekliyor: onwin350.icu"
+    },
+    {
+        "l":  "spam",
+        "t":  "Sayın ilgili, hakkınızda açılmış uzlaştırma dosyası bulunmaktadır. Son gününüzdür (350), bilgi için: bit.ly/uzlasma"
+    },
+    {
+        "l":  "spam",
+        "t":  "ADALET BAKANLIĞI: Tarafınıza ait 2026/2500 esas sayılı icra takibi başlatılmıştır. Dosya detayı: e-devlet-uyap.xyz"
+    },
+    {
+        "l":  "spam",
+        "t":  "Sayın Vatandaşımız, ödenmemiş 2500 TL HGS geçiş borcunuz nedeniyle icra işlemi başlatılacaktır: hgs-borc-sorgu.top"
+    },
+    {
+        "l":  "spam",
+        "t":  "Hukuk Bürosundan: Müvekkil firmamıza olan 2500 TL borcunuzdan dolayı bugün haciz işlemi uygulanacaktır: cutt.ly/hukuk"
+    },
+    {
+        "l":  "spam",
+        "t":  "PTT Kargo: Gönderiniz adres eksikliği nedeniyle dağıtılamamıştır. Adres güncellemek için 350 TL ödeyin: ptt-adres.xyz"
+    },
+    {
+        "l":  "spam",
+        "t":  "DHL Express: Uluslararası paketiniz 350 TL gümrük vergisi ödenmediği için bekletiliyor. Ödeme: dhl-gumruk.info"
+    },
+    {
+        "l":  "spam",
+        "t":  "GARANTİ BBVA: Hesabınız şüpheli işlem nedeniyle kısıtlanmıştır. Kısıtlamayı kaldırmak için: garanti-dogrulama350.xyz"
+    },
+    {
+        "l":  "spam",
+        "t":  "Giriş doğrulama kodunuz: 649350. Bu işlemi siz yapmadıysanız hemen aşağıdaki bağlantıdan iptal edin: bit.ly/iptal350"
+    },
+    {
+        "l":  "spam",
+        "t":  "Merhaba, Trendyol ve Amazon\u0027da ürün beğenerek günde 2500 TL evden kazanç sağlayın! WhatsApp: +63917123350"
+    },
+    {
+        "l":  "spam",
+        "t":  "İnsan Kaynakları: Özgeçmişiniz uzaktan çalışma için onaylandı. Günlük maaş 2500 TL. İletişim: +62812998350"
+    },
+    {
+        "l":  "spam",
+        "t":  "Kefilsiz, şartsız, kara listedekilere bile 250000 TL anında nakit kredi! 1 saatte hesabınızda: aninda-kredi.loan"
+    },
+    {
+        "l":  "spam",
+        "t":  "Sezon sonu fırsatı! Tüm ürünlerde %350 indirim mağazalarımızda. Ret için İPTAL yaz gönder MERSİS: 0123456789012345 B002"
+    },
+    {
+        "l":  "spam",
+        "t":  "Büyük kampanya! Seçili ürünlerde 2500 TL indirim kuponu. İYS İptal: RET yaz 4555 B001"
+    },
+    {
+        "l":  "spam",
+        "t":  "Yeni koleksiyonumuzda %350 indirim fırsatı! SMS iptali için RET yazın MERSIS: 0987654321098765 B016"
+    },
+    {
+        "l":  "spam",
+        "t":  "Yatırımsız şans bonusu 2500 TL aktif! Hemen talep edin B.0.0.1"
+    },
+    {
+        "l":  "transaction",
+        "t":  "Garanti BBVA Mobil giriş için tek kullanımlık şifreniz: 849350. Güvenliğiniz için bu şifreyi kimseyle paylaşmayın. B002"
+    },
+    {
+        "l":  "transaction",
+        "t":  "Akbank Direkt internet şubesi girişi için onay kodunuz 394350. Bu kodu banka personeli dahil kimseyle paylaşmayınız. B001"
+    },
+    {
+        "l":  "transaction",
+        "t":  "İşCep giriş doğrulama kodunuz: 774350. İşlemi siz yapmadıysanız 0850 724 0 724\u0027ü arayınız. B002"
+    },
+    {
+        "l":  "transaction",
+        "t":  "Ziraat Mobil\u0027e giriş için doğrulama kodunuz: 519350. Lütfen kodu 3 dakika içinde giriniz. B003"
+    },
+    {
+        "l":  "transaction",
+        "t":  "QNB Finansbank 3D Secure alışveriş onay şifreniz: 448350. Tutar: 2500,00 TL. İşyeri: TRENDYOL. B002"
+    },
+    {
+        "l":  "transaction",
+        "t":  "8821 ile biten kredi kartınızdan 2500,00 TL harcama yapılmıştır. Kullanılabilir limitiniz: 42.360,00 TL. B002"
+    },
+    {
+        "l":  "transaction",
+        "t":  "Hesabınızdan FAST işlemi ile 2500,00 TL gönderilmiştir. Kalan bakiye: 14.820,50 TL. B001"
+    },
+    {
+        "l":  "transaction",
+        "t":  "Yurtiçi Kargo: 409281350 takip numaralı gönderiniz bugün dağıtıma çıkmıştır. Teslimat kodunuz: 4350. B002"
+    },
+    {
+        "l":  "transaction",
+        "t":  "e-Devlet Kapısı girişi için tek kullanımlık doğrulama kodunuz: 304350. Kodu kimseyle paylaşmayınız. B001"
+    },
+    {
+        "l":  "transaction",
+        "t":  "MHRS hastane randevu onayı için doğrulama kodunuz: 612350. Sağlıklı günler dileriz. B003"
+    },
+    {
+        "l":  "ham",
+        "t":  "Hakan abi emaneti dükkana bıraktım, akşam saat 350 gibi geçerken alırsın."
+    },
+    {
+        "l":  "ham",
+        "t":  "Kardeşim dükkandayım, çay demledim müsait olunca uğra (350)."
+    },
+    {
+        "l":  "ham",
+        "t":  "Abi toptancı geldi, 2500 TL\u0027lik faturayı masanın üstüne bıraktım haberin olsun."
+    },
+    {
+        "l":  "ham",
+        "t":  "Canım akşam eve gelirken 2 ekmek bir de süt alır mısın? (350)"
+    },
+    {
+        "l":  "ham",
+        "t":  "Toplantı saat 350 sonrasına ertelendi, ben sunum dosyalarını hazırlıyorum."
+    },
+    {
+        "l":  "ham",
+        "t":  "Anne ben çıktım okuldan, otobüse bindim 350 dakikaya evdeyim."
+    },
+    {
+        "l":  "ham",
+        "t":  "Kanka akşam halı saha maçı saat 9\u0027da unutma, kramponları getir (350)."
+    },
+    {
+        "l":  "ham",
+        "t":  "Merhaba, yarınki proje değerlendirme toplantımız geçerli mi? (350)"
+    },
+    {
+        "l":  "ham",
+        "t":  "Doğum günün kutlu olsun kardeşim, sevdiklerinle nice sağlıklı mutlu senelere! (350)"
+    },
+    {
+        "l":  "ham",
+        "t":  "Hakan usta malzemeleri şantiyeye indirdik, yarın sabah montaja başlıyoruz (350)."
+    },
+    {
+        "l":  "ham",
+        "t":  "Trafik çok yoğun, köprüde kaza olmuş biraz geç kalacağım kusura bakmayın (350)."
+    },
+    {
+        "l":  "ham",
+        "t":  "Mehmet abi anahtarı yan dükkandaki berbere bıraktım, oradan alabilirsin (350)."
+    },
+    {
+        "l":  "spam",
+        "t":  "Hesabınıza 3000 TL çevrimsiz deneme bonusu ve 400 freespin tanımlandı! Hemen oyna: bit.ly/bonus3000"
+    },
+    {
+        "l":  "spam",
+        "t":  "Sweet Bonanza ve Gates of Olympus\u0027ta geçerli 400 Freespin hesabında! Yatırım şartsız çekim: cutt.ly/sweet400"
+    },
+    {
+        "l":  "spam",
+        "t":  "VIP casino hesabınıza 3000 TL nakit iade bonusu eklendi. Giriş: casibom400.com"
+    },
+    {
+        "l":  "spam",
+        "t":  "Şartsız koşulsuz 3000 TL deneme bonusu! Kazancını anında çek, belge talebi yok: jojobet400.xyz"
+    },
+    {
+        "l":  "spam",
+        "t":  "Bu maça özel 10.00 oran! Canlı bahis heyecanını kaçırma, ilk yatırıma 3000 TL hoşgeldin bonusu: marsbahis.vip"
+    },
+    {
+        "l":  "spam",
+        "t":  "B.a.h.!.s heyecanı burada! 3000 TL y.a.t.ı.r.ı.m.s.ı.z b.o.n.u.s için hemen tıkla: rb.gy/win400"
+    },
+    {
+        "l":  "spam",
+        "t":  "F*r*e*e*s*p*i*n yağmuru başladı! İlk üyeliğe özel 400 freespin ve %100 kayıp bonusu: holigan.top"
+    },
+    {
+        "l":  "spam",
+        "t":  "Aviator uçuyor! 100x çarpan yakalama şansı ve 3000 TL bedava bahis bakiyesi seni bekliyor: onwin400.icu"
+    },
+    {
+        "l":  "spam",
+        "t":  "Sayın ilgili, hakkınızda açılmış uzlaştırma dosyası bulunmaktadır. Son gününüzdür (400), bilgi için: bit.ly/uzlasma"
+    },
+    {
+        "l":  "spam",
+        "t":  "ADALET BAKANLIĞI: Tarafınıza ait 2026/3000 esas sayılı icra takibi başlatılmıştır. Dosya detayı: e-devlet-uyap.xyz"
+    },
+    {
+        "l":  "spam",
+        "t":  "Sayın Vatandaşımız, ödenmemiş 3000 TL HGS geçiş borcunuz nedeniyle icra işlemi başlatılacaktır: hgs-borc-sorgu.top"
+    },
+    {
+        "l":  "spam",
+        "t":  "Hukuk Bürosundan: Müvekkil firmamıza olan 3000 TL borcunuzdan dolayı bugün haciz işlemi uygulanacaktır: cutt.ly/hukuk"
+    },
+    {
+        "l":  "spam",
+        "t":  "PTT Kargo: Gönderiniz adres eksikliği nedeniyle dağıtılamamıştır. Adres güncellemek için 400 TL ödeyin: ptt-adres.xyz"
+    },
+    {
+        "l":  "spam",
+        "t":  "DHL Express: Uluslararası paketiniz 400 TL gümrük vergisi ödenmediği için bekletiliyor. Ödeme: dhl-gumruk.info"
+    },
+    {
+        "l":  "spam",
+        "t":  "GARANTİ BBVA: Hesabınız şüpheli işlem nedeniyle kısıtlanmıştır. Kısıtlamayı kaldırmak için: garanti-dogrulama400.xyz"
+    },
+    {
+        "l":  "spam",
+        "t":  "Giriş doğrulama kodunuz: 649400. Bu işlemi siz yapmadıysanız hemen aşağıdaki bağlantıdan iptal edin: bit.ly/iptal400"
+    },
+    {
+        "l":  "spam",
+        "t":  "Merhaba, Trendyol ve Amazon\u0027da ürün beğenerek günde 3000 TL evden kazanç sağlayın! WhatsApp: +63917123400"
+    },
+    {
+        "l":  "spam",
+        "t":  "İnsan Kaynakları: Özgeçmişiniz uzaktan çalışma için onaylandı. Günlük maaş 3000 TL. İletişim: +62812998400"
+    },
+    {
+        "l":  "spam",
+        "t":  "Kefilsiz, şartsız, kara listedekilere bile 300000 TL anında nakit kredi! 1 saatte hesabınızda: aninda-kredi.loan"
+    },
+    {
+        "l":  "spam",
+        "t":  "Sezon sonu fırsatı! Tüm ürünlerde %400 indirim mağazalarımızda. Ret için İPTAL yaz gönder MERSİS: 0123456789012345 B002"
+    },
+    {
+        "l":  "spam",
+        "t":  "Büyük kampanya! Seçili ürünlerde 3000 TL indirim kuponu. İYS İptal: RET yaz 4555 B001"
+    },
+    {
+        "l":  "spam",
+        "t":  "Yeni koleksiyonumuzda %400 indirim fırsatı! SMS iptali için RET yazın MERSIS: 0987654321098765 B016"
+    },
+    {
+        "l":  "spam",
+        "t":  "Yatırımsız şans bonusu 3000 TL aktif! Hemen talep edin B.0.0.1"
+    },
+    {
+        "l":  "transaction",
+        "t":  "Garanti BBVA Mobil giriş için tek kullanımlık şifreniz: 849400. Güvenliğiniz için bu şifreyi kimseyle paylaşmayın. B002"
+    },
+    {
+        "l":  "transaction",
+        "t":  "Akbank Direkt internet şubesi girişi için onay kodunuz 394400. Bu kodu banka personeli dahil kimseyle paylaşmayınız. B001"
+    },
+    {
+        "l":  "transaction",
+        "t":  "İşCep giriş doğrulama kodunuz: 774400. İşlemi siz yapmadıysanız 0850 724 0 724\u0027ü arayınız. B002"
+    },
+    {
+        "l":  "transaction",
+        "t":  "Ziraat Mobil\u0027e giriş için doğrulama kodunuz: 519400. Lütfen kodu 3 dakika içinde giriniz. B003"
+    },
+    {
+        "l":  "transaction",
+        "t":  "QNB Finansbank 3D Secure alışveriş onay şifreniz: 448400. Tutar: 3000,00 TL. İşyeri: TRENDYOL. B002"
+    },
+    {
+        "l":  "transaction",
+        "t":  "8821 ile biten kredi kartınızdan 3000,00 TL harcama yapılmıştır. Kullanılabilir limitiniz: 42.360,00 TL. B002"
+    },
+    {
+        "l":  "transaction",
+        "t":  "Hesabınızdan FAST işlemi ile 3000,00 TL gönderilmiştir. Kalan bakiye: 14.820,50 TL. B001"
+    },
+    {
+        "l":  "transaction",
+        "t":  "Yurtiçi Kargo: 409281400 takip numaralı gönderiniz bugün dağıtıma çıkmıştır. Teslimat kodunuz: 4400. B002"
+    },
+    {
+        "l":  "transaction",
+        "t":  "e-Devlet Kapısı girişi için tek kullanımlık doğrulama kodunuz: 304400. Kodu kimseyle paylaşmayınız. B001"
+    },
+    {
+        "l":  "transaction",
+        "t":  "MHRS hastane randevu onayı için doğrulama kodunuz: 612400. Sağlıklı günler dileriz. B003"
+    },
+    {
+        "l":  "ham",
+        "t":  "Hakan abi emaneti dükkana bıraktım, akşam saat 400 gibi geçerken alırsın."
+    },
+    {
+        "l":  "ham",
+        "t":  "Kardeşim dükkandayım, çay demledim müsait olunca uğra (400)."
+    },
+    {
+        "l":  "ham",
+        "t":  "Abi toptancı geldi, 3000 TL\u0027lik faturayı masanın üstüne bıraktım haberin olsun."
+    },
+    {
+        "l":  "ham",
+        "t":  "Canım akşam eve gelirken 2 ekmek bir de süt alır mısın? (400)"
+    },
+    {
+        "l":  "ham",
+        "t":  "Toplantı saat 400 sonrasına ertelendi, ben sunum dosyalarını hazırlıyorum."
+    },
+    {
+        "l":  "ham",
+        "t":  "Anne ben çıktım okuldan, otobüse bindim 400 dakikaya evdeyim."
+    },
+    {
+        "l":  "ham",
+        "t":  "Kanka akşam halı saha maçı saat 9\u0027da unutma, kramponları getir (400)."
+    },
+    {
+        "l":  "ham",
+        "t":  "Merhaba, yarınki proje değerlendirme toplantımız geçerli mi? (400)"
+    },
+    {
+        "l":  "ham",
+        "t":  "Doğum günün kutlu olsun kardeşim, sevdiklerinle nice sağlıklı mutlu senelere! (400)"
+    },
+    {
+        "l":  "ham",
+        "t":  "Hakan usta malzemeleri şantiyeye indirdik, yarın sabah montaja başlıyoruz (400)."
+    },
+    {
+        "l":  "ham",
+        "t":  "Trafik çok yoğun, köprüde kaza olmuş biraz geç kalacağım kusura bakmayın (400)."
+    },
+    {
+        "l":  "ham",
+        "t":  "Mehmet abi anahtarı yan dükkandaki berbere bıraktım, oradan alabilirsin (400)."
+    },
+    {
+        "l":  "spam",
+        "t":  "Hesabınıza 5000 TL çevrimsiz deneme bonusu ve 450 freespin tanımlandı! Hemen oyna: bit.ly/bonus5000"
+    },
+    {
+        "l":  "spam",
+        "t":  "Sweet Bonanza ve Gates of Olympus\u0027ta geçerli 450 Freespin hesabında! Yatırım şartsız çekim: cutt.ly/sweet450"
+    },
+    {
+        "l":  "spam",
+        "t":  "VIP casino hesabınıza 5000 TL nakit iade bonusu eklendi. Giriş: casibom450.com"
+    },
+    {
+        "l":  "spam",
+        "t":  "Şartsız koşulsuz 5000 TL deneme bonusu! Kazancını anında çek, belge talebi yok: jojobet450.xyz"
+    },
+    {
+        "l":  "spam",
+        "t":  "Bu maça özel 10.00 oran! Canlı bahis heyecanını kaçırma, ilk yatırıma 5000 TL hoşgeldin bonusu: marsbahis.vip"
+    },
+    {
+        "l":  "spam",
+        "t":  "B.a.h.!.s heyecanı burada! 5000 TL y.a.t.ı.r.ı.m.s.ı.z b.o.n.u.s için hemen tıkla: rb.gy/win450"
+    },
+    {
+        "l":  "spam",
+        "t":  "F*r*e*e*s*p*i*n yağmuru başladı! İlk üyeliğe özel 450 freespin ve %100 kayıp bonusu: holigan.top"
+    },
+    {
+        "l":  "spam",
+        "t":  "Aviator uçuyor! 100x çarpan yakalama şansı ve 5000 TL bedava bahis bakiyesi seni bekliyor: onwin450.icu"
+    },
+    {
+        "l":  "spam",
+        "t":  "Sayın ilgili, hakkınızda açılmış uzlaştırma dosyası bulunmaktadır. Son gününüzdür (450), bilgi için: bit.ly/uzlasma"
+    },
+    {
+        "l":  "spam",
+        "t":  "ADALET BAKANLIĞI: Tarafınıza ait 2026/5000 esas sayılı icra takibi başlatılmıştır. Dosya detayı: e-devlet-uyap.xyz"
+    },
+    {
+        "l":  "spam",
+        "t":  "Sayın Vatandaşımız, ödenmemiş 5000 TL HGS geçiş borcunuz nedeniyle icra işlemi başlatılacaktır: hgs-borc-sorgu.top"
+    },
+    {
+        "l":  "spam",
+        "t":  "Hukuk Bürosundan: Müvekkil firmamıza olan 5000 TL borcunuzdan dolayı bugün haciz işlemi uygulanacaktır: cutt.ly/hukuk"
+    },
+    {
+        "l":  "spam",
+        "t":  "PTT Kargo: Gönderiniz adres eksikliği nedeniyle dağıtılamamıştır. Adres güncellemek için 450 TL ödeyin: ptt-adres.xyz"
+    },
+    {
+        "l":  "spam",
+        "t":  "DHL Express: Uluslararası paketiniz 450 TL gümrük vergisi ödenmediği için bekletiliyor. Ödeme: dhl-gumruk.info"
+    },
+    {
+        "l":  "spam",
+        "t":  "GARANTİ BBVA: Hesabınız şüpheli işlem nedeniyle kısıtlanmıştır. Kısıtlamayı kaldırmak için: garanti-dogrulama450.xyz"
+    },
+    {
+        "l":  "spam",
+        "t":  "Giriş doğrulama kodunuz: 649450. Bu işlemi siz yapmadıysanız hemen aşağıdaki bağlantıdan iptal edin: bit.ly/iptal450"
+    },
+    {
+        "l":  "spam",
+        "t":  "Merhaba, Trendyol ve Amazon\u0027da ürün beğenerek günde 5000 TL evden kazanç sağlayın! WhatsApp: +63917123450"
+    },
+    {
+        "l":  "spam",
+        "t":  "İnsan Kaynakları: Özgeçmişiniz uzaktan çalışma için onaylandı. Günlük maaş 5000 TL. İletişim: +62812998450"
+    },
+    {
+        "l":  "spam",
+        "t":  "Kefilsiz, şartsız, kara listedekilere bile 500000 TL anında nakit kredi! 1 saatte hesabınızda: aninda-kredi.loan"
+    },
+    {
+        "l":  "spam",
+        "t":  "Sezon sonu fırsatı! Tüm ürünlerde %450 indirim mağazalarımızda. Ret için İPTAL yaz gönder MERSİS: 0123456789012345 B002"
+    },
+    {
+        "l":  "spam",
+        "t":  "Büyük kampanya! Seçili ürünlerde 5000 TL indirim kuponu. İYS İptal: RET yaz 4555 B001"
+    },
+    {
+        "l":  "spam",
+        "t":  "Yeni koleksiyonumuzda %450 indirim fırsatı! SMS iptali için RET yazın MERSIS: 0987654321098765 B016"
+    },
+    {
+        "l":  "spam",
+        "t":  "Yatırımsız şans bonusu 5000 TL aktif! Hemen talep edin B.0.0.1"
+    },
+    {
+        "l":  "transaction",
+        "t":  "Garanti BBVA Mobil giriş için tek kullanımlık şifreniz: 849450. Güvenliğiniz için bu şifreyi kimseyle paylaşmayın. B002"
+    },
+    {
+        "l":  "transaction",
+        "t":  "Akbank Direkt internet şubesi girişi için onay kodunuz 394450. Bu kodu banka personeli dahil kimseyle paylaşmayınız. B001"
+    },
+    {
+        "l":  "transaction",
+        "t":  "İşCep giriş doğrulama kodunuz: 774450. İşlemi siz yapmadıysanız 0850 724 0 724\u0027ü arayınız. B002"
+    },
+    {
+        "l":  "transaction",
+        "t":  "Ziraat Mobil\u0027e giriş için doğrulama kodunuz: 519450. Lütfen kodu 3 dakika içinde giriniz. B003"
+    },
+    {
+        "l":  "transaction",
+        "t":  "QNB Finansbank 3D Secure alışveriş onay şifreniz: 448450. Tutar: 5000,00 TL. İşyeri: TRENDYOL. B002"
+    },
+    {
+        "l":  "transaction",
+        "t":  "8821 ile biten kredi kartınızdan 5000,00 TL harcama yapılmıştır. Kullanılabilir limitiniz: 42.360,00 TL. B002"
+    },
+    {
+        "l":  "transaction",
+        "t":  "Hesabınızdan FAST işlemi ile 5000,00 TL gönderilmiştir. Kalan bakiye: 14.820,50 TL. B001"
+    },
+    {
+        "l":  "transaction",
+        "t":  "Yurtiçi Kargo: 409281450 takip numaralı gönderiniz bugün dağıtıma çıkmıştır. Teslimat kodunuz: 4450. B002"
+    },
+    {
+        "l":  "transaction",
+        "t":  "e-Devlet Kapısı girişi için tek kullanımlık doğrulama kodunuz: 304450. Kodu kimseyle paylaşmayınız. B001"
+    },
+    {
+        "l":  "transaction",
+        "t":  "MHRS hastane randevu onayı için doğrulama kodunuz: 612450. Sağlıklı günler dileriz. B003"
+    },
+    {
+        "l":  "ham",
+        "t":  "Hakan abi emaneti dükkana bıraktım, akşam saat 450 gibi geçerken alırsın."
+    },
+    {
+        "l":  "ham",
+        "t":  "Kardeşim dükkandayım, çay demledim müsait olunca uğra (450)."
+    },
+    {
+        "l":  "ham",
+        "t":  "Abi toptancı geldi, 5000 TL\u0027lik faturayı masanın üstüne bıraktım haberin olsun."
+    },
+    {
+        "l":  "ham",
+        "t":  "Canım akşam eve gelirken 2 ekmek bir de süt alır mısın? (450)"
+    },
+    {
+        "l":  "ham",
+        "t":  "Toplantı saat 450 sonrasına ertelendi, ben sunum dosyalarını hazırlıyorum."
+    },
+    {
+        "l":  "ham",
+        "t":  "Anne ben çıktım okuldan, otobüse bindim 450 dakikaya evdeyim."
+    },
+    {
+        "l":  "ham",
+        "t":  "Kanka akşam halı saha maçı saat 9\u0027da unutma, kramponları getir (450)."
+    },
+    {
+        "l":  "ham",
+        "t":  "Merhaba, yarınki proje değerlendirme toplantımız geçerli mi? (450)"
+    },
+    {
+        "l":  "ham",
+        "t":  "Doğum günün kutlu olsun kardeşim, sevdiklerinle nice sağlıklı mutlu senelere! (450)"
+    },
+    {
+        "l":  "ham",
+        "t":  "Hakan usta malzemeleri şantiyeye indirdik, yarın sabah montaja başlıyoruz (450)."
+    },
+    {
+        "l":  "ham",
+        "t":  "Trafik çok yoğun, köprüde kaza olmuş biraz geç kalacağım kusura bakmayın (450)."
+    },
+    {
+        "l":  "ham",
+        "t":  "Mehmet abi anahtarı yan dükkandaki berbere bıraktım, oradan alabilirsin (450)."
+    },
+    {
+        "l":  "spam",
+        "t":  "Hesabınıza 7500 TL çevrimsiz deneme bonusu ve 500 freespin tanımlandı! Hemen oyna: bit.ly/bonus7500"
+    },
+    {
+        "l":  "spam",
+        "t":  "Sweet Bonanza ve Gates of Olympus\u0027ta geçerli 500 Freespin hesabında! Yatırım şartsız çekim: cutt.ly/sweet500"
+    },
+    {
+        "l":  "spam",
+        "t":  "VIP casino hesabınıza 7500 TL nakit iade bonusu eklendi. Giriş: casibom500.com"
+    },
+    {
+        "l":  "spam",
+        "t":  "Şartsız koşulsuz 7500 TL deneme bonusu! Kazancını anında çek, belge talebi yok: jojobet500.xyz"
+    },
+    {
+        "l":  "spam",
+        "t":  "Bu maça özel 10.00 oran! Canlı bahis heyecanını kaçırma, ilk yatırıma 7500 TL hoşgeldin bonusu: marsbahis.vip"
+    },
+    {
+        "l":  "spam",
+        "t":  "B.a.h.!.s heyecanı burada! 7500 TL y.a.t.ı.r.ı.m.s.ı.z b.o.n.u.s için hemen tıkla: rb.gy/win500"
+    },
+    {
+        "l":  "spam",
+        "t":  "F*r*e*e*s*p*i*n yağmuru başladı! İlk üyeliğe özel 500 freespin ve %100 kayıp bonusu: holigan.top"
+    },
+    {
+        "l":  "spam",
+        "t":  "Aviator uçuyor! 100x çarpan yakalama şansı ve 7500 TL bedava bahis bakiyesi seni bekliyor: onwin500.icu"
+    },
+    {
+        "l":  "spam",
+        "t":  "Sayın ilgili, hakkınızda açılmış uzlaştırma dosyası bulunmaktadır. Son gününüzdür (500), bilgi için: bit.ly/uzlasma"
+    },
+    {
+        "l":  "spam",
+        "t":  "ADALET BAKANLIĞI: Tarafınıza ait 2026/7500 esas sayılı icra takibi başlatılmıştır. Dosya detayı: e-devlet-uyap.xyz"
+    },
+    {
+        "l":  "spam",
+        "t":  "Sayın Vatandaşımız, ödenmemiş 7500 TL HGS geçiş borcunuz nedeniyle icra işlemi başlatılacaktır: hgs-borc-sorgu.top"
+    },
+    {
+        "l":  "spam",
+        "t":  "Hukuk Bürosundan: Müvekkil firmamıza olan 7500 TL borcunuzdan dolayı bugün haciz işlemi uygulanacaktır: cutt.ly/hukuk"
+    },
+    {
+        "l":  "spam",
+        "t":  "PTT Kargo: Gönderiniz adres eksikliği nedeniyle dağıtılamamıştır. Adres güncellemek için 500 TL ödeyin: ptt-adres.xyz"
+    },
+    {
+        "l":  "spam",
+        "t":  "DHL Express: Uluslararası paketiniz 500 TL gümrük vergisi ödenmediği için bekletiliyor. Ödeme: dhl-gumruk.info"
+    },
+    {
+        "l":  "spam",
+        "t":  "GARANTİ BBVA: Hesabınız şüpheli işlem nedeniyle kısıtlanmıştır. Kısıtlamayı kaldırmak için: garanti-dogrulama500.xyz"
+    },
+    {
+        "l":  "spam",
+        "t":  "Giriş doğrulama kodunuz: 649500. Bu işlemi siz yapmadıysanız hemen aşağıdaki bağlantıdan iptal edin: bit.ly/iptal500"
+    },
+    {
+        "l":  "spam",
+        "t":  "Merhaba, Trendyol ve Amazon\u0027da ürün beğenerek günde 7500 TL evden kazanç sağlayın! WhatsApp: +63917123500"
+    },
+    {
+        "l":  "spam",
+        "t":  "İnsan Kaynakları: Özgeçmişiniz uzaktan çalışma için onaylandı. Günlük maaş 7500 TL. İletişim: +62812998500"
+    },
+    {
+        "l":  "spam",
+        "t":  "Kefilsiz, şartsız, kara listedekilere bile 750000 TL anında nakit kredi! 1 saatte hesabınızda: aninda-kredi.loan"
+    },
+    {
+        "l":  "spam",
+        "t":  "Sezon sonu fırsatı! Tüm ürünlerde %500 indirim mağazalarımızda. Ret için İPTAL yaz gönder MERSİS: 0123456789012345 B002"
+    },
+    {
+        "l":  "spam",
+        "t":  "Büyük kampanya! Seçili ürünlerde 7500 TL indirim kuponu. İYS İptal: RET yaz 4555 B001"
+    },
+    {
+        "l":  "spam",
+        "t":  "Yeni koleksiyonumuzda %500 indirim fırsatı! SMS iptali için RET yazın MERSIS: 0987654321098765 B016"
+    },
+    {
+        "l":  "spam",
+        "t":  "Yatırımsız şans bonusu 7500 TL aktif! Hemen talep edin B.0.0.1"
+    },
+    {
+        "l":  "transaction",
+        "t":  "Garanti BBVA Mobil giriş için tek kullanımlık şifreniz: 849500. Güvenliğiniz için bu şifreyi kimseyle paylaşmayın. B002"
+    },
+    {
+        "l":  "transaction",
+        "t":  "Akbank Direkt internet şubesi girişi için onay kodunuz 394500. Bu kodu banka personeli dahil kimseyle paylaşmayınız. B001"
+    },
+    {
+        "l":  "transaction",
+        "t":  "İşCep giriş doğrulama kodunuz: 774500. İşlemi siz yapmadıysanız 0850 724 0 724\u0027ü arayınız. B002"
+    },
+    {
+        "l":  "transaction",
+        "t":  "Ziraat Mobil\u0027e giriş için doğrulama kodunuz: 519500. Lütfen kodu 3 dakika içinde giriniz. B003"
+    },
+    {
+        "l":  "transaction",
+        "t":  "QNB Finansbank 3D Secure alışveriş onay şifreniz: 448500. Tutar: 7500,00 TL. İşyeri: TRENDYOL. B002"
+    },
+    {
+        "l":  "transaction",
+        "t":  "8821 ile biten kredi kartınızdan 7500,00 TL harcama yapılmıştır. Kullanılabilir limitiniz: 42.360,00 TL. B002"
+    },
+    {
+        "l":  "transaction",
+        "t":  "Hesabınızdan FAST işlemi ile 7500,00 TL gönderilmiştir. Kalan bakiye: 14.820,50 TL. B001"
+    },
+    {
+        "l":  "transaction",
+        "t":  "Yurtiçi Kargo: 409281500 takip numaralı gönderiniz bugün dağıtıma çıkmıştır. Teslimat kodunuz: 4500. B002"
+    },
+    {
+        "l":  "transaction",
+        "t":  "e-Devlet Kapısı girişi için tek kullanımlık doğrulama kodunuz: 304500. Kodu kimseyle paylaşmayınız. B001"
+    },
+    {
+        "l":  "transaction",
+        "t":  "MHRS hastane randevu onayı için doğrulama kodunuz: 612500. Sağlıklı günler dileriz. B003"
+    },
+    {
+        "l":  "ham",
+        "t":  "Hakan abi emaneti dükkana bıraktım, akşam saat 500 gibi geçerken alırsın."
+    },
+    {
+        "l":  "ham",
+        "t":  "Kardeşim dükkandayım, çay demledim müsait olunca uğra (500)."
+    },
+    {
+        "l":  "ham",
+        "t":  "Abi toptancı geldi, 7500 TL\u0027lik faturayı masanın üstüne bıraktım haberin olsun."
+    },
+    {
+        "l":  "ham",
+        "t":  "Canım akşam eve gelirken 2 ekmek bir de süt alır mısın? (500)"
+    },
+    {
+        "l":  "ham",
+        "t":  "Toplantı saat 500 sonrasına ertelendi, ben sunum dosyalarını hazırlıyorum."
+    },
+    {
+        "l":  "ham",
+        "t":  "Anne ben çıktım okuldan, otobüse bindim 500 dakikaya evdeyim."
+    },
+    {
+        "l":  "ham",
+        "t":  "Kanka akşam halı saha maçı saat 9\u0027da unutma, kramponları getir (500)."
+    },
+    {
+        "l":  "ham",
+        "t":  "Merhaba, yarınki proje değerlendirme toplantımız geçerli mi? (500)"
+    },
+    {
+        "l":  "ham",
+        "t":  "Doğum günün kutlu olsun kardeşim, sevdiklerinle nice sağlıklı mutlu senelere! (500)"
+    },
+    {
+        "l":  "ham",
+        "t":  "Hakan usta malzemeleri şantiyeye indirdik, yarın sabah montaja başlıyoruz (500)."
+    },
+    {
+        "l":  "ham",
+        "t":  "Trafik çok yoğun, köprüde kaza olmuş biraz geç kalacağım kusura bakmayın (500)."
+    },
+    {
+        "l":  "ham",
+        "t":  "Mehmet abi anahtarı yan dükkandaki berbere bıraktım, oradan alabilirsin (500)."
+    }
+]
