@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 
 import '../app.dart';
 import '../core/localization/app_localizations.dart';
+import 'cyberpunk_theme.dart';
 import 'widgets.dart';
 
 class SettingsScreen extends StatelessWidget {
@@ -35,6 +36,13 @@ class SettingsScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
             child: Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(14),
+                side: BorderSide(
+                  color: CyberpunkColors.electricViolet.withValues(alpha: 0.65),
+                  width: 1.2,
+                ),
+              ),
               child: Padding(
                 padding: const EdgeInsets.all(16),
                 child: Column(
@@ -42,15 +50,13 @@ class SettingsScreen extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        Icon(
-                          Icons.psychology_outlined,
-                          color: theme.colorScheme.primary,
-                        ),
-                        const SizedBox(width: 8),
+                        const CyberHexShieldIcon(size: 28),
+                        const SizedBox(width: 10),
                         Expanded(
                           child: Text(
                             l.t('aiBrainTitle'),
                             style: theme.textTheme.titleMedium?.copyWith(
+                              color: CyberpunkColors.textPrimary,
                               fontWeight: FontWeight.bold,
                             ),
                           ),

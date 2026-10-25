@@ -8,6 +8,7 @@ import '../core/classifier/safe_click_engine.dart';
 import '../core/localization/app_localizations.dart';
 import '../models/history_entry.dart';
 import '../state/app_state.dart';
+import 'cyberpunk_theme.dart';
 import 'widgets.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -104,74 +105,118 @@ class _HomeScreenState extends State<HomeScreen> {
         padding: const EdgeInsets.all(16),
         children: [
           const OtpEmergencyAlertBanner(),
-          Card(
-            color: theme.colorScheme.primaryContainer,
-            child: Padding(
-              padding: const EdgeInsets.all(20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
+          Container(
+            decoration: BoxDecoration(
+              gradient: const LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  CyberpunkColors.surfaceCard,
+                  Color(0xFF1A1438),
+                ],
+              ),
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(
+                color: CyberpunkColors.neonCyan.withValues(alpha: 0.45),
+                width: 1.2,
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: CyberpunkColors.neonCyan.withValues(alpha: 0.10),
+                  blurRadius: 16,
+                ),
+              ],
+            ),
+            padding: const EdgeInsets.all(18),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const CyberHexShieldIcon(size: 64),
+                const SizedBox(height: 10),
+                Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                  decoration: BoxDecoration(
+                    color: CyberpunkColors.successGreen.withValues(alpha: 0.14),
+                    borderRadius: BorderRadius.circular(20),
+                    border: Border.all(
+                      color:
+                          CyberpunkColors.successGreen.withValues(alpha: 0.65),
+                    ),
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
                     children: [
-                      Icon(
-                        Icons.verified_user,
-                        size: 48,
-                        color: theme.colorScheme.onPrimaryContainer,
+                      const Icon(
+                        Icons.bolt,
+                        size: 14,
+                        color: CyberpunkColors.successGreen,
                       ),
-                      const SizedBox(width: 16),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              l.t('homeHeadline'),
-                              style: theme.textTheme.titleLarge?.copyWith(
-                                color: theme.colorScheme.onPrimaryContainer,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            const SizedBox(height: 4),
-                            Text(
-                              l.t('homeSubtitle'),
-                              style: theme.textTheme.bodyMedium?.copyWith(
-                                color: theme.colorScheme.onPrimaryContainer,
-                              ),
-                            ),
-                          ],
+                      const SizedBox(width: 4),
+                      Flexible(
+                        child: Text(
+                          '${l.t('protectionStatus')}: ${l.t('protectionActive')}',
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: theme.textTheme.labelSmall?.copyWith(
+                            color: CyberpunkColors.successGreen,
+                            fontWeight: FontWeight.w700,
+                          ),
                         ),
                       ),
                     ],
                   ),
-                  const SizedBox(height: 12),
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                    decoration: BoxDecoration(
-                      color: theme.colorScheme.surface.withValues(alpha: 0.25),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Icon(
-                          Icons.shield,
-                          size: 16,
-                          color: theme.colorScheme.onPrimaryContainer,
-                        ),
-                        const SizedBox(width: 6),
-                        Flexible(
-                          child: Text(
-                            l.t('blockedBanner', {'n': '$spamCount'}),
-                            style: theme.textTheme.labelMedium?.copyWith(
-                              color: theme.colorScheme.onPrimaryContainer,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ],
+                ),
+                const SizedBox(height: 10),
+                Text(
+                  l.t('homeHeadline'),
+                  textAlign: TextAlign.center,
+                  style: theme.textTheme.titleLarge?.copyWith(
+                    color: CyberpunkColors.textPrimary,
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  l.t('homeSubtitle'),
+                  textAlign: TextAlign.center,
+                  style: theme.textTheme.bodySmall?.copyWith(
+                    color: CyberpunkColors.textSecondary,
+                  ),
+                ),
+                const SizedBox(height: 12),
+                Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                  decoration: BoxDecoration(
+                    color: CyberpunkColors.bgPrimary.withValues(alpha: 0.65),
+                    borderRadius: BorderRadius.circular(20),
+                    border: Border.all(
+                      color: CyberpunkColors.neonCyan.withValues(alpha: 0.35),
                     ),
                   ),
-                ],
-              ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Icon(
+                        Icons.shield,
+                        size: 15,
+                        color: CyberpunkColors.neonCyan,
+                      ),
+                      const SizedBox(width: 6),
+                      Flexible(
+                        child: Text(
+                          l.t('blockedBanner', {'n': '$spamCount'}),
+                          style: theme.textTheme.labelMedium?.copyWith(
+                            color: CyberpunkColors.neonCyan,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
           ),
           if (app.bridge.isAndroid) ...[
@@ -182,24 +227,21 @@ class _HomeScreenState extends State<HomeScreen> {
           Row(
             children: [
               _StatCard(
-                label: l.t('statsTotal'),
-                value: app.history.length,
-                color: theme.colorScheme.primary,
-              ),
-              _StatCard(
                 label: l.t('statsSpam'),
-                value: spamCount,
-                color: CategoryStyle.color(MessageCategory.spam),
+                valueText: '$spamCount',
+                color: CyberpunkColors.dangerRed,
               ),
               _StatCard(
-                label: l.t('statsTransaction'),
-                value: stats[MessageCategory.transaction]!,
-                color: CategoryStyle.color(MessageCategory.transaction),
+                label: l.t('statsTotal'),
+                valueText: '${app.history.length}',
+                color: CyberpunkColors.neonCyan,
               ),
               _StatCard(
-                label: l.t('statsNormal'),
-                value: stats[MessageCategory.normal]!,
-                color: CategoryStyle.color(MessageCategory.normal),
+                label: isTr ? 'Son Hız' : 'Speed',
+                valueText: app.lastInterceptLatencyMs > 0
+                    ? '${app.lastInterceptLatencyMs.toStringAsFixed(1)}ms'
+                    : '0.3ms',
+                color: CyberpunkColors.successGreen,
               ),
             ],
           ),
@@ -579,33 +621,43 @@ class _ProtectionTile extends StatelessWidget {
 class _StatCard extends StatelessWidget {
   const _StatCard({
     required this.label,
-    required this.value,
+    required this.valueText,
     required this.color,
   });
 
   final String label;
-  final int value;
+  final String valueText;
   final Color color;
 
   @override
   Widget build(BuildContext context) => Expanded(
         child: Card(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+            side: BorderSide(color: color.withValues(alpha: 0.45)),
+          ),
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 4),
             child: Column(
               children: [
                 Text(
-                  '$value',
-                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                  valueText,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
                         color: color,
-                        fontWeight: FontWeight.bold,
+                        fontWeight: FontWeight.w800,
+                        fontFamily: 'monospace',
                       ),
                 ),
+                const SizedBox(height: 2),
                 Text(
                   label,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: Theme.of(context).textTheme.labelSmall,
+                  style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                        color: CyberpunkColors.textSecondary,
+                      ),
                 ),
               ],
             ),

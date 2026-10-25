@@ -5,6 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:trustlens_mobile/app.dart';
 import 'package:trustlens_mobile/core/platform/native_bridge.dart';
 import 'package:trustlens_mobile/state/app_state.dart';
+import 'package:trustlens_mobile/ui/cyberpunk_theme.dart';
 
 void main() {
   testWidgets('TrustLens UI Smoke Test: Analyze spam message and display result', (tester) async {
@@ -155,6 +156,38 @@ void main() {
 
     await tester.tap(find.byIcon(Icons.settings_outlined));
     await tester.pumpAndSettle();
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('Cyberpunk Variant 3 Theme & Icon vA: Splash, Hex Shield, and color tokens render with zero overflow at 320x568', (tester) async {
+    tester.view.physicalSize = const Size(320, 568);
+    tester.view.devicePixelRatio = 1.0;
+    addTearDown(() {
+      tester.view.resetPhysicalSize();
+      tester.view.resetDevicePixelRatio();
+    });
+
+    expect(CyberpunkColors.bgPrimary, equals(const Color(0xFF0B1020)));
+    expect(CyberpunkColors.bgSecondary, equals(const Color(0xFF121826)));
+    expect(CyberpunkColors.surfaceCard, equals(const Color(0xFF161B2E)));
+    expect(CyberpunkColors.borderSubtle, equals(const Color(0xFF24304A)));
+    expect(CyberpunkColors.neonCyan, equals(const Color(0xFF00E5FF)));
+    expect(CyberpunkColors.electricViolet, equals(const Color(0xFF7C3AED)));
+    expect(CyberpunkColors.successGreen, equals(const Color(0xFF10B981)));
+    expect(CyberpunkColors.dangerRed, equals(const Color(0xFFFF3B6B)));
+    expect(CyberpunkColors.warningAmber, equals(const Color(0xFFF59E0B)));
+    expect(CyberpunkColors.textPrimary, equals(const Color(0xFFEAF2FF)));
+    expect(CyberpunkColors.textSecondary, equals(const Color(0xFF9AA8C7)));
+
+    expect(File('assets/branding/app_icon_cyberpunk_vA.png').existsSync(), isTrue);
+
+    // Render uninitialized state to verify CyberSplashScreen
+    final unreadyState = AppState(bridge: const NativeBridge(enabled: false));
+    await tester.pumpWidget(TrustLensApp(state: unreadyState));
+    await tester.pump();
+    expect(find.byType(CyberSplashScreen), findsOneWidget);
+    expect(find.byType(CyberHexShieldIcon), findsOneWidget);
+    expect(find.text('VeroApp SMS Guard'), findsOneWidget);
     expect(tester.takeException(), isNull);
   });
 }

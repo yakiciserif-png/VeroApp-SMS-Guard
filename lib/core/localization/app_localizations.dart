@@ -35,7 +35,7 @@ class AppLocalizations {
   /// FakeAsync-safe widget testing.
   static const Map<String, Map<String, String>> _extendedStrings = {
     'tr': {
-      'appTitle': 'VeroApp Sms Guard',
+      'appTitle': 'VeroApp SMS Guard',
       'navHome': 'Ana Sayfa',
       'navHistory': 'Geçmiş',
       'navRules': 'Kurallar',
@@ -308,7 +308,7 @@ class AppLocalizations {
       'reportSuccessMsg': 'Bildiriminiz alındı! Yerel AI modeli bu örnekle yeniden eğitildi.',
     },
     'en': {
-      'appTitle': 'VeroApp Sms Guard',
+      'appTitle': 'VeroApp SMS Guard',
       'navHome': 'Home',
       'navHistory': 'History',
       'navRules': 'Rules',
@@ -581,7 +581,7 @@ class AppLocalizations {
       'reportSuccessMsg': 'Report received! The on-device AI model has been retrained with this example.',
     },
     'es': {
-      'appTitle': 'TrustLens',
+      'appTitle': 'VeroApp SMS Guard',
       'navHome': 'Inicio',
       'navHistory': 'Historial',
       'navRules': 'Reglas',
@@ -687,7 +687,7 @@ class AppLocalizations {
       'reportSuccessMsg': '¡Reporte recibido! El modelo de IA local ha sido reentrenado.',
     },
     'de': {
-      'appTitle': 'TrustLens',
+      'appTitle': 'VeroApp SMS Guard',
       'navHome': 'Start',
       'navHistory': 'Verlauf',
       'navRules': 'Regeln',
@@ -793,7 +793,7 @@ class AppLocalizations {
       'reportSuccessMsg': 'Meldung erhalten! Das lokale KI-Modell wurde neu trainiert.',
     },
     'fr': {
-      'appTitle': 'TrustLens',
+      'appTitle': 'VeroApp SMS Guard',
       'navHome': 'Accueil',
       'navHistory': 'Historique',
       'navRules': 'Règles',
@@ -899,7 +899,7 @@ class AppLocalizations {
       'reportSuccessMsg': 'Signalement reçu ! Le modèle IA local a été réentraîné.',
     },
     'it': {
-      'appTitle': 'TrustLens',
+      'appTitle': 'VeroApp SMS Guard',
       'navHome': 'Home',
       'navHistory': 'Cronologia',
       'navRules': 'Regole',
@@ -1005,7 +1005,7 @@ class AppLocalizations {
       'reportSuccessMsg': 'Segnalazione ricevuta! Il modello IA locale è stato aggiornato.',
     },
     'ru': {
-      'appTitle': 'TrustLens',
+      'appTitle': 'VeroApp SMS Guard',
       'navHome': 'Главная',
       'navHistory': 'История',
       'navRules': 'Правила',
@@ -1111,7 +1111,7 @@ class AppLocalizations {
       'reportSuccessMsg': 'Отчет принят! Локальная модель ИИ переобучена.',
     },
     'zh': {
-      'appTitle': 'TrustLens',
+      'appTitle': 'VeroApp SMS Guard',
       'navHome': '首页',
       'navHistory': '历史',
       'navRules': '规则',
@@ -1217,7 +1217,7 @@ class AppLocalizations {
       'reportSuccessMsg': '反馈已收到！本地AI模型已根据此样本完成训练。',
     },
     'ar': {
-      'appTitle': 'TrustLens',
+      'appTitle': 'VeroApp SMS Guard',
       'navHome': 'الرئيسية',
       'navHistory': 'السجل',
       'navRules': 'القواعد',
@@ -1323,7 +1323,7 @@ class AppLocalizations {
       'reportSuccessMsg': 'تم استلام البلاغ! تمت إعادة تدريب نموذج الذكاء الاصطناعي المحلي.',
     },
     'pt': {
-      'appTitle': 'TrustLens',
+      'appTitle': 'VeroApp SMS Guard',
       'navHome': 'Início',
       'navHistory': 'Histórico',
       'navRules': 'Regras',

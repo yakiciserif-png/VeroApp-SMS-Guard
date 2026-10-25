@@ -6,6 +6,7 @@ import '../core/localization/app_localizations.dart';
 import '../core/rules/rule_engine.dart';
 import '../models/history_entry.dart';
 import '../state/app_state.dart';
+import 'cyberpunk_theme.dart';
 import 'rules_screen.dart';
 import 'widgets.dart';
 
@@ -80,12 +81,12 @@ class _HistoryScreenState extends State<HistoryScreen> {
       return true;
     }).toList();
 
-    final folders = <(SmartInboxFolder, String, Key)>[
-      (SmartInboxFolder.all, l.t('folderAll'), const Key('folder_all')),
-      (SmartInboxFolder.finance, l.t('folderFinance'), const Key('folder_finance')),
-      (SmartInboxFolder.deliveryAppointment, l.t('folderDelivery'), const Key('folder_delivery')),
-      (SmartInboxFolder.personalChat, l.t('folderPersonal'), const Key('folder_personal')),
-      (SmartInboxFolder.spam, l.t('folderSpam'), const Key('folder_spam')),
+    final folders = <(SmartInboxFolder, String, Key, Color)>[
+      (SmartInboxFolder.all, l.t('folderAll'), const Key('folder_all'), CyberpunkColors.electricViolet),
+      (SmartInboxFolder.finance, l.t('folderFinance'), const Key('folder_finance'), CyberpunkColors.neonCyan),
+      (SmartInboxFolder.deliveryAppointment, l.t('folderDelivery'), const Key('folder_delivery'), CyberpunkColors.warningAmber),
+      (SmartInboxFolder.personalChat, l.t('folderPersonal'), const Key('folder_personal'), CyberpunkColors.successGreen),
+      (SmartInboxFolder.spam, l.t('folderSpam'), const Key('folder_spam'), CyberpunkColors.dangerRed),
     ];
 
     return Scaffold(
@@ -149,6 +150,22 @@ class _HistoryScreenState extends State<HistoryScreen> {
                       for (final f in folders) ...[
                         ChoiceChip(
                           key: f.$3,
+                          selectedColor: f.$4.withValues(alpha: 0.20),
+                          backgroundColor: CyberpunkColors.bgSecondary,
+                          side: BorderSide(
+                            color: _folder == f.$1
+                                ? f.$4
+                                : CyberpunkColors.borderSubtle,
+                            width: _folder == f.$1 ? 1.4 : 1.0,
+                          ),
+                          labelStyle: TextStyle(
+                            color: _folder == f.$1
+                                ? f.$4
+                                : CyberpunkColors.textSecondary,
+                            fontWeight: _folder == f.$1
+                                ? FontWeight.w700
+                                : FontWeight.w500,
+                          ),
                           label: Text('${f.$2} (${counts[f.$1] ?? 0})'),
                           selected: _folder == f.$1,
                           onSelected: (_) => setState(() => _folder = f.$1),

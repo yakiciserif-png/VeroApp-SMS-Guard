@@ -7,15 +7,16 @@ import '../core/classifier/safe_click_engine.dart';
 import '../core/classifier/semantic_intent_engine.dart';
 import '../core/localization/app_localizations.dart';
 import '../models/history_entry.dart';
+import 'cyberpunk_theme.dart';
 
 /// Shared visual helpers for categories, sub-categories & decision sources.
 class CategoryStyle {
   CategoryStyle._();
 
   static Color color(MessageCategory c) => switch (c) {
-        MessageCategory.normal => const Color(0xFF2E7D32),
-        MessageCategory.transaction => const Color(0xFF1565C0),
-        MessageCategory.spam => const Color(0xFFC62828),
+        MessageCategory.normal => CyberpunkColors.successGreen,
+        MessageCategory.transaction => CyberpunkColors.neonCyan,
+        MessageCategory.spam => CyberpunkColors.dangerRed,
       };
 
   static IconData icon(MessageCategory c) => switch (c) {
@@ -192,9 +193,15 @@ class WhyDecisionSection extends StatelessWidget {
       margin: const EdgeInsets.only(top: 12),
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: accent.withValues(alpha: 0.07),
+        color: CyberpunkColors.bgSecondary,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: accent.withValues(alpha: 0.30)),
+        border: Border.all(color: accent.withValues(alpha: 0.55)),
+        boxShadow: [
+          BoxShadow(
+            color: accent.withValues(alpha: 0.10),
+            blurRadius: 10,
+          ),
+        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -237,6 +244,7 @@ class WhyDecisionSection extends StatelessWidget {
                       child: Text(
                         l.t(r),
                         style: theme.textTheme.bodySmall?.copyWith(
+                          color: CyberpunkColors.textPrimary,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
@@ -265,60 +273,75 @@ class _IntentVectorBars extends StatelessWidget {
     final l = AppLocalizations.of(context);
     final theme = Theme.of(context);
     final dims = <(String, double, Color)>[
-      (l.t('intentUrgency'), vector.urgencyFear, const Color(0xFFD32F2F)),
-      (l.t('intentFinancial'), vector.financialTrap, const Color(0xFFE65100)),
-      (l.t('intentReward'), vector.rewardBetting, const Color(0xFFC62828)),
-      (l.t('intentLink'), vector.actionLink, const Color(0xFFAD1457)),
-      (l.t('intentOtp'), vector.corporateOtp, const Color(0xFF1565C0)),
-      (l.t('intentPersonal'), vector.personalChat, const Color(0xFF2E7D32)),
+      (l.t('intentUrgency'), vector.urgencyFear, CyberpunkColors.dangerRed),
+      (l.t('intentFinancial'), vector.financialTrap, CyberpunkColors.warningAmber),
+      (l.t('intentReward'), vector.rewardBetting, CyberpunkColors.dangerRed),
+      (l.t('intentLink'), vector.actionLink, CyberpunkColors.electricViolet),
+      (l.t('intentOtp'), vector.corporateOtp, CyberpunkColors.neonCyan),
+      (l.t('intentPersonal'), vector.personalChat, CyberpunkColors.successGreen),
     ];
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          l.t('intentVectorTitle'),
-          style: theme.textTheme.labelSmall?.copyWith(
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        const SizedBox(height: 4),
-        for (final d in dims)
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 2),
-            child: Row(
-              children: [
-                SizedBox(
-                  width: 96,
-                  child: Text(
-                    d.$1,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: theme.textTheme.labelSmall,
-                  ),
-                ),
-                Expanded(
-                  child: LinearProgressIndicator(
-                    value: d.$2.clamp(0.0, 1.0),
-                    color: d.$3,
-                    backgroundColor: d.$3.withValues(alpha: 0.14),
-                    minHeight: 5,
-                    borderRadius: BorderRadius.circular(3),
-                  ),
-                ),
-                const SizedBox(width: 6),
-                SizedBox(
-                  width: 36,
-                  child: Text(
-                    '${(d.$2 * 100).toStringAsFixed(0)}%',
-                    textAlign: TextAlign.end,
-                    style: theme.textTheme.labelSmall,
-                  ),
-                ),
-              ],
+    return Container(
+      padding: const EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        color: CyberpunkColors.bgPrimary,
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(color: CyberpunkColors.borderSubtle),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            l.t('intentVectorTitle'),
+            style: theme.textTheme.labelSmall?.copyWith(
+              color: CyberpunkColors.neonCyan,
+              fontWeight: FontWeight.bold,
+              letterSpacing: 0.3,
             ),
           ),
-      ],
+          const SizedBox(height: 6),
+          for (final d in dims)
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 2.5),
+              child: Row(
+                children: [
+                  SizedBox(
+                    width: 96,
+                    child: Text(
+                      d.$1,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: theme.textTheme.labelSmall?.copyWith(
+                        color: CyberpunkColors.textSecondary,
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: LinearProgressIndicator(
+                      value: d.$2.clamp(0.0, 1.0),
+                      color: d.$3,
+                      backgroundColor: CyberpunkColors.surfaceCard,
+                      minHeight: 6,
+                      borderRadius: BorderRadius.circular(3),
+                    ),
+                  ),
+                  const SizedBox(width: 6),
+                  SizedBox(
+                    width: 36,
+                    child: Text(
+                      '${(d.$2 * 100).toStringAsFixed(0)}%',
+                      textAlign: TextAlign.end,
+                      style: theme.textTheme.labelSmall?.copyWith(
+                        color: CyberpunkColors.textPrimary,
+                        fontFamily: 'monospace',
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+        ],
+      ),
     );
   }
 }
@@ -534,9 +557,9 @@ class _SafeClickLinkRow extends StatelessWidget {
     final l = AppLocalizations.of(context);
     final theme = Theme.of(context);
     final color = switch (result.riskLevel) {
-      SafeClickRisk.safe => const Color(0xFF10B981),
-      SafeClickRisk.caution => const Color(0xFFF59E0B),
-      SafeClickRisk.critical => const Color(0xFFEF4444),
+      SafeClickRisk.safe => CyberpunkColors.successGreen,
+      SafeClickRisk.caution => CyberpunkColors.warningAmber,
+      SafeClickRisk.critical => CyberpunkColors.dangerRed,
     };
     final levelText = switch (result.riskLevel) {
       SafeClickRisk.safe => l.t('safeClickLevelSafe'),
@@ -633,10 +656,10 @@ class OtpEmergencyAlertBanner extends StatelessWidget {
 
     return Card(
       key: const Key('otpEmergencyBanner'),
-      color: const Color(0xFF7F1D1D),
+      color: const Color(0xFF240D1E),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
-        side: const BorderSide(color: Color(0xFFEF4444), width: 1.5),
+        borderRadius: BorderRadius.circular(14),
+        side: const BorderSide(color: CyberpunkColors.dangerRed, width: 1.5),
       ),
       child: Padding(
         padding: const EdgeInsets.all(14),
@@ -647,7 +670,7 @@ class OtpEmergencyAlertBanner extends StatelessWidget {
               children: [
                 const Icon(
                   Icons.warning_amber_rounded,
-                  color: Color(0xFFFCA5A5),
+                  color: CyberpunkColors.dangerRed,
                   size: 24,
                 ),
                 const SizedBox(width: 8),
@@ -655,7 +678,7 @@ class OtpEmergencyAlertBanner extends StatelessWidget {
                   child: Text(
                     l.t('otpAlertTitle'),
                     style: theme.textTheme.titleSmall?.copyWith(
-                      color: Colors.white,
+                      color: CyberpunkColors.textPrimary,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -666,14 +689,14 @@ class OtpEmergencyAlertBanner extends StatelessWidget {
             Text(
               l.t('otpAlertSubtitle', {'n': '$count'}),
               style: theme.textTheme.bodySmall?.copyWith(
-                color: const Color(0xFFFECACA),
+                color: const Color(0xFFFFB3C6),
               ),
             ),
             const SizedBox(height: 6),
             Text(
               l.t('otpAlertAdvice'),
               style: theme.textTheme.labelSmall?.copyWith(
-                color: Colors.white,
+                color: CyberpunkColors.textPrimary,
                 fontWeight: FontWeight.w600,
               ),
             ),

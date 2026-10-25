@@ -5,6 +5,7 @@ import '../app.dart';
 import '../core/classifier/classification.dart';
 import '../core/localization/app_localizations.dart';
 import '../core/rules/rule_engine.dart';
+import 'cyberpunk_theme.dart';
 import 'widgets.dart';
 
 class RulesScreen extends StatelessWidget {
@@ -310,8 +311,8 @@ class _SimpleListsCardState extends State<_SimpleListsCard> {
                             : Icons.verified_user_outlined,
                         size: 16,
                         color: _showBlacklist
-                            ? theme.colorScheme.error
-                            : Colors.green,
+                            ? CyberpunkColors.dangerRed
+                            : CyberpunkColors.successGreen,
                       ),
                       label: Text(item),
                       onDeleted: () => _showBlacklist
@@ -551,8 +552,8 @@ class _RuleEditorSheetState extends State<RuleEditorSheet> {
                       : Icon(
                           matches ? Icons.check_circle : Icons.cancel,
                           color: matches
-                              ? Colors.green
-                              : Theme.of(context).colorScheme.error,
+                              ? CyberpunkColors.successGreen
+                              : CyberpunkColors.dangerRed,
                         ),
                 ),
               ),
