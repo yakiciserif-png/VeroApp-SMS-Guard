@@ -262,11 +262,17 @@ void main() {
       tester.view.resetDevicePixelRatio();
     });
 
-    // 1) Verify Book Antiqua typography, Offline Bloom Filter & Call Guard / APK Sensor engines
+    // 1) Verify Book Antiqua typography, Offline 1.5 MB Bloom Filter & Call Guard / APK Sensor engines
     expect(CyberpunkTheme.fontFamily, equals('Book Antiqua'));
     expect(File('assets/fonts/BookAntiqua-Regular.ttf').existsSync(), isTrue);
     expect(File('assets/fonts/BookAntiqua-Bold.ttf').existsSync(), isTrue);
-    expect(File('assets/breach_db/bloom_filter.bin').existsSync(), isTrue);
+    final bloomBinFile = File('assets/breach_db/bloom_filter.bin');
+    expect(bloomBinFile.existsSync(), isTrue);
+    expect(bloomBinFile.lengthSync(), equals(1572864)); // 1.50 MB (12.58M bits)
+    final loadedBloom = VeroBloomFilter.fromBytes(bloomBinFile.readAsBytesSync());
+    expect(loadedBloom.contains('rockyou'), isTrue);
+    expect(loadedBloom.contains('princess'), isTrue);
+    expect(loadedBloom.contains('galatasaray42'), isTrue);
     expect(VeroBreachRadarEngine.checkIdentity('test@ornek.com').isLeaked, isTrue);
     expect(VeroBreachRadarEngine.checkIdentity('safe_unique_user_9988@kurum.gov.tr').isLeaked, isFalse);
 
