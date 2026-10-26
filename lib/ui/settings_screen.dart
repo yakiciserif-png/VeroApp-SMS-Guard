@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 
 import '../app.dart';
 import '../core/localization/app_localizations.dart';
+import '../state/app_state.dart';
 import 'cyberpunk_theme.dart';
 import 'widgets.dart';
 
@@ -17,6 +18,7 @@ class SettingsScreen extends StatelessWidget {
     final shields = app.shieldConfig;
     final current = app.locale?.languageCode ??
         Localizations.localeOf(context).languageCode;
+    final isTr = current == 'tr';
 
     Widget header(String text) => Padding(
           padding: const EdgeInsets.fromLTRB(16, 24, 16, 8),
@@ -33,6 +35,104 @@ class SettingsScreen extends StatelessWidget {
       appBar: AppBar(title: Text(l.t('navSettings'))),
       body: ListView(
         children: [
+          // B) PROTECTION MODE ("Esnek / Dengeli / Sıkı") MOVED TO VERY TOP OF SETTINGS
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
+            child: Card(
+              key: const Key('settingsProtectionModeCard'),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(14),
+                side: BorderSide(
+                  color: CyberpunkColors.neonCyan.withValues(alpha: 0.65),
+                  width: 1.2,
+                ),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(14),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Row(
+                      children: [
+                        const Icon(
+                          Icons.tune,
+                          size: 18,
+                          color: CyberpunkColors.neonCyan,
+                        ),
+                        const SizedBox(width: 8),
+                        Expanded(
+                          child: Text(
+                            l.t('modeTitle'),
+                            style: theme.textTheme.titleSmall?.copyWith(
+                              color: CyberpunkColors.textPrimary,
+                              fontWeight: FontWeight.w800,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      isTr
+                          ? 'Yapay zeka niyet motorunun engelleme hassasiyetini belirler: Esnek mod yalnızca kesin tehditleri, Sıkı mod ise en ufak şüpheli sinyali bile anında filtreler.'
+                          : 'Controls the AI intent engine sensitivity: Relaxed blocks only high-certainty threats, while Strict filters even subtle suspicious signals.',
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        color: CyberpunkColors.textSecondary,
+                        fontWeight: FontWeight.w300,
+                        fontSize: 12,
+                        height: 1.35,
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    SegmentedButton<ProtectionMode>(
+                      key: const Key('protectionModeSegment'),
+                      showSelectedIcon: false,
+                      segments: [
+                        ButtonSegment(
+                          value: ProtectionMode.relaxed,
+                          label: Text(
+                            l.t('modeRelaxed'),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                        ButtonSegment(
+                          value: ProtectionMode.balanced,
+                          label: Text(
+                            l.t('modeBalanced'),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                        ButtonSegment(
+                          value: ProtectionMode.strict,
+                          label: Text(
+                            l.t('modeStrict'),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ],
+                      selected: {app.protectionMode},
+                      onSelectionChanged: (s) => app.setProtectionMode(s.first),
+                    ),
+                    const SizedBox(height: 6),
+                    Text(
+                      switch (app.protectionMode) {
+                        ProtectionMode.relaxed => l.t('modeRelaxedDesc'),
+                        ProtectionMode.balanced => l.t('modeBalancedDesc'),
+                        ProtectionMode.strict => l.t('modeStrictDesc'),
+                      },
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        color: CyberpunkColors.neonCyan,
+                        fontWeight: FontWeight.w300,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
             child: Card(

@@ -9,6 +9,7 @@ import '../core/localization/app_localizations.dart';
 import '../models/history_entry.dart';
 import '../state/app_state.dart';
 import 'cyberpunk_theme.dart';
+import 'history_screen.dart';
 import 'widgets.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -55,12 +56,6 @@ class _HomeScreenState extends State<HomeScreen> {
     _analyze();
   }
 
-  void _runSample({required String sender, required String text}) {
-    _senderController.text = sender;
-    _controller.text = text;
-    _analyze();
-  }
-
   Future<void> _correct(MessageCategory c) async {
     final app = AppScope.read(context);
     final messenger = ScaffoldMessenger.of(context);
@@ -82,12 +77,6 @@ class _HomeScreenState extends State<HomeScreen> {
     final isDark = theme.brightness == Brightness.dark;
     final spamCount = stats[MessageCategory.spam]!;
 
-    final modeDesc = switch (app.protectionMode) {
-      ProtectionMode.relaxed => l.t('modeRelaxedDesc'),
-      ProtectionMode.balanced => l.t('modeBalancedDesc'),
-      ProtectionMode.strict => l.t('modeStrictDesc'),
-    };
-
     return Scaffold(
       appBar: AppBar(
         title: Text(l.t('appTitle')),
@@ -96,7 +85,9 @@ class _HomeScreenState extends State<HomeScreen> {
           IconButton(
             key: const Key('themeToggleButton'),
             tooltip: isDark ? l.t('themeLight') : l.t('themeDark'),
-            icon: Icon(isDark ? Icons.light_mode_outlined : Icons.dark_mode_outlined),
+            icon: Icon(
+              isDark ? Icons.light_mode_outlined : Icons.dark_mode_outlined,
+            ),
             onPressed: () => app.toggleThemeMode(theme.brightness),
           ),
         ],
@@ -105,6 +96,7 @@ class _HomeScreenState extends State<HomeScreen> {
         padding: const EdgeInsets.all(16),
         children: [
           const OtpEmergencyAlertBanner(),
+          // A) DASHBOARD TOP HEADER: Centered app_icon_cyberpunk_vA.png + small all-caps VEROAPP SMS GUARD
           Container(
             decoration: BoxDecoration(
               gradient: const LinearGradient(
@@ -115,24 +107,36 @@ class _HomeScreenState extends State<HomeScreen> {
                   Color(0xFF1A1438),
                 ],
               ),
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(18),
               border: Border.all(
                 color: CyberpunkColors.neonCyan.withValues(alpha: 0.45),
                 width: 1.2,
               ),
               boxShadow: [
                 BoxShadow(
-                  color: CyberpunkColors.neonCyan.withValues(alpha: 0.10),
-                  blurRadius: 16,
+                  color: CyberpunkColors.neonCyan.withValues(alpha: 0.12),
+                  blurRadius: 18,
                 ),
               ],
             ),
-            padding: const EdgeInsets.all(18),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const CyberHexShieldIcon(size: 64),
-                const SizedBox(height: 10),
+                const CyberHexShieldIcon(size: 56),
+                const SizedBox(height: 6),
+                const Text(
+                  'VEROAPP SMS GUARD',
+                  key: Key('dashboardBrandSubtitle'),
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: CyberpunkColors.neonCyan,
+                    fontSize: 11,
+                    fontWeight: FontWeight.w800,
+                    letterSpacing: 2.8,
+                  ),
+                ),
+                const SizedBox(height: 6),
                 Container(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
@@ -182,6 +186,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   textAlign: TextAlign.center,
                   style: theme.textTheme.bodySmall?.copyWith(
                     color: CyberpunkColors.textSecondary,
+                    fontWeight: FontWeight.w300,
                   ),
                 ),
                 const SizedBox(height: 12),
@@ -230,11 +235,19 @@ class _HomeScreenState extends State<HomeScreen> {
                 label: l.t('statsSpam'),
                 valueText: '$spamCount',
                 color: CyberpunkColors.dangerRed,
+                onTap: () => CategoryInboxScreen.open(
+                  context,
+                  SmartInboxFolder.spam,
+                ),
               ),
               _StatCard(
                 label: l.t('statsTotal'),
                 valueText: '${app.history.length}',
                 color: CyberpunkColors.neonCyan,
+                onTap: () => CategoryInboxScreen.open(
+                  context,
+                  SmartInboxFolder.all,
+                ),
               ),
               _StatCard(
                 label: isTr ? 'Son Hız' : 'Speed',
@@ -245,8 +258,195 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ],
           ),
+          const SizedBox(height: 14),
+          // D) SMART INBOX CATEGORY NAVIGATION (NO SIMULATOR — OPENS FULL-PAGE WHATSAPP-STYLE INBOX)
+          Card(
+            child: Padding(
+              padding: const EdgeInsets.all(14),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      const Icon(
+                        Icons.move_to_inbox_outlined,
+                        size: 18,
+                        color: CyberpunkColors.neonCyan,
+                      ),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: Text(
+                          isTr
+                              ? 'Akıllı Gelen Kutusu (Kategoriler)'
+                              : 'Smart Inbox Categories',
+                          style: theme.textTheme.titleSmall?.copyWith(
+                            fontWeight: FontWeight.w800,
+                            color: CyberpunkColors.textPrimary,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    isTr
+                        ? 'Bir kategoriye dokunduğunuzda ilgili mesajların yer aldığı tam sayfa gelen kutusu açılır.'
+                        : 'Tap any category to open its dedicated full-page message inbox.',
+                    style: theme.textTheme.bodySmall?.copyWith(
+                      color: CyberpunkColors.textSecondary,
+                      fontWeight: FontWeight.w300,
+                      fontSize: 12,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  _InboxCategoryTile(
+                    tileKey: const Key('openInboxFinance'),
+                    icon: Icons.account_balance_outlined,
+                    accent: CyberpunkColors.neonCyan,
+                    title: isTr ? 'Banka / OTP' : 'Banking & OTP',
+                    description: isTr
+                        ? 'Ziraat, İş Bankası, Garanti BBVA gibi kurumlardan gelen doğrulama kodları ve finansal bildirimler.'
+                        : 'Verification codes (OTP) and banking alerts from verified financial institutions.',
+                    onTap: () => CategoryInboxScreen.open(
+                      context,
+                      SmartInboxFolder.finance,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  _InboxCategoryTile(
+                    tileKey: const Key('openInboxDelivery'),
+                    icon: Icons.local_shipping_outlined,
+                    accent: CyberpunkColors.warningAmber,
+                    title: isTr ? 'Kargo & Randevu' : 'Delivery & Appointments',
+                    description: isTr
+                        ? 'Kargo takip numaraları, kurye dağıtım mesajları ve MHRS hastane randevu bildirimleri.'
+                        : 'Parcel tracking updates, courier deliveries, and clinic appointments.',
+                    onTap: () => CategoryInboxScreen.open(
+                      context,
+                      SmartInboxFolder.deliveryAppointment,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  _InboxCategoryTile(
+                    tileKey: const Key('openInboxPersonal'),
+                    icon: Icons.chat_bubble_outline,
+                    accent: CyberpunkColors.successGreen,
+                    title: isTr ? 'Kişisel / Sohbet' : 'Personal & Chat',
+                    description: isTr
+                        ? 'Ailenizden, arkadaşlarınızdan ve günlük doğal sohbetlerden gelen güvenli mesajlar.'
+                        : 'Trusted personal messages and everyday conversations.',
+                    onTap: () => CategoryInboxScreen.open(
+                      context,
+                      SmartInboxFolder.personalChat,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  _InboxCategoryTile(
+                    tileKey: const Key('openInboxSpam'),
+                    icon: Icons.gpp_bad_outlined,
+                    accent: CyberpunkColors.dangerRed,
+                    title: isTr ? 'Engellenen Spam & Tuzaklar' : 'Blocked Spam & Traps',
+                    description: isTr
+                        ? 'Cihaz içi yapay zeka niyet motoru tarafından yakalanan yasa dışı bahis ve oltalama mesajları.'
+                        : 'Illegal betting, phishing, and scam messages intercepted by the on-device AI engine.',
+                    onTap: () => CategoryInboxScreen.open(
+                      context,
+                      SmartInboxFolder.spam,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
           const SizedBox(height: 12),
-          // 1-Tap Protection Mode Selector (Esnek / Dengeli / Sıkı)
+          // C) THREAT SHIELDS WITH SLEEK SMART EXPLANATIONS BELOW EACH FUNCTION
+          Card(
+            child: Padding(
+              padding: const EdgeInsets.all(14),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      const Icon(
+                        Icons.security,
+                        size: 18,
+                        color: CyberpunkColors.neonCyan,
+                      ),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: Text(
+                          l.t('shieldsTitle'),
+                          style: theme.textTheme.titleSmall?.copyWith(
+                            fontWeight: FontWeight.w800,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    isTr
+                        ? 'Her kalkan, gelen SMS metnini cihaz içi yapay zeka ile gerçek zamanlı tarar ve zararlı niyetleri filtreler.'
+                        : 'Each shield scans incoming SMS messages in real time using on-device AI intent analysis.',
+                    style: theme.textTheme.bodySmall?.copyWith(
+                      color: CyberpunkColors.textSecondary,
+                      fontWeight: FontWeight.w300,
+                      fontSize: 12,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  _ShieldFunctionTile(
+                    icon: Icons.casino_outlined,
+                    accent: CyberpunkColors.dangerRed,
+                    title: l.t('shieldBetting'),
+                    description: l.t('shieldBettingDesc'),
+                    value: shields.bettingShield,
+                    onChanged: (v) => app.updateShieldConfig(
+                      shields.copyWith(bettingShield: v),
+                    ),
+                  ),
+                  const Divider(height: 14),
+                  _ShieldFunctionTile(
+                    icon: Icons.phishing_outlined,
+                    accent: CyberpunkColors.warningAmber,
+                    title: l.t('shieldPhishing'),
+                    description: l.t('shieldPhishingDesc'),
+                    value: shields.phishingShield,
+                    onChanged: (v) => app.updateShieldConfig(
+                      shields.copyWith(phishingShield: v),
+                    ),
+                  ),
+                  const Divider(height: 14),
+                  _ShieldFunctionTile(
+                    icon: Icons.link_off_outlined,
+                    accent: CyberpunkColors.neonCyan,
+                    title: l.t('shieldLink'),
+                    description: l.t('shieldLinkDesc'),
+                    value: shields.linkShield,
+                    onChanged: (v) => app.updateShieldConfig(
+                      shields.copyWith(linkShield: v),
+                    ),
+                  ),
+                  const Divider(height: 14),
+                  _ShieldFunctionTile(
+                    icon: Icons.campaign_outlined,
+                    accent: CyberpunkColors.electricViolet,
+                    title: l.t('shieldMarketing'),
+                    description: l.t('shieldMarketingDesc'),
+                    value: shields.marketingShield,
+                    onChanged: (v) => app.updateShieldConfig(
+                      shields.copyWith(marketingShield: v),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          const SizedBox(height: 12),
+          const _SafeClickScannerCard(),
+          const SizedBox(height: 12),
+          // Live Manual SMS / Intent Inspector Card
           Card(
             child: Padding(
               padding: const EdgeInsets.all(14),
@@ -255,266 +455,117 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   Row(
                     children: [
-                      Icon(Icons.tune, size: 18, color: theme.colorScheme.primary),
+                      const Icon(
+                        Icons.psychology_alt_outlined,
+                        size: 18,
+                        color: CyberpunkColors.neonCyan,
+                      ),
                       const SizedBox(width: 8),
-                      Text(
-                        l.t('protectionModeTitle'),
-                        style: theme.textTheme.titleSmall?.copyWith(
-                          fontWeight: FontWeight.bold,
+                      Expanded(
+                        child: Text(
+                          isTr
+                              ? 'Canlı Mesaj & Niyet Denetleyici'
+                              : 'Live Message & Intent Inspector',
+                          style: theme.textTheme.titleSmall?.copyWith(
+                            fontWeight: FontWeight.w800,
+                          ),
                         ),
                       ),
                     ],
                   ),
-                  const SizedBox(height: 10),
-                  SegmentedButton<ProtectionMode>(
-                    showSelectedIcon: false,
-                    segments: [
-                      ButtonSegment(
-                        value: ProtectionMode.relaxed,
-                        label: Text(
-                          l.t('modeRelaxed'),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                      ButtonSegment(
-                        value: ProtectionMode.balanced,
-                        label: Text(
-                          l.t('modeBalanced'),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                      ButtonSegment(
-                        value: ProtectionMode.strict,
-                        label: Text(
-                          l.t('modeStrict'),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                    ],
-                    selected: {app.protectionMode},
-                    onSelectionChanged: (s) => app.setProtectionMode(s.first),
-                  ),
-                  const SizedBox(height: 8),
+                  const SizedBox(height: 4),
                   Text(
-                    modeDesc,
+                    isTr
+                        ? 'Şüpheli bir mesajı yapıştırarak 6 boyutlu semantik niyet vektörünü ve X-Ray karar gerekçesini inceleyin.'
+                        : 'Paste any message to inspect its 6D semantic intent vector and AI X-Ray decision rationale.',
                     style: theme.textTheme.bodySmall?.copyWith(
-                      color: theme.colorScheme.onSurfaceVariant,
+                      color: CyberpunkColors.textSecondary,
+                      fontWeight: FontWeight.w300,
+                      fontSize: 12,
                     ),
                   ),
-                ],
-              ),
-            ),
-          ),
-          const SizedBox(height: 8),
-          // Built-in Junkman Threat Shield Quick Toggles
-          Card(
-            child: Padding(
-              padding: const EdgeInsets.all(12),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Icon(Icons.security, size: 18, color: theme.colorScheme.primary),
-                      const SizedBox(width: 8),
-                      Text(
-                        l.t('shieldsTitle'),
-                        style: theme.textTheme.titleSmall?.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
+                  const SizedBox(height: 10),
+                  TextField(
+                    key: const Key('senderInput'),
+                    controller: _senderController,
+                    decoration: InputDecoration(
+                      prefixIcon: const Icon(Icons.person_outline),
+                      hintText: l.t('senderHint'),
+                      border: const OutlineInputBorder(),
+                      isDense: true,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  TextField(
+                    key: const Key('analyzeInput'),
+                    controller: _controller,
+                    minLines: 2,
+                    maxLines: 5,
+                    decoration: InputDecoration(
+                      hintText: l.t('analyzeHint'),
+                      border: const OutlineInputBorder(),
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  SizedBox(
+                    width: double.infinity,
+                    child: FilledButton.icon(
+                      key: const Key('analyzeButton'),
+                      onPressed: _analyze,
+                      icon: const Icon(Icons.auto_awesome),
+                      label: Text(l.t('analyzeButton')),
+                    ),
                   ),
                   const SizedBox(height: 8),
-                  Wrap(
-                    spacing: 8,
-                    runSpacing: 6,
+                  Row(
                     children: [
-                      FilterChip(
-                        selected: shields.bettingShield,
-                        label: Text(l.t('shieldBetting')),
-                        onSelected: (v) => app.updateShieldConfig(
-                          shields.copyWith(bettingShield: v),
+                      Expanded(
+                        child: FilledButton.tonalIcon(
+                          key: const Key('pasteAnalyzeButton'),
+                          onPressed: _pasteAndAnalyze,
+                          icon: const Icon(Icons.content_paste_go, size: 18),
+                          label: Text(
+                            l.t('pasteAndAnalyze'),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
                         ),
                       ),
-                      FilterChip(
-                        selected: shields.phishingShield,
-                        label: Text(l.t('shieldPhishing')),
-                        onSelected: (v) => app.updateShieldConfig(
-                          shields.copyWith(phishingShield: v),
-                        ),
-                      ),
-                      FilterChip(
-                        selected: shields.linkShield,
-                        label: Text(l.t('shieldLink')),
-                        onSelected: (v) => app.updateShieldConfig(
-                          shields.copyWith(linkShield: v),
-                        ),
-                      ),
-                      FilterChip(
-                        selected: shields.marketingShield,
-                        label: Text(l.t('shieldMarketing')),
-                        onSelected: (v) => app.updateShieldConfig(
-                          shields.copyWith(marketingShield: v),
-                        ),
+                      const SizedBox(width: 8),
+                      OutlinedButton(
+                        onPressed: () => setState(() {
+                          _senderController.clear();
+                          _controller.clear();
+                          _result = null;
+                        }),
+                        child: Text(l.t('clearButton')),
                       ),
                     ],
                   ),
                 ],
               ),
             ),
-          ),
-          const SizedBox(height: 12),
-          // Quick Test Simulator Chips
-          Text(
-            l.t('quickSamplesTitle'),
-            style: theme.textTheme.labelLarge,
-          ),
-          const SizedBox(height: 6),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: [
-                ActionChip(
-                  label: Text(l.t('sampleBetting')),
-                  onPressed: () => _runSample(
-                    sender: 'VIP-CASINO',
-                    text: isTr
-                        ? 'Tebrikler! Hesabınıza 1000 TL çevrimsiz deneme bonusu ve 250 freespin tanımlandı! Hemen oyna: cutt.ly/bonus'
-                        : 'Congratulations! Claim your 250 freespin casino bonus now at bit.ly/win123',
-                  ),
-                ),
-                const SizedBox(width: 8),
-                ActionChip(
-                  label: Text(l.t('samplePhishing')),
-                  onPressed: () => _runSample(
-                    sender: '+905390000000',
-                    text: isTr
-                        ? 'Sayın ilgili, hakkınızda açılmış uzlaştırma dosyası bulunmaktadır. Ceza dosyanızın son günüdür: bit.ly/uzlasma'
-                        : 'URGENT: Your package is on hold due to unpaid customs fee. Pay now: http://dhl-delivery-fee.info',
-                  ),
-                ),
-                const SizedBox(width: 8),
-                ActionChip(
-                  label: Text(l.t('sampleOtp')),
-                  onPressed: () => _runSample(
-                    sender: 'BANKA',
-                    text: isTr
-                        ? 'Giriş için tek kullanımlık doğrulama kodunuz 482913. Bu kodu kimseyle paylaşmayın.'
-                        : 'Your verification code is 482913. Do not share this code with anyone.',
-                  ),
-                ),
-                const SizedBox(width: 8),
-                ActionChip(
-                  label: Text(l.t('sampleMarketing')),
-                  onPressed: () => _runSample(
-                    sender: 'MAGAZA',
-                    text: isTr
-                        ? 'Büyük sezon indirimi! Tüm ürünlerde %50 indirim. İptal için RET yaz 3344e gönder MERSIS: 0123456789 B002'
-                        : 'Limited time offer! 70% discount on all products. Reply STOP to opt out.',
-                  ),
-                ),
-                const SizedBox(width: 8),
-                ActionChip(
-                  label: Text(l.t('sampleHakanAbi')),
-                  onPressed: () => _runSample(
-                    sender: isTr ? 'Hakan Abi' : 'Shop Partner',
-                    text: isTr
-                        ? 'Hakan abi emaneti dükkana bıraktım, akşam geçerken alırsın.'
-                        : 'Hey brother, I left the package at the shop, pick it up this evening.',
-                  ),
-                ),
-                const SizedBox(width: 8),
-                ActionChip(
-                  label: Text(l.t('sampleNormal')),
-                  onPressed: () => _runSample(
-                    sender: isTr ? 'Annem' : 'Mom',
-                    text: isTr
-                        ? 'Eve gelirken ekmek alır mısın? Teşekkürler'
-                        : 'Can you pick up some milk on your way home? Thanks',
-                  ),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(height: 12),
-          TextField(
-            key: const Key('senderInput'),
-            controller: _senderController,
-            decoration: InputDecoration(
-              prefixIcon: const Icon(Icons.person_outline),
-              hintText: l.t('senderHint'),
-              border: const OutlineInputBorder(),
-              isDense: true,
-            ),
-          ),
-          const SizedBox(height: 10),
-          TextField(
-            key: const Key('analyzeInput'),
-            controller: _controller,
-            minLines: 3,
-            maxLines: 6,
-            decoration: InputDecoration(
-              hintText: l.t('analyzeHint'),
-              border: const OutlineInputBorder(),
-            ),
-          ),
-          const SizedBox(height: 10),
-          SizedBox(
-            width: double.infinity,
-            child: FilledButton.icon(
-              key: const Key('analyzeButton'),
-              onPressed: _analyze,
-              icon: const Icon(Icons.auto_awesome),
-              label: Text(l.t('analyzeButton')),
-            ),
-          ),
-          const SizedBox(height: 8),
-          Row(
-            children: [
-              Expanded(
-                child: FilledButton.tonalIcon(
-                  key: const Key('pasteAnalyzeButton'),
-                  onPressed: _pasteAndAnalyze,
-                  icon: const Icon(Icons.content_paste_go, size: 18),
-                  label: Text(
-                    l.t('pasteAndAnalyze'),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ),
-              ),
-              const SizedBox(width: 8),
-              OutlinedButton(
-                onPressed: () => setState(() {
-                  _senderController.clear();
-                  _controller.clear();
-                  _result = null;
-                }),
-                child: Text(l.t('clearButton')),
-              ),
-            ],
           ),
           if (_result != null) ...[
             const SizedBox(height: 16),
             _ResultCard(entry: _result!, onCorrect: _correct),
           ],
-          const SizedBox(height: 12),
-          const _SafeClickScannerCard(),
           const SizedBox(height: 16),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(Icons.lock_outline, size: 16, color: theme.colorScheme.outline),
+              Icon(
+                Icons.lock_outline,
+                size: 16,
+                color: theme.colorScheme.outline,
+              ),
               const SizedBox(width: 6),
               Flexible(
                 child: Text(
                   l.t('privacyNote'),
                   style: theme.textTheme.bodySmall?.copyWith(
-                    color: theme.colorScheme.outline,
+                    color: CyberpunkColors.textSecondary,
+                    fontWeight: FontWeight.w300,
                   ),
                 ),
               ),
@@ -522,6 +573,155 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
+    );
+  }
+}
+
+/// Interactive Smart Inbox Category Card on Dashboard that navigates to the
+/// full-page WhatsApp-style inbox view.
+class _InboxCategoryTile extends StatelessWidget {
+  const _InboxCategoryTile({
+    required this.tileKey,
+    required this.icon,
+    required this.accent,
+    required this.title,
+    required this.description,
+    required this.onTap,
+  });
+
+  final Key tileKey;
+  final IconData icon;
+  final Color accent;
+  final String title;
+  final String description;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return InkWell(
+      key: tileKey,
+      borderRadius: BorderRadius.circular(12),
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+        decoration: BoxDecoration(
+          color: CyberpunkColors.bgSecondary,
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(
+            color: accent.withValues(alpha: 0.45),
+          ),
+        ),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              width: 36,
+              height: 36,
+              decoration: BoxDecoration(
+                color: accent.withValues(alpha: 0.14),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Icon(icon, size: 20, color: accent),
+            ),
+            const SizedBox(width: 10),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: theme.textTheme.titleSmall?.copyWith(
+                      color: CyberpunkColors.textPrimary,
+                      fontWeight: FontWeight.w800,
+                    ),
+                  ),
+                  const SizedBox(height: 2),
+                  Text(
+                    description,
+                    style: theme.textTheme.bodySmall?.copyWith(
+                      color: CyberpunkColors.textSecondary,
+                      fontWeight: FontWeight.w300,
+                      fontSize: 12,
+                      height: 1.32,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(width: 4),
+            Icon(
+              Icons.chevron_right,
+              size: 20,
+              color: accent,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/// Threat Shield function row with title, active switch, and a thin, sleek
+/// 1-2 sentence explanation of how the shield works underneath.
+class _ShieldFunctionTile extends StatelessWidget {
+  const _ShieldFunctionTile({
+    required this.icon,
+    required this.accent,
+    required this.title,
+    required this.description,
+    required this.value,
+    required this.onChanged,
+  });
+
+  final IconData icon;
+  final Color accent;
+  final String title;
+  final String description;
+  final bool value;
+  final ValueChanged<bool> onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(top: 2),
+          child: Icon(icon, size: 20, color: accent),
+        ),
+        const SizedBox(width: 10),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                title,
+                style: theme.textTheme.titleSmall?.copyWith(
+                  color: CyberpunkColors.textPrimary,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              const SizedBox(height: 2),
+              Text(
+                description,
+                style: theme.textTheme.bodySmall?.copyWith(
+                  color: CyberpunkColors.textSecondary,
+                  fontWeight: FontWeight.w300,
+                  fontSize: 12,
+                  height: 1.35,
+                ),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(width: 6),
+        Switch(
+          value: value,
+          onChanged: onChanged,
+        ),
+      ],
     );
   }
 }
@@ -567,7 +767,7 @@ class _ProtectionTile extends StatelessWidget {
                         active ? l.t('protectionActive') : l.t('permGuideSubtitle'),
                         style: theme.textTheme.bodySmall?.copyWith(
                           color: active ? color : theme.colorScheme.onSurfaceVariant,
-                          fontWeight: active ? FontWeight.w600 : FontWeight.normal,
+                          fontWeight: active ? FontWeight.w600 : FontWeight.w300,
                         ),
                       ),
                       if (app.lastInterceptLatencyMs > 0)
@@ -623,11 +823,13 @@ class _StatCard extends StatelessWidget {
     required this.label,
     required this.valueText,
     required this.color,
+    this.onTap,
   });
 
   final String label;
   final String valueText;
   final Color color;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) => Expanded(
@@ -636,30 +838,34 @@ class _StatCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(12),
             side: BorderSide(color: color.withValues(alpha: 0.45)),
           ),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 4),
-            child: Column(
-              children: [
-                Text(
-                  valueText,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                        color: color,
-                        fontWeight: FontWeight.w800,
-                        fontFamily: 'monospace',
-                      ),
-                ),
-                const SizedBox(height: 2),
-                Text(
-                  label,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                        color: CyberpunkColors.textSecondary,
-                      ),
-                ),
-              ],
+          child: InkWell(
+            borderRadius: BorderRadius.circular(12),
+            onTap: onTap,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 4),
+              child: Column(
+                children: [
+                  Text(
+                    valueText,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                          color: color,
+                          fontWeight: FontWeight.w800,
+                          fontFamily: 'monospace',
+                        ),
+                  ),
+                  const SizedBox(height: 2),
+                  Text(
+                    label,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                          color: CyberpunkColors.textSecondary,
+                        ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
@@ -818,6 +1024,7 @@ class _SafeClickScannerCardState extends State<_SafeClickScannerCard> {
   Widget build(BuildContext context) {
     final l = AppLocalizations.of(context);
     final theme = Theme.of(context);
+    final isTr = Localizations.localeOf(context).languageCode == 'tr';
 
     return Card(
       key: const Key('safeClickScannerCard'),
@@ -843,6 +1050,17 @@ class _SafeClickScannerCardState extends State<_SafeClickScannerCard> {
                   ),
                 ),
               ],
+            ),
+            const SizedBox(height: 4),
+            Text(
+              isTr
+                  ? 'Bağlantıyı açmadan önce sahte banka/e-devlet alan adı taklitlerini, kısaltılmış URL tuzaklarını ve IP tabanlı oltalama linklerini çevrimdışı analiz eder.'
+                  : 'Inspects links offline for brand spoofing, URL shorteners, and IP-based phishing traps before you tap.',
+              style: theme.textTheme.bodySmall?.copyWith(
+                color: CyberpunkColors.textSecondary,
+                fontWeight: FontWeight.w300,
+                fontSize: 12,
+              ),
             ),
             const SizedBox(height: 8),
             TextField(

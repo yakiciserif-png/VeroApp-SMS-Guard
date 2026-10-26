@@ -24,3 +24,7 @@ flutter:
     - assets/locales/
     - assets/model/
     - assets/branding/
+  fonts:
+    - family: CyberTech
+      fonts:
+        - asset: assets/fonts/CyberTech.ttf

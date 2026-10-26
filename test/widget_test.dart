@@ -104,6 +104,11 @@ void main() {
     await tester.pumpWidget(TrustLensApp(state: state));
     await tester.pumpAndSettle();
 
+    await tester.scrollUntilVisible(
+      find.byKey(const Key('protectionTileCard')),
+      100,
+      scrollable: find.byType(Scrollable).first,
+    );
     expect(find.byKey(const Key('protectionTileCard')), findsOneWidget);
     expect(find.byKey(const Key('btnRequestSmsPerm')), findsOneWidget);
     expect(find.byKey(const Key('btnRequestSpamRole')), findsOneWidget);
@@ -188,6 +193,61 @@ void main() {
     expect(find.byType(CyberSplashScreen), findsOneWidget);
     expect(find.byType(CyberHexShieldIcon), findsOneWidget);
     expect(find.text('VeroApp SMS Guard'), findsOneWidget);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('UI Revision: VEROAPP SMS GUARD header, Full-Page Bank/OTP WhatsApp Inbox, and Settings Top ProtectionMode at 320x568', (tester) async {
+    tester.view.physicalSize = const Size(320, 568);
+    tester.view.devicePixelRatio = 1.0;
+    addTearDown(() {
+      tester.view.resetPhysicalSize();
+      tester.view.resetDevicePixelRatio();
+    });
+
+    SharedPreferences.setMockInitialValues({});
+    final corpusJson = File('assets/model/seed_corpus.json').readAsStringSync();
+    final state = AppState(
+      bridge: const NativeBridge(enabled: false),
+      seedLoader: () async => corpusJson,
+    );
+    await state.init();
+    await state.setLocale(const Locale('tr'));
+
+    await tester.pumpWidget(TrustLensApp(state: state));
+    await tester.pumpAndSettle();
+
+    // A) Top-centered icon + VEROAPP SMS GUARD all-caps title
+    expect(find.byKey(const Key('dashboardBrandSubtitle')), findsOneWidget);
+    expect(find.text('VEROAPP SMS GUARD'), findsOneWidget);
+
+    // B) ProtectionMode segment is NOT on HomeScreen
+    expect(find.byKey(const Key('protectionModeSegment')), findsNothing);
+
+    // D) Tap "Banka / OTP" category card -> opens full-page WhatsApp-style inbox
+    final mainScrollable = find.byType(Scrollable).first;
+    await tester.scrollUntilVisible(
+      find.byKey(const Key('openInboxFinance')),
+      120,
+      scrollable: mainScrollable,
+    );
+    await tester.ensureVisible(find.byKey(const Key('openInboxFinance')));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const Key('openInboxFinance')));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Ziraat Bankası'), findsOneWidget);
+    expect(find.text('İş Bankası'), findsOneWidget);
+    expect(tester.takeException(), isNull);
+
+    // Pop back to Dashboard
+    await tester.tap(find.byKey(const Key('categoryInboxBackBtn')));
+    await tester.pumpAndSettle();
+
+    // Navigate to Settings and verify ProtectionMode is at the very top
+    await tester.tap(find.byIcon(Icons.settings_outlined));
+    await tester.pumpAndSettle();
+    expect(find.byKey(const Key('settingsProtectionModeCard')), findsOneWidget);
+    expect(find.byKey(const Key('protectionModeSegment')), findsOneWidget);
     expect(tester.takeException(), isNull);
   });
 }

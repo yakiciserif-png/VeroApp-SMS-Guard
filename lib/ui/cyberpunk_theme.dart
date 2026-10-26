@@ -50,10 +50,75 @@ class CyberpunkTheme {
     return ThemeData(
       useMaterial3: true,
       brightness: brightness,
+      fontFamily: 'CyberTech',
+      fontFamilyFallback: const ['Segoe UI', 'Roboto', 'sans-serif'],
       colorScheme: scheme,
       scaffoldBackgroundColor: CyberpunkColors.bgPrimary,
       canvasColor: CyberpunkColors.bgPrimary,
       dividerColor: CyberpunkColors.borderSubtle,
+      textTheme: const TextTheme(
+        headlineMedium: TextStyle(
+          fontFamily: 'CyberTech',
+          color: CyberpunkColors.textPrimary,
+          fontWeight: FontWeight.w800,
+          letterSpacing: 0.8,
+        ),
+        titleLarge: TextStyle(
+          fontFamily: 'CyberTech',
+          color: CyberpunkColors.textPrimary,
+          fontWeight: FontWeight.w800,
+          letterSpacing: 0.6,
+        ),
+        titleMedium: TextStyle(
+          fontFamily: 'CyberTech',
+          color: CyberpunkColors.textPrimary,
+          fontWeight: FontWeight.w700,
+          letterSpacing: 0.4,
+        ),
+        titleSmall: TextStyle(
+          fontFamily: 'CyberTech',
+          color: CyberpunkColors.textPrimary,
+          fontWeight: FontWeight.w700,
+          letterSpacing: 0.35,
+        ),
+        bodyLarge: TextStyle(
+          fontFamily: 'CyberTech',
+          color: CyberpunkColors.textPrimary,
+          fontWeight: FontWeight.w500,
+          height: 1.38,
+        ),
+        bodyMedium: TextStyle(
+          fontFamily: 'CyberTech',
+          color: CyberpunkColors.textPrimary,
+          fontWeight: FontWeight.w400,
+          height: 1.38,
+        ),
+        bodySmall: TextStyle(
+          fontFamily: 'CyberTech',
+          color: CyberpunkColors.textSecondary,
+          fontWeight: FontWeight.w300,
+          height: 1.38,
+          letterSpacing: 0.15,
+        ),
+        labelLarge: TextStyle(
+          fontFamily: 'CyberTech',
+          color: CyberpunkColors.textPrimary,
+          fontWeight: FontWeight.w700,
+          letterSpacing: 0.4,
+        ),
+        labelMedium: TextStyle(
+          fontFamily: 'CyberTech',
+          color: CyberpunkColors.textSecondary,
+          fontWeight: FontWeight.w600,
+          letterSpacing: 0.3,
+        ),
+        labelSmall: TextStyle(
+          fontFamily: 'CyberTech',
+          color: CyberpunkColors.textSecondary,
+          fontWeight: FontWeight.w500,
+          letterSpacing: 0.25,
+        ),
+      ),
       appBarTheme: const AppBarTheme(
         backgroundColor: CyberpunkColors.bgPrimary,
         foregroundColor: CyberpunkColors.textPrimary,
@@ -61,10 +126,11 @@ class CyberpunkTheme {
         elevation: 0,
         centerTitle: false,
         titleTextStyle: TextStyle(
+          fontFamily: 'CyberTech',
           color: CyberpunkColors.textPrimary,
           fontSize: 19,
-          fontWeight: FontWeight.w700,
-          letterSpacing: 0.5,
+          fontWeight: FontWeight.w800,
+          letterSpacing: 0.9,
         ),
       ),
       cardTheme: CardThemeData(
@@ -238,7 +304,9 @@ class CyberpunkTheme {
   }
 }
 
-/// Version A — Hexagonal Shield + AI Neural Core custom vector emblem.
+/// Version A — Hexagonal Shield + AI Neural Core badge that renders
+/// `assets/branding/app_icon_cyberpunk_vA.png` with a neon cyan glow frame
+/// and vector fallback.
 class CyberHexShieldIcon extends StatelessWidget {
   const CyberHexShieldIcon({
     super.key,
@@ -253,13 +321,33 @@ class CyberHexShieldIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
       width: size,
       height: size,
-      child: CustomPaint(
-        painter: _CyberHexShieldPainter(
-          accentColor: accentColor,
-          secondaryColor: secondaryColor,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(size * 0.24),
+        boxShadow: [
+          BoxShadow(
+            color: accentColor.withValues(alpha: 0.28),
+            blurRadius: 16,
+            spreadRadius: 1,
+          ),
+        ],
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(size * 0.24),
+        child: Image.asset(
+          'assets/branding/app_icon_cyberpunk_vA.png',
+          width: size,
+          height: size,
+          fit: BoxFit.cover,
+          errorBuilder: (_, __, ___) => CustomPaint(
+            size: Size.square(size),
+            painter: _CyberHexShieldPainter(
+              accentColor: accentColor,
+              secondaryColor: secondaryColor,
+            ),
+          ),
         ),
       ),
     );
