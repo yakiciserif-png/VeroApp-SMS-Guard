@@ -9,6 +9,7 @@ import '../core/localization/app_localizations.dart';
 import '../core/rules/rule_engine.dart';
 import '../models/history_entry.dart';
 import '../state/app_state.dart';
+import '../engines/vero_community_shield.dart';
 import 'cyberpunk_theme.dart';
 import 'rules_screen.dart';
 import 'widgets.dart';
@@ -797,6 +798,38 @@ class _HistoryDetail extends StatelessWidget {
                         ReportFalsePositiveSheet.show(context, entry: e),
                     icon: const Icon(Icons.campaign_outlined, size: 18),
                     label: Text(l.t('reportButtonLabel')),
+                  ),
+                  FilledButton.icon(
+                    key: const Key('reportAsSpamCommunityBtn'),
+                    onPressed: () async {
+                      final messenger = ScaffoldMessenger.of(context);
+                      final target = e.sender ?? e.text;
+                      await app.reportSpamPhoneNumber(target, category: 'SPAM_SCAM');
+                      messenger.showSnackBar(
+                        const SnackBar(
+                          content: Text(
+                            VeroCommunityShield.feedbackMessage,
+                            style: TextStyle(
+                              fontFamily: 'Book Antiqua',
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          backgroundColor: Color(0xFF00E676),
+                          duration: Duration(seconds: 4),
+                        ),
+                      );
+                    },
+                    icon: const Icon(Icons.gpp_bad_rounded, size: 18),
+                    label: const Text(
+                      '🚨 Spam Olarak Bildir',
+                      style: TextStyle(
+                        fontFamily: 'Book Antiqua',
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    style: FilledButton.styleFrom(
+                      backgroundColor: const Color(0xFFFF1744),
+                    ),
                   ),
                 ],
               ),

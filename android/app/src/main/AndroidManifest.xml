@@ -1,10 +1,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- Offline Real-Time SMS & Notification Interception Permissions (Zero Internet Permission for 100% KVKK/GDPR Privacy) -->
-    <!-- Store-compliant minimal permission set: RECEIVE_SMS, READ_SMS, POST_NOTIFICATIONS (No SEND_SMS, No RECEIVE_MMS, No INTERNET) -->
+    <!-- Offline Real-Time SMS & Notification Interception Permissions -->
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.BROADCAST_SMS" />
+    <!-- Caller Name ID: Contact matching on-device only (Zero external upload) -->
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <!-- Weekly Threat Database Update via GitHub Releases (Strictly One-Way Pull, Zero Telemetry/User Data) -->
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:label="VeroApp SMS Guard"

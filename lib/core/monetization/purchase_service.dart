@@ -34,6 +34,8 @@ class VeroPlanCatalog {
 }
 
 class PurchaseService {
+  static final PurchaseService instance = PurchaseService();
+
   PurchaseService({
     this.tier = VeroSubscriptionTier.free,
     this.isFamilyOwner = true,

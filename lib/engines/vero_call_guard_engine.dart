@@ -1,7 +1,9 @@
 /// [ADIM 4] VERO CALL GUARD ENGINE — Integrated with Offline Caller ID (`VeroCallerIdEngine`).
 library;
 
+import 'package:flutter/services.dart';
 import 'vero_caller_id_engine.dart';
+import 'vero_community_shield.dart';
 
 export 'vero_caller_id_engine.dart';
 export 'vero_community_shield.dart';
@@ -203,5 +205,47 @@ class VeroCallGuardEngine {
       detailEn:
           'No foreign or 0850 scam signature found in VERO Call Guard offline database.',
     );
+  }
+
+  static const MethodChannel _telecomChannel =
+      MethodChannel('com.veroapp.smsguard/telecom');
+
+  /// Checks if Android 10+ CallScreeningService role is active on device.
+  static Future<bool> isCallScreeningActive() async {
+    try {
+      final bool? isHeld =
+          await _telecomChannel.invokeMethod<bool>('isCallScreeningRoleHeld');
+      return isHeld ?? false;
+    } catch (_) {
+      return false;
+    }
+  }
+
+  /// Requests the user to grant the Call Screening role.
+  static Future<bool> requestCallScreeningRole() async {
+    try {
+      final bool? granted =
+          await _telecomChannel.invokeMethod<bool>('requestCallScreeningRole');
+      return granted ?? false;
+    } catch (_) {
+      return false;
+    }
+  }
+
+  /// Synchronizes user reported / custom blocked numbers with the native Kotlin CallScreeningService.
+  static Future<bool> syncBlockedNumbersToNative([List<String>? numbers]) async {
+    try {
+      final list = numbers ??
+          VeroCommunityShield.reportedNumbers
+              .map((e) => e.normalizedDigits)
+              .toList();
+      final bool? synced = await _telecomChannel.invokeMethod<bool>(
+        'syncBlockedNumbers',
+        list,
+      );
+      return synced ?? true;
+    } catch (_) {
+      return false;
+    }
   }
 }

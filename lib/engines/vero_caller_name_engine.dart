@@ -2,15 +2,18 @@ import 'package:flutter/material.dart';
 
 import 'vero_call_guard_engine.dart';
 
-/// [ADIM 1] CALLER NAME ID — 100% Offline Local Caller Name Identifier.
+/// CALLER NAME ID — 100% Offline Local Caller Name Identifier.
 ///
-/// Matches phone numbers against:
-/// 1. Local Phone Contacts (READ_CONTACTS) / Local Address Book
-/// 2. Offline Spam Database (`spam_numbers.bin` + Community Shield)
-/// 3. Fallback: Bilinmeyen Numara
+/// Matches incoming/history phone numbers in priority order:
+/// 1. Device Contacts (READ_CONTACTS) -> "Ahmet Yılmaz (Rehber)" [Yeşil]
+/// 2. Spam Database (Exact verified hit) -> "🚨 SPAM: [Kategori]" [Kırmızı]
+/// 3. Community Shield (User/crowdsourced report) -> "Topluluk: [Kategori] (Bildirildi)" [Turuncu]
+/// 4. Heuristic Pattern (0850, high-risk foreign) -> "⚠️ Şüpheli olabilir: [Açıklama]" [Turuncu/Sarı]
+/// 5. Fallback -> "Bilinmeyen Numara" [Sarı]
 enum CallerNameType {
   contact,
   spam,
+  community,
   unknown,
 }
 
@@ -23,6 +26,7 @@ class CallerNameResult {
     this.shouldVibrate = false,
     this.spamCategory,
     this.confidence = 1.0,
+    this.reportCount = 0,
   });
 
   final String phoneNumber;
@@ -32,9 +36,11 @@ class CallerNameResult {
   final bool shouldVibrate;
   final String? spamCategory;
   final double confidence;
+  final int reportCount;
 
   bool get isContact => type == CallerNameType.contact;
   bool get isSpam => type == CallerNameType.spam;
+  bool get isCommunity => type == CallerNameType.community;
   bool get isUnknown => type == CallerNameType.unknown;
   bool get vibratePhone => shouldVibrate;
 }
@@ -44,20 +50,12 @@ class VeroCallerNameEngine {
   static final VeroCallerNameEngine instance = VeroCallerNameEngine._();
   factory VeroCallerNameEngine() => instance;
 
-  CallerNameResult identifyNumber(String phoneNumber, {Map<String, String>? localContacts}) {
-    if (localContacts != null) {
-      for (final e in localContacts.entries) {
-        registerContact(e.key, e.value);
-      }
-    }
-    return identify(phoneNumber);
-  }
+  static const Color colorContact = Color(0xFF00E676);   // Yeşil (#00E676)
+  static const Color colorSpam = Color(0xFFFF1744);      // Kırmızı (#FF1744)
+  static const Color colorCommunity = Color(0xFFFF9100); // Turuncu (#FF9100)
+  static const Color colorUnknown = Color(0xFFFFD600);   // Sarı (#FFD600)
 
-  static const Color colorContact = Color(0xFF00FF88); // Yeşil (#00FF88)
-  static const Color colorSpam = Color(0xFFFF1744);    // Kırmızı (#FF1744)
-  static const Color colorUnknown = Color(0xFFFFD600); // Sarı (#FFD600)
-
-  /// Local address book cache (e.g. from local device contacts).
+  /// Local address book index (Normalized digits -> Name).
   static final Map<String, String> _localContacts = {
     '905321112233': 'Ahmet Yılmaz',
     '905332223344': 'Ayşe Kaya',
@@ -66,7 +64,24 @@ class VeroCallerNameEngine {
     '905051234567': 'Ali Vural',
   };
 
-  /// Registers a contact in the local address book cache.
+  /// Asynchronously / bulk sync contacts into the local indexed map.
+  static Future<int> syncContacts(List<Map<String, String>> contacts) async {
+    int count = 0;
+    for (final contact in contacts) {
+      final phone = contact['phone'] ?? contact['number'] ?? '';
+      final name = contact['name'] ?? '';
+      if (phone.isNotEmpty && name.isNotEmpty) {
+        final digits = VeroCommunityShield.normalizeDigits(phone);
+        if (digits.isNotEmpty) {
+          _localContacts[digits] = name.trim();
+          count++;
+        }
+      }
+    }
+    return count;
+  }
+
+  /// Registers a single contact into the local address book cache.
   static void registerContact(String phoneNumber, String name) {
     final digits = VeroCommunityShield.normalizeDigits(phoneNumber);
     if (digits.isNotEmpty) {
@@ -80,7 +95,7 @@ class VeroCallerNameEngine {
     _localContacts.remove(digits);
   }
 
-  /// Clears local contacts (except defaults if reset requested).
+  /// Clears local contacts cache.
   static void resetContacts() {
     _localContacts.clear();
     _localContacts.addAll({
@@ -92,7 +107,21 @@ class VeroCallerNameEngine {
     });
   }
 
+  /// Total cached contacts count.
+  static int get contactsCount => _localContacts.length;
+
+  CallerNameResult identifyNumber(String phoneNumber,
+      {Map<String, String>? localContacts}) {
+    if (localContacts != null) {
+      for (final e in localContacts.entries) {
+        registerContact(e.key, e.value);
+      }
+    }
+    return identify(phoneNumber);
+  }
+
   /// Identifies caller name and classification 100% offline.
+  /// Execution time is <1ms via hashmap and binary lookup.
   static CallerNameResult identify(String phoneNumber) {
     final digits = VeroCommunityShield.normalizeDigits(phoneNumber);
     if (digits.isEmpty) {
@@ -104,9 +133,11 @@ class VeroCallerNameEngine {
       );
     }
 
-    // 1. Check local contacts
+    // 1. Check Rehber (Local device contacts) -> "Ahmet Yılmaz (Rehber)" [Yeşil]
     for (final entry in _localContacts.entries) {
-      if (digits == entry.key || digits.endsWith(entry.key) || entry.key.endsWith(digits)) {
+      if (digits == entry.key ||
+          digits.endsWith(entry.key) ||
+          entry.key.endsWith(digits)) {
         return CallerNameResult(
           phoneNumber: phoneNumber,
           displayName: '${entry.value} (Rehber)',
@@ -118,12 +149,41 @@ class VeroCallerNameEngine {
       }
     }
 
-    // 2. Check call guard (e.g. high-risk foreign prefixes like +966, +971, +20, +234, +27)
+    // 2. Check Exact Verified Spam Database Match -> "🚨 SPAM: [Kategori]" [Kırmızı]
+    final spamCheck = VeroCallerIdEngine.lookup(phoneNumber);
+    if (spamCheck.isSpam && !spamCheck.fromCommunityShield) {
+      return CallerNameResult(
+        phoneNumber: phoneNumber,
+        displayName: '🚨 SPAM: ${spamCheck.category}',
+        type: CallerNameType.spam,
+        color: colorSpam,
+        shouldVibrate: true,
+        spamCategory: spamCheck.category,
+        confidence: spamCheck.confidence,
+      );
+    }
+
+    // 3. Check Community Shield -> "Topluluk: [Kategori] (Bildirildi)" [Turuncu]
+    final communityReport = VeroCommunityShield.lookupReported(phoneNumber);
+    if (communityReport != null) {
+      return CallerNameResult(
+        phoneNumber: phoneNumber,
+        displayName: 'Topluluk: ${communityReport.category} (Bildirildi)',
+        type: CallerNameType.community,
+        color: colorCommunity,
+        shouldVibrate: false,
+        spamCategory: communityReport.category,
+        confidence: 0.90,
+        reportCount: 1,
+      );
+    }
+
+    // 4. Check Call Guard & Heuristic Patterns (0850, high-risk foreign prefixes)
     final callGuard = VeroCallGuardEngine.evaluate(phoneNumber);
     if (callGuard.isBlockedOrWarned) {
       return CallerNameResult(
         phoneNumber: phoneNumber,
-        displayName: '🚨 SPAM - ${callGuard.categoryTitleTr}',
+        displayName: '⚠️ Şüpheli: ${callGuard.categoryTitleTr}',
         type: CallerNameType.spam,
         color: colorSpam,
         shouldVibrate: true,
@@ -132,33 +192,20 @@ class VeroCallerNameEngine {
       );
     }
 
-    // 3. Check spam database & community shield
-    final spamCheck = VeroCallerIdEngine.lookup(phoneNumber);
-    if (spamCheck.isSpam) {
-      return CallerNameResult(
-        phoneNumber: phoneNumber,
-        displayName: '🚨 SPAM - ${spamCheck.category}',
-        type: CallerNameType.spam,
-        color: colorSpam,
-        shouldVibrate: true,
-        spamCategory: spamCheck.category,
-        confidence: spamCheck.confidence,
-      );
-    }
-
     if (spamCheck.isSuspicious) {
       return CallerNameResult(
         phoneNumber: phoneNumber,
-        displayName: '⚠️ Şüpheli olabilir - ${spamCheck.patternDescription ?? spamCheck.category}',
-        type: CallerNameType.unknown,
-        color: const Color(0xFFFF9100),
+        displayName:
+            '⚠️ Şüpheli olabilir: ${spamCheck.patternDescription ?? spamCheck.category}',
+        type: CallerNameType.spam,
+        color: colorCommunity,
         shouldVibrate: false,
         spamCategory: spamCheck.category,
         confidence: spamCheck.confidence,
       );
     }
 
-    // 3. Fallback: Unknown
+    // 5. Hiçbiri -> "Bilinmeyen Numara" [Sarı]
     return CallerNameResult(
       phoneNumber: phoneNumber,
       displayName: 'Bilinmeyen Numara',

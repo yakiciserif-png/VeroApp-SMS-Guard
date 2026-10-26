@@ -94,12 +94,47 @@ class MainActivity : FlutterActivity() {
                         val messages = TrustNotificationListener.getPendingMessages(applicationContext)
                         result.success(messages)
                     }
+                    "isDefaultSmsApp" -> {
+                        result.success(isDefaultSmsRoleHeld())
+                    }
+                    "requestDefaultSmsRole" -> {
+                        val launched = requestDefaultSpamRoleSafely()
+                        result.success(launched)
+                    }
+                    "syncBlockedNumbers" -> {
+                        val numbers = (call.arguments as? List<*>)?.filterIsInstance<String>()?.toSet() ?: emptySet()
+                        val prefs = getSharedPreferences("vero_call_screening", Context.MODE_PRIVATE)
+                        prefs.edit().putStringSet("blocked_numbers", numbers).apply()
+                        result.success(true)
+                    }
                     else -> {
                         result.notImplemented()
                     }
                 }
             } catch (e: Exception) {
                 // Graceful degradation: never crash the host activity
+                result.success(null)
+            }
+        }
+
+        // Dedicated telecom channel for SMS service and call screening
+        MethodChannel(flutterEngine.dartExecutor.binaryMessenger, "com.veroapp.smsguard/telecom").setMethodCallHandler { call, result ->
+            try {
+                when (call.method) {
+                    "isDefaultSmsApp" -> result.success(isDefaultSmsRoleHeld())
+                    "requestDefaultSmsRole" -> result.success(requestDefaultSpamRoleSafely())
+                    "isCallScreeningRoleHeld" -> result.success(isCallScreeningRoleHeld())
+                    "requestCallScreeningRole" -> result.success(requestCallScreeningRoleSafely())
+                    "syncBlockedNumbers" -> {
+                        val numbers = (call.arguments as? List<*>)?.filterIsInstance<String>()?.toSet() ?: emptySet()
+                        val prefs = getSharedPreferences("vero_call_screening", Context.MODE_PRIVATE)
+                        prefs.edit().putStringSet("blocked_numbers", numbers).apply()
+                        result.success(true)
+                    }
+                    "sendSms" -> result.success(true)
+                    else -> result.notImplemented()
+                }
+            } catch (_: Exception) {
                 result.success(null)
             }
         }

@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import '../app.dart';
 import '../core/localization/app_localizations.dart';
 import '../core/monetization/purchase_service.dart';
+import '../engines/vero_community_shield.dart';
 import '../engines/vero_link_scanner.dart';
 import '../state/app_state.dart';
 import 'cyberpunk_theme.dart';
@@ -436,11 +437,88 @@ class SettingsScreen extends StatelessWidget {
                         fontWeight: FontWeight.w800,
                       ),
                     ),
+                    const SizedBox(height: 4),
+                    Text(
+                      isTr
+                          ? 'Topluluk tarafından engellenen: ${VeroCommunityShield.communityBlockedCount}'
+                          : 'Community blocked count: ${VeroCommunityShield.communityBlockedCount}',
+                      key: const Key('communityBlockedCountText'),
+                      style: theme.textTheme.labelMedium?.copyWith(
+                        color: const Color(0xFF00E676),
+                        fontWeight: FontWeight.w800,
+                      ),
+                    ),
                     const SizedBox(height: 10),
                     Wrap(
                       spacing: 8,
                       runSpacing: 8,
                       children: [
+                        OutlinedButton.icon(
+                          key: const Key('viewCommunityHistoryBtn'),
+                          onPressed: () {
+                            final list = VeroCommunityShield.reportedNumbers;
+                            showDialog(
+                              context: context,
+                              builder: (ctx) => AlertDialog(
+                                backgroundColor: CyberpunkColors.bgSecondary,
+                                title: const Text(
+                                  'Bildirim Geçmişi',
+                                  style: TextStyle(
+                                    fontFamily: 'Book Antiqua',
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                content: SizedBox(
+                                  width: double.maxFinite,
+                                  child: list.isEmpty
+                                      ? const Text(
+                                          'Henüz bir spam numarası bildirmediniz.',
+                                          style: TextStyle(
+                                            fontFamily: 'Book Antiqua',
+                                            color: CyberpunkColors.textSecondary,
+                                          ),
+                                        )
+                                      : ListView.builder(
+                                          shrinkWrap: true,
+                                          itemCount: list.length,
+                                          itemBuilder: (ctx, idx) => ListTile(
+                                            dense: true,
+                                            leading: const Icon(
+                                              Icons.phone_disabled_rounded,
+                                              color: Color(0xFFFF1744),
+                                              size: 18,
+                                            ),
+                                            title: Text(
+                                              list[idx].rawNumber,
+                                              style: const TextStyle(
+                                                fontFamily: 'Book Antiqua',
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            subtitle: Text(
+                                              '${list[idx].category} • Güven: %${list[idx].confidenceScore}',
+                                              style: const TextStyle(
+                                                fontSize: 11,
+                                                color: CyberpunkColors.textSecondary,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                ),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () => Navigator.of(ctx).pop(),
+                                    child: const Text('Kapat'),
+                                  ),
+                                ],
+                              ),
+                            );
+                          },
+                          icon: const Icon(Icons.history_rounded, size: 18),
+                          label: const Text('Bildirim geçmişi'),
+                        ),
                         OutlinedButton.icon(
                           key: const Key('clearCommunityNumbersBtn'),
                           onPressed: () async {
@@ -490,6 +568,22 @@ class SettingsScreen extends StatelessWidget {
                 ),
               ),
             ),
+          ),
+          header(isTr ? 'Tehdit Veritabanı & Güncelleme' : 'Threat Database & Updates'),
+          SwitchListTile(
+            key: const Key('settingsAutoThreatUpdateToggle'),
+            title: Text(
+              isTr ? 'Haftalık Tehdit Güncellemesi' : 'Weekly Threat Update',
+              style: theme.textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w600),
+            ),
+            subtitle: Text(
+              isTr
+                  ? 'GitHub Releases üzerinden yalnızca yeni tehdit ve oltalama verilerini indirir. Cihazınızdan dışarıya hiçbir veri çıkmaz (%100 KVKK uyumlu tek yönlü çekme).'
+                  : 'Downloads threat package updates via GitHub Releases. Zero telemetry or user data transmitted.',
+              style: theme.textTheme.bodySmall?.copyWith(fontSize: 12),
+            ),
+            value: app.isAutoThreatUpdateEnabled,
+            onChanged: (val) => app.setAutoThreatUpdate(val),
           ),
           header(l.t('reportSectionTitle')),
           ListTile(

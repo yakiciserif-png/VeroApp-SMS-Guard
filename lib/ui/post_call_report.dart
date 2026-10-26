@@ -82,10 +82,13 @@ class _PostCallReportDialogState extends State<PostCallReportDialog> {
       );
       if (mounted) {
         messenger.showSnackBar(
-          SnackBar(
+          const SnackBar(
             content: Text(
-              '${widget.phoneNumber} yerel Topluluk Kalkanına spam olarak kaydedildi.',
+              VeroCommunityShield.feedbackMessage,
+              style: TextStyle(fontFamily: 'Book Antiqua', fontWeight: FontWeight.w600),
             ),
+            backgroundColor: Color(0xFF00E676),
+            duration: Duration(seconds: 4),
           ),
         );
       }
@@ -203,13 +206,27 @@ class _PostCallReportDialogState extends State<PostCallReportDialog> {
             ),
             const SizedBox(width: 10),
             Expanded(
-              child: FilledButton.icon(
-                key: const Key('postCallYesSpamBtn'),
-                onPressed: () => _handleFeedback(true),
-                icon: const Icon(Icons.gpp_bad_rounded, size: 16),
-                label: const Text('Evet Spam'),
-                style: FilledButton.styleFrom(
-                  backgroundColor: const Color(0xFFFF1744),
+              flex: 2,
+              child: SizedBox(
+                height: 48,
+                child: FilledButton.icon(
+                  key: const Key('postCallYesSpamBtn'),
+                  onPressed: () => _handleFeedback(true),
+                  icon: const Icon(Icons.gpp_bad_rounded, size: 18),
+                  label: const Text(
+                    '🚨 Bu Numarayı Bildir',
+                    style: TextStyle(
+                      fontFamily: 'Book Antiqua',
+                      fontWeight: FontWeight.bold,
+                      fontSize: 13.5,
+                    ),
+                  ),
+                  style: FilledButton.styleFrom(
+                    backgroundColor: const Color(0xFFFF1744),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
                 ),
               ),
             ),

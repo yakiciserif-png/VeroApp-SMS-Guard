@@ -6,7 +6,7 @@ VEROAPP SMS GUARD — APPLE APP STORE LİSTELEME (TÜRKÇE)
 VeroApp SMS Guard - AI Kalkan
 
 [KISA AÇIKLAMA / PROMOTIONAL TEXT] (Max 170 karakter)
-%100 Çevrimdışı SMS Filtreleme & Arama Koruması. Apple IdentityLookup Destekli, Sıfır İnternet, Sıfır Veri Toplama.
+%100 Çevrimdışı SMS Filtreleme & Arama Koruması. Apple IdentityLookup Destekli, Sıfır İnternet, Sıfır Veri Toplama. iOS 16+ gereklidir.
 
 [TAM AÇIKLAMA]
 🛡️ VeroApp SMS Guard: Cihaz İçi Yerel Motorla SMS Filtreleme, Arama Koruması ve Tam Gizlilik

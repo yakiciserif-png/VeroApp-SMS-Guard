@@ -16,6 +16,7 @@ import 'history_screen.dart';
 import 'paywall_screen.dart';
 import 'settings_screen.dart';
 import 'stats_screen.dart';
+import 'whatsapp_scanner_screen.dart';
 import 'widgets.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -518,6 +519,49 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           const SizedBox(height: 12),
           const _SafeClickScannerCard(),
+          const SizedBox(height: 12),
+          // WhatsApp & Messenger Scanner Card
+          Card(
+            key: const Key('openWhatsAppScannerCard'),
+            child: ListTile(
+              contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              leading: Container(
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: CyberpunkColors.neonCyan.withValues(alpha: 0.15),
+                  shape: BoxShape.circle,
+                ),
+                child: const Icon(
+                  Icons.mark_chat_unread_outlined,
+                  color: CyberpunkColors.neonCyan,
+                  size: 24,
+                ),
+              ),
+              title: const Text(
+                'WhatsApp & Mesaj Tarayıcı',
+                style: TextStyle(
+                  fontFamily: 'Book Antiqua',
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15,
+                  color: Colors.white,
+                ),
+              ),
+              subtitle: const Text(
+                'WhatsApp/Telegram mesajlarını yapıştırarak veya Paylaş menüsüyle oltalama linklerini ve dolandırıcıları tarayın.',
+                style: TextStyle(
+                  fontFamily: 'Book Antiqua',
+                  color: CyberpunkColors.textSecondary,
+                  fontSize: 12,
+                ),
+              ),
+              trailing: const Icon(Icons.arrow_forward_ios_rounded, size: 14, color: CyberpunkColors.neonCyan),
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (_) => const WhatsAppScannerScreen()),
+                );
+              },
+            ),
+          ),
           const SizedBox(height: 12),
           // Live Manual SMS / Intent Inspector Card
           Card(

@@ -889,4 +889,13 @@ class AppState extends ChangeNotifier {
     await VeroCommunityShield.clearAll(_prefs);
     notifyListeners();
   }
+
+  /// [ADIM 1] Weekly threat update toggle via GitHub Releases.
+  bool get isAutoThreatUpdateEnabled =>
+      _prefs.getBool('vero_threat_auto_update_enabled') ?? false;
+
+  Future<void> setAutoThreatUpdate(bool enabled) async {
+    await _prefs.setBool('vero_threat_auto_update_enabled', enabled);
+    notifyListeners();
+  }
 }
