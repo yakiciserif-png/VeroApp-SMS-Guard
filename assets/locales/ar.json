@@ -118,5 +118,20 @@
   "enterpriseActivateBtn": "تفعيل ترخيص الشركة",
   "enterpriseActiveBadge": "ترخيص تجاري نشط",
   "enterpriseSyncBtn": "مزامنة الشبكة المحلية (LAN)",
-  "enterpriseDeactivateBtn": "تعطيل"
+  "enterpriseDeactivateBtn": "تعطيل",
+  "eDevletGuardTitle": "أمان كلمة مرور الحكومة الإلكترونية",
+  "eDevletGuardSubtitle": "فحص محلي للتسريبات بنسبة 100% بدون إنترنت",
+  "securityAuditTitle": "شهادة التدقيق الأمني",
+  "securityAuditSubtitle": "درع ذاتي التدقيق بمستوى عسكري وبدون إنترنت",
+  "crashReportsTitle": "تقارير الأعطال",
+  "crashReportsSubtitle": "سجلات الأخطاء المحلية (بدون تتبع)",
+  "screenshotModeTitle": "وضع لقطات شاشة المتجر",
+  "screenshotModeSubtitle": "شاشات عرض متجر Play ومتجر App Store",
+  "privacyPolicyTitle": "سياسة الخصوصية",
+  "privacyPolicySubtitle": "توافق كامل مع حماية البيانات وصفر جمع بيانات",
+  "termsOfServiceTitle": "شروط الخدمة",
+  "termsOfServiceSubtitle": "شروط الترخيص وحقوق المشترك",
+  "firstLaunchConsentTitle": "التزام الخصوصية والأمان",
+  "firstLaunchConsentDesc": "100% بدون إنترنت • بدون أي أذونات إنترنت • صفر جمع بيانات",
+  "firstLaunchConsentAccept": "فهمت وأوافق"
 }

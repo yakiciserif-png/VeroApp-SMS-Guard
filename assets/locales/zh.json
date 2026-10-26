@@ -118,5 +118,20 @@
   "enterpriseActivateBtn": "激活企业授权",
   "enterpriseActiveBadge": "企业版已激活",
   "enterpriseSyncBtn": "局域网本地同步 (LAN)",
-  "enterpriseDeactivateBtn": "取消激活"
+  "enterpriseDeactivateBtn": "取消激活",
+  "eDevletGuardTitle": "密码安全检测",
+  "eDevletGuardSubtitle": "100%离线泄漏检测与复杂度审计",
+  "securityAuditTitle": "安全审计认证",
+  "securityAuditSubtitle": "军工级自检离线防御盾",
+  "crashReportsTitle": "崩溃错误报告",
+  "crashReportsSubtitle": "本地异常日志（零遥测）",
+  "screenshotModeTitle": "应用商店截图模式",
+  "screenshotModeSubtitle": "Play Store 和 App Store 演示",
+  "privacyPolicyTitle": "隐私政策",
+  "privacyPolicySubtitle": "完全合规且零数据收集",
+  "termsOfServiceTitle": "服务条款",
+  "termsOfServiceSubtitle": "许可协议与订阅条款",
+  "firstLaunchConsentTitle": "隐私与安全承诺",
+  "firstLaunchConsentDesc": "100% 离线 • 无网络权限 • 零数据收集",
+  "firstLaunchConsentAccept": "理解并同意"
 }

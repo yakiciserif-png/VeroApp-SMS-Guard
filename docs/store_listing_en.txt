@@ -1,0 +1,57 @@
+===============================================================================
+VEROAPP SMS GUARD — GOOGLE PLAY STORE & APPLE APP STORE LISTING (ENGLISH)
+===============================================================================
+
+[APP TITLE] (Max 30 characters)
+VeroApp SMS Guard
+
+[SHORT DESCRIPTION] (Max 80 characters)
+100% Offline On-Device AI SMS & Call Shield. Zero Internet, Zero Data Collection.
+
+[FULL DESCRIPTION]
+🛡️ VeroApp SMS Guard: Ultimate Privacy & On-Device AI Security Shield
+
+Protect yourself from smishing, phone scams, fake delivery links, and phishing attacks without sacrificing your personal privacy. VeroApp SMS Guard operates 100% offline with ZERO internet permission.
+
+Your messages and call data NEVER leave your smartphone. All neural classifications, breach detections, and spam filtering algorithms execute directly on your local device CPU.
+
+⚡ KEY CAPABILITIES:
+
+1. 🧠 2025 AI Smishing & Fraud Protection:
+   - Detects modern phishing schemes, customs delivery traps, fake tax notifications, and banking impersonations.
+   - Decodes Cyrillic and homoglyph character obfuscation attacks.
+   - Inspects telecommunication operator header stamps and spoofed sender profiles.
+
+2. 📞 Full-Screen Caller ID & Spam Alert:
+   - Verified address book contacts highlighted in neon green.
+   - High-risk telemarketers and fraud syndicates trigger full-screen neon red alerts.
+   - International scam prefixes (+966, +971, +20, +234, +27, etc.) tagged instantly.
+
+3. 🤖 Offline Spam Answer Bot:
+   - Stalls spam and robocall callers with realistic pre-recorded conversational audio loops.
+
+4. 🔗 WhatsApp & Telegram Safe-Click Link Scanner:
+   - Scans 10,000+ known phishing domains and blocks malicious Android packages (.APK) before you click.
+
+5. 🔒 e-Devlet & Offline Breach Radar:
+   - Audits password strength and cross-references queries against an on-device 5-million-bit Bloom filter with 0 network requests.
+
+6. 📂 6-Folder Intelligent SMS Categorizer:
+   - Finance/Bank, Courier/Logistics, Government, Personal, Promo, and Spam Trap.
+
+7. 👨‍👩‍👧‍👦 Family & Enterprise B2B Protection:
+   - Connect 4 devices with a private 6-digit offline code or secure team employees.
+
+💎 SUBSCRIPTION & PRICING:
+• Vero Free: Core SMS filtering & OTP protection
+• Vero PRO Monthly: 39.99 TRY / month
+• Vero PRO Yearly: 299.99 TRY / year
+• Vero FAMILY Yearly: 799.99 TRY / year (Up to 4 devices)
+• Vero Enterprise (B2B): 19.99 TRY / employee / month
+
+🔒 PRIVACY COMMITMENT:
+VeroApp SMS Guard is strictly compliant with KVKK and EU GDPR. Zero telemetry, zero external trackers, zero cloud transmission.
+
+Contact: support@veroapp.com
+GitHub: https://github.com/yakiciserif-png/VeroApp-SMS-Guard
+===============================================================================

@@ -118,5 +118,20 @@
   "enterpriseActivateBtn": "Kurumsal Lisansı Başlat",
   "enterpriseActiveBadge": "KURUMSAL AKTİF",
   "enterpriseSyncBtn": "Yerel Ağ Senkronizasyonu (LAN)",
-  "enterpriseDeactivateBtn": "Deaktif Et"
+  "enterpriseDeactivateBtn": "Deaktif Et",
+  "eDevletGuardTitle": "e-Devlet Şifre Güvenliği",
+  "eDevletGuardSubtitle": "100% Çevrimdışı şifre gücü ve sızıntı denetimi",
+  "securityAuditTitle": "Güvenlik Sertifikası",
+  "securityAuditSubtitle": "Kendi kendini denetleyen askeri düzey çevrimdışı kalkan",
+  "crashReportsTitle": "Hata Raporları",
+  "crashReportsSubtitle": "Yerel çökme günlükleri (Sıfır telemetri)",
+  "screenshotModeTitle": "Mağaza Ekran Görüntüsü Modu",
+  "screenshotModeSubtitle": "Play Store & App Store demo durumları",
+  "privacyPolicyTitle": "Gizlilik Politikası",
+  "privacyPolicySubtitle": "KVKK & GDPR tam uyumluluk ve sıfır veri toplama",
+  "termsOfServiceTitle": "Kullanım Şartları",
+  "termsOfServiceSubtitle": "Lisans şartları ve abonelik hakları",
+  "firstLaunchConsentTitle": "Gizlilik ve Güvenlik Taahhüdü",
+  "firstLaunchConsentDesc": "%100 Çevrimdışı • Sıfır İnternet İzni • Sıfır Veri Toplama",
+  "firstLaunchConsentAccept": "Anladım ve Kabul Ediyorum"
 }

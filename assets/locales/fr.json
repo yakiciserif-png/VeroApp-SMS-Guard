@@ -118,5 +118,20 @@
   "enterpriseActivateBtn": "Activer la licence entreprise",
   "enterpriseActiveBadge": "ENTREPRISE ACTIVE",
   "enterpriseSyncBtn": "Synchronisation réseau local (LAN)",
-  "enterpriseDeactivateBtn": "Désactiver"
+  "enterpriseDeactivateBtn": "Désactiver",
+  "eDevletGuardTitle": "Sécurité du mot de passe",
+  "eDevletGuardSubtitle": "Audit de fuites 100% hors ligne et complexité",
+  "securityAuditTitle": "Certificat d audit de sécurité",
+  "securityAuditSubtitle": "Bouclier hors ligne auto-audité de niveau militaire",
+  "crashReportsTitle": "Rapports d erreurs",
+  "crashReportsSubtitle": "Journaux locaux (Zéro télémétrie)",
+  "screenshotModeTitle": "Mode Capture d écran Store",
+  "screenshotModeSubtitle": "Démonstration Play Store et App Store",
+  "privacyPolicyTitle": "Politique de confidentialité",
+  "privacyPolicySubtitle": "Conformité RGPD et zéro collecte de données",
+  "termsOfServiceTitle": "Conditions d utilisation",
+  "termsOfServiceSubtitle": "Conditions de licence et abonnements",
+  "firstLaunchConsentTitle": "Engagement de confidentialité et sécurité",
+  "firstLaunchConsentDesc": "100% Hors Ligne • Zéro Internet • Zéro Collecte",
+  "firstLaunchConsentAccept": "J ai compris et j accepte"
 }

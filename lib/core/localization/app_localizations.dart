@@ -43,6 +43,22 @@ class AppLocalizations {
       'enterpriseActiveBadge': 'KURUMSAL AKTİF',
       'enterpriseSyncBtn': 'Yerel Ağ Senkronizasyonu (LAN)',
       'enterpriseDeactivateBtn': 'Deaktif Et',
+      'eDevletGuardTitle': 'e-Devlet Şifre Güvenliği',
+      'eDevletGuardSubtitle': '100% Çevrimdışı şifre gücü ve sızıntı denetimi',
+      'securityAuditTitle': 'Güvenlik Sertifikası',
+      'securityAuditSubtitle': 'Kendi kendini denetleyen askeri düzey çevrimdışı kalkan',
+      'crashReportsTitle': 'Hata Raporları',
+      'crashReportsSubtitle': 'Yerel çökme günlükleri (Sıfır telemetri)',
+      'screenshotModeTitle': 'Mağaza Ekran Görüntüsü Modu',
+      'screenshotModeSubtitle': 'Play Store & App Store demo durumları',
+      'privacyPolicyTitle': 'Gizlilik Politikası',
+      'privacyPolicySubtitle': 'KVKK & GDPR tam uyumluluk ve sıfır veri toplama',
+      'termsOfServiceTitle': 'Kullanım Şartları',
+      'termsOfServiceSubtitle': 'Lisans şartları ve abonelik hakları',
+      'firstLaunchConsentTitle': 'Gizlilik ve Güvenlik Taahhüdü',
+      'firstLaunchConsentDesc': '%100 Çevrimdışı • Sıfır İnternet İzni • Sıfır Veri Toplama',
+      'firstLaunchConsentAccept': 'Anladım ve Kabul Ediyorum',
+
       'proMonthlyPrice': "39,99 TL/ay",
       'proYearlyPrice': "299,99 TL/yıl",
       'familyYearlyPrice': "799,99 TL/yıl (4 kişi)",
@@ -332,6 +348,22 @@ class AppLocalizations {
       'enterpriseActiveBadge': 'CORPORATE ACTIVE',
       'enterpriseSyncBtn': 'Local Network Sync (LAN)',
       'enterpriseDeactivateBtn': 'Deactivate',
+      'eDevletGuardTitle': 'e-Devlet Password Security',
+      'eDevletGuardSubtitle': 'On-device breach check & complexity audit',
+      'securityAuditTitle': 'Security Audit Certificate',
+      'securityAuditSubtitle': 'Self-auditing military-grade offline shield',
+      'crashReportsTitle': 'Crash Reports',
+      'crashReportsSubtitle': 'Local exception logs (Zero telemetry)',
+      'screenshotModeTitle': 'Store Screenshot Mode',
+      'screenshotModeSubtitle': 'Play Store & App Store visual showcase',
+      'privacyPolicyTitle': 'Privacy Policy',
+      'privacyPolicySubtitle': 'KVKK & GDPR zero data collection guarantee',
+      'termsOfServiceTitle': 'Terms of Service',
+      'termsOfServiceSubtitle': 'Licensing terms & subscriber rights',
+      'firstLaunchConsentTitle': 'Privacy & Security Commitment',
+      'firstLaunchConsentDesc': '100% Offline • Zero Internet • Zero Data Collection',
+      'firstLaunchConsentAccept': 'I Understand & Agree',
+
       'proMonthlyPrice': "39,99 TL/ay",
       'proYearlyPrice': "299,99 TL/yıl",
       'familyYearlyPrice': "799,99 TL/yıl (4 kişi)",
@@ -1508,8 +1540,16 @@ class AppLocalizations {
   static const LocalizationsDelegate<AppLocalizations> delegate =
       _AppLocalizationsDelegate();
 
-  static AppLocalizations of(BuildContext context) =>
-      Localizations.of<AppLocalizations>(context, AppLocalizations)!;
+  static AppLocalizations of(BuildContext context) {
+    final res = Localizations.of<AppLocalizations>(context, AppLocalizations);
+    if (res != null) return res;
+    final code = Localizations.maybeLocaleOf(context)?.languageCode ?? 'tr';
+    return AppLocalizations(
+      Locale(code),
+      _extendedStrings[code] ?? _extendedStrings['tr'] ?? {},
+      _extendedStrings['en'] ?? {},
+    );
+  }
 
   /// Translates [key], replacing `{placeholder}` tokens from [args].
   String t(String key, [Map<String, String> args = const {}]) {

@@ -17,6 +17,13 @@ class CyberpunkColors {
   static const Color warningAmber = Color(0xFFF59E0B);
   static const Color textPrimary = Color(0xFFEAF2FF);
   static const Color textSecondary = Color(0xFF9AA8C7);
+
+  // Aliases for component convenience
+  static const Color backgroundDark = bgPrimary;
+  static const Color surfaceDark = surfaceCard;
+  static const Color cardSurface = surfaceCard;
+  static const Color safeGreen = successGreen;
+  static const Color alertRed = dangerRed;
 }
 
 class CyberpunkTheme {

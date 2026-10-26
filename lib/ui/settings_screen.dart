@@ -10,6 +10,12 @@ import '../core/monetization/purchase_service.dart';
 import '../state/app_state.dart';
 import 'cyberpunk_theme.dart';
 import 'enterprise_screen.dart';
+import 'edevlet_guard_screen.dart';
+import 'crash_reports_screen.dart';
+import '../security_audit.dart';
+import '../screens/screenshot_mode.dart';
+import '../screens/privacy_policy_screen.dart';
+import '../screens/terms_of_service_screen.dart';
 import 'widgets.dart';
 
 class SettingsScreen extends StatelessWidget {
@@ -524,6 +530,68 @@ class SettingsScreen extends StatelessWidget {
             leading: const Icon(Icons.info_outline),
             title: Text(l.t('appTitle')),
             subtitle: Text(l.t('settingsAboutDesc')),
+          ),
+          header(isTr ? 'Gelişmiş Güvenlik & Sertifikasyon' : 'Advanced Security & Certification'),
+          ListTile(
+            key: const Key('openEDevletGuardTile'),
+            leading: const Icon(Icons.lock_person_outlined, color: CyberpunkColors.neonCyan),
+            title: Text(isTr ? 'e-Devlet Şifre Güvenliği' : 'e-Devlet Password Security'),
+            subtitle: Text(isTr ? '100% Çevrimdışı şifre gücü ve sızıntı denetimi' : 'On-device breach check & complexity audit'),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () => Navigator.of(context).push(
+              MaterialPageRoute(builder: (_) => const EDevletGuardScreen()),
+            ),
+          ),
+          ListTile(
+            key: const Key('openSecurityAuditTile'),
+            leading: const Icon(Icons.verified_outlined, color: CyberpunkColors.safeGreen),
+            title: Text(isTr ? 'Güvenlik Sertifikası' : 'Security Audit Certificate'),
+            subtitle: Text(isTr ? 'Kendi kendini denetleyen askeri düzey çevrimdışı kalkan' : 'Self-auditing military-grade offline shield'),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () => Navigator.of(context).push(
+              MaterialPageRoute(builder: (_) => const SecurityAuditScreen()),
+            ),
+          ),
+          ListTile(
+            key: const Key('openCrashReportsTile'),
+            leading: const Icon(Icons.bug_report_outlined, color: CyberpunkColors.warningAmber),
+            title: Text(isTr ? 'Hata Raporları' : 'Crash Reports'),
+            subtitle: Text(isTr ? 'Yerel çökme günlükleri (Sıfır telemetri)' : 'Local exception logs (Zero telemetry)'),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () => Navigator.of(context).push(
+              MaterialPageRoute(builder: (_) => const CrashReportsScreen()),
+            ),
+          ),
+          ListTile(
+            key: const Key('openScreenshotModeTile'),
+            leading: const Icon(Icons.photo_camera_outlined, color: CyberpunkColors.electricViolet),
+            title: Text(isTr ? 'Mağaza Ekran Görüntüsü Modu' : 'Store Screenshot Mode'),
+            subtitle: Text(isTr ? 'Play Store & App Store demo durumları' : 'Play Store & App Store visual showcase'),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () => Navigator.of(context).push(
+              MaterialPageRoute(builder: (_) => const ScreenshotModeScreen()),
+            ),
+          ),
+          header(isTr ? 'Yasal & Gizlilik' : 'Legal & Privacy'),
+          ListTile(
+            key: const Key('openPrivacyPolicyTile'),
+            leading: const Icon(Icons.privacy_tip_outlined, color: CyberpunkColors.neonCyan),
+            title: Text(isTr ? 'Gizlilik Politikası' : 'Privacy Policy'),
+            subtitle: Text(isTr ? 'KVKK & GDPR tam uyumluluk ve sıfır veri toplama' : 'KVKK & GDPR zero data collection guarantee'),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () => Navigator.of(context).push(
+              MaterialPageRoute(builder: (_) => const PrivacyPolicyScreen()),
+            ),
+          ),
+          ListTile(
+            key: const Key('openTermsOfServiceTile'),
+            leading: const Icon(Icons.gavel_outlined, color: CyberpunkColors.neonCyan),
+            title: Text(isTr ? 'Kullanım Şartları' : 'Terms of Service'),
+            subtitle: Text(isTr ? 'Lisans şartları ve abonelik hakları' : 'Licensing terms & subscriber rights'),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () => Navigator.of(context).push(
+              MaterialPageRoute(builder: (_) => const TermsOfServiceScreen()),
+            ),
           ),
           const SizedBox(height: 24),
         ],

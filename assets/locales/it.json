@@ -118,5 +118,20 @@
   "enterpriseActivateBtn": "Attiva licenza aziendale",
   "enterpriseActiveBadge": "AZIENDALE ATTIVO",
   "enterpriseSyncBtn": "Sincronizzazione di rete locale (LAN)",
-  "enterpriseDeactivateBtn": "Disattiva"
+  "enterpriseDeactivateBtn": "Disattiva",
+  "eDevletGuardTitle": "Sicurezza Password",
+  "eDevletGuardSubtitle": "Verifica violazioni 100% offline e complessità",
+  "securityAuditTitle": "Certificato di Controllo Sicurezza",
+  "securityAuditSubtitle": "Scudo offline di livello militare auto-controllato",
+  "crashReportsTitle": "Rapporti di Errore",
+  "crashReportsSubtitle": "Registri locali di eccezioni (Zero telemetria)",
+  "screenshotModeTitle": "Modalità Screenshot Store",
+  "screenshotModeSubtitle": "Vetrina per Play Store e App Store",
+  "privacyPolicyTitle": "Informativa sulla Privacy",
+  "privacyPolicySubtitle": "Conforme al GDPR e zero raccolta dati",
+  "termsOfServiceTitle": "Termini di Servizio",
+  "termsOfServiceSubtitle": "Condizioni di licenza e abbonamento",
+  "firstLaunchConsentTitle": "Impegno per Privacy e Sicurezza",
+  "firstLaunchConsentDesc": "100% Offline • Nessun permesso Internet • Zero dati",
+  "firstLaunchConsentAccept": "Ho compreso e accetto"
 }

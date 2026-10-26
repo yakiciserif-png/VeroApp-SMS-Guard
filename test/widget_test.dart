@@ -20,6 +20,15 @@ import 'package:veroapp_sms_guard/ui/call_overlay_screen.dart';
 import 'package:veroapp_sms_guard/ui/call_history_screen.dart';
 import 'package:veroapp_sms_guard/ui/post_call_report.dart';
 import 'package:veroapp_sms_guard/ui/enterprise_screen.dart';
+import 'package:veroapp_sms_guard/engines/vero_edevlet_guard.dart';
+import 'package:veroapp_sms_guard/ui/edevlet_guard_screen.dart';
+import 'package:veroapp_sms_guard/screens/screenshot_mode.dart';
+import 'package:veroapp_sms_guard/screens/privacy_policy_screen.dart';
+import 'package:veroapp_sms_guard/screens/terms_of_service_screen.dart';
+import 'package:veroapp_sms_guard/engines/vero_crash_logger.dart';
+import 'package:veroapp_sms_guard/ui/crash_reports_screen.dart';
+import 'package:veroapp_sms_guard/security_audit.dart';
+import 'package:veroapp_sms_guard/ui/first_launch_consent_dialog.dart';
 
 void main() {
   testWidgets('VeroApp SMS Guard UI Smoke Test: Analyze spam message and display result', (tester) async {
@@ -815,6 +824,306 @@ void main() {
           'lib/ui/post_call_report.dart',
           'lib/ui/stats_screen.dart',
           'lib/ui/enterprise_screen.dart',
+        ];
+
+        for (final p in files) {
+          final content = File(p).readAsStringSync().toLowerCase();
+          for (final word in prohibited) {
+            expect(content.contains(word), isFalse, reason: '$p contains prohibited word $word');
+          }
+        }
+      });
+    });
+
+    group('FAZA 3 — Zirve Hazırlığı (8 Adım) Doğrulama Testleri', () {
+      test('FAZA 3 [Adım 1A]: VeroEDevletGuard şifre zayıflığı ve uyarı metni kontrolü', () {
+        final weak = VeroEDevletGuard.auditPassword('12345');
+        expect(weak.isWeak, isTrue);
+        expect(weak.weaknessReasons.any((r) => r.contains('8 karakter')), isTrue);
+        expect(weak.weaknessReasons.any((r) => r.contains('büyük harf')), isTrue);
+        expect(weak.recommendation, contains('e-Devlet şifreniz 8 karakterden kısa'));
+      });
+
+      test('FAZA 3 [Adım 1B]: VeroEDevletGuard güçlü şifre ve sızıntı kontrolü', () {
+        final strong = VeroEDevletGuard.auditPassword('V3roApp!Sec2026#Kalkan');
+        expect(strong.isWeak, isFalse);
+        expect(strong.securityScore, greaterThanOrEqualTo(90));
+        expect(strong.localizedStatus(true), contains('güvenli'));
+
+        final leaked = VeroEDevletGuard.auditPassword('admin@123456');
+        expect(leaked.isExposed, isTrue);
+        expect(leaked.securityScore, lessThan(50));
+      });
+
+      testWidgets('FAZA 3 [Adım 1C]: EDevletGuardScreen şifre girişi ve sonuç kartı render testi', (tester) async {
+        await tester.pumpWidget(
+          const MaterialApp(
+            home: EDevletGuardScreen(),
+          ),
+        );
+        await tester.pumpAndSettle();
+
+        expect(find.byKey(const Key('eDevletPasswordInput')), findsOneWidget);
+        expect(find.byKey(const Key('eDevletCheckBtn')), findsOneWidget);
+
+        await tester.enterText(find.byKey(const Key('eDevletPasswordInput')), 'Admin123456');
+        await tester.tap(find.byKey(const Key('eDevletCheckBtn')));
+        await tester.pumpAndSettle();
+
+        expect(find.byKey(const Key('eDevletResultCard')), findsOneWidget);
+      });
+
+      testWidgets('FAZA 3 [Adım 2A]: Arapça RTL UI yerleşim ve Directionality.rtl render testi', (tester) async {
+        await tester.pumpWidget(
+          const MaterialApp(
+            home: Directionality(
+              textDirection: TextDirection.rtl,
+              child: Scaffold(
+                body: Column(
+                  children: [
+                    Text('درع الرسائل الذكي'),
+                    Text('100% غير متصل بالإنترنت'),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        );
+        await tester.pumpAndSettle();
+
+        expect(find.text('درع الرسائل الذكي'), findsOneWidget);
+        expect(find.text('100% غير متصل بالإنترنت'), findsOneWidget);
+      });
+
+      test('FAZA 3 [Adım 2B]: VeroIntentEngine Ortadoğu dolandırıcılık kalıpları (Absher, Etisalat, Vodafone Mısır)', () {
+        final absher = VeroIntentEngine.instance.analyze('Sayin kullanici Absher hesap dogrulama isleminizi tamamlayin');
+        expect(absher.isFraud, isTrue);
+        expect(absher.type, equals(FraudType2025.absherVerification));
+
+        final etisalat = VeroIntentEngine.instance.analyze('Tebrikler Etisalat odul kazandiniz hediye icin tiklayin');
+        expect(etisalat.isFraud, isTrue);
+        expect(etisalat.type, equals(FraudType2025.etisalatPrize));
+
+        final vodafone = VeroIntentEngine.instance.analyze('Vodafone Misir bakiye iadesi talebiniz onaylandi hemen alin');
+        expect(vodafone.isFraud, isTrue);
+        expect(vodafone.type, equals(FraudType2025.vodafoneEgyptRefund));
+      });
+
+      test('FAZA 3 [Adım 2C]: VeroCallGuardEngine & VeroCallerNameEngine uluslararası yüksek riskli numaralar (+966, +971, +20, +234, +27)', () {
+        final saudi = VeroCallGuardEngine.inspectNumber('+966 50 123 4567');
+        expect(saudi.isBlockedOrWarned, isTrue);
+        expect(saudi.categoryTitleTr, contains('Suudi Arabistan'));
+
+        final uae = VeroCallGuardEngine.inspectNumber('+971 4 123 4567');
+        expect(uae.isBlockedOrWarned, isTrue);
+        expect(uae.categoryTitleTr, contains('Birleşik Arap Emirlikleri'));
+
+        final egypt = VeroCallGuardEngine.inspectNumber('+20 10 123 4567');
+        expect(egypt.isBlockedOrWarned, isTrue);
+        expect(egypt.categoryTitleTr, contains('Mısır'));
+
+        final callerResult = VeroCallerNameEngine.identify('+234 803 111 2233');
+        expect(callerResult.isSpam, isTrue);
+        expect(callerResult.shouldVibrate, isTrue);
+        expect(callerResult.color, equals(VeroCallerNameEngine.colorSpam));
+      });
+
+      test('FAZA 3 [Adım 3A]: VeroIntentEngine.analyzeAsync Isolate arka plan analizi', () async {
+        final res = await VeroIntentEngine.analyzeAsync('Sayin kullanici Absher hesap dogrulama linki');
+        expect(res.isFraud, isTrue);
+        expect(res.type, equals(FraudType2025.absherVerification));
+      });
+
+      test('FAZA 3 [Adım 3B]: VeroBreachRadarEngine.ensureLoaded lazy loading doğrulaması', () async {
+        await VeroBreachRadarEngine.ensureLoaded();
+        expect(VeroBreachRadarEngine.isAssetLoaded, isTrue);
+      });
+
+      testWidgets('FAZA 3 [Adım 4A]: ScreenshotModeScreen 5 demo aşaması geçiş testi', (tester) async {
+        await tester.pumpWidget(
+          const MaterialApp(
+            home: ScreenshotModeScreen(),
+          ),
+        );
+        await tester.pumpAndSettle();
+
+        expect(find.byKey(const Key('screenshotModeScreen')), findsOneWidget);
+        expect(find.byKey(const Key('screenshotNextBtn')), findsOneWidget);
+
+        // Advance through stages
+        await tester.tap(find.byKey(const Key('screenshotNextBtn')));
+        await tester.pumpAndSettle();
+        expect(find.text('GERÇEK ZAMANLI SMS KALKANI'), findsOneWidget);
+
+        await tester.tap(find.byKey(const Key('screenshotNextBtn')));
+        await tester.pumpAndSettle();
+        expect(find.text('TAM EKRAN ÇAĞRI KORUMASI'), findsOneWidget);
+      });
+
+      testWidgets('FAZA 3 [Adım 4B]: ScreenshotModeScreen çözünürlük değiştirme testi', (tester) async {
+        await tester.pumpWidget(
+          const MaterialApp(
+            home: ScreenshotModeScreen(),
+          ),
+        );
+        await tester.pumpAndSettle();
+
+        expect(find.text('1080x1920'), findsOneWidget);
+        await tester.tap(find.byKey(const Key('resolutionSwitchBtn')));
+        await tester.pumpAndSettle();
+        expect(find.text('1242x2688'), findsOneWidget);
+      });
+
+      test('FAZA 3 [Adım 4C]: docs/store_listing_tr.txt ve docs/store_listing_en.txt varlık ve içerik kontrolü', () {
+        final tr = File('docs/store_listing_tr.txt').readAsStringSync();
+        expect(tr, contains('VeroApp SMS Guard'));
+        expect(tr, contains('39,99 TL'));
+        expect(tr, contains('299,99 TL'));
+        expect(tr, contains('799,99 TL'));
+        expect(tr, contains('19,99 TL'));
+
+        final en = File('docs/store_listing_en.txt').readAsStringSync();
+        expect(en, contains('VeroApp SMS Guard'));
+        expect(en, contains('39.99 TRY'));
+      });
+
+      testWidgets('FAZA 3 [Adım 5A]: PrivacyPolicyScreen %100 offline ve KVKK maddeleri UI testi', (tester) async {
+        await tester.pumpWidget(
+          const MaterialApp(
+            home: PrivacyPolicyScreen(),
+          ),
+        );
+        await tester.pumpAndSettle();
+
+        expect(find.byKey(const Key('privacyPolicyScreen')), findsOneWidget);
+        expect(find.textContaining('KVKK'), findsWidgets);
+        expect(find.textContaining('support@veroapp.com'), findsOneWidget);
+      });
+
+      testWidgets('FAZA 3 [Adım 5B]: TermsOfServiceScreen abonelik fiyatlandırma şartları UI testi', (tester) async {
+        await tester.pumpWidget(
+          const MaterialApp(
+            home: TermsOfServiceScreen(),
+          ),
+        );
+        await tester.pumpAndSettle();
+
+        expect(find.byKey(const Key('termsOfServiceScreen')), findsOneWidget);
+        expect(find.textContaining('VERO PRO'), findsOneWidget);
+        expect(find.textContaining('VERO'), findsWidgets);
+      });
+
+      testWidgets('FAZA 3 [Adım 5C]: FirstLaunchConsentDialog ilk açılış onayı akış testi', (tester) async {
+        SharedPreferences.setMockInitialValues({});
+        final state = AppState(
+          seedLoader: () async => '[]',
+          bridge: const NativeBridge(enabled: false),
+        );
+        await state.init();
+        expect(state.hasAcceptedKvkkConsent, isFalse);
+
+        await tester.pumpWidget(
+          AppScope(
+            state: state,
+            child: const MaterialApp(
+              home: Scaffold(
+                body: FirstLaunchConsentDialog(),
+              ),
+            ),
+          ),
+        );
+        await tester.pumpAndSettle();
+
+        expect(find.byKey(const Key('firstLaunchConsentDialog')), findsOneWidget);
+        expect(find.byKey(const Key('consentAcceptBtn')), findsOneWidget);
+
+        await tester.tap(find.byKey(const Key('consentAcceptBtn')));
+        await tester.pumpAndSettle();
+
+        expect(state.hasAcceptedKvkkConsent, isTrue);
+      });
+
+      test('FAZA 3 [Adım 6A]: VeroCrashLogger çevrimdışı hata kaydı ve dışa aktarma testi', () {
+        VeroCrashLogger.clearLogs();
+        expect(VeroCrashLogger.count, equals(0));
+
+        VeroCrashLogger.recordError('Test simüle crash', StackTrace.current, reason: 'Birim testi');
+        expect(VeroCrashLogger.count, equals(1));
+        expect(VeroCrashLogger.getLogCountLast7Days(), equals(1));
+
+        final export = VeroCrashLogger.exportLogsText();
+        expect(export, contains('Test simüle crash'));
+        expect(export, contains('Birim testi'));
+
+        VeroCrashLogger.clearLogs();
+        expect(VeroCrashLogger.count, equals(0));
+      });
+
+      testWidgets('FAZA 3 [Adım 6B]: CrashReportsScreen hata temizleme ve panoya kopyalama UI testi', (tester) async {
+        VeroCrashLogger.clearLogs();
+        VeroCrashLogger.recordError('Simulated UI crash', StackTrace.empty);
+
+        await tester.pumpWidget(
+          const MaterialApp(
+            home: CrashReportsScreen(),
+          ),
+        );
+        await tester.pumpAndSettle();
+
+        expect(find.byKey(const Key('crashReportsScreen')), findsOneWidget);
+        expect(find.byKey(const Key('clearCrashLogsBtn')), findsOneWidget);
+        expect(find.byKey(const Key('exportCrashLogsBtn')), findsOneWidget);
+
+        await tester.tap(find.byKey(const Key('clearCrashLogsBtn')));
+        await tester.pumpAndSettle();
+
+        expect(VeroCrashLogger.count, equals(0));
+      });
+
+      test('FAZA 3 [Adım 7A]: VeroSecurityAuditor 4 kriter %100 uyumluluk testi', () {
+        final audit = VeroSecurityAuditor.runSelfAudit();
+        expect(audit.isFullyCompliant, isTrue);
+        expect(audit.complianceScore, equals(100));
+        expect(audit.certificateCode, equals('VERO-SEC-2026-MILITARY-OFFLINE'));
+        expect(audit.items.length, equals(4));
+        for (final item in audit.items) {
+          expect(item.isCompliant, isTrue);
+        }
+      });
+
+      testWidgets('FAZA 3 [Adım 7B]: SecurityAuditScreen sertifika render ve yeniden denetleme UI testi', (tester) async {
+        await tester.pumpWidget(
+          const MaterialApp(
+            home: SecurityAuditScreen(),
+          ),
+        );
+        await tester.pumpAndSettle();
+
+        expect(find.byKey(const Key('securityAuditScreen')), findsOneWidget);
+        expect(find.byKey(const Key('securityAuditStatusText')), findsOneWidget);
+        expect(find.textContaining('VERO-SEC-2026-MILITARY-OFFLINE'), findsOneWidget);
+        await tester.scrollUntilVisible(find.byKey(const Key('reRunSecurityAuditBtn')), 100);
+        expect(find.byKey(const Key('reRunSecurityAuditBtn')), findsOneWidget);
+      });
+
+      test('FAZA 3 [Adım 8]: Yasaklı marka ve dış servis kelimeleri FAZA 3 kodlarında SIFIR kontrolü', () {
+        final prohibited = [
+          '${'junk'}${'man'}',
+          '${'trust'}${'lens'}',
+          '${'haveibeen'}${'pwned'}',
+        ];
+        final files = [
+          'lib/engines/vero_edevlet_guard.dart',
+          'lib/ui/edevlet_guard_screen.dart',
+          'lib/screens/screenshot_mode.dart',
+          'lib/screens/privacy_policy_screen.dart',
+          'lib/screens/terms_of_service_screen.dart',
+          'lib/engines/vero_crash_logger.dart',
+          'lib/ui/crash_reports_screen.dart',
+          'lib/security_audit.dart',
+          'lib/ui/first_launch_consent_dialog.dart',
+          'docs/store_listing_tr.txt',
+          'docs/store_listing_en.txt',
         ];
 
         for (final p in files) {

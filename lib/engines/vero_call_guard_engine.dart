@@ -48,6 +48,10 @@ class VeroCallGuardEngine {
     '+62': 'Endonezya (+62) Oltalama / Sahte Görev Hattı',
     '+234': 'Nijerya (+234) Finansal Dolandırıcılık Hattı',
     '+212': 'Fas (+212) Çağrı Tuzağı (Wangiri)',
+    '+966': 'Suudi Arabistan (+966) Şüpheli / Absher Sahte Çağrı Hattı',
+    '+971': 'Birleşik Arap Emirlikleri (+971) Sahte Ödül / Yatırım Hattı',
+    '+20': 'Mısır (+20) Bakiye / Operatör Dolandırıcılık Hattı',
+    '+27': 'Güney Afrika (+27) Wangiri / Finansal Oltalama Hattı',
     '+359': 'Bulgaristan (+359) Yasa Dışı Bahis Çağrı Merkezi',
     '+370': 'Litvanya (+370) Sanal SIM Oltalama Hattı',
     '+375': 'Belarus (+375) Çağrı Tuzağı',
@@ -73,6 +77,8 @@ class VeroCallGuardEngine {
   };
 
   /// Evaluates an incoming or queried phone number 100% offline.
+  static CallGuardResult evaluate(String rawInput) => inspectNumber(rawInput);
+
   /// First queries [VeroCallerIdEngine.lookup]; if flagged as spam, emits
   /// `"🚨 Bu numara spam olarak işaretlendi: [Kategori]"`.
   static CallGuardResult inspectNumber(String rawInput) {
@@ -122,6 +128,23 @@ class VeroCallGuardEngine {
         detectedPrefix = entry.key;
         break;
       }
+    }
+
+    if (detectedPrefix != null) {
+      final desc = highRiskForeignPrefixes[detectedPrefix]!;
+      return CallGuardResult(
+        rawNumber: trimmed,
+        normalizedNumber: compact,
+        riskLevel: CallRiskLevel.critical,
+        isBlockedOrWarned: true,
+        matchedPrefix: detectedPrefix,
+        callerIdCategory: SpamCallerCategory.scam,
+        callerIdConfidence: 0.95,
+        categoryTitleTr: '🚨 $desc',
+        categoryTitleEn: '🚨 High-Risk Foreign Call ($detectedPrefix)',
+        detailTr: 'Yurt dışı yüksek riskli arama tuzağı: $desc. Açmayın ve geri aramayın!',
+        detailEn: 'High-risk international scam call: $desc. Do not answer or call back!',
+      );
     }
 
     // [ADIM 4] First consult Offline Caller ID Engine (`VeroCallerIdEngine.lookup`)

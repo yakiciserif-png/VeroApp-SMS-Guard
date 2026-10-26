@@ -269,8 +269,16 @@ class VeroCallerIdEngine {
       final sub = digits.startsWith('90850')
           ? digits.substring(5)
           : digits.substring(3);
+      if (sub.startsWith('532') || sub.startsWith('549')) {
+        return CallerIdResult(
+          phoneNumber: trimmed,
+          normalizedDigits: digits,
+          isSpam: true,
+          category: SpamCallerCategory.scam,
+          confidence: 0.95,
+        );
+      }
       if (sub.startsWith('480') ||
-          sub.startsWith('532') ||
           sub.startsWith('302') ||
           sub.startsWith('303') ||
           sub.startsWith('304') ||

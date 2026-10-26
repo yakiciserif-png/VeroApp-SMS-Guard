@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'vero_caller_id_engine.dart';
-import 'vero_community_shield.dart';
+import 'vero_call_guard_engine.dart';
 
 /// [ADIM 1] CALLER NAME ID — 100% Offline Local Caller Name Identifier.
 ///
@@ -119,7 +118,21 @@ class VeroCallerNameEngine {
       }
     }
 
-    // 2. Check spam database & community shield
+    // 2. Check call guard (e.g. high-risk foreign prefixes like +966, +971, +20, +234, +27)
+    final callGuard = VeroCallGuardEngine.evaluate(phoneNumber);
+    if (callGuard.isBlockedOrWarned) {
+      return CallerNameResult(
+        phoneNumber: phoneNumber,
+        displayName: '🚨 SPAM - ${callGuard.categoryTitleTr}',
+        type: CallerNameType.spam,
+        color: colorSpam,
+        shouldVibrate: true,
+        spamCategory: callGuard.categoryTitleTr,
+        confidence: 0.95,
+      );
+    }
+
+    // 3. Check spam database & community shield
     final spamCheck = VeroCallerIdEngine.lookup(phoneNumber);
     if (spamCheck.isSpam) {
       return CallerNameResult(

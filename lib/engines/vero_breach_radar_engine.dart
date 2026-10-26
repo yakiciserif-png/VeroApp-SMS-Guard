@@ -41,6 +41,12 @@ class VeroBreachRadarEngine {
   static VeroBloomFilter get bloomFilter => _bloomFilter;
   static bool get isAssetLoaded => _assetLoaded;
 
+  /// Lazy-loading entry point: loads bloom filter binary only when requested.
+  static Future<void> ensureLoaded([AssetBundle? bundle]) async {
+    if (_assetLoaded) return;
+    await initFromAsset(bundle);
+  }
+
   /// Optionally loads the binary Bloom Filter bitset from [assetPath].
   /// Automatically falls back to [VeroBloomFilter.seededDefault] if unavailable.
   static Future<void> initFromAsset([AssetBundle? bundle]) async {

@@ -118,5 +118,20 @@
   "enterpriseActivateBtn": "Активировать корпоративную лицензию",
   "enterpriseActiveBadge": "КОРПОРАТИВНЫЙ АКТИВЕН",
   "enterpriseSyncBtn": "Синхронизация по локальной сети (LAN)",
-  "enterpriseDeactivateBtn": "Деактивировать"
+  "enterpriseDeactivateBtn": "Деактивировать",
+  "eDevletGuardTitle": "Безопасность паролей",
+  "eDevletGuardSubtitle": "100% офлайн проверка утечек и сложности пароля",
+  "securityAuditTitle": "Сертификат аудита безопасности",
+  "securityAuditSubtitle": "Самопроверяемый офлайн-щит военного уровня",
+  "crashReportsTitle": "Отчеты об ошибках",
+  "crashReportsSubtitle": "Локальные журналы сбоев (Ноль телеметрии)",
+  "screenshotModeTitle": "Режим скриншотов магазина",
+  "screenshotModeSubtitle": "Демонстрация Play Store и App Store",
+  "privacyPolicyTitle": "Политика конфиденциальности",
+  "privacyPolicySubtitle": "Полное соответствие GDPR и ноль сбора данных",
+  "termsOfServiceTitle": "Условия использования",
+  "termsOfServiceSubtitle": "Лицензионные условия и подписки",
+  "firstLaunchConsentTitle": "Обязательство о конфиденциальности",
+  "firstLaunchConsentDesc": "100% Офлайн • Без интернета • Ноль сбора данных",
+  "firstLaunchConsentAccept": "Понятно и согласен"
 }

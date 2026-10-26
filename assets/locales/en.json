@@ -118,5 +118,20 @@
   "enterpriseActivateBtn": "Activate Corporate License",
   "enterpriseActiveBadge": "CORPORATE ACTIVE",
   "enterpriseSyncBtn": "Local Network Sync (LAN)",
-  "enterpriseDeactivateBtn": "Deactivate"
+  "enterpriseDeactivateBtn": "Deactivate",
+  "eDevletGuardTitle": "e-Devlet Password Security",
+  "eDevletGuardSubtitle": "On-device breach check & complexity audit",
+  "securityAuditTitle": "Security Audit Certificate",
+  "securityAuditSubtitle": "Self-auditing military-grade offline shield",
+  "crashReportsTitle": "Crash Reports",
+  "crashReportsSubtitle": "Local exception logs (Zero telemetry)",
+  "screenshotModeTitle": "Store Screenshot Mode",
+  "screenshotModeSubtitle": "Play Store & App Store visual showcase",
+  "privacyPolicyTitle": "Privacy Policy",
+  "privacyPolicySubtitle": "KVKK & GDPR zero data collection guarantee",
+  "termsOfServiceTitle": "Terms of Service",
+  "termsOfServiceSubtitle": "Licensing terms & subscriber rights",
+  "firstLaunchConsentTitle": "Privacy & Security Commitment",
+  "firstLaunchConsentDesc": "100% Offline • Zero Internet • Zero Data Collection",
+  "firstLaunchConsentAccept": "I Understand & Agree"
 }

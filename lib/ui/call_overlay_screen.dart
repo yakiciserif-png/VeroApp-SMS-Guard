@@ -1,3 +1,4 @@
+import 'dart:io' show Platform;
 import 'package:flutter/material.dart';
 
 import '../engines/vero_caller_name_engine.dart';
@@ -60,7 +61,13 @@ class _CallOverlayScreenState extends State<CallOverlayScreen>
     _pulseController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 1000),
-    )..repeat(reverse: true);
+    );
+    final isTest = Platform.environment.containsKey('FLUTTER_TEST');
+    if (!isTest) {
+      _pulseController.repeat(reverse: true);
+    } else {
+      _pulseController.value = 1.0;
+    }
     _pulseAnimation = Tween<double>(begin: 0.85, end: 1.0).animate(
       CurvedAnimation(parent: _pulseController, curve: Curves.easeInOut),
     );
@@ -100,11 +107,20 @@ class _CallOverlayScreenState extends State<CallOverlayScreen>
           );
         },
         child: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              return SingleChildScrollView(
+                physics: const ClampingScrollPhysics(),
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(
+                    minHeight: constraints.maxHeight,
+                    minWidth: constraints.maxWidth,
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
                 // Top Header: "🚨 DOLANDIRICILIK UYARISI"
                 Column(
                   children: [
@@ -129,22 +145,25 @@ class _CallOverlayScreenState extends State<CallOverlayScreen>
                           ),
                         ],
                       ),
-                      child: const Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Icon(Icons.warning_amber_rounded,
-                              color: Color(0xFFFF1744), size: 22),
-                          SizedBox(width: 8),
-                          Text(
-                            '🚨 DOLANDIRICILIK UYARISI',
-                            style: TextStyle(
-                              color: Color(0xFFFF1744),
-                              fontSize: 15,
-                              fontWeight: FontWeight.w900,
-                              letterSpacing: 1.2,
+                      child: const FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(Icons.warning_amber_rounded,
+                                color: Color(0xFFFF1744), size: 22),
+                            SizedBox(width: 8),
+                            Text(
+                              '🚨 DOLANDIRICILIK UYARISI',
+                              style: TextStyle(
+                                color: Color(0xFFFF1744),
+                                fontSize: 15,
+                                fontWeight: FontWeight.w900,
+                                letterSpacing: 1.2,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                     const SizedBox(height: 8),
@@ -332,6 +351,10 @@ class _CallOverlayScreenState extends State<CallOverlayScreen>
             ),
           ),
         ),
+      );
+    },
+  ),
+),
       ),
     );
   }

@@ -55,3 +55,7 @@ app.*.map.json
 
 # Widget Preview related
 .widget_preview/
+
+# Flutter iOS generated
+/ios/Flutter/Generated.xcconfig
+/ios/Flutter/flutter_export_environment.sh

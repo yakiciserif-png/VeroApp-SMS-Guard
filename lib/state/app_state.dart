@@ -54,6 +54,7 @@ class AppState extends ChangeNotifier {
   static const _kFamilyMember = 'vero.familyMember';
   static const _kFamilyCode = 'vero.familyCode';
   static const _kCallGuard = 'vero.callGuard';
+  static const _kKvkkConsent = 'vero.kvkkConsent';
   static const int maxHistory = 500;
 
   final NativeBridge _bridge;
@@ -74,6 +75,7 @@ class AppState extends ChangeNotifier {
   bool autoDismissSpam = true;
   bool autoCleanOtp24h = false;
   bool callGuardEnabled = true;
+  bool hasAcceptedKvkkConsent = false;
   bool otpAlertDismissed = false;
   bool notificationAccess = false;
   bool smsPermissionGranted = false;
@@ -124,6 +126,7 @@ class AppState extends ChangeNotifier {
     autoDismissSpam = _prefs.getBool(_kAutoDismiss) ?? true;
     autoCleanOtp24h = _prefs.getBool(_kAutoCleanOtp24h) ?? false;
     callGuardEnabled = _prefs.getBool(_kCallGuard) ?? true;
+    hasAcceptedKvkkConsent = _prefs.getBool(_kKvkkConsent) ?? false;
     await VeroCommunityShield.init(_prefs);
 
     final savedTier = _prefs.getString(_kSubTier);
@@ -389,6 +392,18 @@ class AppState extends ChangeNotifier {
       notifyListeners();
     }
     return removed;
+  }
+
+  Future<void> acceptKvkkConsent() async {
+    hasAcceptedKvkkConsent = true;
+    await _prefs.setBool(_kKvkkConsent, true);
+    notifyListeners();
+  }
+
+  Future<void> resetKvkkConsent() async {
+    hasAcceptedKvkkConsent = false;
+    await _prefs.remove(_kKvkkConsent);
+    notifyListeners();
   }
 
   // ------------------------- FAZ 5: COMMUNITY SHIELD & FALSE POSITIVE REPORT

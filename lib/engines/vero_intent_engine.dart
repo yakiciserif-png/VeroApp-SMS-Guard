@@ -5,6 +5,7 @@
 /// and 6-dimensional semantic intent vector weighting.
 library;
 
+import 'package:flutter/foundation.dart' show compute;
 import '../core/classifier/semantic_intent_engine.dart';
 
 /// 10 Specialized 2025 Türkiye Fraud Categories.
@@ -19,6 +20,9 @@ enum FraudType2025 {
   abonelikAskiya,
   mahkemeIcra,
   faturaKesinti,
+  absherVerification,
+  etisalatPrize,
+  vodafoneEgyptRefund,
 }
 
 extension FraudType2025Ext on FraudType2025 {
@@ -33,6 +37,9 @@ extension FraudType2025Ext on FraudType2025 {
         FraudType2025.abonelikAskiya => 'Abonelik Yenileme / Askıya Alma Tuzağı',
         FraudType2025.mahkemeIcra => 'Sahte Mahkeme / İcra Celbi',
         FraudType2025.faturaKesinti => 'Elektrik / Doğalgaz Kesme İhbarı',
+        FraudType2025.absherVerification => 'Absher Hesap Doğrulama Tuzağı (Suudi Arabistan)',
+        FraudType2025.etisalatPrize => 'Etisalat Sahte Ödül Bildirimi (BAE)',
+        FraudType2025.vodafoneEgyptRefund => 'Vodafone Bakiye İadesi Tuzağı (Mısır)',
       };
 }
 
@@ -148,6 +155,18 @@ class VeroIntentEngine {
         .replaceAll('ç', 'c');
   }
 
+  /// Analyze text for 2025 fraud patterns asynchronously in a separate isolate.
+  static Future<FraudPatternResult> analyzeAsync(String rawText, {String? sender}) async {
+    return compute(_isolateAnalyzeWorker, {
+      'text': rawText,
+      if (sender != null) 'sender': sender,
+    });
+  }
+
+  static FraudPatternResult _isolateAnalyzeWorker(Map<String, String> args) {
+    return instance.analyze(args['text'] ?? '', sender: args['sender']);
+  }
+
   /// Analyze text for 2025 fraud patterns.
   FraudPatternResult analyze(String rawText, {String? sender}) {
     final homoglyphsFound = <String>[];
@@ -167,14 +186,44 @@ class VeroIntentEngine {
       }
     }
 
-    // 2. Pattern Matching against 10 modern fraud types
+    // 2. Pattern Matching against 10 modern fraud types + Middle East targets
     FraudType2025? detectedType;
     final matchedKeywords = <String>[];
     var maxConfidence = 0.0;
     String explanation = '';
 
-    // Pattern 1: Tapu Devir
+    // Specialized Global Patterns (Prioritized)
     if (_matchesPattern(combined, [
+      ['absher'],
+      ['أبشر'],
+    ])) {
+      detectedType = FraudType2025.absherVerification;
+      matchedKeywords.addAll(['absher', 'hesap doğrulama', 'أبشر']);
+      maxConfidence = 0.96;
+      explanation = 'Sahte Suudi Arabistan Absher platformu hesap doğrulama tuzağı.';
+    }
+    else if (_matchesPattern(combined, [
+      ['etisalat'],
+      ['اتصالات'],
+    ])) {
+      detectedType = FraudType2025.etisalatPrize;
+      matchedKeywords.addAll(['etisalat', 'ödül kazandınız', 'اتصالات']);
+      maxConfidence = 0.95;
+      explanation = 'Sahte BAE Etisalat ödül / çekiliş vaadi oltalama tuzağı.';
+    }
+    else if (_matchesPattern(combined, [
+      ['vodafone', 'misir'],
+      ['vodafone', 'bakiye'],
+      ['vodafone', 'refund'],
+      ['فودافون'],
+    ])) {
+      detectedType = FraudType2025.vodafoneEgyptRefund;
+      matchedKeywords.addAll(['vodafone mısır', 'bakiye iadesi', 'فودافون']);
+      maxConfidence = 0.95;
+      explanation = 'Sahte Vodafone Mısır bakiye iadesi ve para transferi tuzağı.';
+    }
+    // Pattern 1: Tapu Devir
+    else if (_matchesPattern(combined, [
       ['tapu', 'harc'],
       ['tapu', 'devir'],
       ['kadastro', 'odeme'],
@@ -333,6 +382,21 @@ class VeroIntentEngine {
         case FraudType2025.eDevletDava:
           urgencyFear = 0.80;
           financialTrap = 0.80;
+          actionLink = 0.90;
+          break;
+        case FraudType2025.absherVerification:
+          urgencyFear = 0.95;
+          actionLink = 0.90;
+          financialTrap = 0.80;
+          break;
+        case FraudType2025.etisalatPrize:
+          rewardBetting = 0.95;
+          actionLink = 0.90;
+          financialTrap = 0.85;
+          break;
+        case FraudType2025.vodafoneEgyptRefund:
+          financialTrap = 0.95;
+          rewardBetting = 0.70;
           actionLink = 0.90;
           break;
       }

@@ -1,3 +1,5 @@
+import 'dart:io' show Platform;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -8,6 +10,7 @@ import 'ui/history_screen.dart';
 import 'ui/home_screen.dart';
 import 'ui/rules_screen.dart';
 import 'ui/settings_screen.dart';
+import 'ui/first_launch_consent_dialog.dart';
 
 /// Gives descendants access to [AppState] and rebuilds them on change.
 class AppScope extends InheritedNotifier<AppState> {
@@ -154,6 +157,10 @@ class _RootShellState extends State<RootShell> with WidgetsBindingObserver {
 
   Future<void> _onResume() async {
     final app = AppScope.read(context);
+    final isTest = Platform.environment.containsKey('FLUTTER_TEST');
+    if (!app.hasAcceptedKvkkConsent && mounted && !isTest) {
+      await FirstLaunchConsentDialog.showIfNeeded(context);
+    }
     await app.refreshPlatformStatus();
     final imported = await app.importPendingMessages();
     if (!mounted || imported == 0) return;

@@ -118,5 +118,20 @@
   "enterpriseActivateBtn": "Unternehmenslizenz aktivieren",
   "enterpriseActiveBadge": "UNTERNEHMEN AKTIV",
   "enterpriseSyncBtn": "Lokale Netzwerksynchronisierung (LAN)",
-  "enterpriseDeactivateBtn": "Deaktivieren"
+  "enterpriseDeactivateBtn": "Deaktivieren",
+  "eDevletGuardTitle": "Passwort-Sicherheit",
+  "eDevletGuardSubtitle": "100% Offline-Leak-Prüfung & Komplexitätsaudit",
+  "securityAuditTitle": "Sicherheits-Audit-Zertifikat",
+  "securityAuditSubtitle": "Selbstprüfender Offline-Schild nach Militärstandard",
+  "crashReportsTitle": "Fehlerberichte",
+  "crashReportsSubtitle": "Lokale Fehlerprotokolle (Keine Telemetrie)",
+  "screenshotModeTitle": "Store-Screenshot-Modus",
+  "screenshotModeSubtitle": "Play Store & App Store Showcase",
+  "privacyPolicyTitle": "Datenschutzrichtlinie",
+  "privacyPolicySubtitle": "DSGVO-konform ohne Datenerfassung",
+  "termsOfServiceTitle": "Nutzungsbedingungen",
+  "termsOfServiceSubtitle": "Lizenzbedingungen & Abonnements",
+  "firstLaunchConsentTitle": "Datenschutz- & Sicherheitsversprechen",
+  "firstLaunchConsentDesc": "100% Offline • Keine Internetberechtigung • Null Datenerfassung",
+  "firstLaunchConsentAccept": "Verstanden und zustimmen"
 }
