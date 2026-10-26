@@ -262,10 +262,13 @@ void main() {
       tester.view.resetDevicePixelRatio();
     });
 
-    // 1) Verify Book Antiqua typography & Call Guard / APK Sensor engines
+    // 1) Verify Book Antiqua typography, Offline Bloom Filter & Call Guard / APK Sensor engines
     expect(CyberpunkTheme.fontFamily, equals('Book Antiqua'));
     expect(File('assets/fonts/BookAntiqua-Regular.ttf').existsSync(), isTrue);
     expect(File('assets/fonts/BookAntiqua-Bold.ttf').existsSync(), isTrue);
+    expect(File('assets/breach_db/bloom_filter.bin').existsSync(), isTrue);
+    expect(VeroBreachRadarEngine.checkIdentity('test@ornek.com').isLeaked, isTrue);
+    expect(VeroBreachRadarEngine.checkIdentity('safe_unique_user_9988@kurum.gov.tr').isLeaked, isFalse);
 
     final foreignCall = VeroCallGuardEngine.inspectNumber('+63 917 000 1122');
     expect(foreignCall.isSuspicious, isTrue);
@@ -312,6 +315,7 @@ void main() {
     );
     expect(find.byKey(const Key('familyProtectionCard')), findsOneWidget);
     expect(find.text('AİLE KORUMASI & VERO AİLE KODU'), findsOneWidget);
+    expect(find.text('VeroApp Offline Veri Sızıntısı Radarı'), findsOneWidget);
 
     // Durum 1 (Paket Sahibi): 6-digit code "8 9 2  3 4 1" + "4/4 Üye Bağlı"
     expect(find.byKey(const Key('familyOwnerCodeText')), findsOneWidget);

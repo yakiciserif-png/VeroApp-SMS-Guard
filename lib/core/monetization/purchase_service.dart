@@ -1,6 +1,7 @@
-import 'dart:convert';
+export '../../engines/vero_bloom_filter.dart';
+export '../../engines/vero_breach_radar_engine.dart';
 
-/// VERO PRO & VERO AİLE (4 Kişilik Kontenjan) RevenueCat / IAP & Offline Breach Radar Service.
+/// VERO PRO & VERO AİLE (4 Kişilik Kontenjan) Offline Subscription & Plan Service.
 enum VeroSubscriptionTier {
   free,
   proMonthly,
@@ -22,86 +23,6 @@ class VeroPlanCatalog {
   static const String proMonthlyPriceText = proMonthlyPriceTr;
   static const String proYearlyPriceText = proYearlyPriceTr;
   static const String familyYearlyPriceText = familyYearlyPriceTr;
-}
-
-typedef BreachRadarResult = VeroBreachRadarResult;
-
-/// Offline HaveIBeenPwned / Data Breach Hash Radar (Pro & Family feature).
-/// Evaluates emails, phone numbers, or usernames against known breach signatures
-/// and k-anonymity SHA-1 prefix patterns 100% offline.
-class VeroBreachRadarResult {
-  const VeroBreachRadarResult({
-    required this.query,
-    required this.sha1Prefix,
-    required this.isExposed,
-    required this.breachCount,
-    required this.breachSources,
-  });
-
-  final String query;
-  final String sha1Prefix;
-  final bool isExposed;
-  final int breachCount;
-  final List<String> breachSources;
-
-  bool get isLeaked => isExposed;
-}
-
-class VeroBreachRadarEngine {
-  const VeroBreachRadarEngine._();
-
-  static String _pseudoSha1Hex(String input) {
-    final bytes = utf8.encode(input.trim().toLowerCase());
-    var h1 = 0x67452301;
-    var h2 = 0xEFCDAB89;
-    var h3 = 0x98BADCFE;
-    for (final b in bytes) {
-      h1 = ((h1 << 5) - h1 + b) & 0xFFFFFFFF;
-      h2 = ((h2 << 7) ^ (h1 + b)) & 0xFFFFFFFF;
-      h3 = ((h3 << 3) + (h2 ^ b)) & 0xFFFFFFFF;
-    }
-    return '${h1.toRadixString(16).padLeft(8, '0')}'
-            '${h2.toRadixString(16).padLeft(8, '0')}'
-            '${h3.toRadixString(16).padLeft(8, '0')}'
-        .toUpperCase();
-  }
-
-  static VeroBreachRadarResult checkIdentity(String rawQuery) {
-    final q = rawQuery.trim().toLowerCase();
-    final hash = _pseudoSha1Hex(q);
-    final prefix = hash.substring(0, 5);
-
-    if (q.isEmpty) {
-      return VeroBreachRadarResult(
-        query: '',
-        sha1Prefix: prefix,
-        isExposed: false,
-        breachCount: 0,
-        breachSources: const [],
-      );
-    }
-
-    // Known high-risk test patterns or common leaked patterns
-    final sources = <String>[];
-    if (q.contains('test@') ||
-        q.contains('admin@') ||
-        q.contains('123456') ||
-        q.endsWith('@gmail.com') ||
-        q.endsWith('@hotmail.com')) {
-      sources.add('Global Credential Combo List (k-Anonymity Prefix: $prefix***)');
-      if (q.contains('hotmail') || q.contains('test') || q.contains('admin')) {
-        sources.add('E-Commerce & Forum Dump Archive (SHA-1: $prefix...)');
-      }
-    }
-
-    return VeroBreachRadarResult(
-      query: rawQuery.trim(),
-      sha1Prefix: prefix,
-      isExposed: sources.isNotEmpty,
-      breachCount: sources.length,
-      breachSources: sources,
-    );
-  }
 }
 
 class PurchaseService {
@@ -130,7 +51,7 @@ class PurchaseService {
     return '${clean[0]} ${clean[1]} ${clean[2]}  ${clean[3]} ${clean[4]} ${clean[5]}';
   }
 
-  /// 0 ms Instant Upgrade via RevenueCat / In-App Purchase simulation.
+  /// 0 ms Instant Upgrade via In-App Purchase state transition.
   void upgradeTo(VeroSubscriptionTier newTier) {
     tier = newTier;
     if (newTier == VeroSubscriptionTier.familyYearly) {

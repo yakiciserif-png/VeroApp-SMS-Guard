@@ -834,8 +834,8 @@ class _FamilyAndProCardState extends State<_FamilyAndProCard> {
                 Expanded(
                   child: Text(
                     isTr
-                        ? 'Veri Sızıntısı Radarı (HaveIBeenPwned SHA-1 K-Anonim)'
-                        : 'Data Breach Radar (HaveIBeenPwned SHA-1 K-Anonymity)',
+                        ? 'VeroApp Offline Veri Sızıntısı Radarı'
+                        : 'VeroApp Offline Veri Sızıntısı Radarı (Bloom Filter)',
                     style: theme.textTheme.labelMedium?.copyWith(
                       color: CyberpunkColors.textPrimary,
                       fontWeight: FontWeight.w800,
