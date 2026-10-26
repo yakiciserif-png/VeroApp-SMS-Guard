@@ -22,6 +22,8 @@ class CyberpunkColors {
 class CyberpunkTheme {
   CyberpunkTheme._();
 
+  static const String fontFamily = 'Book Antiqua';
+
   static ThemeData build({Brightness brightness = Brightness.dark}) {
     final scheme = ColorScheme.dark(
       brightness: brightness,
@@ -50,70 +52,70 @@ class CyberpunkTheme {
     return ThemeData(
       useMaterial3: true,
       brightness: brightness,
-      fontFamily: 'CyberTech',
-      fontFamilyFallback: const ['Segoe UI', 'Roboto', 'sans-serif'],
+      fontFamily: 'Book Antiqua',
+      fontFamilyFallback: const ['Book Antiqua', 'Palatino Linotype', 'Georgia', 'serif'],
       colorScheme: scheme,
       scaffoldBackgroundColor: CyberpunkColors.bgPrimary,
       canvasColor: CyberpunkColors.bgPrimary,
       dividerColor: CyberpunkColors.borderSubtle,
       textTheme: const TextTheme(
         headlineMedium: TextStyle(
-          fontFamily: 'CyberTech',
+          fontFamily: 'Book Antiqua',
           color: CyberpunkColors.textPrimary,
           fontWeight: FontWeight.w800,
           letterSpacing: 0.8,
         ),
         titleLarge: TextStyle(
-          fontFamily: 'CyberTech',
+          fontFamily: 'Book Antiqua',
           color: CyberpunkColors.textPrimary,
           fontWeight: FontWeight.w800,
           letterSpacing: 0.6,
         ),
         titleMedium: TextStyle(
-          fontFamily: 'CyberTech',
+          fontFamily: 'Book Antiqua',
           color: CyberpunkColors.textPrimary,
           fontWeight: FontWeight.w700,
           letterSpacing: 0.4,
         ),
         titleSmall: TextStyle(
-          fontFamily: 'CyberTech',
+          fontFamily: 'Book Antiqua',
           color: CyberpunkColors.textPrimary,
           fontWeight: FontWeight.w700,
           letterSpacing: 0.35,
         ),
         bodyLarge: TextStyle(
-          fontFamily: 'CyberTech',
+          fontFamily: 'Book Antiqua',
           color: CyberpunkColors.textPrimary,
           fontWeight: FontWeight.w500,
           height: 1.38,
         ),
         bodyMedium: TextStyle(
-          fontFamily: 'CyberTech',
+          fontFamily: 'Book Antiqua',
           color: CyberpunkColors.textPrimary,
           fontWeight: FontWeight.w400,
           height: 1.38,
         ),
         bodySmall: TextStyle(
-          fontFamily: 'CyberTech',
+          fontFamily: 'Book Antiqua',
           color: CyberpunkColors.textSecondary,
           fontWeight: FontWeight.w300,
           height: 1.38,
           letterSpacing: 0.15,
         ),
         labelLarge: TextStyle(
-          fontFamily: 'CyberTech',
+          fontFamily: 'Book Antiqua',
           color: CyberpunkColors.textPrimary,
           fontWeight: FontWeight.w700,
           letterSpacing: 0.4,
         ),
         labelMedium: TextStyle(
-          fontFamily: 'CyberTech',
+          fontFamily: 'Book Antiqua',
           color: CyberpunkColors.textSecondary,
           fontWeight: FontWeight.w600,
           letterSpacing: 0.3,
         ),
         labelSmall: TextStyle(
-          fontFamily: 'CyberTech',
+          fontFamily: 'Book Antiqua',
           color: CyberpunkColors.textSecondary,
           fontWeight: FontWeight.w500,
           letterSpacing: 0.25,
@@ -126,7 +128,7 @@ class CyberpunkTheme {
         elevation: 0,
         centerTitle: false,
         titleTextStyle: TextStyle(
-          fontFamily: 'CyberTech',
+          fontFamily: 'Book Antiqua',
           color: CyberpunkColors.textPrimary,
           fontSize: 19,
           fontWeight: FontWeight.w800,

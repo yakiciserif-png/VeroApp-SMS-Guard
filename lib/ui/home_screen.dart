@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import '../app.dart';
 import '../core/classifier/classification.dart';
 import '../core/classifier/safe_click_engine.dart';
+import '../core/classifier/vero_call_guard.dart';
 import '../core/localization/app_localizations.dart';
 import '../models/history_entry.dart';
 import '../state/app_state.dart';
@@ -396,6 +397,19 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   const SizedBox(height: 10),
+                  _ShieldFunctionTile(
+                    icon: Icons.phone_callback_outlined,
+                    accent: CyberpunkColors.neonCyan,
+                    title: isTr
+                        ? 'VERO CALL GUARD (Spam Arama Kalkanı)'
+                        : 'VERO CALL GUARD (Spam Call Shield)',
+                    description: isTr
+                        ? 'Yurt dışı (+63, +62, +234 vb.) sahte çağrıları ve 0850 dolandırıcı aramalarını %100 çevrimdışı tespit eder ve uyarır.'
+                        : 'Detects foreign (+63, +62, +234) scam calls and 0850 telemarketing traps 100% offline.',
+                    value: app.callGuardEnabled,
+                    onChanged: app.setCallGuardEnabled,
+                  ),
+                  const Divider(height: 14),
                   _ShieldFunctionTile(
                     icon: Icons.casino_outlined,
                     accent: CyberpunkColors.dangerRed,
@@ -887,6 +901,10 @@ class _ResultCard extends StatelessWidget {
     final targetItem = (entry.sender != null && entry.sender!.trim().isNotEmpty)
         ? entry.sender!.trim()
         : entry.text;
+    final callGuardResult =
+        (app.callGuardEnabled && entry.sender != null && entry.sender!.trim().isNotEmpty)
+            ? VeroCallGuardEngine.inspectNumber(entry.sender!)
+            : null;
 
     return Card(
       key: const Key('resultCard'),
@@ -924,6 +942,37 @@ class _ResultCard extends StatelessWidget {
               ],
             ),
             if (entry.otpCode != null) OtpCopyBanner(code: entry.otpCode!),
+            if (callGuardResult != null && callGuardResult.isSuspicious) ...[
+              const SizedBox(height: 10),
+              Container(
+                key: const Key('callGuardWarningBanner'),
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  color: CyberpunkColors.dangerRed.withValues(alpha: 0.14),
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(color: CyberpunkColors.dangerRed),
+                ),
+                child: Row(
+                  children: [
+                    const Icon(
+                      Icons.phone_disabled_outlined,
+                      size: 18,
+                      color: CyberpunkColors.dangerRed,
+                    ),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: Text(
+                        callGuardResult.warningTitleTr,
+                        style: theme.textTheme.bodySmall?.copyWith(
+                          color: CyberpunkColors.dangerRed,
+                          fontWeight: FontWeight.w800,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
             const SizedBox(height: 16),
             Text(
               '${l.t('confidence')}: ${(entry.confidence * 100).toStringAsFixed(1)}%',

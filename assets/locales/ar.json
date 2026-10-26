@@ -67,7 +67,7 @@
   "settingsResetModel": "إعادة تعيين نموذج الذكاء الاصطناعي",
   "settingsResetModelDone": "تمت إعادة النموذج إلى تدريب المصنع.",
   "settingsAbout": "حول",
-  "settingsAboutDesc": "VeroApp SMS Guard v1.0 - تصفية رسائل مزعجة دون اتصال مع أولوية الخصوصية.",
+  "settingsAboutDesc": "VeroApp SMS Guard v1.0 - حماية ذكاء اصطناعي محلية ضد الرسائل المزعجة 100% دون اتصال ومع أولوية الخصوصية.",
   "privacyNote": "تتم جميع التحليلات محليًا على جهازك.",
   "syncedCount": "تم استيراد {n} رسائل جديدة",
   "granted": "ممنوح",
@@ -103,4 +103,8 @@
   "reportButtonLabel": "📣 الإبلاغ عن خطأ / تعليم الذكاء الاصطناعي",
   "reportSubmitBtn": "إرسال وتدريب الذكاء الاصطناعي المحلي",
   "reportSuccessMsg": "تم استلام البلاغ! تمت إعادة تدريب نموذج الذكاء الاصطناعي المحلي."
+,
+  "modeTitle": "حساسية الحماية",
+  "signalApkMalware": "🚨 تنبيه: فخ تطبيق خبيث (.APK)!",
+  "safeClickRiskApkMalware": "🚨 تنبيه: فخ تطبيق خبيث (.APK)!"
 }

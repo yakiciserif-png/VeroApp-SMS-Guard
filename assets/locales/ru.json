@@ -67,7 +67,7 @@
   "settingsResetModel": "Сбросить модель ИИ",
   "settingsResetModelDone": "Модель сброшена к заводскому обучению.",
   "settingsAbout": "О приложении",
-  "settingsAboutDesc": "VeroApp SMS Guard v1.0 - офлайн-фильтр спама с заботой о приватности.",
+  "settingsAboutDesc": "VeroApp SMS Guard v1.0 - Локальная ИИ-защита от спама, 100% офлайн и с приоритетом приватности.",
   "privacyNote": "Весь анализ выполняется локально на устройстве.",
   "syncedCount": "Импортировано новых сообщений: {n}",
   "granted": "Предоставлен",
@@ -103,4 +103,8 @@
   "reportButtonLabel": "📣 Сообщить об ошибке / Обучить ИИ",
   "reportSubmitBtn": "Отправить и обучить локальный ИИ",
   "reportSuccessMsg": "Отчет принят! Локальная модель ИИ переобучена."
+,
+  "modeTitle": "Чувствительность Защиты",
+  "signalApkMalware": "🚨 ВНИМАНИЕ: Ловушка с вредоносным .APK!",
+  "safeClickRiskApkMalware": "🚨 ВНИМАНИЕ: Ловушка с вредоносным .APK!"
 }

@@ -67,7 +67,7 @@
   "settingsResetModel": "KI-Modell zurücksetzen",
   "settingsResetModelDone": "Das Modell wurde auf das Werkstraining zurückgesetzt.",
   "settingsAbout": "Über",
-  "settingsAboutDesc": "VeroApp SMS Guard v1.0 - datenschutzfreundliche Offline-Spamfilterung.",
+  "settingsAboutDesc": "VeroApp SMS Guard v1.0 - Datenschutzfreundlicher, 100% Offline-KI-Spamschutz.",
   "privacyNote": "Alle Analysen laufen lokal auf deinem Gerät.",
   "syncedCount": "{n} neue Nachrichten importiert",
   "granted": "Erteilt",
@@ -103,4 +103,8 @@
   "reportButtonLabel": "📣 Fehler melden / KI trainieren",
   "reportSubmitBtn": "Melden & Lokale KI trainieren",
   "reportSuccessMsg": "Meldung erhalten! Das lokale KI-Modell wurde neu trainiert."
+,
+  "modeTitle": "Schutzempfindlichkeit",
+  "signalApkMalware": "🚨 ACHTUNG: Schädliche APK-App-Falle!",
+  "safeClickRiskApkMalware": "🚨 ACHTUNG: Schädliche APK-App-Falle!"
 }

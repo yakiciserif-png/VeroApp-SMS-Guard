@@ -220,6 +220,24 @@ class ThreatDatabase {
     if (hasHomoglyph) signals.add('signalHomoglyphAttack');
     if (hasObfuscation) signals.add('signalObfuscatedText');
 
+    // 0. VERO APK / MALWARE SENSOR: Fake .apk / trojan sideload link detection
+    final hasApkMalware = RegExp(
+          r'(\.(apk|xapk|dex|exe|scr|msi)\b|apk\s*indir|uygulamasini\s*indir)',
+          caseSensitive: false,
+        ).hasMatch(combined) ||
+        (hasUrl && normalized.contains('apk'));
+    if (hasApkMalware) {
+      signals.insert(0, 'signalApkMalware');
+      return ThreatAssessment(
+        isThreat: true,
+        score: 0.99,
+        subCategory: MessageSubCategory.phishingScam,
+        shieldName: 'shieldLink',
+        signals: signals,
+        btkAnalysis: btk,
+      );
+    }
+
     // 1. Betting & Gambling Shield
     if (config.bettingShield) {
       final hasBettingPhrase = bettingPhrases.any(normalized.contains);

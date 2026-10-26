@@ -10,6 +10,7 @@ import '../core/classifier/naive_bayes.dart';
 import '../core/classifier/otp_detector.dart';
 import '../core/classifier/smart_classifier.dart';
 import '../core/classifier/threat_database.dart';
+import '../core/monetization/purchase_service.dart';
 import '../core/platform/native_bridge.dart';
 import '../core/rules/rule_engine.dart';
 import '../models/history_entry.dart';
@@ -47,6 +48,11 @@ class AppState extends ChangeNotifier {
   static const _kShields = 'tl.shields';
   static const _kProtectionMode = 'tl.protectionMode';
   static const _kThemeMode = 'tl.themeMode';
+  static const _kSubTier = 'vero.subTier';
+  static const _kFamilyOwner = 'vero.familyOwner';
+  static const _kFamilyMember = 'vero.familyMember';
+  static const _kFamilyCode = 'vero.familyCode';
+  static const _kCallGuard = 'vero.callGuard';
   static const int maxHistory = 500;
 
   final NativeBridge _bridge;
@@ -54,6 +60,7 @@ class AppState extends ChangeNotifier {
   late SharedPreferences _prefs;
 
   late SmartClassifier classifier;
+  final PurchaseService purchaseService = PurchaseService();
   final List<FilterRule> rules = [];
   final List<String> blacklist = [];
   final List<String> whitelist = [];
@@ -65,6 +72,7 @@ class AppState extends ChangeNotifier {
   ProtectionMode protectionMode = ProtectionMode.balanced;
   bool autoDismissSpam = true;
   bool autoCleanOtp24h = false;
+  bool callGuardEnabled = true;
   bool otpAlertDismissed = false;
   bool notificationAccess = false;
   bool smsPermissionGranted = false;
@@ -73,6 +81,11 @@ class AppState extends ChangeNotifier {
   ThreatShieldConfig shieldConfig = const ThreatShieldConfig();
 
   NativeBridge get bridge => _bridge;
+
+  bool get isProOrFamily => purchaseService.isProOrFamily;
+  bool get isFamilyOwner => purchaseService.isFamilyOwner;
+  bool get isFamilyMember => purchaseService.isFamilyMember;
+  VeroSubscriptionTier get subscriptionTier => purchaseService.tier;
 
   /// True when any OS-level real-time interception hook is active on Android.
   bool get isRealTimeProtectionActive =>
@@ -108,6 +121,18 @@ class AppState extends ChangeNotifier {
     if (code != null) locale = Locale(code);
     autoDismissSpam = _prefs.getBool(_kAutoDismiss) ?? true;
     autoCleanOtp24h = _prefs.getBool(_kAutoCleanOtp24h) ?? false;
+    callGuardEnabled = _prefs.getBool(_kCallGuard) ?? true;
+
+    final savedTier = _prefs.getString(_kSubTier);
+    if (savedTier != null) {
+      purchaseService.tier = VeroSubscriptionTier.values.firstWhere(
+        (t) => t.name == savedTier,
+        orElse: () => VeroSubscriptionTier.free,
+      );
+    }
+    purchaseService.isFamilyOwner = _prefs.getBool(_kFamilyOwner) ?? true;
+    purchaseService.isFamilyMember = _prefs.getBool(_kFamilyMember) ?? false;
+    purchaseService.familyCode = _prefs.getString(_kFamilyCode) ?? '892341';
 
     final savedTheme = _prefs.getString(_kThemeMode);
     if (savedTheme != null) {
@@ -762,5 +787,48 @@ class AppState extends ChangeNotifier {
   Future<void> syncNative() async {
     if (!ready) return;
     await _bridge.syncFilterConfig(jsonEncode(buildNativeConfig()));
+  }
+
+  // --------------------------------------------------- Monetization & Call Guard
+
+  Future<void> setCallGuardEnabled(bool value) async {
+    callGuardEnabled = value;
+    await _prefs.setBool(_kCallGuard, value);
+    notifyListeners();
+  }
+
+  /// 0 ms Instant Upgrade via RevenueCat / IAP service.
+  Future<void> upgradeSubscription(VeroSubscriptionTier tier) async {
+    purchaseService.upgradeTo(tier);
+    await _prefs.setString(_kSubTier, purchaseService.tier.name);
+    await _prefs.setBool(_kFamilyOwner, purchaseService.isFamilyOwner);
+    await _prefs.setBool(_kFamilyMember, purchaseService.isFamilyMember);
+    await _prefs.setString(_kFamilyCode, purchaseService.familyCode);
+    notifyListeners();
+  }
+
+  /// 0 ms Family Code validation & activation for Family Members.
+  Future<bool> joinFamilyWithCode(String rawCode) async {
+    final ok = purchaseService.joinFamilyWithCode(rawCode);
+    if (!ok) return false;
+    await _prefs.setString(_kSubTier, purchaseService.tier.name);
+    await _prefs.setBool(_kFamilyOwner, purchaseService.isFamilyOwner);
+    await _prefs.setBool(_kFamilyMember, purchaseService.isFamilyMember);
+    await _prefs.setString(_kFamilyCode, purchaseService.familyCode);
+    notifyListeners();
+    return true;
+  }
+
+  /// Toggles between Family Owner view (`8 9 2  3 4 1` + `4/4 Üye Bağlı`) and Family Member view.
+  Future<void> setFamilyOwnerMode(bool ownerMode) async {
+    purchaseService.isFamilyOwner = ownerMode;
+    if (ownerMode) {
+      purchaseService.tier = VeroSubscriptionTier.familyYearly;
+      purchaseService.isFamilyMember = false;
+    }
+    await _prefs.setString(_kSubTier, purchaseService.tier.name);
+    await _prefs.setBool(_kFamilyOwner, purchaseService.isFamilyOwner);
+    await _prefs.setBool(_kFamilyMember, purchaseService.isFamilyMember);
+    notifyListeners();
   }
 }

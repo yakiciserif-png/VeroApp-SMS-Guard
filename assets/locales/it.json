@@ -67,7 +67,7 @@
   "settingsResetModel": "Reimposta modello IA",
   "settingsResetModelDone": "Il modello è stato reimpostato.",
   "settingsAbout": "Informazioni",
-  "settingsAboutDesc": "VeroApp SMS Guard v1.0 - filtro spam offline e rispettoso della privacy.",
+  "settingsAboutDesc": "VeroApp SMS Guard v1.0 - Protezione antispam IA locale 100% offline e privata.",
   "privacyNote": "Tutte le analisi avvengono localmente sul dispositivo.",
   "syncedCount": "{n} nuovi messaggi importati",
   "granted": "Concesso",
@@ -103,4 +103,8 @@
   "reportButtonLabel": "📣 Segnala Errore / Insegna all'IA",
   "reportSubmitBtn": "Invia e Addestra IA Locale",
   "reportSuccessMsg": "Segnalazione ricevuta! Il modello IA locale è stato aggiornato."
+,
+  "modeTitle": "Sensibilità di Protezione",
+  "signalApkMalware": "🚨 ATTENZIONE: Trappola App Malevola (.APK)!",
+  "safeClickRiskApkMalware": "🚨 ATTENZIONE: Trappola App Malevola (.APK)!"
 }

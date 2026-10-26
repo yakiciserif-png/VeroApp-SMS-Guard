@@ -32,7 +32,12 @@ class SafeClickEngine {
   const SafeClickEngine._();
 
   static final RegExp _urlExtractRegex = RegExp(
-    r'(?:https?:\/\/|www\.|[a-zA-Z0-9][a-zA-Z0-9-]{1,61}\.(?:com|net|org|tr|gov\.tr|edu\.tr|com\.tr|xyz|top|bet|vip|icu|click|link|shop|site|online|club|info|biz|me|ly|gl|co|io|tk|ml|ga|cf|gq|pw|win|loan|buzz|monster|rest|sbs|cfd|cam|fun))(?:\/[^\s<>"]*)?',
+    r'(?:https?:\/\/|www\.|[a-zA-Z0-9][a-zA-Z0-9-]{1,61}\.(?:com|net|org|tr|gov\.tr|edu\.tr|com\.tr|xyz|top|bet|vip|icu|click|link|shop|site|online|club|info|biz|me|ly|gl|co|io|tk|ml|ga|cf|gq|pw|win|loan|buzz|monster|rest|sbs|cfd|cam|fun|apk))(?:\/[^\s<>"]*)?|[a-zA-Z0-9_-]+\.(?:apk|xapk|dex|exe|scr)\b',
+    caseSensitive: false,
+  );
+
+  static final RegExp _apkMalwareRegex = RegExp(
+    r'(\.(apk|xapk|dex|exe|scr|msi)(\b|$|\?|/)|/apk\b|indir\.apk)',
     caseSensitive: false,
   );
 
@@ -154,6 +159,13 @@ class SafeClickEngine {
     var score = 0;
     final findings = <String>[];
     String? impersonated;
+
+    // 0. VERO APK / MALWARE SENSOR (.apk, .xapk, .dex, .exe, .scr)
+    if (_apkMalwareRegex.hasMatch(cleaned) ||
+        _apkMalwareRegex.hasMatch(pathAndQuery)) {
+      score += 95;
+      findings.add('safeClickRiskApkMalware');
+    }
 
     // 1. Raw IP address check
     if (_ipHostRegex.hasMatch(host)) {

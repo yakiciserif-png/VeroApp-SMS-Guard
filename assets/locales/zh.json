@@ -67,7 +67,7 @@
   "settingsResetModel": "重置 AI 模型",
   "settingsResetModelDone": "模型已重置为出厂训练状态。",
   "settingsAbout": "关于",
-  "settingsAboutDesc": "VeroApp SMS Guard v1.0 - 隐私优先的离线垃圾信息过滤。",
+  "settingsAboutDesc": "VeroApp SMS Guard v1.0 - 隐私优先的 100% 离线本地 AI 垃圾信息防护。",
   "privacyNote": "所有分析均在您的设备本地完成。",
   "syncedCount": "已导入 {n} 条新消息",
   "granted": "已授权",
@@ -103,4 +103,8 @@
   "reportButtonLabel": "📣 报告错误 / 训练AI",
   "reportSubmitBtn": "提交并训练本地AI",
   "reportSuccessMsg": "反馈已收到！本地AI模型已根据此样本完成训练。"
+,
+  "modeTitle": "保护灵敏度",
+  "signalApkMalware": "🚨 注意：恶意软件安装陷阱 (.APK)！",
+  "safeClickRiskApkMalware": "🚨 注意：恶意软件安装陷阱 (.APK)！"
 }

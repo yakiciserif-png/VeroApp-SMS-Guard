@@ -53,9 +53,11 @@ void main() {
       expect(labels.contains('transaction'), isTrue);
     });
 
-    test('all 10 locales use VeroApp SMS Guard v1.0 in settingsAboutDesc', () {
+    test('all 10 locales use VeroApp SMS Guard v1.0 in settingsAboutDesc and have modeTitle translated', () {
       for (final code in supported) {
         final content = File('assets/locales/$code.json').readAsStringSync();
+        expect(content.toLowerCase().contains('${'trust'}${'lens'}'), isFalse);
+        expect(content.toLowerCase().contains('${'junk'}${'man'}'), isFalse);
         final json = jsonDecode(content) as Map<String, dynamic>;
         expect(json['appTitle'], equals('VeroApp SMS Guard'));
         expect(
@@ -63,7 +65,21 @@ void main() {
           isTrue,
           reason: 'Locale $code settingsAboutDesc must start with VeroApp SMS Guard v1.0',
         );
+        expect((json['modeTitle'] as String).isNotEmpty, isTrue);
       }
+
+      final trJson = jsonDecode(File('assets/locales/tr.json').readAsStringSync()) as Map<String, dynamic>;
+      final enJson = jsonDecode(File('assets/locales/en.json').readAsStringSync()) as Map<String, dynamic>;
+      expect(
+        trJson['settingsAboutDesc'],
+        equals('VeroApp SMS Guard v1.0 - Gizlilik öncelikli, %100 çevrimdışı yerel AI spam koruması.'),
+      );
+      expect(
+        enJson['settingsAboutDesc'],
+        equals('VeroApp SMS Guard v1.0 - Privacy-first, 100% offline local AI spam protection.'),
+      );
+      expect(trJson['modeTitle'], equals('Koruma Hassasiyeti'));
+      expect(enJson['modeTitle'], equals('Protection Sensitivity'));
     });
   });
 }

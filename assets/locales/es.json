@@ -67,7 +67,7 @@
   "settingsResetModel": "Restablecer modelo de IA",
   "settingsResetModelDone": "El modelo se restableció al entrenamiento de fábrica.",
   "settingsAbout": "Acerca de",
-  "settingsAboutDesc": "VeroApp SMS Guard v1.0 - filtrado de spam sin conexión y privado.",
+  "settingsAboutDesc": "VeroApp SMS Guard v1.0 - Protección antispam con IA local 100% sin conexión y privada.",
   "privacyNote": "Todo el análisis se realiza localmente en tu dispositivo.",
   "syncedCount": "{n} mensajes nuevos importados",
   "granted": "Concedido",
@@ -103,4 +103,8 @@
   "reportButtonLabel": "📣 Reportar Error / Enseñar a la IA",
   "reportSubmitBtn": "Enviar y Entrenar IA Local",
   "reportSuccessMsg": "¡Reporte recibido! El modelo de IA local ha sido reentrenado."
+,
+  "modeTitle": "Sensibilidad de Protección",
+  "signalApkMalware": "🚨 ATENCIÓN: ¡Trampa de aplicación maliciosa (.APK)!",
+  "safeClickRiskApkMalware": "🚨 ATENCIÓN: ¡Trampa de aplicación maliciosa (.APK)!"
 }

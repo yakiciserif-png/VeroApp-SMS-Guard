@@ -25,6 +25,8 @@ flutter:
     - assets/model/
     - assets/branding/
   fonts:
-    - family: CyberTech
+    - family: Book Antiqua
       fonts:
-        - asset: assets/fonts/CyberTech.ttf
+        - asset: assets/fonts/BookAntiqua-Regular.ttf
+        - asset: assets/fonts/BookAntiqua-Bold.ttf
+          weight: 700

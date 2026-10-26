@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:veroapp_sms_guard/app.dart';
+import 'package:veroapp_sms_guard/core/classifier/safe_click_engine.dart';
+import 'package:veroapp_sms_guard/core/classifier/vero_call_guard.dart';
+import 'package:veroapp_sms_guard/core/monetization/purchase_service.dart';
 import 'package:veroapp_sms_guard/core/platform/native_bridge.dart';
 import 'package:veroapp_sms_guard/state/app_state.dart';
 import 'package:veroapp_sms_guard/ui/cyberpunk_theme.dart';
@@ -248,6 +251,83 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.byKey(const Key('settingsProtectionModeCard')), findsOneWidget);
     expect(find.byKey(const Key('protectionModeSegment')), findsOneWidget);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('Master Architecture Seal: Book Antiqua font, Call Guard, APK Sensor, 50px AdMob Banner & VERO AİLE 4-Member Code Card at 320x568', (tester) async {
+    tester.view.physicalSize = const Size(320, 568);
+    tester.view.devicePixelRatio = 1.0;
+    addTearDown(() {
+      tester.view.resetPhysicalSize();
+      tester.view.resetDevicePixelRatio();
+    });
+
+    // 1) Verify Book Antiqua typography & Call Guard / APK Sensor engines
+    expect(CyberpunkTheme.fontFamily, equals('Book Antiqua'));
+    expect(File('assets/fonts/BookAntiqua-Regular.ttf').existsSync(), isTrue);
+    expect(File('assets/fonts/BookAntiqua-Bold.ttf').existsSync(), isTrue);
+
+    final foreignCall = VeroCallGuardEngine.inspectNumber('+63 917 000 1122');
+    expect(foreignCall.isSuspicious, isTrue);
+    expect(foreignCall.matchedPrefix, equals('+63'));
+
+    final telemarketingCall = VeroCallGuardEngine.inspectNumber('0850 480 99 88');
+    expect(telemarketingCall.isSuspicious, isTrue);
+
+    final apkLink = SafeClickEngine.analyzeUrl('https://kargo-iade.xyz/guncelleme.apk');
+    expect(apkLink.riskLevel, equals(SafeClickRisk.critical));
+    expect(apkLink.findingKeys.contains('safeClickRiskApkMalware'), isTrue);
+
+    SharedPreferences.setMockInitialValues({});
+    final corpusJson = File('assets/model/seed_corpus.json').readAsStringSync();
+    final state = AppState(
+      bridge: const NativeBridge(enabled: false),
+      seedLoader: () async => corpusJson,
+    );
+    await state.init();
+    await state.setLocale(const Locale('tr'));
+
+    final apkSms = state.analyze(
+      'Kargonuz teslim edilemedi, takip uygulamasını indirin: http://kargo-takip.xyz/kargo.apk',
+    );
+    expect(apkSms.signals.contains('signalApkMalware'), isTrue);
+
+    await tester.pumpWidget(VeroAppSmsGuardApp(state: state));
+    await tester.pumpAndSettle();
+
+    // 2) Free Tier: 50px AdMob bottom banner is visible
+    expect(find.byKey(const Key('adMobAdaptiveBanner')), findsOneWidget);
+
+    // 3) Navigate to Settings -> verify "Koruma Hassasiyeti" and "AİLE KORUMASI & VERO AİLE KODU"
+    await tester.tap(find.byIcon(Icons.settings_outlined));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Koruma Hassasiyeti'), findsOneWidget);
+
+    final settingsScrollable = find.byType(Scrollable).first;
+    await tester.scrollUntilVisible(
+      find.byKey(const Key('familyProtectionCard')),
+      120,
+      scrollable: settingsScrollable,
+    );
+    expect(find.byKey(const Key('familyProtectionCard')), findsOneWidget);
+    expect(find.text('AİLE KORUMASI & VERO AİLE KODU'), findsOneWidget);
+
+    // Durum 1 (Paket Sahibi): 6-digit code "8 9 2  3 4 1" + "4/4 Üye Bağlı"
+    expect(find.byKey(const Key('familyOwnerCodeText')), findsOneWidget);
+    expect(find.text('8 9 2  3 4 1'), findsOneWidget);
+    expect(find.text('4/4 Üye Bağlı'), findsOneWidget);
+
+    // Switch to Durum 2 (Aile Üyesi): 6-digit code input + "Aileni Koru" button
+    await state.setFamilyOwnerMode(false);
+    await tester.pumpAndSettle();
+    expect(find.byKey(const Key('familyCodeInput')), findsOneWidget);
+    expect(find.text('Aileni Koru'), findsOneWidget);
+
+    // Upgrade to VERO AİLE in 0 ms -> AdMob banner disappears immediately
+    await state.upgradeSubscription(VeroSubscriptionTier.familyYearly);
+    await tester.pumpAndSettle();
+    expect(find.byKey(const Key('adMobAdaptiveBanner')), findsNothing);
     expect(tester.takeException(), isNull);
   });
 }

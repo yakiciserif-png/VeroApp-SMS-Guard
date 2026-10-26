@@ -67,7 +67,7 @@
   "settingsResetModel": "Yapay zeka modelini sıfırla",
   "settingsResetModelDone": "Model fabrika eğitimine sıfırlandı.",
   "settingsAbout": "Hakkında",
-  "settingsAboutDesc": "VeroApp SMS Guard v1.0 - gizlilik öncelikli, çevrimdışı spam filtreleme.",
+  "settingsAboutDesc": "VeroApp SMS Guard v1.0 - Gizlilik öncelikli, %100 çevrimdışı yerel AI spam koruması.",
   "privacyNote": "Tüm analizler cihazınızda yerel olarak çalışır.",
   "syncedCount": "{n} yeni mesaj içe aktarıldı",
   "granted": "Verildi",
@@ -103,4 +103,8 @@
   "reportButtonLabel": "📣 Hata Bildir / AI'a Öğret",
   "reportSubmitBtn": "Bildir ve AI Modelini Eğit",
   "reportSuccessMsg": "Bildiriminiz alındı! Yerel AI modeli bu örnekle yeniden eğitildi."
+,
+  "modeTitle": "Koruma Hassasiyeti",
+  "signalApkMalware": "🚨 DİKKAT: Virüslü Uygulama Tuzağı! (.APK)",
+  "safeClickRiskApkMalware": "🚨 DİKKAT: Virüslü Uygulama Tuzağı! (.APK)"
 }

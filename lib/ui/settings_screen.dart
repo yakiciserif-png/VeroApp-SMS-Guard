@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 
 import '../app.dart';
 import '../core/localization/app_localizations.dart';
+import '../core/monetization/purchase_service.dart';
 import '../state/app_state.dart';
 import 'cyberpunk_theme.dart';
 import 'widgets.dart';
@@ -35,7 +36,7 @@ class SettingsScreen extends StatelessWidget {
       appBar: AppBar(title: Text(l.t('navSettings'))),
       body: ListView(
         children: [
-          // B) PROTECTION MODE ("Esnek / Dengeli / Sıkı") MOVED TO VERY TOP OF SETTINGS
+          // B) PROTECTION MODE ("Esnek / Dengeli / Sıkı") AT VERY TOP OF SETTINGS
           Padding(
             padding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
             child: Card(
@@ -191,7 +192,28 @@ class SettingsScreen extends StatelessWidget {
               ),
             ),
           ),
+          // 4) AİLE KORUMASI & VERO AİLE KODU + VERO PRO / AİLE PAKETLERİ (DIRECTLY ABOVE HAZIR TEHDİT KALKANLARI)
+          const Padding(
+            padding: EdgeInsets.fromLTRB(16, 14, 16, 0),
+            child: _FamilyAndProCard(),
+          ),
           header(l.t('shieldsTitle')),
+          SwitchListTile(
+            key: const Key('callGuardSwitchTile'),
+            secondary: const Icon(Icons.phone_callback_outlined),
+            title: Text(
+              isTr
+                  ? 'VERO CALL GUARD (Spam Arama Kalkanı)'
+                  : 'VERO CALL GUARD (Spam Call Shield)',
+            ),
+            subtitle: Text(
+              isTr
+                  ? 'Yurt dışı (+63, +62, +234 vb.) sahte çağrıları ve 0850 dolandırıcı aramalarını %100 çevrimdışı tespit eder.'
+                  : 'Detects foreign (+63, +62, +234) scam calls and 0850 telemarketing traps 100% offline.',
+            ),
+            value: app.callGuardEnabled,
+            onChanged: app.setCallGuardEnabled,
+          ),
           SwitchListTile(
             secondary: const Icon(Icons.casino_outlined),
             title: Text(l.t('shieldBetting')),
@@ -494,6 +516,395 @@ class SettingsScreen extends StatelessWidget {
         SnackBar(content: Text(l.t('communityImportError'))),
       );
     }
+  }
+}
+
+/// Family Protection & VERO AİLE Code + VERO PRO / AİLE Subscription & Breach Radar Card
+/// placed directly above "Hazır Tehdit Kalkanları" in SettingsScreen.
+class _FamilyAndProCard extends StatefulWidget {
+  const _FamilyAndProCard();
+
+  @override
+  State<_FamilyAndProCard> createState() => _FamilyAndProCardState();
+}
+
+class _FamilyAndProCardState extends State<_FamilyAndProCard> {
+  final _familyCodeCtrl = TextEditingController();
+  final _breachInputCtrl = TextEditingController();
+  BreachRadarResult? _breachResult;
+
+  @override
+  void dispose() {
+    _familyCodeCtrl.dispose();
+    _breachInputCtrl.dispose();
+    super.dispose();
+  }
+
+  Future<void> _onJoinFamily(AppState app, bool isTr) async {
+    final messenger = ScaffoldMessenger.of(context);
+    final ok = await app.joinFamilyWithCode(_familyCodeCtrl.text);
+    if (!mounted) return;
+    messenger.showSnackBar(
+      SnackBar(
+        content: Text(
+          ok
+              ? (isTr
+                  ? 'VERO AİLE korumasına başarıyla bağlandınız!'
+                  : 'Successfully connected to VERO FAMILY protection!')
+              : (isTr
+                  ? 'Lütfen geçerli bir 6 haneli VERO AİLE kodu girin.'
+                  : 'Please enter a valid 6-digit VERO FAMILY code.'),
+        ),
+      ),
+    );
+  }
+
+  void _onCheckBreach() {
+    final raw = _breachInputCtrl.text.trim();
+    if (raw.isEmpty) return;
+    setState(() {
+      _breachResult = VeroBreachRadarEngine.checkIdentity(raw);
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final app = AppScope.of(context);
+    final theme = Theme.of(context);
+    final purchase = app.purchaseService;
+    final isTr = Localizations.localeOf(context).languageCode == 'tr';
+
+    final tierLabel = switch (app.subscriptionTier) {
+      VeroSubscriptionTier.free => isTr ? 'ÜCRETSİZ PLAN' : 'FREE PLAN',
+      VeroSubscriptionTier.proMonthly ||
+      VeroSubscriptionTier.proYearly =>
+        'VERO PRO',
+      VeroSubscriptionTier.familyYearly => 'VERO AİLE (4/4)',
+    };
+
+    return Card(
+      key: const Key('familyProtectionCard'),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(14),
+        side: BorderSide(
+          color: CyberpunkColors.neonCyan.withValues(alpha: 0.75),
+          width: 1.3,
+        ),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(14),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Row(
+              children: [
+                const Icon(
+                  Icons.family_restroom_outlined,
+                  size: 20,
+                  color: CyberpunkColors.neonCyan,
+                ),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Text(
+                    'AİLE KORUMASI & VERO AİLE KODU',
+                    key: const Key('familyCardTitle'),
+                    style: theme.textTheme.titleSmall?.copyWith(
+                      color: CyberpunkColors.textPrimary,
+                      fontWeight: FontWeight.w800,
+                    ),
+                  ),
+                ),
+                Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                  decoration: BoxDecoration(
+                    color: app.isProOrFamily
+                        ? CyberpunkColors.successGreen.withValues(alpha: 0.16)
+                        : CyberpunkColors.neonCyan.withValues(alpha: 0.14),
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(
+                      color: app.isProOrFamily
+                          ? CyberpunkColors.successGreen
+                          : CyberpunkColors.neonCyan,
+                    ),
+                  ),
+                  child: Text(
+                    tierLabel,
+                    key: const Key('activePlanBadge'),
+                    style: theme.textTheme.labelSmall?.copyWith(
+                      color: app.isProOrFamily
+                          ? CyberpunkColors.successGreen
+                          : CyberpunkColors.neonCyan,
+                      fontWeight: FontWeight.w800,
+                      fontSize: 10,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 6),
+            Text(
+              isTr
+                  ? '4 kişilik VERO AİLE kontenjanı ile anne, baba ve çocuklarınızı tek kodla koruyun. Paket sahibi kodu paylaşır; aile üyesi 6 haneli kodu girerek anında bağlanır.'
+                  : 'Protect up to 4 family members with a single VERO FAMILY code. The owner shares the 6-digit code; family members enter it to activate instant protection.',
+              style: theme.textTheme.bodySmall?.copyWith(
+                color: CyberpunkColors.textSecondary,
+                fontWeight: FontWeight.w300,
+                fontSize: 12,
+                height: 1.35,
+              ),
+            ),
+            const SizedBox(height: 10),
+            SegmentedButton<bool>(
+              key: const Key('familyRoleToggle'),
+              showSelectedIcon: false,
+              segments: [
+                ButtonSegment<bool>(
+                  value: true,
+                  icon: const Icon(Icons.verified_user_outlined, size: 16),
+                  label: Text(
+                    isTr ? 'Paket Sahibi' : 'Plan Owner',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+                ButtonSegment<bool>(
+                  value: false,
+                  icon: const Icon(Icons.group_add_outlined, size: 16),
+                  label: Text(
+                    isTr ? 'Aile Üyesi' : 'Family Member',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+              ],
+              selected: {app.isFamilyOwner},
+              onSelectionChanged: (s) => app.setFamilyOwnerMode(s.first),
+            ),
+            const SizedBox(height: 10),
+            if (app.isFamilyOwner)
+              Container(
+                key: const Key('familyOwnerCodeBox'),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                decoration: BoxDecoration(
+                  color: CyberpunkColors.bgPrimary.withValues(alpha: 0.7),
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(
+                    color: CyberpunkColors.neonCyan.withValues(alpha: 0.55),
+                  ),
+                ),
+                child: Wrap(
+                  alignment: WrapAlignment.spaceBetween,
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  spacing: 8,
+                  runSpacing: 6,
+                  children: [
+                    Text(
+                      purchase.formattedFamilyCode,
+                      key: const Key('familyOwnerCodeText'),
+                      style: theme.textTheme.titleMedium?.copyWith(
+                        color: CyberpunkColors.neonCyan,
+                        fontWeight: FontWeight.w800,
+                        letterSpacing: 1.5,
+                      ),
+                    ),
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 8,
+                        vertical: 4,
+                      ),
+                      decoration: BoxDecoration(
+                        color: CyberpunkColors.successGreen
+                            .withValues(alpha: 0.16),
+                        borderRadius: BorderRadius.circular(8),
+                        border: Border.all(
+                          color: CyberpunkColors.successGreen
+                              .withValues(alpha: 0.7),
+                        ),
+                      ),
+                      child: Text(
+                        '${purchase.connectedFamilyMembers}/${purchase.maxFamilyMembers} Üye Bağlı',
+                        key: const Key('familyMemberQuotaBadge'),
+                        style: theme.textTheme.labelSmall?.copyWith(
+                          color: CyberpunkColors.successGreen,
+                          fontWeight: FontWeight.w800,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              )
+            else
+              Column(
+                key: const Key('familyMemberInputBox'),
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  TextField(
+                    key: const Key('familyCodeInput'),
+                    controller: _familyCodeCtrl,
+                    keyboardType: TextInputType.number,
+                    maxLength: 6,
+                    decoration: InputDecoration(
+                      counterText: '',
+                      prefixIcon: const Icon(Icons.key_outlined),
+                      hintText: isTr
+                          ? '6 Haneli Aile Kodu (Örn: 892341)'
+                          : '6-Digit Family Code (e.g. 892341)',
+                      border: const OutlineInputBorder(),
+                      isDense: true,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  FilledButton.icon(
+                    key: const Key('familyJoinButton'),
+                    onPressed: () => _onJoinFamily(app, isTr),
+                    icon: const Icon(Icons.shield_outlined, size: 18),
+                    label: const Text('Aileni Koru'),
+                  ),
+                ],
+              ),
+            const Divider(height: 22),
+            Text(
+              isTr
+                  ? 'VERO PRO & VERO AİLE PAKETLERİ (0 ms Anında Geçiş)'
+                  : 'VERO PRO & VERO FAMILY PLANS (0 ms Instant Upgrade)',
+              style: theme.textTheme.labelMedium?.copyWith(
+                color: CyberpunkColors.neonCyan,
+                fontWeight: FontWeight.w800,
+              ),
+            ),
+            const SizedBox(height: 4),
+            Text(
+              isTr
+                  ? '• VERO PRO (${VeroPlanCatalog.proMonthlyPriceText} / ${VeroPlanCatalog.proYearlyPriceText}): Safe-Click Röntgeni Plus, Veri Sızıntısı Radarı ve %100 Reklamsızlık.\n'
+                      '• VERO AİLE (${VeroPlanCatalog.familyYearlyPriceText}): Tüm Pro özellikler + 4 Cihaza kadar aile koruması.'
+                  : '• VERO PRO (${VeroPlanCatalog.proMonthlyPriceText} / ${VeroPlanCatalog.proYearlyPriceText}): Safe-Click X-Ray Plus, Data Breach Radar & 100% Ad-Free.\n'
+                      '• VERO FAMILY (${VeroPlanCatalog.familyYearlyPriceText}): All Pro features + up to 4 family devices.',
+              style: theme.textTheme.bodySmall?.copyWith(
+                color: CyberpunkColors.textSecondary,
+                fontSize: 11.5,
+                height: 1.35,
+              ),
+            ),
+            const SizedBox(height: 8),
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: [
+                FilledButton.tonalIcon(
+                  key: const Key('upgradeProButton'),
+                  onPressed: () => app.upgradeSubscription(
+                    VeroSubscriptionTier.proYearly,
+                  ),
+                  icon: const Icon(Icons.workspace_premium_outlined, size: 16),
+                  label: Text(
+                    isTr ? 'VERO PRO\'ya Geç' : 'Upgrade to VERO PRO',
+                  ),
+                ),
+                FilledButton.icon(
+                  key: const Key('upgradeFamilyButton'),
+                  onPressed: () => app.upgradeSubscription(
+                    VeroSubscriptionTier.familyYearly,
+                  ),
+                  icon: const Icon(Icons.groups_outlined, size: 16),
+                  label: Text(
+                    isTr ? 'VERO AİLE (4 Kişi)' : 'VERO FAMILY (4 Users)',
+                  ),
+                ),
+                if (app.isProOrFamily)
+                  OutlinedButton(
+                    key: const Key('downgradeFreeButton'),
+                    onPressed: () => app.upgradeSubscription(
+                      VeroSubscriptionTier.free,
+                    ),
+                    child: Text(isTr ? 'Ücretsiz Mod' : 'Free Tier'),
+                  ),
+              ],
+            ),
+            const Divider(height: 22),
+            Row(
+              children: [
+                const Icon(
+                  Icons.radar_outlined,
+                  size: 16,
+                  color: CyberpunkColors.electricViolet,
+                ),
+                const SizedBox(width: 6),
+                Expanded(
+                  child: Text(
+                    isTr
+                        ? 'Veri Sızıntısı Radarı (HaveIBeenPwned SHA-1 K-Anonim)'
+                        : 'Data Breach Radar (HaveIBeenPwned SHA-1 K-Anonymity)',
+                    style: theme.textTheme.labelMedium?.copyWith(
+                      color: CyberpunkColors.textPrimary,
+                      fontWeight: FontWeight.w800,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 6),
+            TextField(
+              key: const Key('breachRadarInput'),
+              controller: _breachInputCtrl,
+              onSubmitted: (_) => _onCheckBreach(),
+              decoration: InputDecoration(
+                prefixIcon: const Icon(Icons.alternate_email_outlined),
+                hintText: isTr
+                    ? 'E-posta veya telefon (Örn: test@ornek.com)'
+                    : 'Email or phone (e.g. test@example.com)',
+                border: const OutlineInputBorder(),
+                isDense: true,
+              ),
+            ),
+            const SizedBox(height: 8),
+            OutlinedButton.icon(
+              key: const Key('breachRadarCheckBtn'),
+              onPressed: _onCheckBreach,
+              icon: const Icon(Icons.security_outlined, size: 16),
+              label: Text(
+                isTr ? 'Sızıntı Taraması Yap' : 'Scan Data Breaches',
+              ),
+            ),
+            if (_breachResult != null) ...[
+              const SizedBox(height: 8),
+              Container(
+                key: const Key('breachRadarResultBox'),
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  color: (_breachResult!.isLeaked
+                          ? CyberpunkColors.dangerRed
+                          : CyberpunkColors.successGreen)
+                      .withValues(alpha: 0.14),
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(
+                    color: _breachResult!.isLeaked
+                        ? CyberpunkColors.dangerRed
+                        : CyberpunkColors.successGreen,
+                  ),
+                ),
+                child: Text(
+                  _breachResult!.isLeaked
+                      ? (isTr
+                          ? '🚨 UYARI (${_breachResult!.sha1Prefix}***): ${_breachResult!.breachSources.join(", ")} veri sızıntısında eşleşme bulundu!'
+                          : '🚨 ALERT (${_breachResult!.sha1Prefix}***): Found in ${_breachResult!.breachSources.join(", ")}!')
+                      : (isTr
+                          ? '✅ GÜVENLİ (${_breachResult!.sha1Prefix}***): Bilinen sızıntı veritabanlarında eşleşme bulunmadı.'
+                          : '✅ SAFE (${_breachResult!.sha1Prefix}***): No match found in known breach signatures.'),
+                  style: theme.textTheme.bodySmall?.copyWith(
+                    color: _breachResult!.isLeaked
+                        ? CyberpunkColors.dangerRed
+                        : CyberpunkColors.successGreen,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ),
+            ],
+          ],
+        ),
+      ),
+    );
   }
 }
 
