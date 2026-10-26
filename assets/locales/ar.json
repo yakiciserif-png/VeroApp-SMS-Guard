@@ -102,9 +102,13 @@
   "reportSectionTitle": "مركز الشكاوى والإبلاغ عن الأخطاء (تدريب الذكاء الاصطناعي)",
   "reportButtonLabel": "📣 الإبلاغ عن خطأ / تعليم الذكاء الاصطناعي",
   "reportSubmitBtn": "إرسال وتدريب الذكاء الاصطناعي المحلي",
-  "reportSuccessMsg": "تم استلام البلاغ! تمت إعادة تدريب نموذج الذكاء الاصطناعي المحلي."
-,
+  "reportSuccessMsg": "تم استلام البلاغ! تمت إعادة تدريب نموذج الذكاء الاصطناعي المحلي.",
   "modeTitle": "حساسية الحماية",
   "signalApkMalware": "🚨 تنبيه: فخ تطبيق خبيث (.APK)!",
-  "safeClickRiskApkMalware": "🚨 تنبيه: فخ تطبيق خبيث (.APK)!"
+  "safeClickRiskApkMalware": "🚨 تنبيه: فخ تطبيق خبيث (.APK)!",
+  "proMonthlyPrice": "39,99 TL/ay",
+  "proYearlyPrice": "299,99 TL/yıl",
+  "familyYearlyPrice": "799,99 TL/yıl (4 kişi)",
+  "proDescription": "Safe-Click أشعة إكس بلس + رادار تسرب البيانات (دون اتصال)",
+  "iosLimitedWarning": "⚠️ على نظام iOS، تكون تصفية الرسائل القصيرة محدودة بسبب قيود Apple. تعمل حماية المكالمات ورادار تسرب البيانات بالكامل."
 }

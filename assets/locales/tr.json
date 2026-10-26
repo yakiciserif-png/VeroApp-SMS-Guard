@@ -102,9 +102,13 @@
   "reportSectionTitle": "Şikayet & Hata Bildirim Merkezi (AI Eğitim)",
   "reportButtonLabel": "📣 Hata Bildir / AI'a Öğret",
   "reportSubmitBtn": "Bildir ve AI Modelini Eğit",
-  "reportSuccessMsg": "Bildiriminiz alındı! Yerel AI modeli bu örnekle yeniden eğitildi."
-,
+  "reportSuccessMsg": "Bildiriminiz alındı! Yerel AI modeli bu örnekle yeniden eğitildi.",
   "modeTitle": "Koruma Hassasiyeti",
   "signalApkMalware": "🚨 DİKKAT: Virüslü Uygulama Tuzağı! (.APK)",
-  "safeClickRiskApkMalware": "🚨 DİKKAT: Virüslü Uygulama Tuzağı! (.APK)"
+  "safeClickRiskApkMalware": "🚨 DİKKAT: Virüslü Uygulama Tuzağı! (.APK)",
+  "proMonthlyPrice": "39,99 TL/ay",
+  "proYearlyPrice": "299,99 TL/yıl",
+  "familyYearlyPrice": "799,99 TL/yıl (4 kişi)",
+  "proDescription": "Safe-Click Röntgeni Plus + Veri Sızıntısı Radarı (Offline)",
+  "iosLimitedWarning": "⚠️ iOS'ta Apple kısıtlamaları nedeniyle SMS filtreleme sınırlıdır. Arama koruması ve Veri Sızıntısı Radarı tam çalışır."
 }

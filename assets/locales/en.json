@@ -102,9 +102,13 @@
   "reportSectionTitle": "Complaint & False-Positive Report Center",
   "reportButtonLabel": "📣 Report Error / Teach AI",
   "reportSubmitBtn": "Submit & Train Local AI",
-  "reportSuccessMsg": "Report received! The on-device AI model has been retrained."
-,
+  "reportSuccessMsg": "Report received! The on-device AI model has been retrained.",
   "modeTitle": "Protection Sensitivity",
   "signalApkMalware": "🚨 WARNING: Malicious App Trap! (.APK)",
-  "safeClickRiskApkMalware": "🚨 WARNING: Malicious App Trap! (.APK)"
+  "safeClickRiskApkMalware": "🚨 WARNING: Malicious App Trap! (.APK)",
+  "proMonthlyPrice": "39,99 TL/ay",
+  "proYearlyPrice": "299,99 TL/yıl",
+  "familyYearlyPrice": "799,99 TL/yıl (4 kişi)",
+  "proDescription": "Safe-Click X-Ray Plus + Data Breach Radar (Offline)",
+  "iosLimitedWarning": "⚠️ On iOS, SMS filtering is limited due to Apple restrictions. Call protection and Offline Data Breach Radar work in full."
 }

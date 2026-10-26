@@ -254,7 +254,7 @@ void main() {
     expect(tester.takeException(), isNull);
   });
 
-  testWidgets('Master Architecture Seal: Book Antiqua font, Call Guard, APK Sensor, 50px AdMob Banner & VERO AİLE 4-Member Code Card at 320x568', (tester) async {
+  testWidgets('Master Architecture Seal: Book Antiqua font, Call Guard, APK Sensor, 100% Ad-Free & VERO AİLE 4-Member Code Card at 320x568', (tester) async {
     tester.view.physicalSize = const Size(320, 568);
     tester.view.devicePixelRatio = 1.0;
     addTearDown(() {
@@ -262,13 +262,14 @@ void main() {
       tester.view.resetDevicePixelRatio();
     });
 
-    // 1) Verify Book Antiqua typography, Offline 1.5 MB Bloom Filter & Call Guard / APK Sensor engines
+    // 1) Verify Book Antiqua typography, Offline 6.25 MB (50M bits) Bloom Filter & Call Guard / APK Sensor engines
     expect(CyberpunkTheme.fontFamily, equals('Book Antiqua'));
     expect(File('assets/fonts/BookAntiqua-Regular.ttf').existsSync(), isTrue);
     expect(File('assets/fonts/BookAntiqua-Bold.ttf').existsSync(), isTrue);
     final bloomBinFile = File('assets/breach_db/bloom_filter.bin');
     expect(bloomBinFile.existsSync(), isTrue);
-    expect(bloomBinFile.lengthSync(), equals(1572864)); // 1.50 MB (12.58M bits)
+    expect(VeroBloomFilter.kSize, equals(50000000));
+    expect(bloomBinFile.lengthSync(), equals(6250000)); // 6.25 MB (50M bits)
     final loadedBloom = VeroBloomFilter.fromBytes(bloomBinFile.readAsBytesSync());
     expect(loadedBloom.contains('rockyou'), isTrue);
     expect(loadedBloom.contains('princess'), isTrue);
@@ -304,8 +305,8 @@ void main() {
     await tester.pumpWidget(VeroAppSmsGuardApp(state: state));
     await tester.pumpAndSettle();
 
-    // 2) Free Tier: 50px AdMob bottom banner is visible
-    expect(find.byKey(const Key('adMobAdaptiveBanner')), findsOneWidget);
+    // 2) AdMob banner is completely removed (100% Privacy Consistency)
+    expect(find.byKey(const Key('adMobAdaptiveBanner')), findsNothing);
 
     // 3) Navigate to Settings -> verify "Koruma Hassasiyeti" and "AİLE KORUMASI & VERO AİLE KODU"
     await tester.tap(find.byIcon(Icons.settings_outlined));
@@ -334,10 +335,214 @@ void main() {
     expect(find.byKey(const Key('familyCodeInput')), findsOneWidget);
     expect(find.text('Aileni Koru'), findsOneWidget);
 
-    // Upgrade to VERO AİLE in 0 ms -> AdMob banner disappears immediately
     await state.upgradeSubscription(VeroSubscriptionTier.familyYearly);
     await tester.pumpAndSettle();
     expect(find.byKey(const Key('adMobAdaptiveBanner')), findsNothing);
     expect(tester.takeException(), isNull);
+  });
+
+  group('FAZA 1 — Temel Güçlendirme (10 Adım) Doğrulama Testleri', () {
+    test('FAZA 1 [Adım 1]: Fiyat güncellemesi (39,99 TL/ay, 299,99 TL/yıl, 799,99 TL/yıl) doğrulaması', () {
+      expect(VeroPlanCatalog.proMonthlyPriceTr, equals('39,99 TL/ay'));
+      expect(VeroPlanCatalog.proYearlyPriceTr, equals('299,99 TL/yıl'));
+      expect(VeroPlanCatalog.familyYearlyPriceTr, equals('799,99 TL/yıl (4 kişi)'));
+      expect(
+        VeroPlanCatalog.proDescriptionTr,
+        equals('Safe-Click Röntgeni Plus + Veri Sızıntısı Radarı (Offline)'),
+      );
+      expect(VeroPlanCatalog.proDescriptionTr.toLowerCase().contains('reklamsız'), isFalse);
+    });
+
+    test('FAZA 1 [Adım 2]: AdMob tamamen kaldırıldı ve pubspec.yaml içinde google_mobile_ads yok', () {
+      final pubspec = File('pubspec.yaml').readAsStringSync();
+      expect(pubspec.contains('google_mobile_ads'), isFalse);
+      final manifest = File('android/app/src/main/AndroidManifest.xml').readAsStringSync();
+      expect(manifest.contains('android.permission.INTERNET'), isFalse);
+      expect(manifest.contains('com.google.android.gms.ads'), isFalse);
+    });
+
+    test('FAZA 1 [Adım 3]: Offline Caller ID (spam_numbers.bin) 50.000 kayıt ve <0.1ms binary search', () {
+      final spamBin = File('assets/spam_db/spam_numbers.bin');
+      expect(spamBin.existsSync(), isTrue);
+      final bytes = spamBin.readAsBytesSync();
+      expect(bytes.length, equals(400000)); // 50,000 * 8 bytes = 400 KB (390.62 KB)
+      VeroCallerIdEngine.loadFromBytes(bytes);
+      expect(VeroCallerIdEngine.recordCount, equals(50000));
+
+      final sw = Stopwatch()..start();
+      for (var i = 0; i < 100; i++) {
+        VeroCallerIdEngine.lookup('0850 480 00 15');
+      }
+      sw.stop();
+      final avgMs = sw.elapsedMicroseconds / 1000.0 / 100.0;
+      expect(avgMs, lessThan(0.1));
+
+      expect(VeroCallerIdEngine.lookup('0850 480 00 15').category, equals(SpamCallerCategory.telesales));
+      expect(VeroCallerIdEngine.lookup('0850 532 00 42').category, equals(SpamCallerCategory.scam));
+      expect(VeroCallerIdEngine.lookup('0212 901 00 25').category, equals(SpamCallerCategory.robocall));
+      expect(VeroCallerIdEngine.lookup('+234 803 000 0010').category, equals(SpamCallerCategory.scam));
+      expect(VeroCallerIdEngine.lookup('4440000').isSpam, isFalse);
+    });
+
+    test('FAZA 1 [Adım 4]: VeroCallGuardEngine Caller ID entegrasyonu ve spam kategori uyarısı', () {
+      final resScam = VeroCallGuardEngine.inspectNumber('0850 532 00 10');
+      expect(resScam.isSuspicious, isTrue);
+      expect(
+        resScam.warningTitleTr,
+        equals('🚨 Bu numara spam olarak işaretlendi: SPAM_SCAM'),
+      );
+
+      final resRobocall = VeroCallGuardEngine.inspectNumber('0212 901 00 10');
+      expect(resRobocall.isSuspicious, isTrue);
+      expect(
+        resRobocall.warningTitleTr,
+        equals('🚨 Bu numara spam olarak işaretlendi: SPAM_ROBOCALL'),
+      );
+
+      final resTelesales = VeroCallGuardEngine.inspectNumber('0850 480 99 88');
+      expect(resTelesales.isSuspicious, isTrue);
+      expect(
+        resTelesales.warningTitleTr,
+        equals('🚨 Bu numara spam olarak işaretlendi: SPAM_TELESALES'),
+      );
+    });
+
+    test('FAZA 1 [Adım 5]: VeroCommunityShield yerel numara bildirme, anında aktifleşme ve silme', () async {
+      SharedPreferences.setMockInitialValues({});
+      await VeroCommunityShield.clearAll();
+      expect(VeroCommunityShield.reportedCount, equals(0));
+
+      const customPhone = '+90 555 987 65 43';
+      expect(VeroCallerIdEngine.lookup(customPhone).isSpam, isFalse);
+
+      await VeroCommunityShield.reportNumber(customPhone, category: SpamCallerCategory.scam);
+      expect(VeroCommunityShield.reportedCount, equals(1));
+
+      final lookupAfter = VeroCallerIdEngine.lookup(customPhone);
+      expect(lookupAfter.isSpam, isTrue);
+      expect(lookupAfter.fromCommunityShield, isTrue);
+      expect(lookupAfter.category, equals(SpamCallerCategory.scam));
+
+      await VeroCommunityShield.clearAll();
+      expect(VeroCommunityShield.reportedCount, equals(0));
+      expect(VeroCallerIdEngine.lookup(customPhone).isSpam, isFalse);
+    });
+
+    test('FAZA 1 [Adım 6]: Bloom Filter 5M SHA-1 (50.000.000 bit = 6.25 MB) kapasite ve doğruluk testi', () {
+      expect(VeroBloomFilter.kSize, equals(50000000));
+      expect(VeroBloomFilter.defaultByteLength, equals(6250000));
+      final bin = File('assets/breach_db/bloom_filter.bin');
+      expect(bin.existsSync(), isTrue);
+      expect(bin.lengthSync(), equals(6250000));
+
+      final filter = VeroBloomFilter.fromBytes(bin.readAsBytesSync());
+      expect(filter.bitLength, equals(50000000));
+      expect(filter.contains('123456'), isTrue);
+      expect(filter.contains('password'), isTrue);
+      expect(filter.contains('fenerbahce100'), isTrue);
+      expect(filter.contains('besiktas2500'), isTrue);
+      expect(filter.contains('ultra_safe_nonexistent_secret_2026_!@#'), isFalse);
+    });
+
+    testWidgets('FAZA 1 [Adım 7]: iOS Dürüstlük Modu uyarısı ve Community Shield sayaç/silme UI kontrolü', (tester) async {
+      tester.view.physicalSize = const Size(320, 568);
+      tester.view.devicePixelRatio = 1.0;
+      addTearDown(() {
+        tester.view.resetPhysicalSize();
+        tester.view.resetDevicePixelRatio();
+      });
+
+      SharedPreferences.setMockInitialValues({});
+      await VeroCommunityShield.clearAll();
+      final corpusJson = File('assets/model/seed_corpus.json').readAsStringSync();
+      final state = AppState(
+        bridge: const NativeBridge(enabled: false),
+        seedLoader: () async => corpusJson,
+      );
+      await state.init();
+      await state.setLocale(const Locale('tr'));
+      await state.reportSpamPhoneNumber('0850 333 44 55');
+      expect(state.reportedCommunityNumbersCount, equals(1));
+
+      await tester.pumpWidget(VeroAppSmsGuardApp(state: state));
+      await tester.pumpAndSettle();
+
+      await tester.tap(find.byIcon(Icons.settings_outlined));
+      await tester.pumpAndSettle();
+
+      final settingsScrollable = find.byType(Scrollable).first;
+      await tester.scrollUntilVisible(
+        find.byKey(const Key('iosLimitedProtectionBanner')),
+        120,
+        scrollable: settingsScrollable,
+      );
+      expect(find.byKey(const Key('iosLimitedProtectionBanner')), findsOneWidget);
+
+      await tester.scrollUntilVisible(
+        find.byKey(const Key('communityReportedCountText')),
+        120,
+        scrollable: settingsScrollable,
+      );
+      expect(find.text('Kaç numara bildirdin: 1'), findsOneWidget);
+      expect(find.byKey(const Key('clearCommunityNumbersBtn')), findsOneWidget);
+
+      await state.clearReportedSpamPhoneNumbers();
+      await tester.pumpAndSettle();
+      expect(find.text('Kaç numara bildirdin: 0'), findsOneWidget);
+      expect(tester.takeException(), isNull);
+    });
+
+    test('FAZA 1 [Adım 8]: Smart Inbox 4 klasörleme (Finans, Kargo, Kişisel, Spam) doğrulaması', () async {
+      SharedPreferences.setMockInitialValues({});
+      final corpusJson = File('assets/model/seed_corpus.json').readAsStringSync();
+      final state = AppState(
+        bridge: const NativeBridge(enabled: false),
+        seedLoader: () async => corpusJson,
+      );
+      await state.init();
+
+      final fin = state.analyze('Ziraat Bankası giriş doğrulama kodunuz: 482910', sender: 'ZIRAAT');
+      final del = state.analyze('Yurtiçi Kargo gönderiniz bugün dağıtıma çıkarılmıştır, kuryemiz yoldadır.', sender: 'YURTICI');
+      final per = state.analyze('Akşam yemeğe geliyor musun kardeşim?', sender: '+905321112233');
+      final spm = state.analyze('1000 TL deneme bonusu kazandınız hemen tıkla bit.ly/bahis', sender: '+639170001122');
+
+      expect(state.folderForEntry(fin), equals(SmartInboxFolder.finance));
+      expect(state.folderForEntry(del), equals(SmartInboxFolder.deliveryAppointment));
+      expect(state.folderForEntry(per), equals(SmartInboxFolder.personalChat));
+      expect(state.folderForEntry(spm), equals(SmartInboxFolder.spam));
+    });
+
+    test('FAZA 1 [Adım 9A]: PurchaseService plan geçişleri ve 6 haneli aile kodu doğrulaması', () {
+      final svc = PurchaseService();
+      expect(svc.isProOrFamily, isFalse);
+      expect(svc.formattedFamilyCode, equals('8 9 2  3 4 1'));
+
+      svc.upgradeTo(VeroSubscriptionTier.proMonthly);
+      expect(svc.isProOrFamily, isTrue);
+
+      svc.upgradeTo(VeroSubscriptionTier.free);
+      expect(svc.isProOrFamily, isFalse);
+
+      expect(svc.joinFamilyWithCode('123456'), isTrue);
+      expect(svc.isProOrFamily, isTrue);
+      expect(svc.isFamilyMember, isTrue);
+      expect(svc.formattedFamilyCode, equals('1 2 3  4 5 6'));
+    });
+
+    test('FAZA 1 [Adım 9B]: Yasaklı marka ve dış servis kelimeleri (Junkman, TrustLens, HaveIBeenPwned) sıfır kontrolü', () {
+      final prohibited = [
+        '${'junk'}${'man'}',
+        '${'trust'}${'lens'}',
+        '${'haveibeen'}${'pwned'}',
+      ];
+      final pubspec = File('pubspec.yaml').readAsStringSync().toLowerCase();
+      final settingsUi = File('lib/ui/settings_screen.dart').readAsStringSync().toLowerCase();
+      final purchaseCode = File('lib/core/monetization/purchase_service.dart').readAsStringSync().toLowerCase();
+      for (final word in prohibited) {
+        expect(pubspec.contains(word), isFalse);
+        expect(settingsUi.contains(word), isFalse);
+        expect(purchaseCode.contains(word), isFalse);
+      }
+    });
   });
 }

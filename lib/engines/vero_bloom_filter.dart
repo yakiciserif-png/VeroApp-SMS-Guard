@@ -13,8 +13,9 @@ class VeroBloomFilter {
     Uint8List? bytes,
   }) : _bits = bytes ?? Uint8List(byteLength);
 
-  /// 1.5 MB (1,572,864 bytes = 12,582,912 bits) Bloom Filter capacity for 500,000+ entries.
-  static const int defaultByteLength = 1572864;
+  /// 50,000,000 bits (~6.25 MB = 6,250,000 bytes) Bloom Filter capacity for 5,000,000+ SHA-1 entries.
+  static const int kSize = 50000000;
+  static const int defaultByteLength = kSize ~/ 8; // 6,250,000 bytes (~6.25 MB)
   static const int defaultHashCount = 7;
 
   /// Core seed identities always included alongside the 500,000 rockyou/breach records.

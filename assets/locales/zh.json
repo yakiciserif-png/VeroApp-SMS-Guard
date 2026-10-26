@@ -102,9 +102,13 @@
   "reportSectionTitle": "误报反馈与本地AI训练中心",
   "reportButtonLabel": "📣 报告错误 / 训练AI",
   "reportSubmitBtn": "提交并训练本地AI",
-  "reportSuccessMsg": "反馈已收到！本地AI模型已根据此样本完成训练。"
-,
+  "reportSuccessMsg": "反馈已收到！本地AI模型已根据此样本完成训练。",
   "modeTitle": "保护灵敏度",
   "signalApkMalware": "🚨 注意：恶意软件安装陷阱 (.APK)！",
-  "safeClickRiskApkMalware": "🚨 注意：恶意软件安装陷阱 (.APK)！"
+  "safeClickRiskApkMalware": "🚨 注意：恶意软件安装陷阱 (.APK)！",
+  "proMonthlyPrice": "39,99 TL/ay",
+  "proYearlyPrice": "299,99 TL/yıl",
+  "familyYearlyPrice": "799,99 TL/yıl (4 kişi)",
+  "proDescription": "Safe-Click 透视增强版 + 离线数据泄露雷达 (Offline)",
+  "iosLimitedWarning": "⚠️ 在 iOS 上，由于 Apple 限制，短信过滤功能受限。来电防护与离线数据泄露雷达可完整运行。"
 }

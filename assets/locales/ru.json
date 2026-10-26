@@ -102,9 +102,13 @@
   "reportSectionTitle": "Центр жалоб и обучения ИИ",
   "reportButtonLabel": "📣 Сообщить об ошибке / Обучить ИИ",
   "reportSubmitBtn": "Отправить и обучить локальный ИИ",
-  "reportSuccessMsg": "Отчет принят! Локальная модель ИИ переобучена."
-,
+  "reportSuccessMsg": "Отчет принят! Локальная модель ИИ переобучена.",
   "modeTitle": "Чувствительность Защиты",
   "signalApkMalware": "🚨 ВНИМАНИЕ: Ловушка с вредоносным .APK!",
-  "safeClickRiskApkMalware": "🚨 ВНИМАНИЕ: Ловушка с вредоносным .APK!"
+  "safeClickRiskApkMalware": "🚨 ВНИМАНИЕ: Ловушка с вредоносным .APK!",
+  "proMonthlyPrice": "39,99 TL/ay",
+  "proYearlyPrice": "299,99 TL/yıl",
+  "familyYearlyPrice": "799,99 TL/yıl (4 kişi)",
+  "proDescription": "Safe-Click Рентген Плюс + Радар Утечек Данных (Офлайн)",
+  "iosLimitedWarning": "⚠️ На iOS фильтрация SMS ограничена из-за правил Apple. Защита звонков и Офлайн-радар утечек работают полностью."
 }

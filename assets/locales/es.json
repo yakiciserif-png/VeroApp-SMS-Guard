@@ -102,9 +102,13 @@
   "reportSectionTitle": "Centro de Reporte de Errores (Entrenar IA)",
   "reportButtonLabel": "📣 Reportar Error / Enseñar a la IA",
   "reportSubmitBtn": "Enviar y Entrenar IA Local",
-  "reportSuccessMsg": "¡Reporte recibido! El modelo de IA local ha sido reentrenado."
-,
+  "reportSuccessMsg": "¡Reporte recibido! El modelo de IA local ha sido reentrenado.",
   "modeTitle": "Sensibilidad de Protección",
   "signalApkMalware": "🚨 ATENCIÓN: ¡Trampa de aplicación maliciosa (.APK)!",
-  "safeClickRiskApkMalware": "🚨 ATENCIÓN: ¡Trampa de aplicación maliciosa (.APK)!"
+  "safeClickRiskApkMalware": "🚨 ATENCIÓN: ¡Trampa de aplicación maliciosa (.APK)!",
+  "proMonthlyPrice": "39,99 TL/ay",
+  "proYearlyPrice": "299,99 TL/yıl",
+  "familyYearlyPrice": "799,99 TL/yıl (4 kişi)",
+  "proDescription": "Safe-Click Rayos X Plus + Radar de Filtraciones (Offline)",
+  "iosLimitedWarning": "⚠️ En iOS, el filtrado de SMS es limitado debido a restricciones de Apple. La protección de llamadas y el Radar de Filtraciones funcionan completamente."
 }

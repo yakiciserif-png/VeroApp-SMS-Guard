@@ -102,9 +102,13 @@
   "reportSectionTitle": "Central de Denúncias e Erros (Treinar IA)",
   "reportButtonLabel": "📣 Relatar Erro / Ensinar IA",
   "reportSubmitBtn": "Enviar e Treinar IA Local",
-  "reportSuccessMsg": "Relato recebido! O modelo de IA local foi retreinado."
-,
+  "reportSuccessMsg": "Relato recebido! O modelo de IA local foi retreinado.",
   "modeTitle": "Sensibilidade de Proteção",
   "signalApkMalware": "🚨 ATENÇÃO: Armadilha de Aplicativo Malicioso (.APK)!",
-  "safeClickRiskApkMalware": "🚨 ATENÇÃO: Armadilha de Aplicativo Malicioso (.APK)!"
+  "safeClickRiskApkMalware": "🚨 ATENÇÃO: Armadilha de Aplicativo Malicioso (.APK)!",
+  "proMonthlyPrice": "39,99 TL/ay",
+  "proYearlyPrice": "299,99 TL/yıl",
+  "familyYearlyPrice": "799,99 TL/yıl (4 kişi)",
+  "proDescription": "Safe-Click Raio-X Plus + Radar de Vazamento de Dados (Offline)",
+  "iosLimitedWarning": "⚠️ No iOS, a filtragem de SMS é limitada devido às restrições da Apple. A proteção de chamadas e o Radar de Vazamento funcionam totalmente."
 }

@@ -1027,6 +1027,22 @@ class _ResultCard extends StatelessWidget {
                   onPressed: () =>
                       ReportFalsePositiveSheet.show(context, entry: entry),
                 ),
+                OutlinedButton.icon(
+                  key: const Key('reportSpamCallBtn'),
+                  icon: const Icon(Icons.phone_missed_outlined, size: 16),
+                  label: const Text('Bu numarayı spam olarak bildir'),
+                  onPressed: () async {
+                    final messenger = ScaffoldMessenger.of(context);
+                    await app.reportSpamPhoneNumber(targetItem);
+                    messenger.showSnackBar(
+                      const SnackBar(
+                        content: Text(
+                          'Numara yerel Topluluk Kalkanı (Community Shield) veritabanına eklendi.',
+                        ),
+                      ),
+                    );
+                  },
+                ),
               ],
             ),
             const Divider(height: 24),

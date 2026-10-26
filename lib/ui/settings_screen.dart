@@ -1,3 +1,6 @@
+import 'dart:io' show Platform;
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -287,12 +290,35 @@ class SettingsScreen extends StatelessWidget {
               value: app.autoDismissSpam,
               onChanged: app.setAutoDismiss,
             ),
-          ] else
+          ] else ...[
+            if (Platform.isIOS || defaultTargetPlatform == TargetPlatform.iOS || !app.bridge.isAndroid)
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+                child: Container(
+                  key: const Key('iosLimitedProtectionBanner'),
+                  padding: const EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    color: CyberpunkColors.warningAmber.withValues(alpha: 0.14),
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(
+                      color: CyberpunkColors.warningAmber.withValues(alpha: 0.75),
+                    ),
+                  ),
+                  child: Text(
+                    l.t('iosLimitedWarning'),
+                    style: theme.textTheme.bodySmall?.copyWith(
+                      color: CyberpunkColors.warningAmber,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ),
+              ),
             ListTile(
               leading: const Icon(Icons.sms_failed_outlined),
               title: Text(l.t('settingsIosGuide')),
               subtitle: Text(l.t('settingsIosGuideDesc')),
             ),
+          ],
           ListTile(
             leading: const Icon(Icons.restart_alt),
             title: Text(l.t('settingsResetModel')),
@@ -339,11 +365,44 @@ class SettingsScreen extends StatelessWidget {
                       l.t('communityShieldDesc'),
                       style: theme.textTheme.bodySmall,
                     ),
+                    const SizedBox(height: 8),
+                    Text(
+                      isTr
+                          ? 'Kaç numara bildirdin: ${app.reportedCommunityNumbersCount}'
+                          : 'Reported numbers count: ${app.reportedCommunityNumbersCount}',
+                      key: const Key('communityReportedCountText'),
+                      style: theme.textTheme.labelMedium?.copyWith(
+                        color: CyberpunkColors.neonCyan,
+                        fontWeight: FontWeight.w800,
+                      ),
+                    ),
                     const SizedBox(height: 10),
                     Wrap(
                       spacing: 8,
                       runSpacing: 8,
                       children: [
+                        OutlinedButton.icon(
+                          key: const Key('clearCommunityNumbersBtn'),
+                          onPressed: () async {
+                            final messenger = ScaffoldMessenger.of(context);
+                            await app.clearReportedSpamPhoneNumbers();
+                            messenger.showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  isTr
+                                      ? 'Bildirilen numaralar yerel veritabanından silindi.'
+                                      : 'Reported numbers cleared from local database.',
+                                ),
+                              ),
+                            );
+                          },
+                          icon: const Icon(Icons.delete_outline, size: 18),
+                          label: Text(
+                            isTr
+                                ? 'Bildirilen numaraları sil'
+                                : 'Clear reported numbers',
+                          ),
+                        ),
                         FilledButton.tonalIcon(
                           key: const Key('exportCommunityShieldBtn'),
                           onPressed: () {
@@ -777,9 +836,9 @@ class _FamilyAndProCardState extends State<_FamilyAndProCard> {
             const SizedBox(height: 4),
             Text(
               isTr
-                  ? '• VERO PRO (${VeroPlanCatalog.proMonthlyPriceText} / ${VeroPlanCatalog.proYearlyPriceText}): Safe-Click Röntgeni Plus, Veri Sızıntısı Radarı ve %100 Reklamsızlık.\n'
+                  ? '• VERO PRO (${VeroPlanCatalog.proMonthlyPriceText} / ${VeroPlanCatalog.proYearlyPriceText}): ${VeroPlanCatalog.proDescriptionTr}\n'
                       '• VERO AİLE (${VeroPlanCatalog.familyYearlyPriceText}): Tüm Pro özellikler + 4 Cihaza kadar aile koruması.'
-                  : '• VERO PRO (${VeroPlanCatalog.proMonthlyPriceText} / ${VeroPlanCatalog.proYearlyPriceText}): Safe-Click X-Ray Plus, Data Breach Radar & 100% Ad-Free.\n'
+                  : '• VERO PRO (${VeroPlanCatalog.proMonthlyPriceText} / ${VeroPlanCatalog.proYearlyPriceText}): ${VeroPlanCatalog.proDescriptionEn}\n'
                       '• VERO FAMILY (${VeroPlanCatalog.familyYearlyPriceText}): All Pro features + up to 4 family devices.',
               style: theme.textTheme.bodySmall?.copyWith(
                 color: CyberpunkColors.textSecondary,

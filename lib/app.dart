@@ -169,8 +169,6 @@ class _RootShellState extends State<RootShell> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
     final l = AppLocalizations.of(context);
-    final app = AppScope.of(context);
-    final isTr = Localizations.localeOf(context).languageCode == 'tr';
 
     return Scaffold(
       body: IndexedStack(
@@ -182,112 +180,36 @@ class _RootShellState extends State<RootShell> with WidgetsBindingObserver {
           SettingsScreen(),
         ],
       ),
-      bottomNavigationBar: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          if (!app.isProOrFamily)
-            Container(
-              key: const Key('adMobAdaptiveBanner'),
-              height: 50,
-              width: double.infinity,
-              padding: const EdgeInsets.symmetric(horizontal: 12),
-              decoration: const BoxDecoration(
-                color: Color(0xFF0E1424),
-                border: Border(
-                  top: BorderSide(color: CyberpunkColors.borderSubtle, width: 1),
-                ),
-              ),
-              child: Row(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 5,
-                      vertical: 2,
-                    ),
-                    decoration: BoxDecoration(
-                      color: CyberpunkColors.neonCyan.withValues(alpha: 0.16),
-                      borderRadius: BorderRadius.circular(4),
-                      border: Border.all(
-                        color: CyberpunkColors.neonCyan.withValues(alpha: 0.5),
-                      ),
-                    ),
-                    child: const Text(
-                      'AdMob',
-                      style: TextStyle(
-                        color: CyberpunkColors.neonCyan,
-                        fontSize: 10,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  Expanded(
-                    child: Text(
-                      isTr
-                          ? 'VERO PRO & AİLE ile %100 Reklamsız Koruma + Sızıntı Radarı'
-                          : 'Upgrade to VERO PRO & FAMILY for 100% Ad-Free Protection',
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                        color: CyberpunkColors.textSecondary,
-                        fontSize: 11,
-                        fontWeight: FontWeight.w300,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 6),
-                  TextButton(
-                    key: const Key('bannerUpgradeProBtn'),
-                    style: TextButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(horizontal: 8),
-                      minimumSize: const Size(0, 28),
-                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    ),
-                    onPressed: () => setState(() => _index = 3),
-                    child: const Text(
-                      'PRO',
-                      style: TextStyle(
-                        color: CyberpunkColors.neonCyan,
-                        fontSize: 11,
-                        fontWeight: FontWeight.w800,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          Container(
-            decoration: const BoxDecoration(
-              border: Border(
-                top: BorderSide(color: CyberpunkColors.borderSubtle, width: 1),
-              ),
-            ),
-            child: NavigationBar(
-              selectedIndex: _index,
-              onDestinationSelected: (i) => setState(() => _index = i),
-              destinations: [
-                NavigationDestination(
-                  icon: const Icon(Icons.shield_outlined),
-                  selectedIcon: const Icon(Icons.shield),
-                  label: l.t('navHome'),
-                ),
-                NavigationDestination(
-                  icon: const Icon(Icons.history),
-                  label: l.t('navHistory'),
-                ),
-                NavigationDestination(
-                  icon: const Icon(Icons.rule),
-                  label: l.t('navRules'),
-                ),
-                NavigationDestination(
-                  icon: const Icon(Icons.settings_outlined),
-                  selectedIcon: const Icon(Icons.settings),
-                  label: l.t('navSettings'),
-                ),
-              ],
-            ),
+      bottomNavigationBar: Container(
+        decoration: const BoxDecoration(
+          border: Border(
+            top: BorderSide(color: CyberpunkColors.borderSubtle, width: 1),
           ),
-        ],
+        ),
+        child: NavigationBar(
+          selectedIndex: _index,
+          onDestinationSelected: (i) => setState(() => _index = i),
+          destinations: [
+            NavigationDestination(
+              icon: const Icon(Icons.shield_outlined),
+              selectedIcon: const Icon(Icons.shield),
+              label: l.t('navHome'),
+            ),
+            NavigationDestination(
+              icon: const Icon(Icons.history),
+              label: l.t('navHistory'),
+            ),
+            NavigationDestination(
+              icon: const Icon(Icons.rule),
+              label: l.t('navRules'),
+            ),
+            NavigationDestination(
+              icon: const Icon(Icons.settings_outlined),
+              selectedIcon: const Icon(Icons.settings),
+              label: l.t('navSettings'),
+            ),
+          ],
+        ),
       ),
     );
   }

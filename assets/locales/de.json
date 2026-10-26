@@ -102,9 +102,13 @@
   "reportSectionTitle": "Beschwerde- & Fehlalarm-Zentrum (KI-Training)",
   "reportButtonLabel": "📣 Fehler melden / KI trainieren",
   "reportSubmitBtn": "Melden & Lokale KI trainieren",
-  "reportSuccessMsg": "Meldung erhalten! Das lokale KI-Modell wurde neu trainiert."
-,
+  "reportSuccessMsg": "Meldung erhalten! Das lokale KI-Modell wurde neu trainiert.",
   "modeTitle": "Schutzempfindlichkeit",
   "signalApkMalware": "🚨 ACHTUNG: Schädliche APK-App-Falle!",
-  "safeClickRiskApkMalware": "🚨 ACHTUNG: Schädliche APK-App-Falle!"
+  "safeClickRiskApkMalware": "🚨 ACHTUNG: Schädliche APK-App-Falle!",
+  "proMonthlyPrice": "39,99 TL/ay",
+  "proYearlyPrice": "299,99 TL/yıl",
+  "familyYearlyPrice": "799,99 TL/yıl (4 kişi)",
+  "proDescription": "Safe-Click Röntgen Plus + Datenleck-Radar (Offline)",
+  "iosLimitedWarning": "⚠️ Unter iOS ist die SMS-Filterung aufgrund von Apple-Einschränkungen begrenzt. Anrufschutz und Offline-Datenleck-Radar funktionieren vollständig."
 }

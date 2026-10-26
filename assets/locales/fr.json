@@ -102,9 +102,13 @@
   "reportSectionTitle": "Centre de Signalement (Entraînement IA)",
   "reportButtonLabel": "📣 Signaler / Entraîner l'IA",
   "reportSubmitBtn": "Envoyer & Entraîner l'IA Locale",
-  "reportSuccessMsg": "Signalement reçu ! Le modèle IA local a été réentraîné."
-,
+  "reportSuccessMsg": "Signalement reçu ! Le modèle IA local a été réentraîné.",
   "modeTitle": "Sensibilité de Protection",
   "signalApkMalware": "🚨 ATTENTION : Piège d'application malveillante (.APK) !",
-  "safeClickRiskApkMalware": "🚨 ATTENTION : Piège d'application malveillante (.APK) !"
+  "safeClickRiskApkMalware": "🚨 ATTENTION : Piège d'application malveillante (.APK) !",
+  "proMonthlyPrice": "39,99 TL/ay",
+  "proYearlyPrice": "299,99 TL/yıl",
+  "familyYearlyPrice": "799,99 TL/yıl (4 kişi)",
+  "proDescription": "Safe-Click Rayons X Plus + Radar de Fuite de Données (Hors ligne)",
+  "iosLimitedWarning": "⚠️ Sur iOS, le filtrage SMS est limité en raison des restrictions d'Apple. La protection des appels et le Radar de Fuite de Données fonctionnent pleinement."
 }

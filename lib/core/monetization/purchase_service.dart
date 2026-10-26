@@ -1,7 +1,7 @@
 export '../../engines/vero_bloom_filter.dart';
 export '../../engines/vero_breach_radar_engine.dart';
 
-/// VERO PRO & VERO AİLE (4 Kişilik Kontenjan) Offline Subscription & Plan Service.
+/// [ADIM 1] VERO PRO & VERO AİLE (4 Kişilik Kontenjan) Offline Subscription & Plan Service.
 enum VeroSubscriptionTier {
   free,
   proMonthly,
@@ -12,17 +12,22 @@ enum VeroSubscriptionTier {
 class VeroPlanCatalog {
   const VeroPlanCatalog._();
 
-  static const String proMonthlyPriceTr = '149,99 TL / Ay';
-  static const String proYearlyPriceTr = '1.199,99 TL / Yıl';
-  static const String familyYearlyPriceTr = '3.600 TL / Yıl (4 Kişilik Kontenjan)';
+  static const String proMonthlyPriceTr = '39,99 TL/ay';
+  static const String proYearlyPriceTr = '299,99 TL/yıl';
+  static const String familyYearlyPriceTr = '799,99 TL/yıl (4 kişi)';
 
-  static const String proMonthlyPriceEn = '149.99 TL / Month';
-  static const String proYearlyPriceEn = '1,199.99 TL / Year';
-  static const String familyYearlyPriceEn = '3,600 TL / Year (4-Member Quota)';
+  static const String proMonthlyPriceEn = '39.99 TL/mo';
+  static const String proYearlyPriceEn = '299.99 TL/yr';
+  static const String familyYearlyPriceEn = '799.99 TL/yr (4 users)';
 
   static const String proMonthlyPriceText = proMonthlyPriceTr;
   static const String proYearlyPriceText = proYearlyPriceTr;
   static const String familyYearlyPriceText = familyYearlyPriceTr;
+
+  static const String proDescriptionTr =
+      'Safe-Click Röntgeni Plus + Veri Sızıntısı Radarı (Offline)';
+  static const String proDescriptionEn =
+      'Safe-Click X-Ray Plus + Data Breach Radar (Offline)';
 }
 
 class PurchaseService {

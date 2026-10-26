@@ -102,9 +102,13 @@
   "reportSectionTitle": "Centro Segnalazioni (Addestramento IA)",
   "reportButtonLabel": "📣 Segnala Errore / Insegna all'IA",
   "reportSubmitBtn": "Invia e Addestra IA Locale",
-  "reportSuccessMsg": "Segnalazione ricevuta! Il modello IA locale è stato aggiornato."
-,
+  "reportSuccessMsg": "Segnalazione ricevuta! Il modello IA locale è stato aggiornato.",
   "modeTitle": "Sensibilità di Protezione",
   "signalApkMalware": "🚨 ATTENZIONE: Trappola App Malevola (.APK)!",
-  "safeClickRiskApkMalware": "🚨 ATTENZIONE: Trappola App Malevola (.APK)!"
+  "safeClickRiskApkMalware": "🚨 ATTENZIONE: Trappola App Malevola (.APK)!",
+  "proMonthlyPrice": "39,99 TL/ay",
+  "proYearlyPrice": "299,99 TL/yıl",
+  "familyYearlyPrice": "799,99 TL/yıl (4 kişi)",
+  "proDescription": "Safe-Click Raggi X Plus + Radar Violazioni Dati (Offline)",
+  "iosLimitedWarning": "⚠️ Su iOS il filtro SMS è limitato a causa delle restrizioni Apple. Protezione chiamate e Radar Violazioni Dati funzionano completamente."
 }

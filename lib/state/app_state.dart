@@ -13,6 +13,7 @@ import '../core/classifier/threat_database.dart';
 import '../core/monetization/purchase_service.dart';
 import '../core/platform/native_bridge.dart';
 import '../core/rules/rule_engine.dart';
+import '../engines/vero_community_shield.dart';
 import '../models/history_entry.dart';
 
 typedef SeedLoader = Future<String> Function();
@@ -86,6 +87,7 @@ class AppState extends ChangeNotifier {
   bool get isFamilyOwner => purchaseService.isFamilyOwner;
   bool get isFamilyMember => purchaseService.isFamilyMember;
   VeroSubscriptionTier get subscriptionTier => purchaseService.tier;
+  int get reportedCommunityNumbersCount => VeroCommunityShield.reportedCount;
 
   /// True when any OS-level real-time interception hook is active on Android.
   bool get isRealTimeProtectionActive =>
@@ -122,6 +124,7 @@ class AppState extends ChangeNotifier {
     autoDismissSpam = _prefs.getBool(_kAutoDismiss) ?? true;
     autoCleanOtp24h = _prefs.getBool(_kAutoCleanOtp24h) ?? false;
     callGuardEnabled = _prefs.getBool(_kCallGuard) ?? true;
+    await VeroCommunityShield.init(_prefs);
 
     final savedTier = _prefs.getString(_kSubTier);
     if (savedTier != null) {
@@ -829,6 +832,26 @@ class AppState extends ChangeNotifier {
     await _prefs.setString(_kSubTier, purchaseService.tier.name);
     await _prefs.setBool(_kFamilyOwner, purchaseService.isFamilyOwner);
     await _prefs.setBool(_kFamilyMember, purchaseService.isFamilyMember);
+    notifyListeners();
+  }
+
+  /// [ADIM 4 & 5] Reports a spam phone number to the local Community Shield database (0 internet).
+  Future<bool> reportSpamPhoneNumber(
+    String rawNumber, {
+    String category = 'SPAM_SCAM',
+  }) async {
+    final ok = await VeroCommunityShield.reportNumber(
+      rawNumber,
+      category: category,
+      prefs: _prefs,
+    );
+    if (ok) notifyListeners();
+    return ok;
+  }
+
+  /// [ADIM 5] Clears all locally reported spam phone numbers.
+  Future<void> clearReportedSpamPhoneNumbers() async {
+    await VeroCommunityShield.clearAll(_prefs);
     notifyListeners();
   }
 }
