@@ -1,12 +1,12 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:trustlens_mobile/core/classifier/classification.dart';
-import 'package:trustlens_mobile/core/classifier/naive_bayes.dart';
-import 'package:trustlens_mobile/core/classifier/otp_detector.dart';
-import 'package:trustlens_mobile/core/classifier/semantic_intent_engine.dart';
-import 'package:trustlens_mobile/core/classifier/smart_classifier.dart';
-import 'package:trustlens_mobile/core/classifier/threat_database.dart';
-import 'package:trustlens_mobile/core/classifier/tokenizer.dart';
-import 'package:trustlens_mobile/core/rules/rule_engine.dart';
+import 'package:veroapp_sms_guard/core/classifier/classification.dart';
+import 'package:veroapp_sms_guard/core/classifier/naive_bayes.dart';
+import 'package:veroapp_sms_guard/core/classifier/otp_detector.dart';
+import 'package:veroapp_sms_guard/core/classifier/semantic_intent_engine.dart';
+import 'package:veroapp_sms_guard/core/classifier/smart_classifier.dart';
+import 'package:veroapp_sms_guard/core/classifier/threat_database.dart';
+import 'package:veroapp_sms_guard/core/classifier/tokenizer.dart';
+import 'package:veroapp_sms_guard/core/rules/rule_engine.dart';
 
 void main() {
   group('Tokenizer & Anti-Evasion Tests', () {
@@ -232,7 +232,7 @@ void main() {
       expect(rule.matches('This is a normal friendly letter'), isFalse);
     });
 
-    test('supports Sender vs Body rule targeting (Junkman style)', () {
+    test('supports Sender vs Body rule targeting', () {
       final senderRule = FilterRule(
         id: 's1',
         name: 'Block 0850 Numbers',

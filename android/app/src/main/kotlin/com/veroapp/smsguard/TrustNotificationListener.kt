@@ -1,4 +1,4 @@
-package com.trustlens.trustlens_mobile
+package com.veroapp.smsguard
 
 import android.app.Notification
 import android.content.Context
@@ -10,7 +10,7 @@ import org.json.JSONObject
 class TrustNotificationListener : NotificationListenerService() {
 
     companion object {
-        private const val PREFS_NAME = "trustlens_native_prefs"
+        private const val PREFS_NAME = "veroapp_native_prefs"
         private const val KEY_PENDING_MESSAGES = "pending_messages"
         private const val KEY_CONFIG = "filter_config"
         private const val MAX_PENDING = 200

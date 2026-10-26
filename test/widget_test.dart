@@ -2,13 +2,13 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:trustlens_mobile/app.dart';
-import 'package:trustlens_mobile/core/platform/native_bridge.dart';
-import 'package:trustlens_mobile/state/app_state.dart';
-import 'package:trustlens_mobile/ui/cyberpunk_theme.dart';
+import 'package:veroapp_sms_guard/app.dart';
+import 'package:veroapp_sms_guard/core/platform/native_bridge.dart';
+import 'package:veroapp_sms_guard/state/app_state.dart';
+import 'package:veroapp_sms_guard/ui/cyberpunk_theme.dart';
 
 void main() {
-  testWidgets('TrustLens UI Smoke Test: Analyze spam message and display result', (tester) async {
+  testWidgets('VeroApp SMS Guard UI Smoke Test: Analyze spam message and display result', (tester) async {
     SharedPreferences.setMockInitialValues({});
 
     final corpusJson = File('assets/model/seed_corpus.json').readAsStringSync();
@@ -18,7 +18,7 @@ void main() {
     );
     await state.init();
 
-    await tester.pumpWidget(TrustLensApp(state: state));
+    await tester.pumpWidget(VeroAppSmsGuardApp(state: state));
     await tester.pump();
 
     final mainScrollable = find.byType(Scrollable).first;
@@ -72,7 +72,7 @@ void main() {
     );
     await state.init();
 
-    await tester.pumpWidget(TrustLensApp(state: state));
+    await tester.pumpWidget(VeroAppSmsGuardApp(state: state));
     await tester.pumpAndSettle();
 
     // Analyze a spam message on the 320px screen and ensure zero RenderFlex overflow
@@ -101,7 +101,7 @@ void main() {
     );
     await state.init();
 
-    await tester.pumpWidget(TrustLensApp(state: state));
+    await tester.pumpWidget(VeroAppSmsGuardApp(state: state));
     await tester.pumpAndSettle();
 
     await tester.scrollUntilVisible(
@@ -137,7 +137,7 @@ void main() {
     state.analyze('Giriş şifreniz: 654321', sender: 'BANKA', timestamp: now);
     state.analyze('Onay kodunuz: 998877', sender: 'BANKA', timestamp: now);
 
-    await tester.pumpWidget(TrustLensApp(state: state));
+    await tester.pumpWidget(VeroAppSmsGuardApp(state: state));
     await tester.pumpAndSettle();
 
     // Verify OTP-Alert emergency banner is visible on Home screen
@@ -188,7 +188,7 @@ void main() {
 
     // Render uninitialized state to verify CyberSplashScreen
     final unreadyState = AppState(bridge: const NativeBridge(enabled: false));
-    await tester.pumpWidget(TrustLensApp(state: unreadyState));
+    await tester.pumpWidget(VeroAppSmsGuardApp(state: unreadyState));
     await tester.pump();
     expect(find.byType(CyberSplashScreen), findsOneWidget);
     expect(find.byType(CyberHexShieldIcon), findsOneWidget);
@@ -213,7 +213,7 @@ void main() {
     await state.init();
     await state.setLocale(const Locale('tr'));
 
-    await tester.pumpWidget(TrustLensApp(state: state));
+    await tester.pumpWidget(VeroAppSmsGuardApp(state: state));
     await tester.pumpAndSettle();
 
     // A) Top-centered icon + VEROAPP SMS GUARD all-caps title

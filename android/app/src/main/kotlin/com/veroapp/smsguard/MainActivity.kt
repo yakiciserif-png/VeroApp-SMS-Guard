@@ -1,4 +1,4 @@
-package com.trustlens.trustlens_mobile
+package com.veroapp.smsguard
 
 import android.Manifest
 import android.app.role.RoleManager
@@ -18,7 +18,7 @@ import io.flutter.plugin.common.MethodChannel
 
 class MainActivity : FlutterActivity() {
 
-    private val CHANNEL = "com.trustlens/native"
+    private val CHANNEL = "com.veroapp.smsguard/native"
     private val REQ_SMS_PERMISSIONS = 4001
     private val REQ_SPAM_ROLE = 4002
 

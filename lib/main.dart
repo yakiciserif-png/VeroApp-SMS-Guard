@@ -6,6 +6,6 @@ import 'state/app_state.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final state = AppState();
-  runApp(TrustLensApp(state: state));
+  runApp(VeroAppSmsGuardApp(state: state));
   await state.init();
 }

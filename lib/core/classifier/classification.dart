@@ -3,7 +3,7 @@ library;
 
 import 'semantic_intent_engine.dart';
 
-/// The three primary message buckets TrustLens sorts every message into.
+/// The three primary message buckets VeroApp SMS Guard sorts every message into.
 enum MessageCategory {
   normal('ham'),
   transaction('transaction'),
@@ -18,7 +18,7 @@ enum MessageCategory {
       .firstWhere((c) => c.label == label, orElse: () => MessageCategory.normal);
 }
 
-/// Detailed sub-category inspired by Junkman & Apple IdentityLookup sub-actions.
+/// Detailed sub-category aligned with VeroApp SMS Guard & Apple IdentityLookup sub-actions.
 enum MessageSubCategory {
   personal('personal'),
   otpCode('otp_code'),

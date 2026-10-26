@@ -1,4 +1,4 @@
-/// Pre-built Threat & Spam Intelligence Database inspired by Junkman's
+/// Pre-built Threat & Spam Intelligence Database for VeroApp SMS Guard's
 /// Threat Filters, upgraded with Homoglyph/Leetspeak de-obfuscation,
 /// BTK B-Code parser, and sub-categories.
 library;

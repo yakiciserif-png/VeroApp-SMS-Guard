@@ -180,9 +180,9 @@ public final class TrustFilterEngine {
         options: [.caseInsensitive]
     )
 
-    public func loadFromAppGroup(suiteName: String = "group.com.trustlens.filter") {
+    public func loadFromAppGroup(suiteName: String = "group.com.veroapp.smsguard.filter") {
         guard let sharedDefaults = UserDefaults(suiteName: suiteName),
-              let jsonString = sharedDefaults.string(forKey: "trustlens_filter_config") else {
+              let jsonString = sharedDefaults.string(forKey: "veroapp_filter_config") else {
             return
         }
         let h = jsonString.hashValue

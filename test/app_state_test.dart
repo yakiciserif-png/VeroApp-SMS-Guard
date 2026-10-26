@@ -2,11 +2,11 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:trustlens_mobile/core/classifier/classification.dart';
-import 'package:trustlens_mobile/core/classifier/safe_click_engine.dart';
-import 'package:trustlens_mobile/core/platform/native_bridge.dart';
-import 'package:trustlens_mobile/core/rules/rule_engine.dart';
-import 'package:trustlens_mobile/state/app_state.dart';
+import 'package:veroapp_sms_guard/core/classifier/classification.dart';
+import 'package:veroapp_sms_guard/core/classifier/safe_click_engine.dart';
+import 'package:veroapp_sms_guard/core/platform/native_bridge.dart';
+import 'package:veroapp_sms_guard/core/rules/rule_engine.dart';
+import 'package:veroapp_sms_guard/state/app_state.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();

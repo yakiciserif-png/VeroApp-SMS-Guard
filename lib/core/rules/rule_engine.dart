@@ -2,7 +2,7 @@ import '../classifier/classification.dart';
 
 enum RuleType { keyword, regex }
 
-/// Which part of the incoming SMS/notification a rule inspects (Junkman style).
+/// Which part of the incoming SMS/notification a rule inspects.
 enum RuleTarget {
   /// Matches if either sender or message body matches (default).
   any,
@@ -218,7 +218,7 @@ class RuleEngine {
     return null;
   }
 
-  /// Ready-to-use Junkman-style rule templates users can add with one tap.
+  /// Ready-to-use VeroApp SMS Guard rule templates users can add with one tap.
   static List<FilterRule> builtInTemplates() => [
         FilterRule(
           id: 'tpl_betting',

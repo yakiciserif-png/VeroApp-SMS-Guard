@@ -21,8 +21,8 @@ class AppScope extends InheritedNotifier<AppState> {
       context.getInheritedWidgetOfExactType<AppScope>()!.notifier!;
 }
 
-class TrustLensApp extends StatelessWidget {
-  const TrustLensApp({super.key, required this.state});
+class VeroAppSmsGuardApp extends StatelessWidget {
+  const VeroAppSmsGuardApp({super.key, required this.state});
 
   final AppState state;
 

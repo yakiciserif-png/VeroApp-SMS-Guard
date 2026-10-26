@@ -58,7 +58,7 @@ class SystemHooksStatus {
       );
 }
 
-/// Thin, crash-free wrapper over the `com.trustlens/native` method channel
+/// Thin, crash-free wrapper over the `com.veroapp.smsguard/native` method channel
 /// implemented in `MainActivity.kt` (Android TFLite & Notification/SMS hooks)
 /// and `AppDelegate.swift` (iOS CoreML & IdentityLookup App Group).
 ///
@@ -70,7 +70,8 @@ class NativeBridge {
   final bool enabled;
   final bool forceAndroidUi;
 
-  static const MethodChannel _channel = MethodChannel('com.trustlens/native');
+  static const MethodChannel _channel =
+      MethodChannel('com.veroapp.smsguard/native');
 
   bool get isAndroid =>
       (enabled || forceAndroidUi) &&

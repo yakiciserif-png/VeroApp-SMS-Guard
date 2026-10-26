@@ -2,7 +2,7 @@ import IdentityLookup
 
 /// FAZ 4: Apple IdentityLookup (`ILMessageFilterExtension`) real-time SMS/MMS
 /// interceptor synchronized with `TrustFilterEngine.shared` via App Group
-/// `group.com.trustlens.filter`.
+/// `group.com.veroapp.smsguard.filter`.
 ///
 /// Runs 100% offline inside the iOS sandbox in < 5 ms without network calls.
 final class MessageFilterExtension: ILMessageFilterExtension {}

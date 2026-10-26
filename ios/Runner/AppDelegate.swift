@@ -3,8 +3,8 @@ import Flutter
 
 @UIApplicationMain
 @objc class AppDelegate: FlutterAppDelegate {
-  private let channelName = "com.trustlens/native"
-  private let appGroupId = "group.com.trustlens.filter"
+  private let channelName = "com.veroapp.smsguard/native"
+  private let appGroupId = "group.com.veroapp.smsguard.filter"
 
   override func application(
     _ application: UIApplication,
@@ -53,7 +53,7 @@ import Flutter
     guard let sharedDefaults = UserDefaults(suiteName: appGroupId) else {
       return false
     }
-    sharedDefaults.set(configJson, forKey: "trustlens_filter_config")
+    sharedDefaults.set(configJson, forKey: "veroapp_filter_config")
     sharedDefaults.synchronize()
     return true
   }

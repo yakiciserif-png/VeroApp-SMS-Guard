@@ -1,4 +1,4 @@
-package com.trustlens.trustlens_mobile
+package com.veroapp.smsguard
 
 import org.json.JSONArray
 import org.json.JSONObject

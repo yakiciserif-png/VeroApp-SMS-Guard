@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:trustlens_mobile/core/localization/app_localizations.dart';
+import 'package:veroapp_sms_guard/core/localization/app_localizations.dart';
 
 void main() {
   group('Localization Files Verification', () {
@@ -51,6 +51,19 @@ void main() {
       expect(labels.contains('spam'), isTrue);
       expect(labels.contains('ham'), isTrue);
       expect(labels.contains('transaction'), isTrue);
+    });
+
+    test('all 10 locales use VeroApp SMS Guard v1.0 in settingsAboutDesc', () {
+      for (final code in supported) {
+        final content = File('assets/locales/$code.json').readAsStringSync();
+        final json = jsonDecode(content) as Map<String, dynamic>;
+        expect(json['appTitle'], equals('VeroApp SMS Guard'));
+        expect(
+          (json['settingsAboutDesc'] as String).startsWith('VeroApp SMS Guard v1.0'),
+          isTrue,
+          reason: 'Locale $code settingsAboutDesc must start with VeroApp SMS Guard v1.0',
+        );
+      }
     });
   });
 }

@@ -1,4 +1,4 @@
-package com.trustlens.trustlens_mobile
+package com.veroapp.smsguard
 
 import android.content.BroadcastReceiver
 import android.content.Context
