@@ -9,6 +9,7 @@ import '../core/localization/app_localizations.dart';
 import '../core/monetization/purchase_service.dart';
 import '../state/app_state.dart';
 import 'cyberpunk_theme.dart';
+import 'enterprise_screen.dart';
 import 'widgets.dart';
 
 class SettingsScreen extends StatelessWidget {
@@ -880,6 +881,46 @@ class _FamilyAndProCardState extends State<_FamilyAndProCard> {
                     child: Text(isTr ? 'Ücretsiz Mod' : 'Free Tier'),
                   ),
               ],
+            ),
+            const Divider(height: 22),
+            // ENTERPRISE (B2B) SECTION
+            ListTile(
+              key: const Key('openEnterpriseScreenTile'),
+              contentPadding: EdgeInsets.zero,
+              leading: Container(
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: CyberpunkColors.neonCyan.withValues(alpha: 0.15),
+                  shape: BoxShape.circle,
+                ),
+                child: const Icon(
+                  Icons.business_center_outlined,
+                  size: 20,
+                  color: CyberpunkColors.neonCyan,
+                ),
+              ),
+              title: Text(
+                isTr ? 'VERO ENTERPRISE (B2B MODU)' : 'VERO ENTERPRISE (B2B MODE)',
+                style: theme.textTheme.labelMedium?.copyWith(
+                  color: CyberpunkColors.neonCyan,
+                  fontWeight: FontWeight.w800,
+                ),
+              ),
+              subtitle: Text(
+                isTr
+                    ? '19,99 TL / Çalışan / Ay • MDM / EMM desteği, 8 haneli kurumsal kod & yerel ağ senkronizasyonu.'
+                    : '19.99 TL / Employee / Mo • MDM / EMM support, 8-digit corporate code & local network sync.',
+                style: theme.textTheme.bodySmall?.copyWith(
+                  color: CyberpunkColors.textSecondary,
+                  fontSize: 11,
+                ),
+              ),
+              trailing: const Icon(Icons.arrow_forward_ios, size: 14, color: CyberpunkColors.neonCyan),
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (_) => const EnterpriseScreen()),
+                );
+              },
             ),
             const Divider(height: 22),
             Row(

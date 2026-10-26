@@ -110,5 +110,13 @@
   "proYearlyPrice": "299,99 TL/yıl",
   "familyYearlyPrice": "799,99 TL/yıl (4 kişi)",
   "proDescription": "Safe-Click Рентген Плюс + Радар Утечек Данных (Офлайн)",
-  "iosLimitedWarning": "⚠️ На iOS фильтрация SMS ограничена из-за правил Apple. Защита звонков и Офлайн-радар утечек работают полностью."
+  "iosLimitedWarning": "⚠️ На iOS фильтрация SMS ограничена из-за правил Apple. Защита звонков и Офлайн-радар утечек работают полностью.",
+  "enterpriseTitle": "VeroApp Корпоративный (B2B)",
+  "enterpriseSubtitle": "Развертывание в один клик для сотрудников и поддержка MDM.",
+  "enterprisePriceDesc": "19,99 TL/сотрудник/месяц",
+  "enterpriseCodeHint": "8-значный корпоративный код",
+  "enterpriseActivateBtn": "Активировать корпоративную лицензию",
+  "enterpriseActiveBadge": "КОРПОРАТИВНЫЙ АКТИВЕН",
+  "enterpriseSyncBtn": "Синхронизация по локальной сети (LAN)",
+  "enterpriseDeactivateBtn": "Деактивировать"
 }

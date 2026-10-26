@@ -35,6 +35,14 @@ class AppLocalizations {
   /// FakeAsync-safe widget testing.
   static const Map<String, Map<String, String>> _extendedStrings = {
     'tr': {
+      'enterpriseTitle': 'VeroApp Enterprise (B2B)',
+      'enterpriseSubtitle': 'Şirket çalışanları için tek tıkla kurulum ve MDM desteği.',
+      'enterprisePriceDesc': '19,99 TL/çalışan/ay',
+      'enterpriseCodeHint': '8 Haneli Kurumsal Kod',
+      'enterpriseActivateBtn': 'Kurumsal Lisansı Başlat',
+      'enterpriseActiveBadge': 'KURUMSAL AKTİF',
+      'enterpriseSyncBtn': 'Yerel Ağ Senkronizasyonu (LAN)',
+      'enterpriseDeactivateBtn': 'Deaktif Et',
       'proMonthlyPrice': "39,99 TL/ay",
       'proYearlyPrice': "299,99 TL/yıl",
       'familyYearlyPrice': "799,99 TL/yıl (4 kişi)",
@@ -316,6 +324,14 @@ class AppLocalizations {
       'reportSuccessMsg': 'Bildiriminiz alındı! Yerel AI modeli bu örnekle yeniden eğitildi.',
     },
     'en': {
+      'enterpriseTitle': 'VeroApp Enterprise (B2B)',
+      'enterpriseSubtitle': 'One-click deployment for employees and MDM support.',
+      'enterprisePriceDesc': '19.99 TL/employee/month',
+      'enterpriseCodeHint': '8-Digit Corporate Code',
+      'enterpriseActivateBtn': 'Activate Corporate License',
+      'enterpriseActiveBadge': 'CORPORATE ACTIVE',
+      'enterpriseSyncBtn': 'Local Network Sync (LAN)',
+      'enterpriseDeactivateBtn': 'Deactivate',
       'proMonthlyPrice': "39,99 TL/ay",
       'proYearlyPrice': "299,99 TL/yıl",
       'familyYearlyPrice': "799,99 TL/yıl (4 kişi)",

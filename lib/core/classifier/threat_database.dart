@@ -6,6 +6,7 @@ library;
 import 'classification.dart';
 import 'otp_detector.dart';
 import 'tokenizer.dart';
+import '../../engines/vero_intent_engine.dart';
 
 /// Configuration for the 4 built-in threat protection shields.
 class ThreatShieldConfig {
@@ -265,7 +266,7 @@ class ThreatDatabase {
       }
     }
 
-    // 2. Phishing, Fake Gov/Legal, Fake Delivery, Fake B-Code & Foreign No-BCode Shield
+    // 2. Phishing, Fake Gov/Legal, Fake Delivery, Fake B-Code & Foreign No-BCode Shield + 2025 Fraud Patterns
     if (config.phishingShield) {
       if (govAndLegalScamPhrases.any(normalized.contains)) {
         signals.add('signalGovLegalScam');
@@ -297,6 +298,33 @@ class ThreatDatabase {
           isThreat: true,
           score: 0.97,
           subCategory: MessageSubCategory.phishingScam,
+          shieldName: 'shieldPhishing',
+          signals: signals,
+          btkAnalysis: btk,
+        );
+      }
+
+      final fraud2025 = VeroIntentEngine.instance.analyze(text, sender: sender);
+      if (fraud2025.isFraud && fraud2025.confidence >= 0.90) {
+        signals.add('signal2025Fraud_${fraud2025.type?.name ?? "unknown"}');
+        if (fraud2025.homoglyphsFound.isNotEmpty) {
+          signals.add('signalHomoglyphAttack');
+        }
+        final subCat = switch (fraud2025.type) {
+          FraudType2025.kuryeTeslimat => MessageSubCategory.deliveryCustomsScam,
+          FraudType2025.eDevletDava ||
+          FraudType2025.vergiHaciz ||
+          FraudType2025.mahkemeIcra ||
+          FraudType2025.tapuDevir ||
+          FraudType2025.sgkPrim ||
+          FraudType2025.faturaKesinti =>
+            MessageSubCategory.governmentScam,
+          _ => MessageSubCategory.phishingScam,
+        };
+        return ThreatAssessment(
+          isThreat: true,
+          score: fraud2025.confidence,
+          subCategory: subCat,
           shieldName: 'shieldPhishing',
           signals: signals,
           btkAnalysis: btk,

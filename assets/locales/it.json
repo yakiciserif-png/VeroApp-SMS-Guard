@@ -110,5 +110,13 @@
   "proYearlyPrice": "299,99 TL/yıl",
   "familyYearlyPrice": "799,99 TL/yıl (4 kişi)",
   "proDescription": "Safe-Click Raggi X Plus + Radar Violazioni Dati (Offline)",
-  "iosLimitedWarning": "⚠️ Su iOS il filtro SMS è limitato a causa delle restrizioni Apple. Protezione chiamate e Radar Violazioni Dati funzionano completamente."
+  "iosLimitedWarning": "⚠️ Su iOS il filtro SMS è limitato a causa delle restrizioni Apple. Protezione chiamate e Radar Violazioni Dati funzionano completamente.",
+  "enterpriseTitle": "VeroApp Enterprise (B2B)",
+  "enterpriseSubtitle": "Distribuzione con un clic per i dipendenti e supporto MDM.",
+  "enterprisePriceDesc": "19,99 TL/dipendente/mese",
+  "enterpriseCodeHint": "Codice aziendale a 8 cifre",
+  "enterpriseActivateBtn": "Attiva licenza aziendale",
+  "enterpriseActiveBadge": "AZIENDALE ATTIVO",
+  "enterpriseSyncBtn": "Sincronizzazione di rete locale (LAN)",
+  "enterpriseDeactivateBtn": "Disattiva"
 }

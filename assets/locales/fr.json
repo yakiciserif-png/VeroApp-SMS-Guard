@@ -110,5 +110,13 @@
   "proYearlyPrice": "299,99 TL/yıl",
   "familyYearlyPrice": "799,99 TL/yıl (4 kişi)",
   "proDescription": "Safe-Click Rayons X Plus + Radar de Fuite de Données (Hors ligne)",
-  "iosLimitedWarning": "⚠️ Sur iOS, le filtrage SMS est limité en raison des restrictions d'Apple. La protection des appels et le Radar de Fuite de Données fonctionnent pleinement."
+  "iosLimitedWarning": "⚠️ Sur iOS, le filtrage SMS est limité en raison des restrictions d'Apple. La protection des appels et le Radar de Fuite de Données fonctionnent pleinement.",
+  "enterpriseTitle": "VeroApp Entreprise (B2B)",
+  "enterpriseSubtitle": "Déploiement en un clic pour les employés et support MDM.",
+  "enterprisePriceDesc": "19,99 TL/employé/mois",
+  "enterpriseCodeHint": "Code d'entreprise à 8 chiffres",
+  "enterpriseActivateBtn": "Activer la licence entreprise",
+  "enterpriseActiveBadge": "ENTREPRISE ACTIVE",
+  "enterpriseSyncBtn": "Synchronisation réseau local (LAN)",
+  "enterpriseDeactivateBtn": "Désactiver"
 }

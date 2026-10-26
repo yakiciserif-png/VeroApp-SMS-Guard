@@ -110,5 +110,13 @@
   "proYearlyPrice": "299,99 TL/yıl",
   "familyYearlyPrice": "799,99 TL/yıl (4 kişi)",
   "proDescription": "Safe-Click Rayos X Plus + Radar de Filtraciones (Offline)",
-  "iosLimitedWarning": "⚠️ En iOS, el filtrado de SMS es limitado debido a restricciones de Apple. La protección de llamadas y el Radar de Filtraciones funcionan completamente."
+  "iosLimitedWarning": "⚠️ En iOS, el filtrado de SMS es limitado debido a restricciones de Apple. La protección de llamadas y el Radar de Filtraciones funcionan completamente.",
+  "enterpriseTitle": "VeroApp Enterprise (B2B)",
+  "enterpriseSubtitle": "Implementación con un clic para empleados y soporte MDM.",
+  "enterprisePriceDesc": "19,99 TL/empleado/mes",
+  "enterpriseCodeHint": "Código corporativo de 8 dígitos",
+  "enterpriseActivateBtn": "Activar licencia corporativa",
+  "enterpriseActiveBadge": "CORPORATIVO ACTIVO",
+  "enterpriseSyncBtn": "Sincronización de red local (LAN)",
+  "enterpriseDeactivateBtn": "Desactivar"
 }

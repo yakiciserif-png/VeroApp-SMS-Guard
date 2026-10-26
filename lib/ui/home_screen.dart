@@ -11,6 +11,7 @@ import '../models/history_entry.dart';
 import '../state/app_state.dart';
 import 'cyberpunk_theme.dart';
 import 'history_screen.dart';
+import 'stats_screen.dart';
 import 'widgets.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -83,6 +84,19 @@ class _HomeScreenState extends State<HomeScreen> {
         title: Text(l.t('appTitle')),
         centerTitle: false,
         actions: [
+          IconButton(
+            key: const Key('openStatsScreenBtn'),
+            tooltip: 'Güvenlik İstatistikleri',
+            icon: const Icon(
+              Icons.bar_chart_rounded,
+              color: CyberpunkColors.neonCyan,
+            ),
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (_) => const StatsScreen()),
+              );
+            },
+          ),
           IconButton(
             key: const Key('themeToggleButton'),
             tooltip: isDark ? l.t('themeLight') : l.t('themeDark'),

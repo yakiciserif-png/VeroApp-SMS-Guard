@@ -9,6 +9,17 @@ import 'package:veroapp_sms_guard/core/monetization/purchase_service.dart';
 import 'package:veroapp_sms_guard/core/platform/native_bridge.dart';
 import 'package:veroapp_sms_guard/state/app_state.dart';
 import 'package:veroapp_sms_guard/ui/cyberpunk_theme.dart';
+import 'package:veroapp_sms_guard/engines/vero_caller_name_engine.dart';
+import 'package:veroapp_sms_guard/engines/vero_answer_bot.dart';
+import 'package:veroapp_sms_guard/engines/vero_sms_categorizer.dart';
+import 'package:veroapp_sms_guard/engines/vero_link_scanner.dart';
+import 'package:veroapp_sms_guard/engines/vero_intent_engine.dart';
+import 'package:veroapp_sms_guard/engines/vero_enterprise_engine.dart';
+import 'package:veroapp_sms_guard/widgets/vero_home_widget.dart';
+import 'package:veroapp_sms_guard/ui/call_overlay_screen.dart';
+import 'package:veroapp_sms_guard/ui/call_history_screen.dart';
+import 'package:veroapp_sms_guard/ui/post_call_report.dart';
+import 'package:veroapp_sms_guard/ui/enterprise_screen.dart';
 
 void main() {
   testWidgets('VeroApp SMS Guard UI Smoke Test: Analyze spam message and display result', (tester) async {
@@ -543,6 +554,276 @@ void main() {
         expect(settingsUi.contains(word), isFalse);
         expect(purchaseCode.contains(word), isFalse);
       }
+    });
+
+    group('FAZA 2 — Rakip Fark Kapatma & Yeni Özellikler (12 Adım) Doğrulama Testleri', () {
+      test('FAZA 2 [Adım 1]: Caller Name ID (Rehber, Spam DB ve Bilinmeyen numara analizi)', () {
+        final engine = VeroCallerNameEngine();
+        final contact = engine.identifyNumber(
+          '+905321112233',
+          localContacts: {'+905321112233': 'Ahmet Yılmaz'},
+        );
+        expect(contact.displayName, contains('Ahmet Yılmaz'));
+        expect(contact.isContact, isTrue);
+        expect(contact.isSpam, isFalse);
+
+        final spam = engine.identifyNumber('0850 484 00 01');
+        expect(spam.isSpam, isTrue);
+        expect(spam.vibratePhone, isTrue);
+
+        final unknown = engine.identifyNumber('+90 539 123 45 67');
+        expect(unknown.displayName, equals('Bilinmeyen Numara'));
+        expect(unknown.isSpam, isFalse);
+      });
+
+      testWidgets('FAZA 2 [Adım 2]: CallOverlayScreen kırmızı tam ekran alarmı ve buton kontrolleri', (tester) async {
+        await tester.pumpWidget(
+          const MaterialApp(
+            home: CallOverlayScreen(
+              phoneNumber: '0850 484 00 01',
+              category: 'Yasadışı Bahis / Dolandırıcılık',
+              confidence: 0.98,
+            ),
+          ),
+        );
+        await tester.pump();
+
+        expect(find.byKey(const Key('callOverlayRejectBtn')), findsOneWidget);
+        expect(find.byKey(const Key('callOverlayAcceptBtn')), findsOneWidget);
+        expect(find.byKey(const Key('callOverlayAnswerBotBtn')), findsOneWidget);
+        expect(find.text('🚨 DOLANDIRICILIK UYARISI'), findsOneWidget);
+      });
+
+      testWidgets('FAZA 2 [Adım 3]: CallHistoryScreen arama geçmişi ve filtreleme butonları', (tester) async {
+        await tester.pumpWidget(
+          const MaterialApp(
+            home: CallHistoryScreen(),
+          ),
+        );
+        await tester.pump();
+
+        expect(find.byKey(const Key('callHistoryScreen')), findsOneWidget);
+        expect(find.byKey(const Key('chipFilterAll')), findsOneWidget);
+        expect(find.byKey(const Key('chipFilterSpam')), findsOneWidget);
+        expect(find.byKey(const Key('chipFilterSafe')), findsOneWidget);
+      });
+
+      testWidgets('FAZA 2 [Adım 4]: PostCallReportDialog arama sonrası rapor kartı (Evet/Hayır)', (tester) async {
+        await tester.pumpWidget(
+          const MaterialApp(
+            home: Scaffold(
+              body: PostCallReportDialog(
+                phoneNumber: '0850 123 45 67',
+              ),
+            ),
+          ),
+        );
+        await tester.pump();
+
+        expect(find.byKey(const Key('postCallReportDialog')), findsOneWidget);
+        expect(find.byKey(const Key('postCallYesSpamBtn')), findsOneWidget);
+        expect(find.byKey(const Key('postCallNoSafeBtn')), findsOneWidget);
+      });
+
+      test('FAZA 2 [Adım 5A]: VeroAnswerBot oyalama botu replik listeleri ve adımları', () {
+        final bot = VeroAnswerBot(forceAndroid: true);
+        expect(bot.isSupported, isTrue);
+        expect(VeroAnswerBot.turkishPhrases.length, equals(4));
+        expect(VeroAnswerBot.englishPhrases.isNotEmpty, isTrue);
+        expect(VeroAnswerBot.arabicPhrases.isNotEmpty, isTrue);
+        expect(VeroAnswerBot.turkishPhrases.first.text, contains('Alo'));
+      });
+
+      test('FAZA 2 [Adım 5B]: VeroAnswerBot iOS kısıtlaması koruması (isSupported & safety fallback)', () {
+        final bot = VeroAnswerBot(forceAndroid: false);
+        if (!Platform.isAndroid) {
+          expect(bot.isSupported, isFalse);
+        }
+      });
+
+      test('FAZA 2 [Adım 6]: VeroSmsCategorizer 6 kategori sınıflandırma doğrulaması', () {
+        expect(VeroSmsCategorizer.categorize('Hesabınıza 5000 TL transfer yapılmıştır', sender: 'GARANTI'), equals(VeroSmsCategory.bankFinance));
+        expect(VeroSmsCategorizer.categorize('Kargonuz yola çıktı kurye kapıda', sender: 'ARAS'), equals(VeroSmsCategory.cargoLogistics));
+        expect(VeroSmsCategorizer.categorize('e-Devlet üzerinden dava dosyanız oluşturuldu', sender: 'UYAP'), equals(VeroSmsCategory.govOfficial));
+        expect(VeroSmsCategorizer.categorize('Akşam çay içmeye geliyoruz abi', sender: '+905321112233'), equals(VeroSmsCategory.personalChat));
+        expect(VeroSmsCategorizer.categorize('Tüm ürünlerde %50 indirim fırsatını kaçırmayın', sender: 'LCW'), equals(VeroSmsCategory.promoCampaign));
+        expect(VeroSmsCategorizer.categorize('Kartınız şüpheli işlem nedeniyle bloke oldu tıkla', sender: 'DOLANDIRICI'), equals(VeroSmsCategory.spamTrap));
+      });
+
+      test('FAZA 2 [Adım 7A]: VeroLinkScanner kısaltılmış URL tespiti ve güvensiz HTTP cezalandırması', () async {
+        final scanner = VeroLinkScanner.instance;
+        await scanner.initialize();
+
+        final res = scanner.scanUrl('http://bit.ly/bedava-hediye');
+        expect(res.isShortened, isTrue);
+        expect(res.isInsecureHttp, isTrue);
+        expect(res.isThreat, isTrue);
+        expect(res.warningMessage, contains('🚨 DİKKAT'));
+      });
+
+      test('FAZA 2 [Adım 7B]: VeroLinkScanner zararlı dosya indirme (.apk) ve phishing domain tespiti', () {
+        final scanner = VeroLinkScanner.instance;
+        final apkRes = scanner.scanUrl('https://guvensiz-site.com/banka-guncelle.apk');
+        expect(apkRes.isExecutable, isTrue);
+        expect(apkRes.riskLevel, equals(LinkRiskLevel.dangerous));
+
+        final phishRes = scanner.scanUrl('https://e-deviet.com/giris');
+        expect(phishRes.isPhishing, isTrue);
+        expect(phishRes.isThreat, isTrue);
+      });
+
+      test('FAZA 2 [Adım 7C]: VeroLinkScanner metin içinden çoklu link tarama', () {
+        final scanner = VeroLinkScanner.instance;
+        final list = scanner.scanText('Merhaba şu adrese bak http://tinyurl.com/odul veya https://ziraat-banka.xyz');
+        expect(list.length, equals(2));
+        expect(list.any((r) => r.isShortened), isTrue);
+      });
+
+      test('FAZA 2 [Adım 8A]: VeroIntentEngine 2025 dolandırıcılık türleri (10 kategori doğrulaması)', () {
+        final engine = VeroIntentEngine.instance;
+
+        expect(engine.analyze('Tapu harcınız eksik kalmıştır devir için ödeyiniz').type, equals(FraudType2025.tapuDevir));
+        expect(engine.analyze('SGK prim iadeniz hazır almak için tıklayın').type, equals(FraudType2025.sgkPrim));
+        expect(engine.analyze('Vergi dairesi haciz bildirimi: hesaplarınıza haciz konulacaktır').type, equals(FraudType2025.vergiHaciz));
+        expect(engine.analyze('e-Devlet kapısı adınızda dava dosyası bulunmaktadır').type, equals(FraudType2025.eDevletDava));
+        expect(engine.analyze('Kargonuz teslim edilemedi 14.50 TL teslimat ücreti ödeyiniz').type, equals(FraudType2025.kuryeTeslimat));
+        expect(engine.analyze('Kartınız şüpheli işlem nedeniyle donduruldu güvenlik bloke').type, equals(FraudType2025.kartBloke));
+        expect(engine.analyze('Tebrikler 5000 TL hediye çeki kazandınız çekiliş ödül').type, equals(FraudType2025.hediyeCeki));
+        expect(engine.analyze('Netflix aboneliğiniz askıya alındı üyeliğinizi yenileyin').type, equals(FraudType2025.abonelikAskiya));
+        expect(engine.analyze('Hakkınızda icra takibi başlatıldı icra dairesi dosya no').type, equals(FraudType2025.mahkemeIcra));
+        expect(engine.analyze('Faturanız ödenmediği için elektrik kesme ihbarı').type, equals(FraudType2025.faturaKesinti));
+      });
+
+      test('FAZA 2 [Adım 8B]: VeroIntentEngine Homoglyph / Kiril karakter de-obfuscation koruması', () {
+        final engine = VeroIntentEngine.instance;
+        // Kiril 'а' harfi ile gizlenmiş icra celbi
+        final res = engine.analyze('Hаkkınızdа icrа tаkibi bаşlаtıldı dosya no');
+        expect(res.isFraud, isTrue);
+        expect(res.homoglyphsFound.isNotEmpty, isTrue);
+      });
+
+      test('FAZA 2 [Adım 8C]: VeroIntentEngine BTK B001-B015 operatör kod çözümleme ve 6D vektör ağırlığı', () {
+        final engine = VeroIntentEngine.instance;
+        final res = engine.analyze('Hakkınızda icra takibi başlatıldı B002');
+        expect(res.bCode, equals('B002'));
+        expect(res.operatorName, contains('Turkcell'));
+        expect(res.vector.urgencyFear, greaterThan(0.5));
+      });
+
+      testWidgets('FAZA 2 [Adım 9]: VeroHomeWidget 4x1 ve 2x2 widget render testi', (tester) async {
+        await tester.pumpWidget(
+          const MaterialApp(
+            home: Scaffold(
+              body: VeroHomeWidget(size: VeroWidgetSize.horizontal4x1),
+            ),
+          ),
+        );
+        await tester.pump();
+        expect(find.byKey(const Key('veroWidget4x1')), findsOneWidget);
+
+        await tester.pumpWidget(
+          const MaterialApp(
+            home: Scaffold(
+              body: VeroHomeWidget(size: VeroWidgetSize.box2x2),
+            ),
+          ),
+        );
+        await tester.pump();
+        expect(find.byKey(const Key('veroWidget2x2')), findsOneWidget);
+      });
+
+      testWidgets('FAZA 2 [Adım 10]: StatsScreen bugün/bu hafta/toplam kartları ve trend grafiği render testi', (tester) async {
+        SharedPreferences.setMockInitialValues({});
+        final corpusJson = File('assets/model/seed_corpus.json').readAsStringSync();
+        final state = AppState(
+          bridge: const NativeBridge(enabled: false),
+          seedLoader: () async => corpusJson,
+        );
+        await state.init();
+
+        await tester.pumpWidget(
+          VeroAppSmsGuardApp(state: state),
+        );
+        await tester.pumpAndSettle();
+
+        expect(find.byKey(const Key('openStatsScreenBtn')), findsOneWidget);
+        await tester.tap(find.byKey(const Key('openStatsScreenBtn')));
+        await tester.pumpAndSettle();
+
+        expect(find.byKey(const Key('statsScreen')), findsOneWidget);
+        expect(find.byKey(const Key('statsTodayCard')), findsOneWidget);
+        expect(find.byKey(const Key('statsWeekCard')), findsOneWidget);
+        expect(find.byKey(const Key('statsTotalCard')), findsOneWidget);
+      });
+
+      test('FAZA 2 [Adım 11A]: VeroEnterpriseEngine 8 haneli kod aktivasyonu ve lisanslama (19,99 TL)', () {
+        final ent = VeroEnterpriseEngine.instance;
+        expect(ent.activateCorporateCode('CORP8921', companyName: 'CyberCorp'), isTrue);
+        expect(ent.isActive, isTrue);
+        expect(ent.corporateCode, equals('CORP8921'));
+        expect(ent.companyName, equals('CyberCorp'));
+        expect(ent.employeeCount, equals(25));
+        expect(VeroEnterpriseEngine.licensePricePerEmployee, equals(19.99));
+
+        ent.recordCorporateThreat();
+        expect(ent.corporateThreatsBlocked, equals(43));
+
+        ent.deactivate();
+        expect(ent.isActive, isFalse);
+      });
+
+      testWidgets('FAZA 2 [Adım 11B]: EnterpriseScreen kurumsal yönetim ekranı ve aktivasyon testi', (tester) async {
+        await tester.pumpWidget(
+          const MaterialApp(
+            home: EnterpriseScreen(),
+          ),
+        );
+        await tester.pump();
+
+        expect(find.byKey(const Key('enterpriseScreen')), findsOneWidget);
+        expect(find.byKey(const Key('enterpriseCodeInput')), findsOneWidget);
+        expect(find.byKey(const Key('activateEnterpriseBtn')), findsOneWidget);
+
+        await tester.enterText(find.byKey(const Key('enterpriseCodeInput')), 'CORP8921');
+        await tester.tap(find.byKey(const Key('activateEnterpriseBtn')));
+        await tester.pump();
+
+        expect(find.byKey(const Key('enterpriseSyncBtn')), findsOneWidget);
+        expect(find.byKey(const Key('deactivateEnterpriseBtn')), findsOneWidget);
+
+        await tester.tap(find.byKey(const Key('deactivateEnterpriseBtn')));
+        await tester.pump();
+        expect(find.byKey(const Key('activateEnterpriseBtn')), findsOneWidget);
+      });
+
+      test('FAZA 2 [Adım 12]: Yasaklı marka ve dış servis kelimeleri FAZA 2 kodlarında SIFIR kontrolü', () {
+        final prohibited = [
+          '${'junk'}${'man'}',
+          '${'trust'}${'lens'}',
+          '${'haveibeen'}${'pwned'}',
+        ];
+        final files = [
+          'lib/engines/vero_caller_name_engine.dart',
+          'lib/engines/vero_answer_bot.dart',
+          'lib/engines/vero_sms_categorizer.dart',
+          'lib/engines/vero_link_scanner.dart',
+          'lib/engines/vero_intent_engine.dart',
+          'lib/engines/vero_enterprise_engine.dart',
+          'lib/widgets/vero_home_widget.dart',
+          'lib/ui/call_overlay_screen.dart',
+          'lib/ui/call_history_screen.dart',
+          'lib/ui/post_call_report.dart',
+          'lib/ui/stats_screen.dart',
+          'lib/ui/enterprise_screen.dart',
+        ];
+
+        for (final p in files) {
+          final content = File(p).readAsStringSync().toLowerCase();
+          for (final word in prohibited) {
+            expect(content.contains(word), isFalse, reason: '$p contains prohibited word $word');
+          }
+        }
+      });
     });
   });
 }

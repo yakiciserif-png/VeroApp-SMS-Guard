@@ -110,5 +110,13 @@
   "proYearlyPrice": "299,99 TL/yıl",
   "familyYearlyPrice": "799,99 TL/yıl (4 kişi)",
   "proDescription": "Safe-Click أشعة إكس بلس + رادار تسرب البيانات (دون اتصال)",
-  "iosLimitedWarning": "⚠️ على نظام iOS، تكون تصفية الرسائل القصيرة محدودة بسبب قيود Apple. تعمل حماية المكالمات ورادار تسرب البيانات بالكامل."
+  "iosLimitedWarning": "⚠️ على نظام iOS، تكون تصفية الرسائل القصيرة محدودة بسبب قيود Apple. تعمل حماية المكالمات ورادار تسرب البيانات بالكامل.",
+  "enterpriseTitle": "VeroApp للمؤسسات (B2B)",
+  "enterpriseSubtitle": "نشر بنقرة واحدة للموظفين ودعم MDM.",
+  "enterprisePriceDesc": "19.99 ليرة/موظف/شهر",
+  "enterpriseCodeHint": "رمز الشركة المكون من 8 خانات",
+  "enterpriseActivateBtn": "تفعيل ترخيص الشركة",
+  "enterpriseActiveBadge": "ترخيص تجاري نشط",
+  "enterpriseSyncBtn": "مزامنة الشبكة المحلية (LAN)",
+  "enterpriseDeactivateBtn": "تعطيل"
 }

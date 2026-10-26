@@ -110,5 +110,13 @@
   "proYearlyPrice": "299,99 TL/yıl",
   "familyYearlyPrice": "799,99 TL/yıl (4 kişi)",
   "proDescription": "Safe-Click 透视增强版 + 离线数据泄露雷达 (Offline)",
-  "iosLimitedWarning": "⚠️ 在 iOS 上，由于 Apple 限制，短信过滤功能受限。来电防护与离线数据泄露雷达可完整运行。"
+  "iosLimitedWarning": "⚠️ 在 iOS 上，由于 Apple 限制，短信过滤功能受限。来电防护与离线数据泄露雷达可完整运行。",
+  "enterpriseTitle": "VeroApp 企业版 (B2B)",
+  "enterpriseSubtitle": "员工一键式部署与 MDM 设备管理支持。",
+  "enterprisePriceDesc": "19.99 里拉/员工/月",
+  "enterpriseCodeHint": "8位企业授权码",
+  "enterpriseActivateBtn": "激活企业授权",
+  "enterpriseActiveBadge": "企业版已激活",
+  "enterpriseSyncBtn": "局域网本地同步 (LAN)",
+  "enterpriseDeactivateBtn": "取消激活"
 }

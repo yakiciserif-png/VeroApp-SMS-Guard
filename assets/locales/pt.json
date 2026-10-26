@@ -110,5 +110,13 @@
   "proYearlyPrice": "299,99 TL/yıl",
   "familyYearlyPrice": "799,99 TL/yıl (4 kişi)",
   "proDescription": "Safe-Click Raio-X Plus + Radar de Vazamento de Dados (Offline)",
-  "iosLimitedWarning": "⚠️ No iOS, a filtragem de SMS é limitada devido às restrições da Apple. A proteção de chamadas e o Radar de Vazamento funcionam totalmente."
+  "iosLimitedWarning": "⚠️ No iOS, a filtragem de SMS é limitada devido às restrições da Apple. A proteção de chamadas e o Radar de Vazamento funcionam totalmente.",
+  "enterpriseTitle": "VeroApp Enterprise (B2B)",
+  "enterpriseSubtitle": "Implantação com um clique para funcionários e suporte MDM.",
+  "enterprisePriceDesc": "19,99 TL/funcionário/mês",
+  "enterpriseCodeHint": "Código corporativo de 8 dígitos",
+  "enterpriseActivateBtn": "Ativar licença corporativa",
+  "enterpriseActiveBadge": "CORPORATIVO ATIVO",
+  "enterpriseSyncBtn": "Sincronização de rede local (LAN)",
+  "enterpriseDeactivateBtn": "Desativar"
 }

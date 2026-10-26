@@ -110,5 +110,13 @@
   "proYearlyPrice": "299,99 TL/yıl",
   "familyYearlyPrice": "799,99 TL/yıl (4 kişi)",
   "proDescription": "Safe-Click Röntgen Plus + Datenleck-Radar (Offline)",
-  "iosLimitedWarning": "⚠️ Unter iOS ist die SMS-Filterung aufgrund von Apple-Einschränkungen begrenzt. Anrufschutz und Offline-Datenleck-Radar funktionieren vollständig."
+  "iosLimitedWarning": "⚠️ Unter iOS ist die SMS-Filterung aufgrund von Apple-Einschränkungen begrenzt. Anrufschutz und Offline-Datenleck-Radar funktionieren vollständig.",
+  "enterpriseTitle": "VeroApp Enterprise (B2B)",
+  "enterpriseSubtitle": "Ein-Klick-Bereitstellung für Mitarbeiter und MDM-Support.",
+  "enterprisePriceDesc": "19,99 TL/Mitarbeiter/Monat",
+  "enterpriseCodeHint": "8-stelliger Unternehmenscode",
+  "enterpriseActivateBtn": "Unternehmenslizenz aktivieren",
+  "enterpriseActiveBadge": "UNTERNEHMEN AKTIV",
+  "enterpriseSyncBtn": "Lokale Netzwerksynchronisierung (LAN)",
+  "enterpriseDeactivateBtn": "Deaktivieren"
 }

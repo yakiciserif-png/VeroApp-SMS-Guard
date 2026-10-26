@@ -55,6 +55,20 @@
             </intent-filter>
         </service>
 
+        <!-- Accessibility Service for Instant WhatsApp / Telegram Phishing Link Detection (100% Offline, Zero Internet) -->
+        <service
+            android:name=".VeroLinkAccessibilityService"
+            android:label="VeroApp Link Guard"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/accessibility_service_config" />
+        </service>
+
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />

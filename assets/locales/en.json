@@ -110,5 +110,13 @@
   "proYearlyPrice": "299,99 TL/yıl",
   "familyYearlyPrice": "799,99 TL/yıl (4 kişi)",
   "proDescription": "Safe-Click X-Ray Plus + Data Breach Radar (Offline)",
-  "iosLimitedWarning": "⚠️ On iOS, SMS filtering is limited due to Apple restrictions. Call protection and Offline Data Breach Radar work in full."
+  "iosLimitedWarning": "⚠️ On iOS, SMS filtering is limited due to Apple restrictions. Call protection and Offline Data Breach Radar work in full.",
+  "enterpriseTitle": "VeroApp Enterprise (B2B)",
+  "enterpriseSubtitle": "One-click deployment for employees and MDM support.",
+  "enterprisePriceDesc": "19.99 TL/employee/month",
+  "enterpriseCodeHint": "8-Digit Corporate Code",
+  "enterpriseActivateBtn": "Activate Corporate License",
+  "enterpriseActiveBadge": "CORPORATE ACTIVE",
+  "enterpriseSyncBtn": "Local Network Sync (LAN)",
+  "enterpriseDeactivateBtn": "Deactivate"
 }
