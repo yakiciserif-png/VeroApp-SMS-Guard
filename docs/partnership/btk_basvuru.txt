@@ -1,0 +1,29 @@
+T.C. BİLGİ TEKNOLOJİLERİ VE İLETİŞİM KURUMU BAŞKANLIĞI'NA
+ANKARA
+
+Tarih: 26 Ekim 2026
+Konu: Vatandaş Odaklı Dolandırıcılıkla Mücadelede %100 Çevrimdışı ve KVKK Uyumlu Yerli Güvenlik Yazılımı İş Birliği ve Güncel Tehdit Veri Paylaşımı Talebi
+
+Sayın Başkanlığım,
+
+Son dönemde ülkemizde artış gösteren ve vatandaşlarımızın maddi-manevi mağduriyetine yol açan yasa dışı bahis, sahte icra takipleri, sahte kargo takip bağlantıları ve kimlik avı (phishing) amaçlı SMS ve arama dolandırıcılığı, ulusal siber güvenliğimiz açısından kritik bir tehdit oluşturmaktadır.
+
+Vatandaşlarımızın korunması amacıyla piyasaya sürülen yabancı menşeili arayan kimliği ve spam engelleme yazılımları ise, kullanıcıların tüm rehber ve arama verilerini yurt dışı sunucularına aktararak 6698 sayılı Kişisel Verilerin Korunması Kanunu (KVKK) ve ulusal veri egemenliği ilkeleri açısından ciddi bir zaafiyet doğurmaktadır.
+
+Bu kapsamda Türk mühendislerimiz tarafından geliştirilen **VeroApp SMS Guard** mobil güvenlik uygulaması;
+1. Android ve iOS ortamında **sıfır internet izni (`android.permission.INTERNET` bulunmamaktadır)** ile çalışmakta,
+2. Cihaz işlemcisi üzerinde yerel yapay zeka (On-Device AI) ve optimize Bloom Filtreleme algoritmalarıyla dolandırıcılık modellerini ve B001-B015 operatör kod manipülasyonlarını 0.1 milisaniye içinde analiz etmekte,
+3. Kullanıcıların hiçbir kişisel verisini, rehberini veya arama geçmişini harici bir sunucuya göndermeden %100 çevrimdışı çalışmaktadır.
+
+Kurumunuz bünyesinde yürütülen Tüketici Hakları Dairesi Başkanlığı ve USOM (Ulusal Siber Olaylara Müdahale Merkezi) dolandırıcılık önleme çalışmalarıyla uyumlu olarak;
+- Kurumunuz tarafından tespit edilen ve kamuya açık paylaşılan zararlı/dolandırıcı SMS başlıkları ve numara havuzlarının, uygulamamızın çevrimdışı veritabanına periyodik paket güncellemeleri şeklinde entegre edilmesi,
+- Vatandaşlarımızın mobil cihazlarında veri mahremiyetini ihlal etmeden dolandırıcılıktan korunabilmesi adına teknik iş birliği imkanlarının değerlendirilmesi
+
+hususlarını saygılarımızla arz ve talep ederiz.
+
+Başvuru Sahibi:
+VeroApp Güvenlik Teknolojileri A.Ş.
+Yetkili: Mühendislik ve Regülasyon Direktörlüğü
+E-posta: btk-iletisim@veroapp.net
+Telefon: +90 (212) 555 01 99
+Adres: Maslak Teknopark, No: 42, Sarıyer / İstanbul

@@ -8,6 +8,14 @@ enum LinkRiskLevel {
   dangerous,
 }
 
+/// [ADIM 4] Operating mode for Vero Link Scanner.
+enum LinkScannerMode {
+  /// MOD A: Automatic real-time link interception via Accessibility Service (Android)
+  automatic,
+  /// MOD B: Manual Share Target / Copy-Paste Scan fallback (iOS & Android)
+  manual,
+}
+
 /// Result of scanning a URL for phishing, shorteners, dangerous files, and spoofing.
 class LinkScanResult {
   const LinkScanResult({
@@ -68,6 +76,11 @@ class VeroLinkScanner {
 
   final Set<String> _phishingDomains = <String>{};
   bool _initialized = false;
+  LinkScannerMode mode = LinkScannerMode.automatic;
+
+  void setMode(LinkScannerMode newMode) {
+    mode = newMode;
+  }
 
   bool get isInitialized => _initialized;
   int get domainCount => _phishingDomains.length;
@@ -222,6 +235,9 @@ class VeroLinkScanner {
     }
     return results;
   }
+
+  /// Convenient alias for [scanUrl].
+  LinkScanResult scan(String rawUrl, {String? sourceApp}) => scanUrl(rawUrl, sourceApp: sourceApp);
 
   /// Scans a single URL and returns detailed threat breakdown.
   LinkScanResult scanUrl(String rawUrl, {String? sourceApp}) {

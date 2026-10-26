@@ -1,0 +1,48 @@
+===============================================================================
+VEROAPP CALL GUARD — APPLE APP STORE LİSTELEME (TÜRKÇE)
+===============================================================================
+
+[UYGULAMA BAŞLIĞI] (Max 30 karakter)
+VeroApp Call Guard - AI Kalkan
+
+[KISA AÇIKLAMA / PROMOTIONAL TEXT] (Max 170 karakter)
+%100 Çevrimdışı Arama Koruma & Güvenlik. Sıfır İnternet, Sıfır Veri Toplama, Sertifikalı Yerel Gizlilik.
+
+[TAM AÇIKLAMA]
+🛡️ VeroApp Call Guard: Cihaz İçi Yapay Zekayla Üstün Arama Koruması ve Tam Gizlilik
+
+Arama koruması, Veri Sızıntısı Radarı, Link Tarama, Aile Koruması artık tek bir güçlü kalkan altında! VeroApp Call Guard, kişisel verilerinizi asla harici sunuculara göndermeden, %100 çevrimdışı (offline) çalışan yerel bir güvenlik kalkanıdır.
+
+⚠️ ÖNEMLİ BİLGİLENDİRME:
+iOS'ta Apple kısıtlamaları nedeniyle SMS filtreleme yapılamamaktadır. Arama koruması, Veri Sızıntısı Radarı ve Link Tarama tam çalışır.
+
+⚡ ÖNE ÇIKAN ÖZELLİKLER:
+
+1. 📞 Akıllı Arayan Kimliği & Spam Çağrı Koruması (Caller Name ID):
+   - Rehberinizdeki doğrulanmış kişileri yeşil rozetle gösterir.
+   - 200.000+ kayıtlı spam veritabanı ile bilinen sahte çağrı merkezlerini ve dolandırıcıları tespit eder.
+   - Uluslararası yüksek riskli numaraları (+966, +971, +20, +234, +27 vb.) anında etiketler.
+
+2. 🔗 WhatsApp & Telegram Link Scanner (Paylaş Menüsü & Manuel Tarama):
+   - Paylaşılan şüpheli ve zararlı bağlantıları tıklamadan önce analiz edin.
+   - Oltalama (phishing) ve sahte banka/e-Devlet domainlerini anında yakalar.
+
+3. 🔒 e-Devlet Şifre & Veri Sızıntısı Radarı:
+   - Şifrelerinizin ve e-postalarınızın global veri sızıntılarında yer alıp almadığını 50 milyon bitlik çevrimdışı Bloom filtresiyle sıfır internet kullanarak kontrol eder.
+
+4. 👨‍👩‍👧‍👦 Vero Aile Koruması:
+   - 6 haneli aile kodu ile tek lisans altında 4 aile bireyini güvenceye alın.
+
+💎 ABONELİK VE FİYATLANDIRMA:
+• Vero Ücretsiz: Temel çağrı uyarısı ve kısıtlı sorgu
+• Vero PRO Aylık: 39,99 TL / ay
+• Vero PRO Yıllık: 299,99 TL / yıl
+• Vero AİLE Yıllık: 799,99 TL / yıl (4 Aile Bireyi)
+• Vero Kurumsal (B2B): 19,99 TL / çalışan / ay
+
+🔒 GİZLİLİK VE KVKK TAAHHÜDÜ:
+VeroApp, 6698 sayılı KVKK ve Avrupa Birliği GDPR standartlarına %100 uyumludur. Cihazınızdan tek bir bayt veri dahi dışarı sızmaz.
+
+İletişim: support@veroapp.com
+Web: https://github.com/yakiciserif-png/VeroApp-SMS-Guard
+===============================================================================

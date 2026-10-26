@@ -7,10 +7,13 @@ import 'package:flutter/services.dart';
 import '../app.dart';
 import '../core/localization/app_localizations.dart';
 import '../core/monetization/purchase_service.dart';
+import '../engines/vero_link_scanner.dart';
 import '../state/app_state.dart';
 import 'cyberpunk_theme.dart';
 import 'enterprise_screen.dart';
 import 'edevlet_guard_screen.dart';
+import 'link_scanner_screen.dart';
+import 'paywall_screen.dart';
 import 'crash_reports_screen.dart';
 import '../security_audit.dart';
 import '../screens/screenshot_mode.dart';
@@ -247,6 +250,56 @@ class SettingsScreen extends StatelessWidget {
             value: shields.linkShield,
             onChanged: (v) =>
                 app.updateShieldConfig(shields.copyWith(linkShield: v)),
+          ),
+          ListTile(
+            key: const Key('linkScannerModeTile'),
+            leading: const Icon(Icons.radar_outlined, color: CyberpunkColors.neonCyan),
+            title: Text(isTr ? 'Link Tarama Modu: Otomatik / Manuel' : 'Link Scanner Mode: Auto / Manual'),
+            subtitle: Text(
+              app.linkScannerMode == LinkScannerMode.automatic
+                  ? (isTr
+                      ? 'Otomatik (Erişilebilirlik ile WhatsApp & Telegram arka plan taraması)'
+                      : 'Automatic (Background scanning via Accessibility)')
+                  : (isTr
+                      ? 'Manuel (Paylaş menüsü veya kopyala-yapıştır ile güvenli tarama)'
+                      : 'Manual (Share target or copy-paste scanning)'),
+              style: theme.textTheme.bodySmall?.copyWith(
+                color: CyberpunkColors.textSecondary,
+              ),
+            ),
+            trailing: SegmentedButton<LinkScannerMode>(
+              key: const Key('linkScannerModeSegment'),
+              segments: [
+                ButtonSegment<LinkScannerMode>(
+                  value: LinkScannerMode.automatic,
+                  label: Text(isTr ? 'Oto' : 'Auto'),
+                ),
+                ButtonSegment<LinkScannerMode>(
+                  value: LinkScannerMode.manual,
+                  label: Text(isTr ? 'Man' : 'Man'),
+                ),
+              ],
+              selected: {app.linkScannerMode},
+              onSelectionChanged: (Set<LinkScannerMode> selected) {
+                app.setLinkScannerMode(selected.first);
+              },
+            ),
+          ),
+          ListTile(
+            key: const Key('openLinkScannerScreenTile'),
+            leading: const Icon(Icons.open_in_new, color: CyberpunkColors.neonCyan),
+            title: Text(isTr ? 'Manuel Link Radarı Ekranını Aç' : 'Open Link Radar Screen'),
+            subtitle: Text(
+              isTr
+                  ? 'Şüpheli bir bağlantıyı doğrudan yapıştırıp risk seviyesini inceleyin.'
+                  : 'Paste a suspicious link directly to inspect its risk score.',
+            ),
+            trailing: const Icon(Icons.arrow_forward_ios, size: 14, color: CyberpunkColors.neonCyan),
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (_) => const LinkScannerScreen()),
+              );
+            },
           ),
           SwitchListTile(
             secondary: const Icon(Icons.campaign_outlined),
@@ -546,7 +599,7 @@ class SettingsScreen extends StatelessWidget {
             key: const Key('openSecurityAuditTile'),
             leading: const Icon(Icons.verified_outlined, color: CyberpunkColors.safeGreen),
             title: Text(isTr ? 'Güvenlik Sertifikası' : 'Security Audit Certificate'),
-            subtitle: Text(isTr ? 'Kendi kendini denetleyen askeri düzey çevrimdışı kalkan' : 'Self-auditing military-grade offline shield'),
+            subtitle: Text(isTr ? 'Kendi kendini denetleyen tam uyumlu çevrimdışı kalkan' : 'Self-auditing certified offline shield'),
             trailing: const Icon(Icons.chevron_right),
             onTap: () => Navigator.of(context).push(
               MaterialPageRoute(builder: (_) => const SecurityAuditScreen()),
@@ -938,6 +991,20 @@ class _FamilyAndProCardState extends State<_FamilyAndProCard> {
                   icon: const Icon(Icons.groups_outlined, size: 16),
                   label: Text(
                     isTr ? 'VERO AİLE (4 Kişi)' : 'VERO FAMILY (4 Users)',
+                  ),
+                ),
+                OutlinedButton.icon(
+                  key: const Key('openPaywallComparisonBtn'),
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute<void>(
+                        builder: (_) => const PaywallScreen(),
+                      ),
+                    );
+                  },
+                  icon: const Icon(Icons.table_chart_outlined, size: 16),
+                  label: Text(
+                    isTr ? 'Plan Karşılaştırma Tablosu' : 'Plan Comparison Table',
                   ),
                 ),
                 if (app.isProOrFamily)

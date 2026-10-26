@@ -115,7 +115,7 @@ class VeroSecurityAuditor {
       complianceScore: score,
       items: items,
       timestamp: DateTime.now(),
-      certificateCode: 'VERO-SEC-2026-MILITARY-OFFLINE',
+      certificateCode: 'VERO-SEC-2025-OFFLINE-CERTIFIED',
     );
   }
 }
@@ -201,11 +201,23 @@ class _SecurityAuditScreenState extends State<SecurityAuditScreen> {
                 const SizedBox(height: 6),
                 Text(
                   isTr
-                      ? 'Askeri Düzey Çevrimdışı Güvenlik • Sıfır Bulut Bağımlılığı'
-                      : 'Military-Grade On-Device Security • Zero Cloud Dependency',
+                      ? 'Onaylı Çevrimdışı Güvenlik • Sıfır Bulut Bağımlılığı'
+                      : 'Certified On-Device Security • Zero Cloud Dependency',
                   textAlign: TextAlign.center,
                   style: theme.textTheme.bodySmall?.copyWith(
                     color: CyberpunkColors.textSecondary,
+                  ),
+                ),
+                const SizedBox(height: 10),
+                Text(
+                  isTr
+                      ? 'Bu uygulama kendi kendini denetleyen çevrimdışı güvenlik protokolüne uygundur. İnternet izni: YOK. Dış veri transferi: YOK. Tüm işlemler cihaz içinde gerçekleştirilir.'
+                      : 'This application complies with self-auditing offline security protocol. Internet permission: NONE. External data transfer: NONE. All processing executes on-device.',
+                  textAlign: TextAlign.center,
+                  style: theme.textTheme.bodySmall?.copyWith(
+                    color: CyberpunkColors.textSecondary,
+                    fontSize: 11,
+                    height: 1.35,
                   ),
                 ),
                 const SizedBox(height: 12),

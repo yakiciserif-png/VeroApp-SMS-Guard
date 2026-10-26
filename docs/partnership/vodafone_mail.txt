@@ -1,0 +1,26 @@
+Konu: Vodafone Türkiye Abonelerine Özel %100 Çevrimdışı SMS & Çağrı Dolandırıcılığı Önleme Çözümü
+
+Kime: Vodafone Telekomünikasyon A.Ş. — Fraud & Gelir Güvence Birimi / Dijital Ürün Direktörlüğü
+Tarih: 26 Ekim 2026
+
+Değerli Vodafone Yetkilileri,
+
+Global güvenlik standartlarına öncülük eden Vodafone Türkiye'nin, abonelerinin dolandırıcılık amaçlı SMS ve çağrılardan korunmasına verdiği önemi biliyoruz. 
+
+Mevcut piyasa çözümlerinin (Truecaller vb.) kullanıcı rehberini merkezi sunucularda depolayarak KVKK ve GDPR riskleri doğurması sebebiyle, cihaz içi çalışan yerli ve milli çözümümüz **VeroApp SMS Guard**'ı hayata geçirdik.
+
+Öne Çıkan Güçlü Yönlerimiz:
+- **Tamamen Çevrimdışı Mimari:** Android tarafında `android.permission.INTERNET` izni barındırmaz. Abonelerin mesajları veya çağrı logları kesinlikle üçüncü taraflara aktarılmaz.
+- **200.000 Numaralık Optimize Çevrimdışı Kütüphane:** Çağrı anında 0.1 ms içinde dolandırıcı veya şüpheli numaraları tespit eder.
+- **Vodafone Red & Yanımda Entegrasyonu:** Vodafone Yanımda uygulaması üzerinden Vodafone abonelerine aylık faturaya ek (39,99 TL/ay) veya Red ayrıcalığı olarak sunulabilir.
+- **Sıfır Şebeke Yükü:** Tüm analizler abonenin telefon işlemcisinde yerel yapay zeka ile tamamlandığı için operatör şebekesinde ek trafik veya sunucu maliyeti yaratmaz.
+
+Vodafone Fraud ve Güvenlik ekiplerinize özel hazırladığımız canlı simülasyon ve test ortamını paylaşmak üzere uygun olduğunuz bir gün görüşmeyi arzu ederiz.
+
+Saygılarımızla,
+
+VeroApp Kurumsal İletişim & Stratejik Ortaklıklar
+E-posta: vodafone-partner@veroapp.net
+Web: https://veroapp.net
+Tel: +90 (212) 555 01 99
+Maslak Teknopark, Sarıyer / İstanbul

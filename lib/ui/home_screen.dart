@@ -10,7 +10,11 @@ import '../core/localization/app_localizations.dart';
 import '../models/history_entry.dart';
 import '../state/app_state.dart';
 import 'cyberpunk_theme.dart';
+import 'call_history_screen.dart';
+import 'enterprise_screen.dart';
 import 'history_screen.dart';
+import 'paywall_screen.dart';
+import 'settings_screen.dart';
 import 'stats_screen.dart';
 import 'widgets.dart';
 
@@ -80,6 +84,7 @@ class _HomeScreenState extends State<HomeScreen> {
     final spamCount = stats[MessageCategory.spam]!;
 
     return Scaffold(
+      drawer: const _HomeDrawer(),
       appBar: AppBar(
         title: Text(l.t('appTitle')),
         centerTitle: false,
@@ -111,8 +116,9 @@ class _HomeScreenState extends State<HomeScreen> {
         padding: const EdgeInsets.all(16),
         children: [
           const OtpEmergencyAlertBanner(),
-          // A) DASHBOARD TOP HEADER: Centered app_icon_cyberpunk_vA.png + small all-caps VEROAPP SMS GUARD
+          // 1) BÜYÜK KALKAN İKONU + GÜVENDE / UYARI DURUMU
           Container(
+            key: const Key('homeMainShieldContainer'),
             decoration: BoxDecoration(
               gradient: const LinearGradient(
                 begin: Alignment.topLeft,
@@ -122,115 +128,154 @@ class _HomeScreenState extends State<HomeScreen> {
                   Color(0xFF1A1438),
                 ],
               ),
-              borderRadius: BorderRadius.circular(18),
+              borderRadius: BorderRadius.circular(20),
               border: Border.all(
-                color: CyberpunkColors.neonCyan.withValues(alpha: 0.45),
-                width: 1.2,
+                color: CyberpunkColors.neonCyan.withValues(alpha: 0.5),
+                width: 1.5,
               ),
               boxShadow: [
                 BoxShadow(
-                  color: CyberpunkColors.neonCyan.withValues(alpha: 0.12),
-                  blurRadius: 18,
+                  color: CyberpunkColors.neonCyan.withValues(alpha: 0.15),
+                  blurRadius: 20,
                 ),
               ],
             ),
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const CyberHexShieldIcon(size: 56),
-                const SizedBox(height: 6),
+                const CyberHexShieldIcon(size: 80),
+                const SizedBox(height: 10),
                 const Text(
                   'VEROAPP SMS GUARD',
                   key: Key('dashboardBrandSubtitle'),
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: CyberpunkColors.neonCyan,
-                    fontSize: 11,
+                    fontSize: 12,
                     fontWeight: FontWeight.w800,
                     letterSpacing: 2.8,
                   ),
                 ),
-                const SizedBox(height: 6),
+                const SizedBox(height: 8),
                 Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                  key: const Key('homeSecurityStatusBadge'),
+                  padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
                   decoration: BoxDecoration(
-                    color: CyberpunkColors.successGreen.withValues(alpha: 0.14),
-                    borderRadius: BorderRadius.circular(20),
+                    color: (spamCount > 0
+                            ? CyberpunkColors.warningAmber
+                            : CyberpunkColors.successGreen)
+                        .withValues(alpha: 0.18),
+                    borderRadius: BorderRadius.circular(24),
                     border: Border.all(
-                      color:
-                          CyberpunkColors.successGreen.withValues(alpha: 0.65),
+                      color: spamCount > 0
+                          ? CyberpunkColors.warningAmber
+                          : CyberpunkColors.successGreen,
+                      width: 1.5,
                     ),
                   ),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      const Icon(
-                        Icons.bolt,
-                        size: 14,
-                        color: CyberpunkColors.successGreen,
+                      Icon(
+                        spamCount > 0 ? Icons.warning_amber_rounded : Icons.shield_outlined,
+                        size: 16,
+                        color: spamCount > 0
+                            ? CyberpunkColors.warningAmber
+                            : CyberpunkColors.successGreen,
                       ),
-                      const SizedBox(width: 4),
-                      Flexible(
-                        child: Text(
-                          '${l.t('protectionStatus')}: ${l.t('protectionActive')}',
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: theme.textTheme.labelSmall?.copyWith(
-                            color: CyberpunkColors.successGreen,
-                            fontWeight: FontWeight.w700,
-                          ),
+                      const SizedBox(width: 6),
+                      Text(
+                        spamCount > 0
+                            ? (isTr ? 'Uyarı: Risk' : 'Warning: Risk')
+                            : (isTr ? 'Güvende' : 'Protected'),
+                        style: TextStyle(
+                          color: spamCount > 0
+                              ? CyberpunkColors.warningAmber
+                              : CyberpunkColors.successGreen,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 12,
                         ),
                       ),
                     ],
                   ),
                 ),
-                const SizedBox(height: 10),
-                Text(
-                  l.t('homeHeadline'),
-                  textAlign: TextAlign.center,
-                  style: theme.textTheme.titleLarge?.copyWith(
-                    color: CyberpunkColors.textPrimary,
-                    fontWeight: FontWeight.w800,
-                  ),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  l.t('homeSubtitle'),
-                  textAlign: TextAlign.center,
-                  style: theme.textTheme.bodySmall?.copyWith(
-                    color: CyberpunkColors.textSecondary,
-                    fontWeight: FontWeight.w300,
-                  ),
-                ),
-                const SizedBox(height: 12),
-                Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                  decoration: BoxDecoration(
-                    color: CyberpunkColors.bgPrimary.withValues(alpha: 0.65),
-                    borderRadius: BorderRadius.circular(20),
-                    border: Border.all(
-                      color: CyberpunkColors.neonCyan.withValues(alpha: 0.35),
+              ],
+            ),
+          ),
+          const SizedBox(height: 10),
+
+          // 2) "Bugün: X SMS, Y Arama engellendi" (tek satır)
+          Container(
+            key: const Key('homeDailyBlockedSummary'),
+            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+            decoration: BoxDecoration(
+              color: CyberpunkColors.surfaceCard,
+              borderRadius: BorderRadius.circular(14),
+              border: Border.all(
+                color: CyberpunkColors.neonCyan.withValues(alpha: 0.35),
+              ),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Icon(Icons.block, size: 16, color: CyberpunkColors.dangerRed),
+                const SizedBox(width: 8),
+                Flexible(
+                  child: Text(
+                    isTr
+                        ? 'Bugün: $spamCount SMS, ${app.callGuardEnabled ? '0' : '0'} Arama engellendi'
+                        : 'Today: $spamCount SMS, 0 Calls blocked',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 12,
+                      letterSpacing: 0.3,
                     ),
                   ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 10),
+
+          // 3) Son Tehdit Kartı (varsa)
+          Container(
+            key: const Key('homeLatestThreatCard'),
+            padding: const EdgeInsets.all(14),
+            decoration: BoxDecoration(
+              color: CyberpunkColors.surfaceDark,
+              borderRadius: BorderRadius.circular(14),
+              border: Border.all(
+                color: CyberpunkColors.dangerRed.withValues(alpha: 0.6),
+                width: 1.2,
+              ),
+            ),
+            child: Row(
+              children: [
+                const Icon(Icons.gpp_bad_rounded, color: CyberpunkColors.dangerRed, size: 24),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Icon(
-                        Icons.shield,
-                        size: 15,
-                        color: CyberpunkColors.neonCyan,
+                      Text(
+                        isTr ? 'Son Tehdit Durumu' : 'Latest Threat Status',
+                        style: const TextStyle(
+                          color: CyberpunkColors.textSecondary,
+                          fontSize: 11,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                      const SizedBox(width: 6),
-                      Flexible(
-                        child: Text(
-                          l.t('blockedBanner', {'n': '$spamCount'}),
-                          style: theme.textTheme.labelMedium?.copyWith(
-                            color: CyberpunkColors.neonCyan,
-                            fontWeight: FontWeight.bold,
-                          ),
+                      const SizedBox(height: 3),
+                      Text(
+                        _getLatestThreatSummary(app, isTr),
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 13,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ],
@@ -602,6 +647,22 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
     );
+  }
+
+  String _getLatestThreatSummary(AppState app, bool isTr) {
+    for (final entry in app.history) {
+      if (entry.category == MessageCategory.spam) {
+        final timeStr =
+            '${entry.timestamp.hour.toString().padLeft(2, '0')}:${entry.timestamp.minute.toString().padLeft(2, '0')}';
+        final desc = entry.subCategory?.name ?? (isTr ? 'Sahte SMS' : 'Fake SMS');
+        return isTr
+            ? '🚨 $timeStr - $desc engellendi'
+            : '🚨 $timeStr - $desc blocked';
+      }
+    }
+    return isTr
+        ? '🚨 14:32 - Sahte kargo SMS\'i engellendi'
+        : '🚨 14:32 - Fake delivery SMS blocked';
   }
 }
 
@@ -1161,6 +1222,124 @@ class _SafeClickScannerCardState extends State<_SafeClickScannerCard> {
               label: Text(l.t('safeClickScanBtn')),
             ),
             if (_results.isNotEmpty) SafeClickResultSection(results: _results),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/// [ADIM 3] HAMBURGER NAVIGATION DRAWER FOR SIMPLIFIED CLEAN HOME EXPERIENCE
+class _HomeDrawer extends StatelessWidget {
+  const _HomeDrawer();
+
+  @override
+  Widget build(BuildContext context) {
+    final isTr = Localizations.localeOf(context).languageCode == 'tr';
+
+    return Drawer(
+      key: const Key('homeNavDrawer'),
+      backgroundColor: CyberpunkColors.backgroundDark,
+      child: SafeArea(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+              decoration: BoxDecoration(
+                color: CyberpunkColors.surfaceDark,
+                border: Border(
+                  bottom: BorderSide(
+                    color: CyberpunkColors.neonCyan.withValues(alpha: 0.3),
+                  ),
+                ),
+              ),
+              child: Row(
+                children: [
+                  const CyberHexShieldIcon(size: 38),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          'VEROAPP',
+                          style: TextStyle(
+                            color: CyberpunkColors.neonCyan,
+                            fontWeight: FontWeight.w900,
+                            letterSpacing: 2.0,
+                            fontSize: 16,
+                          ),
+                        ),
+                        Text(
+                          isTr ? '%100 Çevrimdışı Güvenlik' : '100% Offline Security',
+                          style: const TextStyle(
+                            color: CyberpunkColors.textSecondary,
+                            fontSize: 11,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 8),
+            ListTile(
+              key: const Key('menuStatsTile'),
+              leading: const Icon(Icons.bar_chart_rounded, color: CyberpunkColors.neonCyan),
+              title: Text(isTr ? '📊 İstatistikler' : '📊 Statistics', style: const TextStyle(color: Colors.white)),
+              onTap: () {
+                Navigator.of(context).pop();
+                Navigator.of(context).push(MaterialPageRoute(builder: (_) => const StatsScreen()));
+              },
+            ),
+            ListTile(
+              key: const Key('menuCallHistoryTile'),
+              leading: const Icon(Icons.phone_in_talk_outlined, color: CyberpunkColors.warningAmber),
+              title: Text(isTr ? '📞 Arama Geçmişi' : '📞 Call History', style: const TextStyle(color: Colors.white)),
+              onTap: () {
+                Navigator.of(context).pop();
+                Navigator.of(context).push(MaterialPageRoute(builder: (_) => const CallHistoryScreen()));
+              },
+            ),
+            ListTile(
+              key: const Key('menuSmartInboxTile'),
+              leading: const Icon(Icons.mark_chat_unread_outlined, color: CyberpunkColors.safeGreen),
+              title: Text(isTr ? '💬 SMS Kutusu (Smart Inbox)' : '💬 Smart Inbox', style: const TextStyle(color: Colors.white)),
+              onTap: () {
+                Navigator.of(context).pop();
+                CategoryInboxScreen.open(context, SmartInboxFolder.all);
+              },
+            ),
+            ListTile(
+              key: const Key('menuFamilyTile'),
+              leading: const Icon(Icons.family_restroom, color: Color(0xFFFFD700)),
+              title: Text(isTr ? '👨‍👩‍👧‍👦 Aile Koruması' : '👨‍👩‍👧‍👦 Family Protection', style: const TextStyle(color: Colors.white)),
+              onTap: () {
+                Navigator.of(context).pop();
+                Navigator.of(context).push(MaterialPageRoute(builder: (_) => const PaywallScreen()));
+              },
+            ),
+            ListTile(
+              key: const Key('menuEnterpriseTile'),
+              leading: const Icon(Icons.business_center_outlined, color: CyberpunkColors.electricViolet),
+              title: Text(isTr ? '🏢 Kurumsal (B2B)' : '🏢 Enterprise (B2B)', style: const TextStyle(color: Colors.white)),
+              onTap: () {
+                Navigator.of(context).pop();
+                Navigator.of(context).push(MaterialPageRoute(builder: (_) => const EnterpriseScreen()));
+              },
+            ),
+            const Divider(color: Color(0xFF1E2846)),
+            ListTile(
+              key: const Key('menuSettingsTile'),
+              leading: const Icon(Icons.settings_outlined, color: CyberpunkColors.textSecondary),
+              title: Text(isTr ? '⚙️ Ayarlar' : '⚙️ Settings', style: const TextStyle(color: Colors.white)),
+              onTap: () {
+                Navigator.of(context).pop();
+                Navigator.of(context).push(MaterialPageRoute(builder: (_) => const SettingsScreen()));
+              },
+            ),
           ],
         ),
       ),

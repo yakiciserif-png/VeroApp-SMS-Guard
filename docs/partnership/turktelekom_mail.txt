@@ -1,0 +1,26 @@
+Konu: Türk Telekom Abonelerine Yönelik Yerli ve Milli %100 Çevrimdışı SMS/Arama Koruma Çözümü
+
+Kime: Türk Telekomünikasyon A.Ş. — Siber Güvenlik & Fraud Yönetim Direktörlüğü / Katma Değerli Hizmetler
+Tarih: 26 Ekim 2026
+
+Değerli Türk Telekom Yetkilileri,
+
+Türkiye'nin öncü telekomünikasyon operatörü Türk Telekom'un yerli siber güvenlik ekosistemine sağladığı katkıları yakından takip etmekteyiz.
+
+Yabancı menşeili arayan kimliği uygulamalarının vatandaşlarımızın rehber verilerini yurt dışına taşıyarak veri egemenliğimizi tehdit ettiği bir dönemde, Türk mühendisleri tarafından geliştirilen **VeroApp SMS Guard**'ı bilginize sunmaktan gurur duyuyoruz.
+
+VeroApp Çözümünün Avantajları:
+- **Yerli, Milli ve %100 Çevrimdışı:** İnternet erişim izni (`android.permission.INTERNET`) bulunmaz. Kullanıcının SMS ve arama verileri asla cihaz dışına çıkamaz.
+- **200.000 Kayıtlı Tehdit Veritabanı:** Doğrudan cihaz üzerinde 0.1 ms sorgulama ile sahte icra, banka ve oltalama aramalarını eş zamanlı filtreler.
+- **Türk Telekom Prime & Kurumsal Paket Entegrasyonu:** Türk Telekom abonelerine fatura entegrasyonlu katma değerli güvenlik servisi olarak sunulabilir.
+- **Sıfır Altyapı Yatırımı:** İşlemlerin tümü son kullanıcı cihazının işlemcisinde çalıştığı için Türk Telekom sunucu altyapısına sıfır ek yük getirir.
+
+Konuyu detaylandırmak ve Türk Telekom siber güvenlik vizyonuna sağlayacağımız katma değeri sunmak adına teknik heyetinizle bir araya gelmekten memnuniyet duyarız.
+
+Saygılarımızla,
+
+VeroApp Güvenlik Teknolojileri A.Ş.
+Kurumsal Satış & İş Birlikleri
+E-posta: turktelekom-partner@veroapp.net
+Web: https://veroapp.net
+Tel: +90 (212) 555 01 99

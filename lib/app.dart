@@ -1,5 +1,6 @@
 import 'dart:io' show Platform;
 
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -25,9 +26,14 @@ class AppScope extends InheritedNotifier<AppState> {
 }
 
 class VeroAppSmsGuardApp extends StatelessWidget {
-  const VeroAppSmsGuardApp({super.key, required this.state});
+  const VeroAppSmsGuardApp({
+    super.key,
+    required this.state,
+    this.appTitle,
+  });
 
   final AppState state;
+  final String? appTitle;
 
   static const Color seed = CyberpunkColors.neonCyan;
 
@@ -41,7 +47,10 @@ class VeroAppSmsGuardApp extends StatelessWidget {
       child: ListenableBuilder(
         listenable: state,
         builder: (context, _) => MaterialApp(
-          title: 'VeroApp SMS Guard',
+          title: appTitle ??
+              ((!kIsWeb && Platform.isIOS)
+                  ? 'VeroApp Call Guard - AI Kalkan'
+                  : 'VeroApp: SMS & Arama Kalkanı'),
           debugShowCheckedModeBanner: false,
           locale: state.locale,
           supportedLocales: AppLocalizations.supportedLocales,

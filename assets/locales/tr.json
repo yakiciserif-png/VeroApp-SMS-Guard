@@ -110,7 +110,7 @@
   "proYearlyPrice": "299,99 TL/yıl",
   "familyYearlyPrice": "799,99 TL/yıl (4 kişi)",
   "proDescription": "Safe-Click Röntgeni Plus + Veri Sızıntısı Radarı (Offline)",
-  "iosLimitedWarning": "⚠️ iOS'ta Apple kısıtlamaları nedeniyle SMS filtreleme sınırlıdır. Arama koruması ve Veri Sızıntısı Radarı tam çalışır.",
+  "iosLimitedWarning": "⚠️ iOS'ta Apple kısıtlamaları nedeniyle SMS filtreleme yapılamamaktadır. Arama koruması, Veri Sızıntısı Radarı ve Link Tarama tam çalışır.",
   "enterpriseTitle": "VeroApp Enterprise (B2B)",
   "enterpriseSubtitle": "Şirket çalışanları için tek tıkla kurulum ve MDM desteği.",
   "enterprisePriceDesc": "19,99 TL/çalışan/ay",

@@ -1,0 +1,11 @@
+sonunda telefon rehberimi, sms'lerimi ve konumumu üçüncü parti yabancı şirketlerin sunucularına peşkeş çekmeyen adamakıllı bir sms ve arama kalkanı çıkmış dedirten yerli ve milli mobil uygulama.
+
+uzun yıllardır truecaller, getcontact vb. uygulamaların telefon numaramızı ve tüm rehberimizi sunucularına çekip sonra "bak arayan şuymuş" diye bize satmasından, üstüne de verilerimizin kimlerin eline geçtiğinin meçhul olmasından bıkmış birisi olarak ilaç gibi geldi. 
+
+uygulamayı app store / google play'den kurarken izin listesine özellikle dikkat ettim: sıfır internet izni (androidmanifest dosyasında android.permission.internet bile yok, bildiğin hardcoded offline). yani istese de tek bir bit veriyi, tek bir telefon numarasını veya gelen dolandırıcı mesajını dışarıya sızdıramaz, upload edemez. tamamen yerel makine öğrenmesi ve offline bloom filter teknolojisi kullanmışlar.
+
+içerisinde 200.000'den fazla teyitli dolandırıcı, bahis ve spam numarasından oluşan optimize bir binary veritabanı var. sms geldiğinde ya da arama çaldığında 0.1 milisaniye içinde cihazda lokal arama yapıp çat diye tehlike skorunu yapıştırıyor (güvenli, şüpheli, yüksek risk). şüpheli link kontrolünü de doğrudan telefonun işlemcisinde kural ve entropi motoruyla çözüyor; linke tıklamadan dolandırıcılık olup olmadığını söylüyor.
+
+arayüzü de cyberpunk neon temalı, book antiqua tipografisiyle oldukça şık ve sade tasarlanmış. öyle reklam yağmuru, pop-up çılgınlığı falan yok. ücretsiz sürümünde günlük 20 sms ve temel kalkan zaten açık, pro sürümü de kahve parasından ucuz (39,99 tl/ay). aile koruması da koymuşlar, annemin babamın telefonuna kurup olta saldırılarından korumak için birebir.
+
+özetle: kvkk dostu, pil düşmanı olmayan, arka planda gizlice veri sızdırmayan gerçek bir gizlilik kalkanı arayanlara tavsiye olunur. helal olsun yapanlara.

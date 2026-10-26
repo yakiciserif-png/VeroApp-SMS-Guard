@@ -1,0 +1,81 @@
+===============================================================================
+VEROAPP SMS GUARD — SOSYAL MEDYA (TWITTER / X) 10 HAZIR PAYLAŞIM TASLAĞI
+===============================================================================
+
+[TWEET 1 - GİZLİLİK ODAKLI]
+Truecaller rehberinizi sunucularına yüklüyor ve satıyor. VeroApp ise %100 çevrimdışı.
+Telefonunuzdan dışarı tek bir bayt veri çıkmaz. Sıfır internet izni, sıfır bulut.
+Kişisel verileriniz size aittir. 🛡️
+#VeroApp #Gizlilik #KVKK #SiberGüvenlik
+
+---
+
+[TWEET 2 - TAPU VE DOLANDIRICILIK SMS'LERİ]
+"Adınıza kayıtlı tapu harcı ödenmemiştir..." 
+Son günlerde türeyen sahte e-Devlet ve tapu dolandırıcılığı SMS'lerine kanmayın!
+VeroApp'in yerel yapay zekası, Kiril maskelemesini ve sahte B002 kodlarını anında yakalar.
+#SiberFarkındalık #Dolandırıcılık #VeroApp
+
+---
+
+[TWEET 3 - WHATSAPP / TELEGRAM LİNK RADARI]
+WhatsApp'tan gelen "Kargonuz teslim edilemedi, tıklayın" linklerine son!
+VeroApp Safe-Click Radarı, zararlı .APK ve kimlik avı bağlantılarını siz tıklamadan önce engeller.
+Hem de internet izni olmadan, tamamen yerel! 🔗🛑
+#SafeClick #Phishing #VeroApp
+
+---
+
+[TWEET 4 - ARAYAN KİMLİĞİ VE SPAM ARAMA]
+Yurt dışı bilinmeyen aramalardan (+234, +63, +966) ve 0850'li sahte çağrı merkezlerinden bıktınız mı?
+VeroApp Call Guard, 200.000 kayıtlı çevrimdışı veri tabanıyla şüpheli aramayı anında kırmızı tam ekranla uyarır! 📞🚨
+#SpamArama #CallerID #VeroApp
+
+---
+
+[TWEET 5 - CEVAP BOTU / ANSWER BOT]
+Spam arayan dolandırıcıları kendi silahıyla vurun! 🤖
+VeroApp Offline Answer Bot, arayan dolandırıcıyı önceden kaydedilmiş zeki repliklerle dakikalarca oyalar, vaktini boşa harcar.
+#AnswerBot #YapayZeka #VeroApp
+
+---
+
+[TWEET 6 - E-DEVLET VE ŞİFRE GÜVENLİĞİ]
+Şifreniz veya e-postanız büyük sızıntılarda çalındı mı?
+VeroApp Sızıntı Radarı, 50 milyon bitlik çevrimdışı Bloom filtresiyle şifrenizi hiçbir sunucuya göndermeden cihazınızda test eder.
+%100 yerel, %100 KVKK uyumlu. 🔒
+#eDevlet #VeriSızıntısı #VeroApp
+
+---
+
+[TWEET 7 - TEKNİK VE MİMARİ MÜHÜR]
+Neden sıfır internet izni?
+Çünkü en güvenli sunucu, var olmayan sunucudur.
+VeroApp SMS Guard, Google Play ve App Store'da android.permission.INTERNET izni OLMAYAN ender güvenlik kalkanlarından biridir. 🛡️⚡
+#MobileSecurity #InfoSec #CyberSecurity
+
+---
+
+[TWEET 8 - AKILLI GELEN KUTUSU / SMART INBOX]
+SMS kutunuz çöplüğe mi döndü?
+VeroApp Smart Inbox ile Banka/OTP kodlarınız, Kargo takip bildirimleriniz ve Kişisel sohbetleriniz otomatik olarak 6 temiz klasöre ayrılır.
+Spam mesajlar gözünüzün önünden silinir. 📂✨
+#SmartInbox #Verimlilik #VeroApp
+
+---
+
+[TWEET 9 - AİLE PLANI]
+Anne, baba ve çocuklarınızı tek bir lisansla koruyun.
+Vero Aile Planı, 6 haneli tek kodla 4 farklı cihazı koruma altına alır.
+Aile büyüklerini dijital dolandırıcılıklara karşı kalkan arkasına alın. 👨‍👩‍👧‍👦
+#AileKoruması #Güvenlik #VeroApp
+
+---
+
+[TWEET 10 - FİYAT PERFORMANS KARŞILAŞTIRMASI]
+Rakipler ayda yüzlerce lira isterken ve verinizi işlerken;
+VeroApp PRO sadece 39,99 TL/ay!
+Türkiye'nin ilk %100 yerel AI güvenlik kalkanını hemen deneyin.
+🔗 https://github.com/yakiciserif-png/VeroApp-SMS-Guard
+#VeroApp #YerliYazılım #SiberKalkan
+===============================================================================

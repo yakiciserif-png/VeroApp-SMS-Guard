@@ -14,6 +14,7 @@ import '../core/monetization/purchase_service.dart';
 import '../core/platform/native_bridge.dart';
 import '../core/rules/rule_engine.dart';
 import '../engines/vero_community_shield.dart';
+import '../engines/vero_link_scanner.dart';
 import '../models/history_entry.dart';
 
 typedef SeedLoader = Future<String> Function();
@@ -55,6 +56,7 @@ class AppState extends ChangeNotifier {
   static const _kFamilyCode = 'vero.familyCode';
   static const _kCallGuard = 'vero.callGuard';
   static const _kKvkkConsent = 'vero.kvkkConsent';
+  static const _kLinkScannerMode = 'vero.linkScannerMode';
   static const int maxHistory = 500;
 
   final NativeBridge _bridge;
@@ -75,6 +77,7 @@ class AppState extends ChangeNotifier {
   bool autoDismissSpam = true;
   bool autoCleanOtp24h = false;
   bool callGuardEnabled = true;
+  LinkScannerMode linkScannerMode = LinkScannerMode.automatic;
   bool hasAcceptedKvkkConsent = false;
   bool otpAlertDismissed = false;
   bool notificationAccess = false;
@@ -127,6 +130,16 @@ class AppState extends ChangeNotifier {
     autoCleanOtp24h = _prefs.getBool(_kAutoCleanOtp24h) ?? false;
     callGuardEnabled = _prefs.getBool(_kCallGuard) ?? true;
     hasAcceptedKvkkConsent = _prefs.getBool(_kKvkkConsent) ?? false;
+
+    final savedLinkMode = _prefs.getString(_kLinkScannerMode);
+    if (savedLinkMode != null) {
+      linkScannerMode = LinkScannerMode.values.firstWhere(
+        (m) => m.name == savedLinkMode,
+        orElse: () => LinkScannerMode.automatic,
+      );
+      VeroLinkScanner.instance.setMode(linkScannerMode);
+    }
+
     await VeroCommunityShield.init(_prefs);
 
     final savedTier = _prefs.getString(_kSubTier);
@@ -812,6 +825,13 @@ class AppState extends ChangeNotifier {
   Future<void> setCallGuardEnabled(bool value) async {
     callGuardEnabled = value;
     await _prefs.setBool(_kCallGuard, value);
+    notifyListeners();
+  }
+
+  Future<void> setLinkScannerMode(LinkScannerMode mode) async {
+    linkScannerMode = mode;
+    VeroLinkScanner.instance.setMode(mode);
+    await _prefs.setString(_kLinkScannerMode, mode.name);
     notifyListeners();
   }
 

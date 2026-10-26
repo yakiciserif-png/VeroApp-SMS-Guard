@@ -1,0 +1,32 @@
+BASIN BÜLTENİ — HEMEN YAYINLANABİLİR
+Yayın Tarihi: 26 Ekim 2026
+Yayın Yeri: İstanbul, Türkiye
+
+TÜRK GİRİŞİMCİLERDEN DÜNYADA BİR İLK:
+%100 ÇEVRİMDIŞI ÇALIŞAN YAPAY ZEKA DESTEKLİ SMS VE ARAMA KORUMA UYGULAMASI VEROAPP KULLANIMA SUNULDU
+
+Kişisel Verileri Korumada Devrim: Telefon Rehberinizi ve Özel Mesajlarınızı Merkezi Sunuculara Yükleyen Yabancı Casus Uygulamalara Karşı Sıfır İnternet İzniyle Çalışan Milli Güvenlik Kalkanı.
+
+İSTANBUL — Son yıllarda katlanarak artan SMS ve telefon dolandırıcılığı, sahte kargo ve banka iadesi oltalama (phishing) mesajları milyonlarca vatandaşı tehdit ederken; mevcut spam engelleme uygulamalarının kullanıcı rehberlerini sunucularına depolaması ciddi bir küresel güvenlik açığı oluşturuyordu. Türk yazılım mühendisleri tarafından geliştirilen **VeroApp SMS Guard**, dünyada eşi benzeri görülmemiş bir mimariyle piyasaya çıktı: Sıfır internet bağlantısı ve %100 yerel yapay zeka.
+
+"GİZLİLİĞİNİZ BİZİM DEĞİL, SİZİN KONTROLÜNÜZDE"
+VeroApp Kurucu Ekibi adına yapılan açıklamada şu ifadelere yer verildi:
+"Geleneksel spam engelleyiciler kullanıcıya 'Seni koruyoruz' derken, aslında kullanıcının tüm rehberini, arama kayıtlarını ve özel mesajlarını merkezi veritabanlarına çekerek üçüncü partilere pazarlıyor. VeroApp SMS Guard ile bu döngüyü kırdık. Uygulamamız Android paketinde 'INTERNET' izni dahi barındırmaz. Dolandırıcılık tespiti, 200.000 kayıtlık optimize dolandırıcı veritabanı ve gelişmiş yapay zeka motoru tamamen telefonun kendi işlemcisi üzerinde, 0.1 milisaniyelik ultra hızlı yerel algoritmalarla gerçekleşir. Tek bir harf dahi cihaz dışına çıkamaz."
+
+DÖRT BOYUTLU KORUMA VE KURUMSAL ENTEGRASYON
+VeroApp SMS Guard, bireysel ve kurumsal kullanıcılara şu kritik kabiliyetleri sunuyor:
+• Gerçek Zamanlı SMS Kalkanı: B001-B015 operatör kod manipülasyonlarını, sahte icra, banka ve kargo linklerini eşzamanlı engelleme.
+• 200.000 Numaralık Çevrimdışı Arayan Kimliği: Şüpheli ve dolandırıcı numaraları çağrı anında ekranda kırmızı uyarı kalkanıyla bildirme.
+• Çevrimdışı Veri Sızıntısı Radarı: 500.000 kayıtlık optimize Bloom Filtresi ile e-posta ve şifrelerin küresel sızıntılarda yer alıp almadığını sıfır ağ bağlantısıyla test etme.
+• Aile ve Kurumsal Koruması: Tek hesapla tüm aileyi veya şirket çalışanlarını kimlik avı saldırılarına karşı koruma altına alma.
+
+UYGUN FİYAT, ŞEFFAF LİSANSLAMA
+VeroApp SMS Guard, günlük 20 SMS analizini içeren Ücretsiz sürümün yanı sıra, bireysel kullanıcılar için 39,99 TL/ay (yıllık 299,99 TL), 4 kişilik çekirdek aileler için yıllık 799,99 TL ve kurumlar için çalışan başına aylık 19,99 TL avantajlı fiyatlarla Google Play Store ve Apple App Store üzerinde kullanıma sunulmuştur.
+
+İLETİŞİM BİLGİLERİ:
+Kurum: VeroApp Güvenlik Teknolojileri A.Ş.
+E-posta: basin@veroapp.net / contact@veroapp.net
+Web Sitesi: https://veroapp.net
+Basın Kiti ve Görseller: https://veroapp.net/basin-kiti
+Adres: Maslak Teknopark, Sarıyer / İstanbul
+###
