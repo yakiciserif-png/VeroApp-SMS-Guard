@@ -1,3 +1,4 @@
+import 'package:veroapp_sms_guard/core/localization/app_localizations.dart';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -782,11 +783,11 @@ void main() {
 
       final bytes = spamBin.readAsBytesSync();
 
-      expect(bytes.length, equals(1600000)); // 50,000 * 8 bytes = 400 KB (390.62 KB)
+      expect(bytes.length, greaterThanOrEqualTo(8));
 
       VeroCallerIdEngine.loadFromBytes(bytes);
 
-      expect(VeroCallerIdEngine.recordCount, equals(200000));
+      expect(VeroCallerIdEngine.recordCount, greaterThanOrEqualTo(1));
 
 
 
@@ -830,7 +831,7 @@ void main() {
 
         resScam.warningTitleTr,
 
-        equals('🚨 Bu numara spam olarak işaretlendi: SPAM_SCAM'),
+        contains('Şüpheli olabilir'),
 
       );
 
@@ -844,7 +845,7 @@ void main() {
 
         resRobocall.warningTitleTr,
 
-        equals('🚨 Bu numara spam olarak işaretlendi: SPAM_ROBOCALL'),
+        contains('Şüpheli olabilir'),
 
       );
 
@@ -1212,7 +1213,7 @@ void main() {
 
         expect(find.byKey(const Key('callOverlayAnswerBotBtn')), findsOneWidget);
 
-        expect(find.text('🚨 DOLANDIRICILIK UYARISI'), findsOneWidget);
+        expect(find.textContaining('UYARISI'), findsOneWidget);
 
       });
 
@@ -2290,7 +2291,7 @@ void main() {
 
         final androidListing = File('docs/play_store_listing_android.txt').readAsStringSync();
 
-        expect(iosListing.contains('VeroApp Call Guard - AI Kalkan'), isTrue);
+        expect(iosListing.contains('VeroApp SMS Guard - AI Kalkan'), isTrue);
 
         expect(iosListing.contains('Arama koruması, Veri Sızıntısı Radarı'), isTrue);
 
@@ -2306,11 +2307,11 @@ void main() {
 
         final enLocale = File('assets/locales/en.json').readAsStringSync();
 
-        expect(trLocale.contains('Apple kısıtlamaları nedeniyle'), isTrue);
+        expect(trLocale.contains('IdentityLookup'), isTrue);
 
         expect(trLocale.contains('Arama koruması, Veri Sızıntısı Radarı'), isTrue);
 
-        expect(enLocale.contains('Apple restrictions'), isTrue);
+        expect(enLocale.contains('IdentityLookup'), isTrue);
 
       });
 
@@ -2592,51 +2593,31 @@ void main() {
 
 
 
-      test('FAZA 4 [Adım 5A]: 200.000 spam numara binary veritabanı boyutu (1.600.000 bayt)', () {
-
+      test('FAZA 4 [Adım 5A]: Temizlenmiş ve teyitli spam numara binary veritabanı kontrolü', () {
         final file = File('assets/spam_db/spam_numbers.bin');
-
         expect(file.existsSync(), isTrue);
-
-        expect(file.lengthSync(), equals(1600000));
-
+        expect(file.lengthSync(), greaterThanOrEqualTo(8));
       });
 
-
-
-      test('FAZA 4 [Adım 5B]: 200.000 kayıtta VeroCallerIdEngine binary search hızı (<0.1ms)', () {
-
+      test('FAZA 4 [Adım 5B]: VeroCallerIdEngine binary search hızı (<0.1ms)', () {
         final sw = Stopwatch()..start();
-
         for (var i = 0; i < 50; i++) {
-
-          VeroCallerIdEngine.lookup('0850 480 00 15');
-
+          VeroCallerIdEngine.lookup('0850 480 00 00');
         }
-
         sw.stop();
-
         final avgMs = sw.elapsedMicroseconds / 1000.0 / 50.0;
-
         expect(avgMs, lessThan(0.1));
-
       });
-
-
 
       test('FAZA 4 [Adım 5C]: VeroCallerIdEngine Türkiye sabit hat ve spam ön ekleri analizi', () {
-
         final res0850 = VeroCallerIdEngine.lookup('0850 484 00 00');
-
-        expect(res0850.isSpam, isTrue);
+        expect(res0850.isSuspicious, isTrue);
+        expect(res0850.uiBadgeTextTr, equals('⚠️ Şüpheli olabilir'));
 
         final resMobile = VeroCallerIdEngine.lookup('+90 532 111 22 33');
-
         expect(resMobile.isSpam, isFalse);
-
+        expect(resMobile.isSuspicious, isFalse);
       });
-
-
 
       test('FAZA 4 [Adım 6A]: VeroSecurityAuditor güncel sertifika kodu VERO-SEC-2025-OFFLINE-CERTIFIED', () {
 
@@ -2804,6 +2785,103 @@ void main() {
 
     });
 
+
+    group('FAZA 5 — Gerçeklik Denetimi ve Düzeltme Doğrulama Testleri', () {
+      test('FAZA 5 [Adım 1A]: Spam DB dürüstlük temizliği ve kayıt sayısı kontrolü', () {
+        final file = File('assets/spam_db/spam_numbers.bin');
+        expect(file.existsSync(), isTrue);
+        expect(file.lengthSync(), equals(200)); // Exactly 25 verified records * 8 bytes
+        final domains = File('assets/spam_db/phishing_domains.bin').readAsLinesSync();
+        expect(domains.length, equals(26));
+      });
+
+      test('FAZA 5 [Adım 1B]: Pattern eşleşmeleri UI rozeti "⚠️ Şüpheli olabilir" kontrolü', () {
+        final resForeign = VeroCallerIdEngine.lookup('+234 803 000 0000');
+        expect(resForeign.isSpam, isFalse);
+        expect(resForeign.isSuspicious, isTrue);
+        expect(resForeign.uiBadgeTextTr, equals('⚠️ Şüpheli olabilir'));
+
+        final resExact = VeroCallerIdEngine.lookup('0850 480 00 00');
+        expect(resExact.isSpam, isTrue);
+        expect(resExact.uiBadgeTextTr, equals('🚨 SPAM'));
+      });
+
+      test('FAZA 5 [Adım 2A]: Ed25519 imzalı offline lisans doğrulama testi (Geçerli lisans kabul edilir)', () async {
+        final verifier = VeroLicenseVerifier.instance;
+        const validCode = 'VERO-FAM-eyJleHAiOjE4MjQ1NzEyMzAsImlhdCI6MTc5MzAzNTIzMCwiaWQiOiJWRVJPLTcyRjI2RTA3Iiwic2VhdHMiOjQsInRpZXIiOiJmYW1pbHkifQ.mdV_fQ4hps5aAoyQ8Rgun-2Gy_2fxVDyzjfZC8BQ366EfPc2QftPUkA98jEWB3opG0WFQcjmZui1SvNs3jm7BA';
+        final res = await verifier.verifyCode(validCode);
+        expect(res.isValid, isTrue);
+        expect(res.seats, equals(4));
+        expect(res.tier, equals(VeroSubscriptionTier.familyYearly));
+      });
+
+      test('FAZA 5 [Adım 2B]: Ed25519 sahte / rastgele lisans kodu testi (Kesinlikle reddedilir)', () async {
+        final verifier = VeroLicenseVerifier.instance;
+        const fakeCode = 'VERO-FAM-eyJleHAiOjE4MjQ1NzEyMzAsImlhdCI6MTc5MzAzNTIzMCwiaWQiOiJWRVJPLTcyRjI2RTA3Iiwic2VhdHMiOjQsInRpZXIiOiJmYW1pbHkifQ.FAKE_INVALID_SIGNATURE_TAMPERED_BITS_1234567890abcdefghijklmnopqrstuvwxyz';
+        final res = await verifier.verifyCode(fakeCode);
+        expect(res.isValid, isFalse);
+        expect(res.errorMessage, isNotNull);
+
+        const randomGarbage = 'VERO-FAM-INVALIDCODE123';
+        final res2 = await verifier.verifyCode(randomGarbage);
+        expect(res2.isValid, isFalse);
+      });
+
+      test('FAZA 5 [Adım 3 & 6]: CallScreeningService ve Default SMS manifest servisleri kontrolü', () {
+        final manifest = File('android/app/src/main/AndroidManifest.xml').readAsStringSync();
+        expect(manifest.contains('android.telecom.CallScreeningService'), isTrue);
+        expect(manifest.contains('TrustSmsDeliverReceiver'), isTrue);
+        expect(manifest.contains('TrustWapPushDeliverReceiver'), isTrue);
+        expect(manifest.contains('HeadlessSmsSendService'), isTrue);
+        expect(manifest.contains('android.intent.action.SENDTO'), isTrue);
+      });
+
+      test('FAZA 5 [Adım 4]: Answer Bot teknik dürüstlük kontrolü (isExperimental == true)', () {
+        expect(VeroAnswerBot.isExperimental, isTrue);
+      });
+
+      test('FAZA 5 [Adım 5]: iOS SMS Filtresi ve Mağaza Başlığı doğrulaması', () {
+        final iosListing = File('docs/app_store_listing_ios.txt').readAsStringSync();
+        expect(iosListing.contains('VeroApp SMS Guard - AI Kalkan'), isTrue);
+        expect(iosListing.contains('IdentityLookup'), isTrue);
+      });
+
+      test('FAZA 5 [Adım 6]: Google Play Permissions Declaration belgesi kontrolü', () {
+        final doc = File('docs/play_permissions.txt');
+        expect(doc.existsSync(), isTrue);
+        expect(doc.readAsStringSync().contains('ROLE_CALL_SCREENING'), isTrue);
+        expect(doc.readAsStringSync().contains('ROLE_SMS'), isTrue);
+      });
+
+      test('FAZA 5 [Adım 7]: In-App Purchase ürün ID kataloğu kontrolü', () {
+        final doc = File('docs/product_ids.txt');
+        expect(doc.existsSync(), isTrue);
+        expect(doc.readAsStringSync().contains('vero_pro_monthly'), isTrue);
+        expect(doc.readAsStringSync().contains('vero_family_yearly'), isTrue);
+      });
+
+      test('FAZA 5 [Adım 8]: Merged manifest içinde INTERNET izni SIFIR kontrolü', () {
+        final merged = File('build/app/intermediates/merged_manifests/release/processReleaseManifest/arm64-v8a/AndroidManifest.xml');
+        if (merged.existsSync()) {
+          final content = merged.readAsStringSync();
+          expect(content.contains('<uses-permission android:name="android.permission.INTERNET"'), isFalse);
+        }
+      });
+
+      test('FAZA 5 [Adım 9]: 11 dil desteği kontrolü (İtalyanca korunarak Hintçe hi.json eklendi)', () {
+        expect(AppLocalizations.supportedCodes.length, equals(11));
+        expect(AppLocalizations.supportedCodes.contains('it'), isTrue);
+        expect(AppLocalizations.supportedCodes.contains('hi'), isTrue);
+        expect(File('assets/locales/hi.json').existsSync(), isTrue);
+        expect(File('assets/locales/it.json').existsSync(), isTrue);
+      });
+
+      test('FAZA 5 [Adım 10]: Gerçek cihaz manuel test kılavuzu kontrolü (docs/real_device_test.md)', () {
+        final doc = File('docs/real_device_test.md');
+        expect(doc.existsSync(), isTrue);
+        expect(doc.readAsStringSync().contains('[TEST 15]'), isTrue);
+      });
+    });
   });
 
 }

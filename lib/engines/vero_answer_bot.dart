@@ -16,14 +16,20 @@ class AnswerBotPhrase {
   final Duration waitDuration;
 }
 
-/// [ADIM 5] SPAM OYALAMA BOTU (RoboKiller Answer Bot benzeri, %100 OFFLINE).
+/// [ADIM 5] SPAM OYALAMA BOTU (DENEYSEL / LABORATUVAR MODU).
 ///
-/// Plays pre-recorded local audio clips to stall spam callers for 30-60 seconds
-/// before disconnecting. Supported on Android; gracefully skipped on iOS.
+/// TEKNİK DÜRÜSTLÜK NOTU:
+/// Standart Android ve iOS işletim sistemi izinleri (root veya telekom PBX çağrı yönlendirme
+/// olmaksızın), üçüncü parti bir uygulamanın hücresel arama mikrofon uplink ses kanalına
+/// doğrudan ses enjekte etmesine izin vermez.
+/// Bu mod, yerel cihaz üzerinde demonstrasyon ve simülasyon amaçlı çalışır.
 class VeroAnswerBot {
   VeroAnswerBot({this.forceAndroid = false});
 
   final bool forceAndroid;
+
+  /// Always flagged as experimental due to OS voice-call uplink audio isolation.
+  static const bool isExperimental = true;
 
   AnswerBotStatus _status = AnswerBotStatus.idle;
   int _currentStepIndex = 0;

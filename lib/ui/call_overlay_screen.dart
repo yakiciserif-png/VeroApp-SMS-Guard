@@ -125,46 +125,54 @@ class _CallOverlayScreenState extends State<CallOverlayScreen>
                 Column(
                   children: [
                     const SizedBox(height: 16),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 16,
-                        vertical: 8,
-                      ),
-                      decoration: BoxDecoration(
-                        color: const Color(0xFFFF1744).withValues(alpha: 0.2),
-                        borderRadius: BorderRadius.circular(30),
-                        border: Border.all(
-                          color: const Color(0xFFFF1744),
-                          width: 1.5,
-                        ),
-                        boxShadow: [
-                          BoxShadow(
-                            color: const Color(0xFFFF1744).withValues(alpha: 0.35),
-                            blurRadius: 16,
-                            spreadRadius: 2,
+                    Builder(
+                      builder: (context) {
+                        final isSuspiciousPattern = callerInfo.displayName.contains('Şüpheli');
+                        final badgeColor = isSuspiciousPattern ? const Color(0xFFFF9100) : const Color(0xFFFF1744);
+                        return Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 16,
+                            vertical: 8,
                           ),
-                        ],
-                      ),
-                      child: const FittedBox(
-                        fit: BoxFit.scaleDown,
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Icon(Icons.warning_amber_rounded,
-                                color: Color(0xFFFF1744), size: 22),
-                            SizedBox(width: 8),
-                            Text(
-                              '🚨 DOLANDIRICILIK UYARISI',
-                              style: TextStyle(
-                                color: Color(0xFFFF1744),
-                                fontSize: 15,
-                                fontWeight: FontWeight.w900,
-                                letterSpacing: 1.2,
-                              ),
+                          decoration: BoxDecoration(
+                            color: badgeColor.withValues(alpha: 0.2),
+                            borderRadius: BorderRadius.circular(30),
+                            border: Border.all(
+                              color: badgeColor,
+                              width: 1.5,
                             ),
-                          ],
-                        ),
-                      ),
+                            boxShadow: [
+                              BoxShadow(
+                                color: badgeColor.withValues(alpha: 0.35),
+                                blurRadius: 16,
+                                spreadRadius: 2,
+                              ),
+                            ],
+                          ),
+                          child: FittedBox(
+                            fit: BoxFit.scaleDown,
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Icon(Icons.warning_amber_rounded,
+                                    color: badgeColor, size: 22),
+                                const SizedBox(width: 8),
+                                Text(
+                                  isSuspiciousPattern
+                                      ? '⚠️ ŞÜPHELİ ARAMA UYARISI'
+                                      : '🚨 DOLANDIRICILIK UYARISI',
+                                  style: TextStyle(
+                                    color: badgeColor,
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w900,
+                                    letterSpacing: 1.2,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
                     ),
                     const SizedBox(height: 8),
                     const Text(

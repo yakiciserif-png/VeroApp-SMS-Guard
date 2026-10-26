@@ -7,10 +7,13 @@ environment:
   sdk: '>=3.3.0 <4.0.0'
 
 dependencies:
+  crypto: ^3.0.8
+  cryptography: ^2.9.0
   flutter:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
+  in_app_purchase: ^3.3.1
   shared_preferences: ^2.2.3
 
 dev_dependencies:

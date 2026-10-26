@@ -146,6 +146,18 @@ class VeroCallerNameEngine {
       );
     }
 
+    if (spamCheck.isSuspicious) {
+      return CallerNameResult(
+        phoneNumber: phoneNumber,
+        displayName: '⚠️ Şüpheli olabilir - ${spamCheck.patternDescription ?? spamCheck.category}',
+        type: CallerNameType.unknown,
+        color: const Color(0xFFFF9100),
+        shouldVibrate: false,
+        spamCategory: spamCheck.category,
+        confidence: spamCheck.confidence,
+      );
+    }
+
     // 3. Fallback: Unknown
     return CallerNameResult(
       phoneNumber: phoneNumber,

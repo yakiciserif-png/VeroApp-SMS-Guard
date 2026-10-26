@@ -170,6 +170,25 @@ class VeroCallGuardEngine {
       );
     }
 
+    if (callerId.isSuspicious) {
+      final cat = callerId.category;
+      return CallGuardResult(
+        rawNumber: trimmed,
+        normalizedNumber: compact,
+        riskLevel: CallRiskLevel.caution,
+        isBlockedOrWarned: true,
+        matchedPrefix: detectedPrefix,
+        callerIdCategory: cat,
+        callerIdConfidence: callerId.confidence,
+        categoryTitleTr: '⚠️ Şüpheli olabilir (${callerId.patternDescription ?? cat})',
+        categoryTitleEn: '⚠️ May be suspicious (${callerId.patternDescription ?? cat})',
+        detailTr:
+            'Şüpheli numara kalıbı algılandı (${callerId.patternDescription ?? cat}). Tanımıyorsanız dikkatli olun.',
+        detailEn:
+            'Suspicious number pattern detected (${callerId.patternDescription ?? cat}). Exercise caution.',
+      );
+    }
+
     return CallGuardResult(
       rawNumber: trimmed,
       normalizedNumber: compact,

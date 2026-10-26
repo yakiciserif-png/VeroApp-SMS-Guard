@@ -21,6 +21,7 @@ class MainActivity : FlutterActivity() {
     private val CHANNEL = "com.veroapp.smsguard/native"
     private val REQ_SMS_PERMISSIONS = 4001
     private val REQ_SPAM_ROLE = 4002
+    private val REQ_CALL_SCREENING_ROLE = 4003
 
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
@@ -43,6 +44,7 @@ class MainActivity : FlutterActivity() {
                                 "notificationAccess" to isNotificationServiceEnabled(),
                                 "smsPermissionGranted" to isSmsPermissionGranted(),
                                 "isDefaultSmsRoleHeld" to isDefaultSmsRoleHeld(),
+                                "isCallScreeningRoleHeld" to isCallScreeningRoleHeld(),
                                 "lastInterceptLatencyMs" to TrustFilterEngine.lastDecisionLatencyMs
                             )
                         )
@@ -53,6 +55,13 @@ class MainActivity : FlutterActivity() {
                     }
                     "requestSpamRole" -> {
                         val launched = requestDefaultSpamRoleSafely()
+                        result.success(launched)
+                    }
+                    "isCallScreeningRoleHeld" -> {
+                        result.success(isCallScreeningRoleHeld())
+                    }
+                    "requestCallScreeningRole" -> {
+                        val launched = requestCallScreeningRoleSafely()
                         result.success(launched)
                     }
                     "syncFilterConfig" -> {
@@ -172,6 +181,39 @@ class MainActivity : FlutterActivity() {
             } catch (_: Exception) {
                 false
             }
+        }
+    }
+
+    private fun isCallScreeningRoleHeld(): Boolean {
+        return try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                val roleManager = getSystemService(Context.ROLE_SERVICE) as? RoleManager
+                if (roleManager != null && roleManager.isRoleAvailable(RoleManager.ROLE_CALL_SCREENING)) {
+                    return roleManager.isRoleHeld(RoleManager.ROLE_CALL_SCREENING)
+                }
+            }
+            false
+        } catch (_: Exception) {
+            false
+        }
+    }
+
+    private fun requestCallScreeningRoleSafely(): Boolean {
+        return try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                val roleManager = getSystemService(Context.ROLE_SERVICE) as? RoleManager
+                if (roleManager != null && roleManager.isRoleAvailable(RoleManager.ROLE_CALL_SCREENING)) {
+                    if (!roleManager.isRoleHeld(RoleManager.ROLE_CALL_SCREENING)) {
+                        val intent = roleManager.createRequestRoleIntent(RoleManager.ROLE_CALL_SCREENING)
+                        startActivityForResult(intent, REQ_CALL_SCREENING_ROLE)
+                        return true
+                    }
+                    return true
+                }
+            }
+            false
+        } catch (_: Exception) {
+            false
         }
     }
 

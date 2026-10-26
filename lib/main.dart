@@ -7,7 +7,7 @@ import 'state/app_state.dart';
 
 String get appPlatformTitle {
   if (!kIsWeb && Platform.isIOS) {
-    return 'VeroApp Call Guard - AI Kalkan';
+    return 'VeroApp SMS Guard - AI Kalkan';
   }
   return 'VeroApp: SMS & Arama Kalkanı';
 }

@@ -1,5 +1,8 @@
 export '../../engines/vero_bloom_filter.dart';
 export '../../engines/vero_breach_radar_engine.dart';
+export 'license_verifier.dart';
+
+import 'license_verifier.dart';
 
 /// [ADIM 1] VERO PRO & VERO AİLE (4 Kişilik Kontenjan) Offline Subscription & Plan Service.
 enum VeroSubscriptionTier {
@@ -81,5 +84,18 @@ class PurchaseService {
     isFamilyMember = true;
     connectedFamilyMembers = 4;
     return true;
+  }
+
+  /// Activates an offline cryptographically signed Ed25519 license code (Family / Enterprise).
+  Future<bool> activateSignedLicense(String rawCode) async {
+    final res = await VeroLicenseVerifier.instance.verifyCode(rawCode);
+    if (res.isValid) {
+      tier = res.tier;
+      isFamilyOwner = true;
+      isFamilyMember = false;
+      connectedFamilyMembers = res.seats;
+      return true;
+    }
+    return false;
   }
 }

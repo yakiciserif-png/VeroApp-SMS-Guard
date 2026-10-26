@@ -24,11 +24,11 @@ Uygulamamız hiçbir İNTERNET İZNİ (INTERNET Permission) içermez! Tüm yapay
 
 2. 📞 Akıllı Arayan Kimliği & Tam Ekran Spam Alarmı:
    - Rehberinizdeki kişileri yeşil rozetle doğrular.
-   - 200.000+ kayıtlı spam veritabanı ile dolandırıcı aramalarını kırmızı tam ekran uyarısıyla durdurur.
-   - Uluslararası yüksek riskli numaraları (+966, +971, +20, +234, +27 vb.) etiketler.
+   - Teyitli dolandırıcı veritabanı ve yerel kural motoruyla şüpheli aramaları uyarır.
+   - Uluslararası yüksek riskli numaraları (+234, +63, +212, +359 vb.) etiketler.
 
-3. 🤖 Spam Arayanı Oyalama Botu (Offline Answer Bot):
-   - Önceden kaydedilmiş yerel repliklerle spam arayanları oyalayarak zamanlarını boşa harcar.
+3. 🛡️ CallScreeningService Arama Filtresi (Android 10+):
+   - Rehber okuma izni gerektirmeden resmi Android telekom servisleriyle şüpheli çağrıları engeller.
 
 4. 🔗 WhatsApp & Telegram Link Scanner (Otomatik & Paylaşım Menüsü):
    - Paylaşılan zararlı .APK ve kimlik avı bağlantılarını tıklanmadan önce engeller.
@@ -36,11 +36,11 @@ Uygulamamız hiçbir İNTERNET İZNİ (INTERNET Permission) içermez! Tüm yapay
 5. 🔒 e-Devlet Şifre & Veri Sızıntısı Radarı:
    - 50 milyon bitlik çevrimdışı Bloom filtresiyle şifre ve hesap güvenliğinizi sıfır internetle test edin.
 
-6. 📂 6 Kategorili Otomatik SMS Düzenleyici:
+6. 📂 6 Kategorili Otomatik SMS Düzenleyici (Varsayılan SMS Desteği):
    - Banka, Kargo, e-Devlet, Kişisel, Promosyon ve Spam klasörleri.
 
 7. 👨‍👩‍👧‍👦 Vero Aile & Kurumsal (B2B) Modu:
-   - 6 haneli aile kodu ile 4 kişilik ailenizi koruyun; kurumsal lisansla çalışanlarınızı güvenceye alın.
+   - Ed25519 imzalı lisans ile ailenizi koruyun; kurumsal lisansla çalışanlarınızı güvenceye alın.
 
 💎 ABONELİK VE FİYATLANDIRMA:
 • Vero Ücretsiz: Günde 20 SMS analizi ve temel arama koruması

@@ -57,15 +57,34 @@ class CallerIdResult {
     required this.isSpam,
     required this.category,
     required this.confidence,
+    this.isSuspicious = false,
+    this.isPatternMatch = false,
+    this.patternDescription,
     this.fromCommunityShield = false,
   });
 
   final String phoneNumber;
   final String normalizedDigits;
+
+  /// True ONLY when exact hit in verified blacklist or user's Community Shield.
   final bool isSpam;
+
+  /// True for heuristic/pattern matches (0850, high-risk foreign prefix, PBX block).
+  final bool isSuspicious;
+  final bool isPatternMatch;
+  final String? patternDescription;
+
   final String category;
   final double confidence;
   final bool fromCommunityShield;
+
+  bool get hasThreat => isSpam || isSuspicious;
+
+  String get uiBadgeTextTr =>
+      isSpam ? '🚨 SPAM' : (isSuspicious ? '⚠️ Şüpheli olabilir' : '✅ Güvenli');
+
+  String get uiBadgeTextEn =>
+      isSpam ? '🚨 SPAM' : (isSuspicious ? '⚠️ May be suspicious' : '✅ Safe');
 }
 
 class VeroCallerIdEngine {
@@ -257,9 +276,12 @@ class VeroCallerIdEngine {
         return CallerIdResult(
           phoneNumber: trimmed,
           normalizedDigits: digits,
-          isSpam: true,
+          isSpam: false,
+          isSuspicious: true,
+          isPatternMatch: true,
+          patternDescription: 'Yüksek riskli yurt dışı ön eki ($p)',
           category: SpamCallerCategory.scam,
-          confidence: 0.96,
+          confidence: 0.85,
         );
       }
     }
@@ -273,9 +295,12 @@ class VeroCallerIdEngine {
         return CallerIdResult(
           phoneNumber: trimmed,
           normalizedDigits: digits,
-          isSpam: true,
+          isSpam: false,
+          isSuspicious: true,
+          isPatternMatch: true,
+          patternDescription: '0850 şüpheli sahte GSM bloğu',
           category: SpamCallerCategory.scam,
-          confidence: 0.95,
+          confidence: 0.85,
         );
       }
       if (sub.startsWith('480') ||
@@ -286,26 +311,35 @@ class VeroCallerIdEngine {
         return CallerIdResult(
           phoneNumber: trimmed,
           normalizedDigits: digits,
-          isSpam: true,
+          isSpam: false,
+          isSuspicious: true,
+          isPatternMatch: true,
+          patternDescription: '0850 tele-pazarlama şablonu',
           category: SpamCallerCategory.telesales,
-          confidence: 0.93,
+          confidence: 0.80,
         );
       }
       if (sub.startsWith('901') || sub.startsWith('840')) {
         return CallerIdResult(
           phoneNumber: trimmed,
           normalizedDigits: digits,
-          isSpam: true,
+          isSpam: false,
+          isSuspicious: true,
+          isPatternMatch: true,
+          patternDescription: '0850 otomatik robocall şablonu',
           category: SpamCallerCategory.robocall,
-          confidence: 0.92,
+          confidence: 0.80,
         );
       }
       return CallerIdResult(
         phoneNumber: trimmed,
         normalizedDigits: digits,
-        isSpam: true,
+        isSpam: false,
+        isSuspicious: true,
+        isPatternMatch: true,
+        patternDescription: '0850 kurumsal olmayan numara',
         category: SpamCallerCategory.telesales,
-        confidence: 0.88,
+        confidence: 0.75,
       );
     }
 
@@ -314,9 +348,12 @@ class VeroCallerIdEngine {
       return CallerIdResult(
         phoneNumber: trimmed,
         normalizedDigits: digits,
-        isSpam: true,
+        isSpam: false,
+        isSuspicious: true,
+        isPatternMatch: true,
+        patternDescription: 'Otomatik santral PBX şablonu',
         category: SpamCallerCategory.robocall,
-        confidence: 0.91,
+        confidence: 0.80,
       );
     }
 
@@ -325,9 +362,12 @@ class VeroCallerIdEngine {
       return CallerIdResult(
         phoneNumber: trimmed,
         normalizedDigits: digits,
-        isSpam: true,
+        isSpam: false,
+        isSuspicious: true,
+        isPatternMatch: true,
+        patternDescription: 'Bilinmeyen yurt dışı arama şablonu',
         category: SpamCallerCategory.unknown,
-        confidence: 0.80,
+        confidence: 0.70,
       );
     }
 

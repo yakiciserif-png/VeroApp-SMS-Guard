@@ -28,15 +28,15 @@ Hem de internet izni olmadan, tamamen yerel! 🔗🛑
 
 [TWEET 4 - ARAYAN KİMLİĞİ VE SPAM ARAMA]
 Yurt dışı bilinmeyen aramalardan (+234, +63, +966) ve 0850'li sahte çağrı merkezlerinden bıktınız mı?
-VeroApp Call Guard, 200.000 kayıtlı çevrimdışı veri tabanıyla şüpheli aramayı anında kırmızı tam ekranla uyarır! 📞🚨
+VeroApp Call Guard, teyitli dolandırıcı veri tabanı ve yerel desen kurallarıyla şüpheli aramaları anında uyarır! 📞🚨
 #SpamArama #CallerID #VeroApp
 
 ---
 
-[TWEET 5 - CEVAP BOTU / ANSWER BOT]
-Spam arayan dolandırıcıları kendi silahıyla vurun! 🤖
-VeroApp Offline Answer Bot, arayan dolandırıcıyı önceden kaydedilmiş zeki repliklerle dakikalarca oyalar, vaktini boşa harcar.
-#AnswerBot #YapayZeka #VeroApp
+[TWEET 5 - ÇEVRİMDIŞI CALL SCREENING & GİZLİLİK]
+Arama korumasında rehberinizi merkezi sunuculara yükleyen uygulamalara son! 🛡️
+VeroApp CallScreeningService ile telefonunuza gelen aramalar cihazınızda süzülür, verileriniz asla dışarı çıkmaz.
+#Gizlilik #CallScreening #KVKK #VeroApp
 
 ---
 

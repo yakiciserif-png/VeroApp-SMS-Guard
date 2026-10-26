@@ -49,7 +49,7 @@ class VeroAppSmsGuardApp extends StatelessWidget {
         builder: (context, _) => MaterialApp(
           title: appTitle ??
               ((!kIsWeb && Platform.isIOS)
-                  ? 'VeroApp Call Guard - AI Kalkan'
+                  ? 'VeroApp SMS Guard - AI Kalkan'
                   : 'VeroApp: SMS & Arama Kalkanı'),
           debugShowCheckedModeBanner: false,
           locale: state.locale,

@@ -14,7 +14,7 @@ class AppLocalizations {
   final Map<String, String> _fallback;
 
   static const List<String> supportedCodes = [
-    'en', 'tr', 'es', 'de', 'fr', 'it', 'ru', 'zh', 'ar', 'pt',
+    'en', 'tr', 'es', 'de', 'fr', 'it', 'ru', 'zh', 'ar', 'pt', 'hi',
   ];
 
   static const Map<String, String> nativeNames = {
@@ -28,6 +28,7 @@ class AppLocalizations {
     'zh': '中文',
     'ar': 'العربية',
     'pt': 'Português',
+    'hi': 'हिन्दी',
   };
 
   /// Complete built-in dictionaries for Turkish & English (plus fallback for
@@ -46,7 +47,7 @@ class AppLocalizations {
       'eDevletGuardTitle': 'e-Devlet Şifre Güvenliği',
       'eDevletGuardSubtitle': '100% Çevrimdışı şifre gücü ve sızıntı denetimi',
       'securityAuditTitle': 'Güvenlik Sertifikası',
-      'securityAuditSubtitle': 'Kendi kendini denetleyen askeri düzey çevrimdışı kalkan',
+      'securityAuditSubtitle': 'Kendi kendini denetleyen sertifikalı çevrimdışı kalkan',
       'crashReportsTitle': 'Hata Raporları',
       'crashReportsSubtitle': 'Yerel çökme günlükleri (Sıfır telemetri)',
       'screenshotModeTitle': 'Mağaza Ekran Görüntüsü Modu',

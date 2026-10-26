@@ -48,6 +48,12 @@ build/
 app.*.symbols
 app.*.map.json
 
+# Private Keys & Licensing Security (Ed25519)
+*.pem
+*.key
+scripts/.ed25519_private.key
+scripts/*.key
+
 # Android Studio build artifacts
 /android/app/debug
 /android/app/profile
