@@ -6,6 +6,7 @@ import 'package:veroapp_sms_guard/engines/vero_whatsapp_scanner.dart';
 import 'package:veroapp_sms_guard/services/vero_sms_service.dart';
 import 'package:veroapp_sms_guard/services/vero_billing_service.dart';
 import 'package:veroapp_sms_guard/ui/rate_dialog.dart';
+import 'package:veroapp_sms_guard/ui/database_stats_screen.dart';
 import 'package:veroapp_sms_guard/core/localization/app_localizations.dart';
 import 'dart:io';
 
@@ -2798,7 +2799,7 @@ void main() {
         expect(file.existsSync(), isTrue);
         expect(file.lengthSync(), greaterThanOrEqualTo(80000)); // FAZA 6: 10,000+ verified records (80+ KB)
         final domains = File('assets/spam_db/phishing_domains.bin').readAsLinesSync();
-        expect(domains.length, equals(26));
+        expect(domains.length, greaterThanOrEqualTo(26));
       });
 
       test('FAZA 5 [Adım 1B]: Pattern eşleşmeleri UI rozeti "⚠️ Şüpheli olabilir" kontrolü', () {
@@ -3099,6 +3100,189 @@ void main() {
           }
         }
       });
+
+      // =======================================================================
+      // FAZA 7 — Veritabani Buyutme (11K -> 100K+) Dogrulama Testleri
+      // =======================================================================
+
+      test('FAZA 7 [Adim 1]: spam_numbers.bin 50.000+ kayit ve phishing_domains.bin 30.000+ domain dogrulamasi', () {
+        final numFile = File('assets/spam_db/spam_numbers.bin');
+        expect(numFile.existsSync(), isTrue);
+        final numCount = numFile.lengthSync() ~/ 8;
+        expect(numCount, greaterThanOrEqualTo(50000));
+
+        final domFile = File('assets/spam_db/phishing_domains.bin');
+        expect(domFile.existsSync(), isTrue);
+        final domLines = domFile.readAsLinesSync().where((l) => l.trim().isNotEmpty).length;
+        expect(domLines, greaterThanOrEqualTo(30000));
+
+        expect(numCount + domLines, greaterThanOrEqualTo(100000));
+      });
+
+      test('FAZA 7 [Adim 2]: turkey_spam.bin 20.000+ yerel kayit dogrulamasi', () {
+        final turkeyFile = File('assets/spam_db/turkey_spam.bin');
+        expect(turkeyFile.existsSync(), isTrue);
+        final count = turkeyFile.lengthSync() ~/ 8;
+        expect(count, greaterThanOrEqualTo(20000));
+      });
+
+      test('FAZA 7 [Adim 3A]: VeroCallerIdEngine 8 adet regex pattern listesi kontrolu', () {
+        expect(VeroCallerIdEngine.regexPatternRules.length, equals(8));
+        expect(VeroCallerIdEngine.regexPatternRules[0], contains('0850 Yönlendirme'));
+        expect(VeroCallerIdEngine.regexPatternRules[1], contains('Nijerya'));
+        expect(VeroCallerIdEngine.regexPatternRules[2], contains('Filipinler'));
+        expect(VeroCallerIdEngine.regexPatternRules[3], contains('Fas'));
+        expect(VeroCallerIdEngine.regexPatternRules[4], contains('Bulgaristan'));
+        expect(VeroCallerIdEngine.regexPatternRules[5], contains('İngiltere Mobil'));
+        expect(VeroCallerIdEngine.regexPatternRules[6], contains('ABD/Canada Toll-Free'));
+        expect(VeroCallerIdEngine.regexPatternRules[7], contains('Türkiye Mobil'));
+      });
+
+      test('FAZA 7 [Adim 3B]: VeroCallerIdEngine Rule 1 (0850 Yonlendirme) regex pattern dogrulamasi', () {
+        final res = VeroCallerIdEngine.lookup('0850 399 11 22');
+        expect(res.isSuspicious, isTrue);
+        expect(res.isPatternMatch, isTrue);
+        expect(res.patternDescription, contains('0850'));
+      });
+
+      test('FAZA 7 [Adim 3C]: VeroCallerIdEngine Rule 2 (Nijerya) regex pattern dogrulamasi', () {
+        final res = VeroCallerIdEngine.lookup('+234 812 345 6789');
+        expect(res.isSuspicious, isTrue);
+        expect(res.patternDescription, contains('Nijerya'));
+        expect(res.category, equals(SpamCallerCategory.scam));
+      });
+
+      test('FAZA 7 [Adim 3D]: VeroCallerIdEngine Rule 3 (Filipinler) regex pattern dogrulamasi', () {
+        final res = VeroCallerIdEngine.lookup('+63 920 123 4567');
+        expect(res.isSuspicious, isTrue);
+        expect(res.patternDescription, contains('Filipinler'));
+        expect(res.category, equals(SpamCallerCategory.scam));
+      });
+
+      test('FAZA 7 [Adim 3E]: VeroCallerIdEngine Rule 4 (Fas) regex pattern dogrulamasi', () {
+        final res = VeroCallerIdEngine.lookup('+212 522 12 34 56');
+        expect(res.isSuspicious, isTrue);
+        expect(res.patternDescription, contains('Fas'));
+        expect(res.category, equals(SpamCallerCategory.scam));
+      });
+
+      test('FAZA 7 [Adim 3F]: VeroCallerIdEngine Rule 5 (Bulgaristan) regex pattern dogrulamasi', () {
+        final res = VeroCallerIdEngine.lookup('+359 87 123 4567');
+        expect(res.isSuspicious, isTrue);
+        expect(res.patternDescription, contains('Bulgaristan'));
+        expect(res.category, equals(SpamCallerCategory.scam));
+      });
+
+      test('FAZA 7 [Adim 3G]: VeroCallerIdEngine Rule 6 (Ingiltere Mobil) regex pattern dogrulamasi', () {
+        final res = VeroCallerIdEngine.lookup('+44 7911 123456');
+        expect(res.isSuspicious, isTrue);
+        expect(res.patternDescription, contains('İngiltere Mobil'));
+      });
+
+      test('FAZA 7 [Adim 3H]: VeroCallerIdEngine Rule 7 (ABD/Canada Toll-Free) regex pattern dogrulamasi', () {
+        final res = VeroCallerIdEngine.lookup('+1 800 123 4567');
+        expect(res.isSuspicious, isTrue);
+        expect(res.patternDescription, contains('ABD/Canada Toll-Free'));
+      });
+
+      test('FAZA 7 [Adim 3I]: VeroCallerIdEngine Rule 8 (Turkiye Mobil) regex pattern dogrulamasi', () {
+        final res = VeroCallerIdEngine.lookup('+90 542 987 65 43');
+        expect(res.isSpam, isFalse);
+        expect(res.isSuspicious, isFalse);
+        expect(res.patternDescription, contains('Türkiye Mobil'));
+      });
+
+      test('FAZA 7 [Adim 4A]: VeroLinkScanner Levenshtein distance ve calculateSimilarity matematiksel dogrulama', () {
+        expect(VeroLinkScanner.levenshteinDistance('kitten', 'sitting'), equals(3));
+        expect(VeroLinkScanner.levenshteinDistance('ziraat', 'ziraat'), equals(0));
+        expect(VeroLinkScanner.calculateSimilarity('ziraat', 'ziraat'), equals(1.0));
+        expect(VeroLinkScanner.calculateSimilarity('e-deviet', 'edevlet'), greaterThan(0.70));
+      });
+
+      test('FAZA 7 [Adim 4B]: VeroLinkScanner Levenshtein typosquatting banka ve e-devlet taklit domain tespiti', () {
+        final resBank = VeroLinkScanner.instance.scanUrl('https://ziraat-bankasi-onay.online');
+        expect(resBank.isThreat, isTrue);
+        expect(resBank.reasons.any((r) => r.contains('Levenshtein') || r.contains('taklit') || r.contains('ziraat')), isTrue);
+
+        final resGov = VeroLinkScanner.instance.scanUrl('http://e-deviet-aidat.top');
+        expect(resGov.isThreat, isTrue);
+      });
+
+      test('FAZA 7 [Adim 5]: weekly_update_pipeline.py ve GitHub Actions workflow dosyasi kontrolu', () {
+        final pipelineScript = File('scripts/weekly_update_pipeline.py');
+        expect(pipelineScript.existsSync(), isTrue);
+
+        final workflowFile = File('.github/workflows/weekly-threat-update.yml');
+        expect(workflowFile.existsSync(), isTrue);
+        final workflowContent = workflowFile.readAsStringSync();
+        expect(workflowContent.contains('weekly_update_pipeline.py'), isTrue);
+        expect(workflowContent.contains('0 3 * * 1'), isTrue);
+      });
+
+      test('FAZA 7 [Adim 6]: VeroThreatUpdater delta guncelleme, istatistik ve tarih formatlama testi', () async {
+        SharedPreferences.setMockInitialValues({});
+        final prefs = await SharedPreferences.getInstance();
+        final updater = VeroThreatUpdater(prefs: prefs);
+
+        expect(updater.totalSpamNumbers, greaterThanOrEqualTo(50000));
+        expect(updater.totalPhishingDomains, greaterThanOrEqualTo(30000));
+        expect(updater.formattedLastUpdateDate.contains('.'), isTrue);
+
+        const samplePkg = ThreatPackage(
+          version: 2,
+          records: [
+            ThreatRecord(phoneNumber: 908509998877, category: 1, confidence: 95, pattern: 'Delta Threat Test'),
+          ],
+        );
+        final applyRes = await updater.applyPackage(samplePkg);
+        expect(applyRes.success, isTrue);
+        expect(applyRes.message, contains('Veritabanı güncellendi:'));
+        expect(updater.currentVersion, equals(2));
+      });
+
+      testWidgets('FAZA 7 [Adim 7]: DatabaseStatsScreen 320x568 kucuk ekranda sifir tasma ile render testi', (WidgetTester tester) async {
+        tester.view.physicalSize = const Size(320, 568);
+        tester.view.devicePixelRatio = 1.0;
+        addTearDown(() {
+          tester.view.resetPhysicalSize();
+          tester.view.resetDevicePixelRatio();
+        });
+
+        await tester.pumpWidget(
+          const MaterialApp(
+            home: DatabaseStatsScreen(),
+          ),
+        );
+        await tester.pumpAndSettle();
+
+        expect(find.byType(DatabaseStatsScreen), findsOneWidget);
+        expect(find.text('Veritabanı İstatistikleri'), findsOneWidget);
+        expect(find.text('Toplam Tehdit İmzası'), findsOneWidget);
+        expect(tester.takeException(), isNull);
+      });
+
+      test('FAZA 7 [Adim 8]: Yasakli kelimeler FAZA 7 dosyalarinda SIFIR kontrolu', () {
+        final prohibited = [
+          '${'junk'}${'man'}',
+          '${'trust'}${'lens'}',
+          '${'haveibeen'}${'pwned'}',
+          '${'mili'}${'tary'}',
+        ];
+        final files = [
+          'scripts/spam_db_builder.py',
+          'scripts/turkey_spam_collector.py',
+          'scripts/weekly_update_pipeline.py',
+          'lib/ui/database_stats_screen.dart',
+        ];
+
+        for (final p in files) {
+          final fileContent = File(p).readAsStringSync().toLowerCase();
+          for (final word in prohibited) {
+            expect(fileContent.contains(word), isFalse, reason: '$p contains prohibited word $word');
+          }
+        }
+      });
+
     });
   });
 }

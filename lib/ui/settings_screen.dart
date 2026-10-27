@@ -13,6 +13,7 @@ import '../state/app_state.dart';
 import 'cyberpunk_theme.dart';
 import 'enterprise_screen.dart';
 import 'edevlet_guard_screen.dart';
+import 'database_stats_screen.dart';
 import 'link_scanner_screen.dart';
 import 'paywall_screen.dart';
 import 'crash_reports_screen.dart';
@@ -570,6 +571,26 @@ class SettingsScreen extends StatelessWidget {
             ),
           ),
           header(isTr ? 'Tehdit Veritabanı & Güncelleme' : 'Threat Database & Updates'),
+          ListTile(
+            key: const Key('settingsDatabaseStatsTile'),
+            leading: const Icon(Icons.analytics_outlined, color: CyberpunkColors.neonCyan),
+            title: Text(
+              isTr ? 'Veritabanı İstatistikleri' : 'Database Statistics',
+              style: theme.textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w600),
+            ),
+            subtitle: Text(
+              isTr
+                  ? '63.000+ numara, 38.000+ phishing domain ve kaynak dağılımını inceleyin.'
+                  : 'Inspect 63,000+ numbers, 38,000+ phishing domains and metrics.',
+              style: theme.textTheme.bodySmall?.copyWith(fontSize: 12),
+            ),
+            trailing: const Icon(Icons.arrow_forward_ios, size: 14, color: CyberpunkColors.neonCyan),
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (_) => const DatabaseStatsScreen()),
+              );
+            },
+          ),
           SwitchListTile(
             key: const Key('settingsAutoThreatUpdateToggle'),
             title: Text(

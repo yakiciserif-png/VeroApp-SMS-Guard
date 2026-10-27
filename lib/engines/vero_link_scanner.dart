@@ -75,6 +75,7 @@ class VeroLinkScanner {
   static final VeroLinkScanner instance = VeroLinkScanner._();
 
   final Set<String> _phishingDomains = <String>{};
+  List<String> _sortedDomainList = <String>[];
   bool _initialized = false;
   LinkScannerMode mode = LinkScannerMode.automatic;
 
@@ -84,6 +85,79 @@ class VeroLinkScanner {
 
   bool get isInitialized => _initialized;
   int get domainCount => _phishingDomains.length;
+
+  /// Official protected brand domains for Levenshtein typo-squatting detection.
+  static const Map<String, String> protectedBrandDomains = {
+    'ziraatbank.com.tr': 'Ziraat Bankası',
+    'turkiye.gov.tr': 'e-Devlet Kapısı',
+    'garantibbva.com.tr': 'Garanti BBVA',
+    'isbank.com.tr': 'Türkiye İş Bankası',
+    'akbank.com': 'Akbank',
+    'yapikredi.com.tr': 'Yapı Kredi',
+    'vakifbank.com.tr': 'VakıfBank',
+    'halkbank.com.tr': 'Halkbank',
+    'enpara.com': 'Enpara',
+    'papara.com': 'Papara',
+    'turkcell.com.tr': 'Turkcell',
+    'vodafone.com.tr': 'Vodafone',
+    'turktelekom.com.tr': 'Türk Telekom',
+    'ptt.gov.tr': 'PTT',
+    'netflix.com': 'Netflix',
+    'amazon.com.tr': 'Amazon',
+  };
+
+  /// Computes Levenshtein edit distance between two strings.
+  static int levenshteinDistance(String s1, String s2) {
+    if (s1 == s2) return 0;
+    if (s1.isEmpty) return s2.length;
+    if (s2.isEmpty) return s1.length;
+
+    List<int> v0 = List<int>.generate(s2.length + 1, (i) => i);
+    List<int> v1 = List<int>.filled(s2.length + 1, 0);
+
+    for (int i = 0; i < s1.length; i++) {
+      v1[0] = i + 1;
+      for (int j = 0; j < s2.length; j++) {
+        final cost = s1[i] == s2[j] ? 0 : 1;
+        v1[j + 1] = [
+          v1[j] + 1,
+          v0[j + 1] + 1,
+          v0[j] + cost,
+        ].reduce((a, b) => a < b ? a : b);
+      }
+      for (int j = 0; j <= s2.length; j++) {
+        v0[j] = v1[j];
+      }
+    }
+    return v0[s2.length];
+  }
+
+  /// Calculates percentage similarity (0.0 to 1.0) using Levenshtein distance.
+  static double calculateSimilarity(String s1, String s2) {
+    if (s1 == s2) return 1.0;
+    final maxLen = s1.length > s2.length ? s1.length : s2.length;
+    if (maxLen == 0) return 1.0;
+    final dist = levenshteinDistance(s1, s2);
+    return 1.0 - (dist / maxLen);
+  }
+
+  /// Performs O(log N) binary search over sorted domain list (< 0.1 ms).
+  bool binarySearchDomain(String domain) {
+    if (_sortedDomainList.isEmpty) return _phishingDomains.contains(domain);
+    var low = 0;
+    var high = _sortedDomainList.length - 1;
+    while (low <= high) {
+      final mid = (low + high) >>> 1;
+      final cmp = _sortedDomainList[mid].compareTo(domain);
+      if (cmp == 0) return true;
+      if (cmp < 0) {
+        low = mid + 1;
+      } else {
+        high = mid - 1;
+      }
+    }
+    return false;
+  }
 
   static final RegExp _urlRegex = RegExp(
     r'(?:https?:\/\/|www\.)[^\s/$.?#].[^\s]*',
@@ -173,12 +247,14 @@ class VeroLinkScanner {
     if (customDomainSet != null) {
       _phishingDomains.clear();
       _phishingDomains.addAll(customDomainSet);
+      _sortedDomainList = _phishingDomains.toList()..sort();
       _initialized = true;
       return;
     }
 
     if (customDomainsRaw != null) {
       _loadFromString(customDomainsRaw);
+      _sortedDomainList = _phishingDomains.toList()..sort();
       _initialized = true;
       return;
     }
@@ -186,10 +262,12 @@ class VeroLinkScanner {
     try {
       final raw = await rootBundle.loadString('assets/spam_db/phishing_domains.bin');
       _loadFromString(raw);
+      _sortedDomainList = _phishingDomains.toList()..sort();
       _initialized = true;
     } catch (_) {
       // Fallback: load baseline fraudulent domains offline
       _loadDefaultSeed();
+      _sortedDomainList = _phishingDomains.toList()..sort();
       _initialized = true;
     }
   }
@@ -291,8 +369,8 @@ class VeroLinkScanner {
       }
     }
 
-    // 4. Exact match in Offline Phishing Database
-    if (_phishingDomains.contains(host)) {
+    // 4. Exact match in Offline Phishing Database (Binary search <0.1ms & O(1) set)
+    if (_phishingDomains.contains(host) || binarySearchDomain(host)) {
       isPhishing = true;
       score += 90.0;
       reasons.add('VeroApp çevrimdışı sahte domain veritabanında kayıtlı');
@@ -307,7 +385,29 @@ class VeroLinkScanner {
       }
     }
 
-    // 6. Typo-squatting / Brand Impersonation check
+    // 6. Levenshtein Distance & Typosquatting Detection (FAZA 7)
+    for (final entry in protectedBrandDomains.entries) {
+      final target = entry.key;
+      final brandName = entry.value;
+      if (host == target || host.endsWith('.$target')) continue;
+
+      final hostClean = host.split('.').first.replaceAll(RegExp(r'[^a-zA-Z0-9]'), '');
+      final targetClean = target.split('.').first.replaceAll(RegExp(r'[^a-zA-Z0-9]'), '');
+
+      final sim = calculateSimilarity(host, target);
+      final stemSim = calculateSimilarity(hostClean, targetClean);
+      final dist = levenshteinDistance(hostClean, targetClean);
+
+      if (sim >= 0.75 || stemSim >= 0.70 || (dist <= 2 && hostClean.length >= 4 && targetClean.length >= 4)) {
+        isPhishing = true;
+        score += 70.0;
+        final pct = ((sim > stemSim ? sim : stemSim) * 100).toInt();
+        reasons.add('🚨 Levenshtein Taklit Tespiti: $brandName ($target) ile %$pct benzer');
+        break;
+      }
+    }
+
+    // 7. Typo-squatting / Brand Impersonation check
     for (final brand in _brandKeywords) {
       if (host.contains(brand)) {
         // Legitimate domain check

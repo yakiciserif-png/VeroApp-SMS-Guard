@@ -189,14 +189,40 @@ class VeroCallerIdEngine {
     return null;
   }
 
+  /// Pre-compiled FAZA 7 Regex Pattern Engine (<0.1ms execution).
+  /// 8 Dedicated high-risk & localized rules:
+  static final RegExp _regex0850 = RegExp(r'^(?:90|0)?850[2-9]\d{6}$');
+  static final RegExp _regexNigeria = RegExp(r'^(?:\+?234|00234)\d{10}$');
+  static final RegExp _regexPhilippines = RegExp(r'^(?:\+?63|0063)\d{10}$');
+  static final RegExp _regexMorocco = RegExp(r'^(?:\+?212|00212)[5-7]\d{8}$');
+  static final RegExp _regexBulgaria = RegExp(r'^(?:\+?359|00359)\d{9}$');
+  static final RegExp _regexUkMobile = RegExp(r'^(?:\+?44|0044)7\d{9}$');
+  static final RegExp _regexUsTollFree = RegExp(r'^(?:\+?1|001)[89]\d{9}$');
+  static final RegExp _regexTrMobile = RegExp(r'^(?:\+?90|0)?5\d{9}$');
+
+  static const List<String> regexPatternRules = [
+    r'0850[2-9]\d{6} → ⚠️ 0850 Yönlendirme',
+    r'\+234\d{10} → ⚠️ Nijerya',
+    r'\+63\d{10} → ⚠️ Filipinler',
+    r'\+212[5-7]\d{8} → ⚠️ Fas',
+    r'\+359\d{9} → ⚠️ Bulgaristan',
+    r'\+447[0-9]{9} → ⚠️ İngiltere Mobil',
+    r'\+1[89]\d{9} → ⚠️ ABD/Canada Toll-Free',
+    r'\+905[0-9]{9} → ⚠️ Türkiye Mobil (bilinmeyen)',
+  ];
+
   /// Looks up [phoneNumber] in < 0.1 ms using:
   /// 1. Official Corporate Whitelist
   /// 2. Local Community Shield reported numbers
-  /// 3. O(log N) Binary Search over `spam_numbers.bin` (50,000+ 8-byte ULong records)
-  /// 4. High-risk prefix & pattern rules (+63, +234, +212, +359, unverified 0850, 0212 9xx)
+  /// 3. O(log N) Binary Search over `spam_numbers.bin` (60,000+ 8-byte ULong records)
+  /// 4. Prefix match layer (+63, +234, +212, +359, unverified 0850)
+  /// 5. FAZA 7 Pre-compiled 8 Regex Pattern Rules
+  /// 6. Clean / Unknown default
   static CallerIdResult lookup(String phoneNumber) {
     final trimmed = phoneNumber.trim();
     final digits = normalizePhoneDigits(trimmed);
+    var compact = trimmed.replaceAll(RegExp(r'[\s()\-./]'), '');
+    if (compact.startsWith('00')) compact = '+${compact.substring(2)}';
 
     if (digits.isEmpty) {
       return CallerIdResult(
@@ -249,15 +275,94 @@ class VeroCallerIdEngine {
       }
     }
 
-    // 4. High-risk foreign scam prefixes (+63, +62, +234, +212, +359, +370, +375, +880, +254, +91, +92)
-    var compact = trimmed.replaceAll(RegExp(r'[\s()\-./]'), '');
-    if (compact.startsWith('00')) compact = '+${compact.substring(2)}';
-    const scamPrefixes = [
-      '+63',
+    // 4. Pre-compiled 8 Regex Pattern Rules & High-Risk Country Rules (FAZA 7)
+    // Rule 2: \+234\d{10} → "⚠️ Nijerya"
+    if (_regexNigeria.hasMatch(compact) || (digits.startsWith('234') && digits.length >= 10)) {
+      return CallerIdResult(
+        phoneNumber: trimmed,
+        normalizedDigits: digits,
+        isSpam: false,
+        isSuspicious: true,
+        isPatternMatch: true,
+        patternDescription: '⚠️ Nijerya',
+        category: SpamCallerCategory.scam,
+        confidence: 0.85,
+      );
+    }
+
+    // Rule 3: \+63\d{10} → "⚠️ Filipinler"
+    if (_regexPhilippines.hasMatch(compact) || (digits.startsWith('63') && digits.length >= 10)) {
+      return CallerIdResult(
+        phoneNumber: trimmed,
+        normalizedDigits: digits,
+        isSpam: false,
+        isSuspicious: true,
+        isPatternMatch: true,
+        patternDescription: '⚠️ Filipinler',
+        category: SpamCallerCategory.scam,
+        confidence: 0.85,
+      );
+    }
+
+    // Rule 4: \+212[5-7]\d{8} → "⚠️ Fas"
+    if (_regexMorocco.hasMatch(compact) || (digits.startsWith('212') && digits.length >= 10)) {
+      return CallerIdResult(
+        phoneNumber: trimmed,
+        normalizedDigits: digits,
+        isSpam: false,
+        isSuspicious: true,
+        isPatternMatch: true,
+        patternDescription: '⚠️ Fas',
+        category: SpamCallerCategory.scam,
+        confidence: 0.85,
+      );
+    }
+
+    // Rule 5: \+359\d{9} → "⚠️ Bulgaristan"
+    if (_regexBulgaria.hasMatch(compact) || (digits.startsWith('359') && digits.length >= 10)) {
+      return CallerIdResult(
+        phoneNumber: trimmed,
+        normalizedDigits: digits,
+        isSpam: false,
+        isSuspicious: true,
+        isPatternMatch: true,
+        patternDescription: '⚠️ Bulgaristan',
+        category: SpamCallerCategory.scam,
+        confidence: 0.85,
+      );
+    }
+
+    // Rule 6: \+447[0-9]{9} → "⚠️ İngiltere Mobil"
+    if (_regexUkMobile.hasMatch(compact) || (digits.startsWith('447') && digits.length >= 11)) {
+      return CallerIdResult(
+        phoneNumber: trimmed,
+        normalizedDigits: digits,
+        isSpam: false,
+        isSuspicious: true,
+        isPatternMatch: true,
+        patternDescription: '⚠️ İngiltere Mobil',
+        category: SpamCallerCategory.scam,
+        confidence: 0.80,
+      );
+    }
+
+    // Rule 7: \+1[89]\d{9} → "⚠️ ABD/Canada Toll-Free"
+    if (_regexUsTollFree.hasMatch(compact) || ((digits.startsWith('18') || digits.startsWith('19')) && digits.length == 11)) {
+      return CallerIdResult(
+        phoneNumber: trimmed,
+        normalizedDigits: digits,
+        isSpam: false,
+        isSuspicious: true,
+        isPatternMatch: true,
+        patternDescription: '⚠️ ABD/Canada Toll-Free',
+        category: SpamCallerCategory.robocall,
+        confidence: 0.80,
+      );
+    }
+
+    // Other high-risk foreign prefixes
+    const otherScamPrefixes = [
       '+62',
-      '+234',
-      '+212',
-      '+359',
       '+370',
       '+375',
       '+880',
@@ -266,7 +371,7 @@ class VeroCallerIdEngine {
       '+92',
       '+44',
     ];
-    for (final p in scamPrefixes) {
+    for (final p in otherScamPrefixes) {
       final pDigits = p.substring(1);
       if (compact.startsWith(p) ||
           (!compact.startsWith('+90') &&
@@ -286,11 +391,11 @@ class VeroCallerIdEngine {
       }
     }
 
-    // 5. Unverified 0850 / 90850 telemarketing & scam ranges
-    if (digits.startsWith('90850') || digits.startsWith('850')) {
+    // 0850 sub-patterns & Rule 1: 0850[2-9]\d{6} → "⚠️ 0850 Yönlendirme"
+    if (digits.startsWith('90850') || digits.startsWith('850') || compact.startsWith('0850')) {
       final sub = digits.startsWith('90850')
           ? digits.substring(5)
-          : digits.substring(3);
+          : (digits.startsWith('850') ? digits.substring(3) : digits);
       if (sub.startsWith('532') || sub.startsWith('549')) {
         return CallerIdResult(
           phoneNumber: trimmed,
@@ -337,9 +442,23 @@ class VeroCallerIdEngine {
         isSpam: false,
         isSuspicious: true,
         isPatternMatch: true,
-        patternDescription: '0850 kurumsal olmayan numara',
+        patternDescription: '⚠️ 0850 Yönlendirme',
         category: SpamCallerCategory.telesales,
-        confidence: 0.75,
+        confidence: 0.80,
+      );
+    }
+
+    // Rule 8: \+905[0-9]{9} → "⚠️ Türkiye Mobil (bilinmeyen)"
+    if (_regexTrMobile.hasMatch(compact) || _regexTrMobile.hasMatch(digits)) {
+      return CallerIdResult(
+        phoneNumber: trimmed,
+        normalizedDigits: digits,
+        isSpam: false,
+        isSuspicious: false,
+        isPatternMatch: true,
+        patternDescription: '⚠️ Türkiye Mobil (bilinmeyen)',
+        category: SpamCallerCategory.clean,
+        confidence: 0.60,
       );
     }
 
@@ -371,10 +490,13 @@ class VeroCallerIdEngine {
       );
     }
 
+    // 8. Default: Clean
     return CallerIdResult(
       phoneNumber: trimmed,
       normalizedDigits: digits,
       isSpam: false,
+      isSuspicious: false,
+      patternDescription: '✅ Bilinmeyen (temiz)',
       category: SpamCallerCategory.clean,
       confidence: 0.95,
     );

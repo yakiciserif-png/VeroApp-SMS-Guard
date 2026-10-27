@@ -1,0 +1,35 @@
+name: Weekly Threat Database Update Pipeline
+
+on:
+  schedule:
+    # Every Monday at 03:00 UTC
+    - cron: '0 3 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-threat-database:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run Weekly Threat Intelligence Pipeline
+        run: |
+          python scripts/weekly_update_pipeline.py 2
+
+      - name: Commit and Push Updated Threat Assets
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action Threat Updater"
+          git add assets/spam_db/ scripts/
+          git diff --staged --quiet || git commit -m "chore(threat-db): automated weekly threat database update"
+          git push origin main
