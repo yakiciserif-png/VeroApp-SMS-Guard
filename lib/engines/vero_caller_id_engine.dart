@@ -34,20 +34,63 @@ class SpamCallerCategory {
         _ => 3,
       };
 
-  static String labelTr(String category) => switch (category) {
-        robocall => 'SPAM_ROBOCALL (Otomatik Arama)',
-        scam => 'SPAM_SCAM (Dolandırıcılık)',
-        telesales => 'SPAM_TELESALES (Telefon Satışı)',
-        unknown => 'SPAM_UNKNOWN (Şüpheli)',
-        _ => 'GÜVENLİ NUMARA',
-      };
+  static String friendlyTitleTr(String category) {
+    final catUpper = category.toUpperCase();
+    if (catUpper.contains('TELESALES') || catUpper.contains('TELEMARKETING') || catUpper.contains('SATIS')) {
+      return '📢 Pazarlama & Reklam Araması';
+    }
+    if (catUpper.contains('SCAM') || catUpper.contains('FRAUD') || catUpper.contains('DOLANDIR')) {
+      return '🚨 Dolandırıcılık Şüphesi';
+    }
+    if (catUpper.contains('ROBOCALL') || catUpper.contains('BOT') || catUpper.contains('OTOMATIK')) {
+      return '🤖 Otomatik Bot Araması';
+    }
+    if (catUpper.contains('BET') || catUpper.contains('KUMAR') || catUpper.contains('CASINO')) {
+      return '🎰 Kumar & Bahis Araması';
+    }
+    if (catUpper.contains('FINANCE') || catUpper.contains('BANK')) {
+      return '🏦 Sahte Banka & Finans Araması';
+    }
+    if (catUpper.contains('CARGO') || catUpper.contains('KARGO')) {
+      return '📦 Sahte Kargo Araması';
+    }
+    if (catUpper.contains('CLEAN') || catUpper.contains('SAFE') || catUpper.contains('GUVENLI')) {
+      return '✅ Güvenli Numara';
+    }
+    return '⚠️ Şüpheli Arama';
+  }
+
+  static String friendlyTagTr(String category) {
+    final catUpper = category.toUpperCase();
+    if (catUpper.contains('FINANCE') || catUpper.contains('BANK')) {
+      return '🏦 Finans/Banka';
+    }
+    if (catUpper.contains('CARGO') || catUpper.contains('KARGO') || catUpper.contains('DELIVERY')) {
+      return '📦 Kargo';
+    }
+    if (catUpper.contains('BET') || catUpper.contains('KUMAR') || catUpper.contains('CASINO')) {
+      return '🎰 Kumar/Bahis';
+    }
+    if (catUpper.contains('SCAM') || catUpper.contains('FRAUD') || catUpper.contains('DOLANDIR')) {
+      return '🚨 Dolandırıcılık';
+    }
+    if (catUpper.contains('TELESALES') || catUpper.contains('TELEMARKETING')) {
+      return '📢 Pazarlama';
+    }
+    if (catUpper.contains('ROBOCALL') || catUpper.contains('BOT')) {
+      return '🤖 Bot Arama';
+    }
+    return '⚠️ Şüpheli';
+  }
+
+  static String labelTr(String category) => friendlyTitleTr(category);
 
   static String labelEn(String category) => switch (category) {
-        robocall => 'SPAM_ROBOCALL (Automated Call)',
-        scam => 'SPAM_SCAM (Scam / Fraud)',
-        telesales => 'SPAM_TELESALES (Telemarketing)',
-        unknown => 'SPAM_UNKNOWN (Suspicious)',
-        _ => 'SAFE NUMBER',
+        robocall => 'Automated Bot Call',
+        scam => 'Scam / Fraud Call',
+        telesales => 'Telemarketing / Ads Call',
+        unknown => 'Suspicious Call',
+        _ => 'Safe Number',
       };
 }
 
@@ -403,7 +446,7 @@ class VeroCallerIdEngine {
       }
     }
 
-    // 0850 sub-patterns & Rule 1: 0850[2-9]\d{6} → "⚠️ 0850 Yönlendirme"
+    // 0850 sub-patterns & Rule 1: 0850[2-9]\d{6} → "⚠️ Şüpheli 0850 Hat"
     if (_regex0850.hasMatch(compact) ||
         digits.startsWith('90850') ||
         digits.startsWith('850') ||
@@ -418,7 +461,7 @@ class VeroCallerIdEngine {
           isSpam: false,
           isSuspicious: true,
           isPatternMatch: true,
-          patternDescription: '0850 şüpheli sahte GSM bloğu',
+          patternDescription: '⚠️ Şüpheli 0850 Hat (Sahte GSM Bloğu)',
           category: SpamCallerCategory.scam,
           confidence: 0.85,
         );
@@ -434,7 +477,7 @@ class VeroCallerIdEngine {
           isSpam: false,
           isSuspicious: true,
           isPatternMatch: true,
-          patternDescription: '0850 tele-pazarlama şablonu',
+          patternDescription: '⚠️ Şüpheli 0850 Hat (Tele-Pazarlama)',
           category: SpamCallerCategory.telesales,
           confidence: 0.80,
         );
@@ -446,7 +489,7 @@ class VeroCallerIdEngine {
           isSpam: false,
           isSuspicious: true,
           isPatternMatch: true,
-          patternDescription: '0850 otomatik robocall şablonu',
+          patternDescription: '⚠️ Şüpheli 0850 Hat (Otomatik Bot)',
           category: SpamCallerCategory.robocall,
           confidence: 0.80,
         );
@@ -457,7 +500,7 @@ class VeroCallerIdEngine {
         isSpam: false,
         isSuspicious: true,
         isPatternMatch: true,
-        patternDescription: '⚠️ 0850 Yönlendirme',
+        patternDescription: '⚠️ Şüpheli 0850 Hat',
         category: SpamCallerCategory.telesales,
         confidence: 0.80,
       );

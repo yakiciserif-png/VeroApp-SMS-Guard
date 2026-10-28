@@ -1,8 +1,9 @@
+import 'dart:io' show Platform;
 import 'package:flutter/material.dart';
 
-import '../engines/vero_caller_id_engine.dart';
+import '../core/platform/native_bridge.dart';
+import '../engines/vero_call_guard_engine.dart';
 import '../engines/vero_caller_name_engine.dart';
-import '../engines/vero_community_shield.dart';
 import 'call_overlay_screen.dart';
 import 'cyberpunk_theme.dart';
 import 'post_call_report.dart';
@@ -48,60 +49,66 @@ class CallHistoryScreen extends StatefulWidget {
 
 class _CallHistoryScreenState extends State<CallHistoryScreen> {
   String _filter = 'all'; // all, spam, safe
+  final List<CallLogItem> _logs = [];
+  bool _isLoading = false;
 
-  // Pre-seeded device call logs for offline inspection
-  final List<CallLogItem> _logs = [
-    CallLogItem(
-      phoneNumber: '0850 480 99 88',
-      timestamp: DateTime.now().subtract(const Duration(minutes: 15)),
-      durationSeconds: 0,
-      type: CallLogType.missed,
-    ),
-    CallLogItem(
-      phoneNumber: '+63 917 000 1122',
-      timestamp: DateTime.now().subtract(const Duration(hours: 1)),
-      durationSeconds: 0,
-      type: CallLogType.missed,
-    ),
-    CallLogItem(
-      phoneNumber: '905321112233',
-      timestamp: DateTime.now().subtract(const Duration(hours: 3)),
-      durationSeconds: 142,
-      type: CallLogType.incoming,
-    ),
-    CallLogItem(
-      phoneNumber: '0850 532 00 10',
-      timestamp: DateTime.now().subtract(const Duration(hours: 5)),
-      durationSeconds: 12,
-      type: CallLogType.incoming,
-    ),
-    CallLogItem(
-      phoneNumber: '4440000',
-      timestamp: DateTime.now().subtract(const Duration(days: 1)),
-      durationSeconds: 310,
-      type: CallLogType.outgoing,
-    ),
-    CallLogItem(
-      phoneNumber: '0212 901 00 15',
-      timestamp: DateTime.now().subtract(const Duration(days: 1, hours: 2)),
-      durationSeconds: 4,
-      type: CallLogType.incoming,
-    ),
-    CallLogItem(
-      phoneNumber: '+90 555 987 65 43',
-      timestamp: DateTime.now().subtract(const Duration(days: 2)),
-      durationSeconds: 45,
-      type: CallLogType.incoming,
-    ),
-  ];
+  @override
+  void initState() {
+    super.initState();
+    _loadRealCallLogs();
+  }
+
+  Future<void> _loadRealCallLogs() async {
+    final isTest = Platform.environment.containsKey('FLUTTER_TEST');
+    if (isTest) {
+      if (mounted) setState(() => _isLoading = false);
+      return;
+    }
+    setState(() => _isLoading = true);
+    try {
+      final nativeList = await const NativeBridge().fetchCallLogs();
+      if (!mounted) return;
+      setState(() {
+        _logs.clear();
+        for (final m in nativeList) {
+          final number = m['number']?.toString() ?? '';
+          if (number.trim().isEmpty) continue;
+          final tsMs = (m['timestamp'] as num?)?.toInt() ??
+              DateTime.now().millisecondsSinceEpoch;
+          final dur = (m['duration'] as num?)?.toInt() ?? 0;
+          final typeStr = m['type']?.toString() ?? 'incoming';
+          final type = switch (typeStr) {
+            'outgoing' => CallLogType.outgoing,
+            'missed' => CallLogType.missed,
+            _ => CallLogType.incoming,
+          };
+          _logs.add(CallLogItem(
+            phoneNumber: number.trim(),
+            timestamp: DateTime.fromMillisecondsSinceEpoch(tsMs),
+            durationSeconds: dur,
+            type: type,
+          ));
+        }
+        _isLoading = false;
+      });
+    } catch (_) {
+      if (mounted) setState(() => _isLoading = false);
+    }
+  }
 
   CallTrustStatus _evaluateStatus(String number) {
     final callerId = VeroCallerIdEngine.lookup(number);
     if (callerId.isSpam) {
-      if (callerId.category == SpamCallerCategory.unknown) {
-        return CallTrustStatus.suspicious;
-      }
       return CallTrustStatus.spam;
+    }
+    if (callerId.isSuspicious || callerId.isPatternMatch) {
+      return CallTrustStatus.suspicious;
+    }
+    final callGuard = VeroCallGuardEngine.evaluate(number);
+    if (callGuard.isBlockedOrWarned) {
+      return callGuard.riskLevel == CallRiskLevel.critical
+          ? CallTrustStatus.spam
+          : CallTrustStatus.suspicious;
     }
     return CallTrustStatus.safe;
   }
@@ -285,103 +292,175 @@ class _CallHistoryScreenState extends State<CallHistoryScreen> {
             ),
           ),
           Expanded(
-            child: ListView.builder(
-              itemCount: filtered.length,
-              itemBuilder: (context, index) {
-                final item = filtered[index];
-                final callerInfo =
-                    VeroCallerNameEngine.identify(item.phoneNumber);
-                final status = _evaluateStatus(item.phoneNumber);
-
-                final isSpam = status == CallTrustStatus.spam;
-                final isSuspicious = status == CallTrustStatus.suspicious;
-
-                final badgeIcon = isSpam
-                    ? Icons.close_rounded
-                    : (isSuspicious
-                        ? Icons.priority_high_rounded
-                        : Icons.verified_user_rounded);
-
-                final badgeColor = isSpam
-                    ? const Color(0xFFFF1744)
-                    : (isSuspicious
-                        ? const Color(0xFFFFD600)
-                        : const Color(0xFF00FF88));
-
-                final badgeText = isSpam
-                    ? '🚨 Spam'
-                    : (isSuspicious ? '⚠️ Şüpheli' : '✅ Güvenli');
-
-                return Container(
-                  margin:
-                      const EdgeInsets.symmetric(horizontal: 14, vertical: 5),
-                  decoration: BoxDecoration(
-                    color: isSpam
-                        ? const Color(0xFFFF1744).withValues(alpha: 0.12)
-                        : CyberpunkColors.surfaceCard,
-                    borderRadius: BorderRadius.circular(14),
-                    border: Border.all(
-                      color: isSpam
-                          ? const Color(0xFFFF1744).withValues(alpha: 0.5)
-                          : CyberpunkColors.borderSubtle,
+            child: _isLoading
+                ? const Center(
+                    child: CircularProgressIndicator(
+                      color: CyberpunkColors.neonCyan,
                     ),
-                  ),
-                  child: Material(
-                    color: Colors.transparent,
-                    child: ListTile(
-                      onTap: () => _showDetailSheet(item),
-                      leading: CircleAvatar(
-                        backgroundColor: badgeColor.withValues(alpha: 0.18),
-                        child: Icon(badgeIcon, color: badgeColor, size: 20),
-                      ),
-                      title: Row(
-                        children: [
-                          Expanded(
-                            child: Text(
-                              callerInfo.displayName,
-                              style: TextStyle(
-                                color: callerInfo.color,
-                                fontWeight: FontWeight.w800,
+                  )
+                : (filtered.isEmpty
+                    ? Center(
+                        child: Padding(
+                          padding: const EdgeInsets.all(32.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                padding: const EdgeInsets.all(20),
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: CyberpunkColors.neonCyan
+                                      .withValues(alpha: 0.1),
+                                  border: Border.all(
+                                    color: CyberpunkColors.neonCyan
+                                        .withValues(alpha: 0.4),
+                                    width: 1.5,
+                                  ),
+                                ),
+                                child: const Icon(
+                                  Icons.phone_missed_outlined,
+                                  size: 48,
+                                  color: CyberpunkColors.neonCyan,
+                                ),
                               ),
-                            ),
-                          ),
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 8,
-                              vertical: 2,
-                            ),
-                            decoration: BoxDecoration(
-                              color: badgeColor.withValues(alpha: 0.16),
-                              borderRadius: BorderRadius.circular(8),
-                              border: Border.all(color: badgeColor),
-                            ),
-                            child: Text(
-                              badgeText,
-                              style: TextStyle(
-                                color: badgeColor,
-                                fontSize: 11,
-                                fontWeight: FontWeight.bold,
+                              const SizedBox(height: 20),
+                              const Text(
+                                'Henüz arama kaydı yok',
+                                style: TextStyle(
+                                  fontFamily: 'Book Antiqua',
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
                               ),
-                            ),
+                              const SizedBox(height: 8),
+                              const Text(
+                                'Tüm gelen aramalar %100 çevrimdışı ve yapay zeka korumasıyla taranır.',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: 13,
+                                  color: CyberpunkColors.textSecondary,
+                                  height: 1.4,
+                                ),
+                              ),
+                              const SizedBox(height: 20),
+                              OutlinedButton.icon(
+                                onPressed: _loadRealCallLogs,
+                                icon: const Icon(Icons.refresh, size: 16),
+                                label: const Text('Yenile'),
+                                style: OutlinedButton.styleFrom(
+                                  foregroundColor: CyberpunkColors.neonCyan,
+                                  side: const BorderSide(
+                                      color: CyberpunkColors.neonCyan),
+                                ),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
-                      subtitle: Text(
-                        '${item.phoneNumber} • ${item.durationSeconds > 0 ? '${item.durationSeconds} sn' : 'Cevapsız'}',
-                        style: const TextStyle(
-                          color: CyberpunkColors.textSecondary,
-                          fontSize: 12,
                         ),
-                      ),
-                      trailing: const Icon(
-                        Icons.chevron_right,
-                        color: CyberpunkColors.textSecondary,
-                      ),
-                    ),
-                  ),
-                );
-              },
-            ),
+                      )
+                    : ListView.builder(
+                        itemCount: filtered.length,
+                        itemBuilder: (context, index) {
+                          final item = filtered[index];
+                          final callerInfo =
+                              VeroCallerNameEngine.identify(item.phoneNumber);
+                          final status = _evaluateStatus(item.phoneNumber);
+
+                          final isSpam = status == CallTrustStatus.spam;
+                          final isSuspicious =
+                              status == CallTrustStatus.suspicious;
+
+                          final badgeIcon = isSpam
+                              ? Icons.close_rounded
+                              : (isSuspicious
+                                  ? Icons.warning_amber_rounded
+                                  : Icons.verified_user_rounded);
+
+                          final badgeColor = isSpam
+                              ? const Color(0xFFFF1744)
+                              : (isSuspicious
+                                  ? const Color(0xFFFFD600)
+                                  : const Color(0xFF00FF88));
+
+                          final badgeText = isSpam
+                              ? '🚨 Spam'
+                              : (isSuspicious ? '⚠️ Şüpheli' : '✅ Güvenli');
+
+                          return Container(
+                            margin: const EdgeInsets.symmetric(
+                                horizontal: 14, vertical: 5),
+                            decoration: BoxDecoration(
+                              color: isSpam
+                                  ? const Color(0xFFFF1744)
+                                      .withValues(alpha: 0.12)
+                                  : CyberpunkColors.surfaceCard,
+                              borderRadius: BorderRadius.circular(14),
+                              border: Border.all(
+                                color: isSpam
+                                    ? const Color(0xFFFF1744)
+                                        .withValues(alpha: 0.5)
+                                    : CyberpunkColors.borderSubtle,
+                              ),
+                            ),
+                            child: Material(
+                              color: Colors.transparent,
+                              child: ListTile(
+                                onTap: () => _showDetailSheet(item),
+                                leading: CircleAvatar(
+                                  backgroundColor:
+                                      badgeColor.withValues(alpha: 0.18),
+                                  child: Icon(badgeIcon,
+                                      color: badgeColor, size: 20),
+                                ),
+                                title: Row(
+                                  children: [
+                                    Expanded(
+                                      child: Text(
+                                        callerInfo.displayName,
+                                        style: TextStyle(
+                                          color: callerInfo.color,
+                                          fontWeight: FontWeight.w800,
+                                        ),
+                                      ),
+                                    ),
+                                    Container(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 8,
+                                        vertical: 2,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        color:
+                                            badgeColor.withValues(alpha: 0.16),
+                                        borderRadius: BorderRadius.circular(8),
+                                        border: Border.all(color: badgeColor),
+                                      ),
+                                      child: Text(
+                                        badgeText,
+                                        style: TextStyle(
+                                          color: badgeColor,
+                                          fontSize: 11,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                subtitle: Text(
+                                  '${item.phoneNumber} • ${item.durationSeconds > 0 ? '${item.durationSeconds} sn' : 'Cevapsız'}',
+                                  style: const TextStyle(
+                                    color: CyberpunkColors.textSecondary,
+                                    fontSize: 12,
+                                  ),
+                                ),
+                                trailing: const Icon(
+                                  Icons.chevron_right,
+                                  color: CyberpunkColors.textSecondary,
+                                ),
+                              ),
+                            ),
+                          );
+                        },
+                      )),
           ),
         ],
       ),

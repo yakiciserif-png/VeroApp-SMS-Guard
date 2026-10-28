@@ -64,7 +64,16 @@ class AppState extends ChangeNotifier {
 
   final NativeBridge _bridge;
   final SeedLoader _seedLoader;
-  late SharedPreferences _prefs;
+  SharedPreferences? _prefs;
+
+  Future<SharedPreferences?> _ensurePrefs() async {
+    if (_prefs == null) {
+      try {
+        _prefs = await SharedPreferences.getInstance();
+      } catch (_) {}
+    }
+    return _prefs;
+  }
 
   SmartClassifier classifier = SmartClassifier(
     model: NaiveBayesModel(),
@@ -224,15 +233,26 @@ class AppState extends ChangeNotifier {
       _prefs = await SharedPreferences.getInstance();
     } catch (_) {}
 
-    try {
-      final code = _prefs.getString(_kLocale);
-      if (code != null) locale = Locale(code);
-      autoDismissSpam = _prefs.getBool(_kAutoDismiss) ?? true;
-      autoCleanOtp24h = _prefs.getBool(_kAutoCleanOtp24h) ?? false;
-      callGuardEnabled = _prefs.getBool(_kCallGuard) ?? true;
-      hasAcceptedKvkkConsent = _prefs.getBool(_kKvkkConsent) ?? false;
+    final p = _prefs;
+    if (p == null) {
+      final model = await _trainSeedModel();
+      classifier = SmartClassifier(
+        model: model,
+        rules: RuleEngine(effectiveRules),
+        shieldConfig: shieldConfig,
+      );
+      return;
+    }
 
-      final savedLinkMode = _prefs.getString(_kLinkScannerMode);
+    try {
+      final code = p.getString(_kLocale);
+      if (code != null) locale = Locale(code);
+      autoDismissSpam = p.getBool(_kAutoDismiss) ?? true;
+      autoCleanOtp24h = p.getBool(_kAutoCleanOtp24h) ?? false;
+      callGuardEnabled = p.getBool(_kCallGuard) ?? true;
+      hasAcceptedKvkkConsent = p.getBool(_kKvkkConsent) ?? false;
+
+      final savedLinkMode = p.getString(_kLinkScannerMode);
       if (savedLinkMode != null) {
         linkScannerMode = LinkScannerMode.values.firstWhere(
           (m) => m.name == savedLinkMode,
@@ -241,20 +261,20 @@ class AppState extends ChangeNotifier {
         VeroLinkScanner.instance.setMode(linkScannerMode);
       }
 
-      await VeroCommunityShield.init(_prefs);
+      await VeroCommunityShield.init(p);
 
-      final savedTier = _prefs.getString(_kSubTier);
+      final savedTier = p.getString(_kSubTier);
       if (savedTier != null) {
         purchaseService.tier = VeroSubscriptionTier.values.firstWhere(
           (t) => t.name == savedTier,
           orElse: () => VeroSubscriptionTier.free,
         );
       }
-      purchaseService.isFamilyOwner = _prefs.getBool(_kFamilyOwner) ?? true;
-      purchaseService.isFamilyMember = _prefs.getBool(_kFamilyMember) ?? false;
-      purchaseService.familyCode = _prefs.getString(_kFamilyCode) ?? '892341';
+      purchaseService.isFamilyOwner = p.getBool(_kFamilyOwner) ?? true;
+      purchaseService.isFamilyMember = p.getBool(_kFamilyMember) ?? false;
+      purchaseService.familyCode = p.getString(_kFamilyCode) ?? '892341';
 
-      final savedTheme = _prefs.getString(_kThemeMode);
+      final savedTheme = p.getString(_kThemeMode);
       if (savedTheme != null) {
         themeMode = ThemeMode.values.firstWhere(
           (m) => m.name == savedTheme,
@@ -262,7 +282,7 @@ class AppState extends ChangeNotifier {
         );
       }
 
-      final savedMode = _prefs.getString(_kProtectionMode);
+      final savedMode = p.getString(_kProtectionMode);
       if (savedMode != null) {
         protectionMode = ProtectionMode.values.firstWhere(
           (m) => m.name == savedMode,
@@ -270,7 +290,7 @@ class AppState extends ChangeNotifier {
         );
       }
 
-      final rawShields = _prefs.getString(_kShields);
+      final rawShields = p.getString(_kShields);
       if (rawShields != null) {
         try {
           shieldConfig = ThreatShieldConfig.fromJson(
@@ -283,23 +303,23 @@ class AppState extends ChangeNotifier {
 
       blacklist
         ..clear()
-        ..addAll(_prefs.getStringList(_kBlacklist) ?? const []);
+        ..addAll(p.getStringList(_kBlacklist) ?? const []);
       whitelist
         ..clear()
-        ..addAll(_prefs.getStringList(_kWhitelist) ?? const []);
+        ..addAll(p.getStringList(_kWhitelist) ?? const []);
 
       rules
         ..clear()
-        ..addAll(_decodeList(_prefs.getString(_kRules)).map(FilterRule.fromJson));
+        ..addAll(_decodeList(p.getString(_kRules)).map(FilterRule.fromJson));
       history
         ..clear()
         ..addAll(
-          _decodeList(_prefs.getString(_kHistory)).map(HistoryEntry.fromJson),
+          _decodeList(p.getString(_kHistory)).map(HistoryEntry.fromJson),
         );
     } catch (_) {}
 
     NaiveBayesModel model;
-    final savedModel = _prefs.getString(_kModel);
+    final savedModel = p.getString(_kModel);
     if (savedModel != null) {
       try {
         model = NaiveBayesModel.fromJson(
@@ -466,7 +486,8 @@ class AppState extends ChangeNotifier {
 
   Future<void> setAutoCleanOtp24h(bool value) async {
     autoCleanOtp24h = value;
-    await _prefs.setBool(_kAutoCleanOtp24h, value);
+    await _ensurePrefs();
+    await _prefs?.setBool(_kAutoCleanOtp24h, value);
     if (value) {
       await runAutoCleaner();
     }
@@ -504,7 +525,8 @@ class AppState extends ChangeNotifier {
   Future<void> acceptKvkkConsent() async {
     hasAcceptedKvkkConsent = true;
     notifyListeners();
-    await _prefs.setBool(_kKvkkConsent, true);
+    await _ensurePrefs();
+    await _prefs?.setBool(_kKvkkConsent, true);
     final isTest = !kIsWeb && Platform.environment.containsKey('FLUTTER_TEST');
     if (!isTest) {
       _initHeavyEnginesInBackground();
@@ -513,7 +535,8 @@ class AppState extends ChangeNotifier {
 
   Future<void> resetKvkkConsent() async {
     hasAcceptedKvkkConsent = false;
-    await _prefs.remove(_kKvkkConsent);
+    await _ensurePrefs();
+    await _prefs?.remove(_kKvkkConsent);
     notifyListeners();
   }
 
@@ -588,7 +611,8 @@ class AppState extends ChangeNotifier {
           importedCount++;
         }
       }
-      await _prefs.setString(_kModel, jsonEncode(classifier.model.toJson()));
+      await _ensurePrefs();
+      await _prefs?.setString(_kModel, jsonEncode(classifier.model.toJson()));
     }
 
     await _saveSimpleLists();
@@ -610,7 +634,8 @@ class AppState extends ChangeNotifier {
       return;
     }
     classifier.model.train(cleanText, expectedCategory, weight: 4);
-    await _prefs.setString(_kModel, jsonEncode(classifier.model.toJson()));
+    await _ensurePrefs();
+    await _prefs?.setString(_kModel, jsonEncode(classifier.model.toJson()));
     final entry = analyze(
       cleanText,
       sender: sender,
@@ -638,7 +663,8 @@ class AppState extends ChangeNotifier {
     final updated = entry.copyWith(category: category, corrected: true);
     final i = history.indexWhere((h) => h.id == entry.id);
     if (i >= 0) history[i] = updated;
-    await _prefs.setString(_kModel, jsonEncode(classifier.model.toJson()));
+    await _ensurePrefs();
+    await _prefs?.setString(_kModel, jsonEncode(classifier.model.toJson()));
     await _saveHistory();
     notifyListeners();
     await syncNative();
@@ -677,10 +703,13 @@ class AppState extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> _saveHistory() => _prefs.setString(
-        _kHistory,
-        jsonEncode(history.map((h) => h.toJson()).toList()),
-      );
+  Future<void> _saveHistory() async {
+    await _ensurePrefs();
+    await _prefs?.setString(
+      _kHistory,
+      jsonEncode(history.map((h) => h.toJson()).toList()),
+    );
+  }
 
   // ------------------------------------------------ simple blacklist/whitelist
 
@@ -712,8 +741,9 @@ class AppState extends ChangeNotifier {
 
   Future<void> _saveSimpleLists() async {
     classifier.rules = RuleEngine(effectiveRules);
-    await _prefs.setStringList(_kBlacklist, blacklist);
-    await _prefs.setStringList(_kWhitelist, whitelist);
+    await _ensurePrefs();
+    await _prefs?.setStringList(_kBlacklist, blacklist);
+    await _prefs?.setStringList(_kWhitelist, whitelist);
     notifyListeners();
     await syncNative();
   }
@@ -768,7 +798,8 @@ class AppState extends ChangeNotifier {
 
   Future<void> _saveRules() async {
     classifier.rules = RuleEngine(effectiveRules);
-    await _prefs.setString(
+    await _ensurePrefs();
+    await _prefs?.setString(
       _kRules,
       jsonEncode(rules.map((r) => r.toJson()).toList()),
     );
@@ -780,7 +811,8 @@ class AppState extends ChangeNotifier {
 
   Future<void> setProtectionMode(ProtectionMode mode) async {
     protectionMode = mode;
-    await _prefs.setString(_kProtectionMode, mode.name);
+    await _ensurePrefs();
+    await _prefs?.setString(_kProtectionMode, mode.name);
     final updatedShields = switch (mode) {
       ProtectionMode.relaxed => const ThreatShieldConfig(
           bettingShield: true,
@@ -807,7 +839,8 @@ class AppState extends ChangeNotifier {
   Future<void> updateShieldConfig(ThreatShieldConfig value) async {
     shieldConfig = value;
     classifier.shieldConfig = value;
-    await _prefs.setString(_kShields, jsonEncode(value.toJson()));
+    await _ensurePrefs();
+    await _prefs?.setString(_kShields, jsonEncode(value.toJson()));
     notifyListeners();
     await syncNative();
   }
@@ -816,7 +849,8 @@ class AppState extends ChangeNotifier {
 
   Future<void> setThemeMode(ThemeMode mode) async {
     themeMode = mode;
-    await _prefs.setString(_kThemeMode, mode.name);
+    await _ensurePrefs();
+    await _prefs?.setString(_kThemeMode, mode.name);
     notifyListeners();
   }
 
@@ -829,24 +863,27 @@ class AppState extends ChangeNotifier {
 
   Future<void> setLocale(Locale? value) async {
     locale = value;
+    await _ensurePrefs();
     if (value == null) {
-      await _prefs.remove(_kLocale);
+      await _prefs?.remove(_kLocale);
     } else {
-      await _prefs.setString(_kLocale, value.languageCode);
+      await _prefs?.setString(_kLocale, value.languageCode);
     }
     notifyListeners();
   }
 
   Future<void> setAutoDismiss(bool value) async {
     autoDismissSpam = value;
-    await _prefs.setBool(_kAutoDismiss, value);
+    await _ensurePrefs();
+    await _prefs?.setBool(_kAutoDismiss, value);
     notifyListeners();
     await syncNative();
   }
 
   Future<void> resetModel() async {
     classifier.model = await _trainSeedModel();
-    await _prefs.remove(_kModel);
+    await _ensurePrefs();
+    await _prefs?.remove(_kModel);
     notifyListeners();
     await syncNative();
   }
@@ -922,24 +959,27 @@ class AppState extends ChangeNotifier {
 
   Future<void> setCallGuardEnabled(bool value) async {
     callGuardEnabled = value;
-    await _prefs.setBool(_kCallGuard, value);
+    await _ensurePrefs();
+    await _prefs?.setBool(_kCallGuard, value);
     notifyListeners();
   }
 
   Future<void> setLinkScannerMode(LinkScannerMode mode) async {
     linkScannerMode = mode;
     VeroLinkScanner.instance.setMode(mode);
-    await _prefs.setString(_kLinkScannerMode, mode.name);
+    await _ensurePrefs();
+    await _prefs?.setString(_kLinkScannerMode, mode.name);
     notifyListeners();
   }
 
   /// 0 ms Instant Upgrade via RevenueCat / IAP service.
   Future<void> upgradeSubscription(VeroSubscriptionTier tier) async {
     purchaseService.upgradeTo(tier);
-    await _prefs.setString(_kSubTier, purchaseService.tier.name);
-    await _prefs.setBool(_kFamilyOwner, purchaseService.isFamilyOwner);
-    await _prefs.setBool(_kFamilyMember, purchaseService.isFamilyMember);
-    await _prefs.setString(_kFamilyCode, purchaseService.familyCode);
+    await _ensurePrefs();
+    await _prefs?.setString(_kSubTier, purchaseService.tier.name);
+    await _prefs?.setBool(_kFamilyOwner, purchaseService.isFamilyOwner);
+    await _prefs?.setBool(_kFamilyMember, purchaseService.isFamilyMember);
+    await _prefs?.setString(_kFamilyCode, purchaseService.familyCode);
     notifyListeners();
   }
 
@@ -947,10 +987,11 @@ class AppState extends ChangeNotifier {
   Future<bool> joinFamilyWithCode(String rawCode) async {
     final ok = purchaseService.joinFamilyWithCode(rawCode);
     if (!ok) return false;
-    await _prefs.setString(_kSubTier, purchaseService.tier.name);
-    await _prefs.setBool(_kFamilyOwner, purchaseService.isFamilyOwner);
-    await _prefs.setBool(_kFamilyMember, purchaseService.isFamilyMember);
-    await _prefs.setString(_kFamilyCode, purchaseService.familyCode);
+    await _ensurePrefs();
+    await _prefs?.setString(_kSubTier, purchaseService.tier.name);
+    await _prefs?.setBool(_kFamilyOwner, purchaseService.isFamilyOwner);
+    await _prefs?.setBool(_kFamilyMember, purchaseService.isFamilyMember);
+    await _prefs?.setString(_kFamilyCode, purchaseService.familyCode);
     notifyListeners();
     return true;
   }
@@ -962,9 +1003,10 @@ class AppState extends ChangeNotifier {
       purchaseService.tier = VeroSubscriptionTier.familyYearly;
       purchaseService.isFamilyMember = false;
     }
-    await _prefs.setString(_kSubTier, purchaseService.tier.name);
-    await _prefs.setBool(_kFamilyOwner, purchaseService.isFamilyOwner);
-    await _prefs.setBool(_kFamilyMember, purchaseService.isFamilyMember);
+    await _ensurePrefs();
+    await _prefs?.setString(_kSubTier, purchaseService.tier.name);
+    await _prefs?.setBool(_kFamilyOwner, purchaseService.isFamilyOwner);
+    await _prefs?.setBool(_kFamilyMember, purchaseService.isFamilyMember);
     notifyListeners();
   }
 
@@ -973,6 +1015,7 @@ class AppState extends ChangeNotifier {
     String rawNumber, {
     String category = 'SPAM_SCAM',
   }) async {
+    await _ensurePrefs();
     final ok = await VeroCommunityShield.reportNumber(
       rawNumber,
       category: category,
@@ -984,16 +1027,25 @@ class AppState extends ChangeNotifier {
 
   /// [ADIM 5] Clears all locally reported spam phone numbers.
   Future<void> clearReportedSpamPhoneNumbers() async {
+    await _ensurePrefs();
     await VeroCommunityShield.clearAll(_prefs);
     notifyListeners();
   }
 
   /// [ADIM 1] Weekly threat update toggle via GitHub Releases.
-  bool get isAutoThreatUpdateEnabled =>
-      _prefs.getBool('vero_threat_auto_update_enabled') ?? false;
+  bool get isAutoThreatUpdateEnabled {
+    try {
+      return _prefs?.getBool('vero_threat_auto_update_enabled') ?? false;
+    } catch (_) {
+      return false;
+    }
+  }
 
   Future<void> setAutoThreatUpdate(bool enabled) async {
-    await _prefs.setBool('vero_threat_auto_update_enabled', enabled);
+    try {
+      await _ensurePrefs();
+      await _prefs?.setBool('vero_threat_auto_update_enabled', enabled);
+    } catch (_) {}
     notifyListeners();
   }
 }

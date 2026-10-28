@@ -162,4 +162,24 @@ class NativeBridge {
         .where((m) => m.text.trim().isNotEmpty)
         .toList();
   }
+
+  /// Fetches real device call logs via native Android CallLog provider.
+  Future<List<Map<dynamic, dynamic>>> fetchCallLogs() async {
+    if (!isAndroid) return const [];
+    final raw = await _invoke<List<dynamic>>('fetchCallLogs');
+    if (raw == null) return const [];
+    return raw.whereType<Map<dynamic, dynamic>>().toList();
+  }
+
+  /// Requests `READ_CALL_LOG` runtime permission gracefully.
+  Future<bool> requestCallLogPermission() async {
+    if (!isAndroid) return false;
+    return await _invoke<bool>('requestCallLogPermission') ?? false;
+  }
+
+  /// Checks if `READ_CALL_LOG` runtime permission is granted.
+  Future<bool> isCallLogPermissionGranted() async {
+    if (!isAndroid) return false;
+    return await _invoke<bool>('isCallLogPermissionGranted') ?? false;
+  }
 }

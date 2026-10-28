@@ -22,6 +22,7 @@ class MainActivity : FlutterActivity() {
     private val REQ_SMS_PERMISSIONS = 4001
     private val REQ_SPAM_ROLE = 4002
     private val REQ_CALL_SCREENING_ROLE = 4003
+    private val REQ_CALL_LOG_PERMISSION = 4004
 
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
@@ -106,6 +107,17 @@ class MainActivity : FlutterActivity() {
                         val prefs = getSharedPreferences("vero_call_screening", Context.MODE_PRIVATE)
                         prefs.edit().putStringSet("blocked_numbers", numbers).apply()
                         result.success(true)
+                    }
+                    "fetchCallLogs" -> {
+                        val logs = fetchCallLogsSafely()
+                        result.success(logs)
+                    }
+                    "requestCallLogPermission" -> {
+                        requestCallLogPermissionSafely()
+                        result.success(isCallLogPermissionGranted())
+                    }
+                    "isCallLogPermissionGranted" -> {
+                        result.success(isCallLogPermissionGranted())
                     }
                     else -> {
                         result.notImplemented()
@@ -265,5 +277,79 @@ class MainActivity : FlutterActivity() {
             }
         }
         return false
+    }
+
+    private fun isCallLogPermissionGranted(): Boolean {
+        return try {
+            ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.READ_CALL_LOG
+            ) == PackageManager.PERMISSION_GRANTED
+        } catch (_: Exception) {
+            false
+        }
+    }
+
+    private fun requestCallLogPermissionSafely() {
+        try {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.READ_CALL_LOG),
+                REQ_CALL_LOG_PERMISSION
+            )
+        } catch (_: Exception) {}
+    }
+
+    private fun fetchCallLogsSafely(): List<Map<String, Any>> {
+        return try {
+            if (!isCallLogPermissionGranted()) {
+                return emptyList()
+            }
+            val list = mutableListOf<Map<String, Any>>()
+            val projection = arrayOf(
+                android.provider.CallLog.Calls.NUMBER,
+                android.provider.CallLog.Calls.DATE,
+                android.provider.CallLog.Calls.DURATION,
+                android.provider.CallLog.Calls.TYPE
+            )
+            val cursor = contentResolver.query(
+                android.provider.CallLog.Calls.CONTENT_URI,
+                projection,
+                null,
+                null,
+                "${android.provider.CallLog.Calls.DATE} DESC LIMIT 100"
+            )
+            cursor?.use {
+                val numIdx = it.getColumnIndex(android.provider.CallLog.Calls.NUMBER)
+                val dateIdx = it.getColumnIndex(android.provider.CallLog.Calls.DATE)
+                val durIdx = it.getColumnIndex(android.provider.CallLog.Calls.DURATION)
+                val typeIdx = it.getColumnIndex(android.provider.CallLog.Calls.TYPE)
+                while (it.moveToNext()) {
+                    val num = if (numIdx >= 0) it.getString(numIdx) ?: "" else ""
+                    val date = if (dateIdx >= 0) it.getLong(dateIdx) else 0L
+                    val dur = if (durIdx >= 0) it.getLong(durIdx) else 0L
+                    val typeVal = if (typeIdx >= 0) it.getInt(typeIdx) else 0
+                    val typeStr = when (typeVal) {
+                        android.provider.CallLog.Calls.INCOMING_TYPE -> "incoming"
+                        android.provider.CallLog.Calls.OUTGOING_TYPE -> "outgoing"
+                        android.provider.CallLog.Calls.MISSED_TYPE -> "missed"
+                        else -> "incoming"
+                    }
+                    if (num.isNotBlank()) {
+                        list.add(
+                            mapOf(
+                                "number" to num,
+                                "timestamp" to date,
+                                "duration" to dur,
+                                "type" to typeStr
+                            )
+                        )
+                    }
+                }
+            }
+            list
+        } catch (_: Exception) {
+            emptyList()
+        }
     }
 }

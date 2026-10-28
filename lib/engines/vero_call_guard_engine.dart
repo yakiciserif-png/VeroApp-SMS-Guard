@@ -153,6 +153,7 @@ class VeroCallGuardEngine {
     final callerId = VeroCallerIdEngine.lookup(trimmed);
     if (callerId.isSpam) {
       final cat = callerId.category;
+      final friendly = SpamCallerCategory.friendlyTitleTr(cat);
       return CallGuardResult(
         rawNumber: trimmed,
         normalizedNumber: compact,
@@ -163,17 +164,19 @@ class VeroCallGuardEngine {
         matchedPrefix: detectedPrefix,
         callerIdCategory: cat,
         callerIdConfidence: callerId.confidence,
-        categoryTitleTr: '🚨 Bu numara spam olarak işaretlendi: $cat',
-        categoryTitleEn: '🚨 This number is flagged as spam: $cat',
+        categoryTitleTr: '🚨 $friendly',
+        categoryTitleEn: '🚨 ${SpamCallerCategory.labelEn(cat)}',
         detailTr:
-            'VERO Offline Caller ID (${SpamCallerCategory.labelTr(cat)}): Güven skoru %${(callerId.confidence * 100).toStringAsFixed(0)}. Geri aramayın ve kişisel bilgi paylaşmayın!',
+            'VERO Offline Kalkanı ($friendly): Güven skoru %${(callerId.confidence * 100).toStringAsFixed(0)}. Geri aramayın ve kişisel bilgi paylaşmayın!',
         detailEn:
-            'VERO Offline Caller ID (${SpamCallerCategory.labelEn(cat)}): Confidence ${(callerId.confidence * 100).toStringAsFixed(0)}%. Do not answer or call back!',
+            'VERO Offline Shield (${SpamCallerCategory.labelEn(cat)}): Confidence ${(callerId.confidence * 100).toStringAsFixed(0)}%. Do not answer or call back!',
       );
     }
 
     if (callerId.isSuspicious) {
       final cat = callerId.category;
+      final desc = callerId.patternDescription ?? SpamCallerCategory.friendlyTitleTr(cat);
+      final display = '⚠️ Şüpheli olabilir: $desc';
       return CallGuardResult(
         rawNumber: trimmed,
         normalizedNumber: compact,
@@ -182,12 +185,12 @@ class VeroCallGuardEngine {
         matchedPrefix: detectedPrefix,
         callerIdCategory: cat,
         callerIdConfidence: callerId.confidence,
-        categoryTitleTr: '⚠️ Şüpheli olabilir (${callerId.patternDescription ?? cat})',
-        categoryTitleEn: '⚠️ May be suspicious (${callerId.patternDescription ?? cat})',
+        categoryTitleTr: display,
+        categoryTitleEn: '⚠️ May be suspicious ($desc)',
         detailTr:
-            'Şüpheli numara kalıbı algılandı (${callerId.patternDescription ?? cat}). Tanımıyorsanız dikkatli olun.',
+            'Şüpheli numara kalıbı algılandı ($desc). Tanımıyorsanız dikkatli olun, geri aramayın!',
         detailEn:
-            'Suspicious number pattern detected (${callerId.patternDescription ?? cat}). Exercise caution.',
+            'Suspicious number pattern detected ($desc). Exercise caution.',
       );
     }
 

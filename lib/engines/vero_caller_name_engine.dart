@@ -56,13 +56,7 @@ class VeroCallerNameEngine {
   static const Color colorUnknown = Color(0xFFFFD600);   // Sarı (#FFD600)
 
   /// Local address book index (Normalized digits -> Name).
-  static final Map<String, String> _localContacts = {
-    '905321112233': 'Ahmet Yılmaz',
-    '905332223344': 'Ayşe Kaya',
-    '905423334455': 'Mehmet Demir',
-    '905554445566': 'Zeynep Çelik',
-    '905051234567': 'Ali Vural',
-  };
+  static final Map<String, String> _localContacts = {};
 
   /// Asynchronously / bulk sync contacts into the local indexed map.
   static Future<int> syncContacts(List<Map<String, String>> contacts) async {
@@ -98,13 +92,6 @@ class VeroCallerNameEngine {
   /// Clears local contacts cache.
   static void resetContacts() {
     _localContacts.clear();
-    _localContacts.addAll({
-      '905321112233': 'Ahmet Yılmaz',
-      '905332223344': 'Ayşe Kaya',
-      '905423334455': 'Mehmet Demir',
-      '905554445566': 'Zeynep Çelik',
-      '905051234567': 'Ali Vural',
-    });
   }
 
   /// Total cached contacts count.
@@ -152,13 +139,14 @@ class VeroCallerNameEngine {
     // 2. Check Exact Verified Spam Database Match -> "🚨 SPAM: [Kategori]" [Kırmızı]
     final spamCheck = VeroCallerIdEngine.lookup(phoneNumber);
     if (spamCheck.isSpam && !spamCheck.fromCommunityShield) {
+      final friendly = SpamCallerCategory.friendlyTitleTr(spamCheck.category);
       return CallerNameResult(
         phoneNumber: phoneNumber,
-        displayName: '🚨 SPAM: ${spamCheck.category}',
+        displayName: friendly,
         type: CallerNameType.spam,
         color: colorSpam,
         shouldVibrate: true,
-        spamCategory: spamCheck.category,
+        spamCategory: friendly,
         confidence: spamCheck.confidence,
       );
     }
@@ -166,13 +154,14 @@ class VeroCallerNameEngine {
     // 3. Check Community Shield -> "Topluluk: [Kategori] (Bildirildi)" [Turuncu]
     final communityReport = VeroCommunityShield.lookupReported(phoneNumber);
     if (communityReport != null) {
+      final friendly = SpamCallerCategory.friendlyTitleTr(communityReport.category);
       return CallerNameResult(
         phoneNumber: phoneNumber,
-        displayName: 'Topluluk: ${communityReport.category} (Bildirildi)',
+        displayName: 'Topluluk: $friendly (Bildirildi)',
         type: CallerNameType.community,
         color: colorCommunity,
         shouldVibrate: false,
-        spamCategory: communityReport.category,
+        spamCategory: friendly,
         confidence: 0.90,
         reportCount: 1,
       );
@@ -183,7 +172,9 @@ class VeroCallerNameEngine {
     if (callGuard.isBlockedOrWarned) {
       return CallerNameResult(
         phoneNumber: phoneNumber,
-        displayName: '⚠️ Şüpheli: ${callGuard.categoryTitleTr}',
+        displayName: callGuard.categoryTitleTr.startsWith('🚨') || callGuard.categoryTitleTr.startsWith('⚠️')
+            ? callGuard.categoryTitleTr
+            : '⚠️ Şüpheli: ${callGuard.categoryTitleTr}',
         type: CallerNameType.spam,
         color: colorSpam,
         shouldVibrate: true,
@@ -193,14 +184,15 @@ class VeroCallerNameEngine {
     }
 
     if (spamCheck.isSuspicious) {
+      final desc = spamCheck.patternDescription ?? SpamCallerCategory.friendlyTitleTr(spamCheck.category);
+      final display = desc.startsWith('⚠️') || desc.startsWith('🚨') ? desc : '⚠️ $desc';
       return CallerNameResult(
         phoneNumber: phoneNumber,
-        displayName:
-            '⚠️ Şüpheli olabilir: ${spamCheck.patternDescription ?? spamCheck.category}',
+        displayName: display,
         type: CallerNameType.spam,
         color: colorCommunity,
         shouldVibrate: false,
-        spamCategory: spamCheck.category,
+        spamCategory: desc,
         confidence: spamCheck.confidence,
       );
     }

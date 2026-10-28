@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.BROADCAST_SMS" />
     <!-- Caller Name ID: Contact matching on-device only (Zero external upload) -->
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.READ_CALL_LOG" />
     <!-- Weekly Threat Database Update via GitHub Releases (Strictly One-Way Pull, Zero Telemetry/User Data) -->
     <uses-permission android:name="android.permission.INTERNET" />
 

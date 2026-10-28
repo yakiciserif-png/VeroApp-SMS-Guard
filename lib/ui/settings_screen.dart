@@ -28,6 +28,78 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return const _SettingsErrorBoundary(
+      child: _SettingsContent(),
+    );
+  }
+}
+
+class _SettingsErrorBoundary extends StatefulWidget {
+  const _SettingsErrorBoundary({required this.child});
+  final Widget child;
+
+  @override
+  State<_SettingsErrorBoundary> createState() => _SettingsErrorBoundaryState();
+}
+
+class _SettingsErrorBoundaryState extends State<_SettingsErrorBoundary> {
+  Object? _error;
+
+  @override
+  Widget build(BuildContext context) {
+    if (_error != null) {
+      return Scaffold(
+        key: const Key('settingsErrorFallback'),
+        appBar: AppBar(title: const Text('Ayarlar')),
+        backgroundColor: CyberpunkColors.bgPrimary,
+        body: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(24.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Icon(Icons.shield_outlined, color: CyberpunkColors.neonCyan, size: 54),
+                const SizedBox(height: 16),
+                const Text(
+                  'Ayarlar Güvenle Kurtarıldı',
+                  style: TextStyle(
+                    fontFamily: 'Book Antiqua',
+                    color: Colors.white,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                const Text(
+                  'Ayarlar bileşenleri çevrimdışı modda sıfırlandı. Tekrar deneyebilirsiniz.',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: CyberpunkColors.textSecondary, fontSize: 13),
+                ),
+                const SizedBox(height: 24),
+                ElevatedButton.icon(
+                  onPressed: () => setState(() => _error = null),
+                  icon: const Icon(Icons.refresh),
+                  label: const Text('Tekrar Dene'),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: CyberpunkColors.neonCyan,
+                    foregroundColor: Colors.black,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
+    }
+    return widget.child;
+  }
+}
+
+class _SettingsContent extends StatelessWidget {
+  const _SettingsContent();
+
+  @override
+  Widget build(BuildContext context) {
     final l = AppLocalizations.of(context);
     final app = AppScope.of(context);
     final theme = Theme.of(context);

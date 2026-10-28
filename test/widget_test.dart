@@ -47,6 +47,7 @@ import 'package:veroapp_sms_guard/widgets/vero_home_widget.dart';
 import 'package:veroapp_sms_guard/ui/call_overlay_screen.dart';
 
 import 'package:veroapp_sms_guard/ui/call_history_screen.dart';
+import 'package:veroapp_sms_guard/ui/settings_screen.dart';
 
 import 'package:veroapp_sms_guard/ui/post_call_report.dart';
 
@@ -3327,6 +3328,81 @@ void main() {
         // Verify dialog dismissed & state updated immediately
         expect(find.byKey(const Key('firstLaunchConsentDialog')), findsNothing);
         expect(state.hasAcceptedKvkkConsent, isTrue);
+      });
+
+      // ======================================================================
+      // FAZA 8 EMERGENCY FIXES VERIFICATION TESTS
+      // ======================================================================
+
+      testWidgets('FAZA 8 [Fix 1]: SettingsScreen Error Boundary & Crash-free render test', (tester) async {
+        SharedPreferences.setMockInitialValues({});
+        final state = AppState(
+          seedLoader: () async => '[]',
+          bridge: const NativeBridge(enabled: false),
+        );
+        await state.init();
+
+        await tester.pumpWidget(
+          AppScope(
+            state: state,
+            child: const MaterialApp(
+              home: SettingsScreen(),
+            ),
+          ),
+        );
+        await tester.pumpAndSettle();
+
+        // Verify settings rendered cleanly without throwing or crashing
+        expect(find.byKey(const Key('settingsProtectionModeCard')), findsOneWidget);
+      });
+
+      testWidgets('FAZA 8 [Fix 2]: CallHistoryScreen has NO fake mock calls and renders clean empty state', (tester) async {
+        await tester.pumpWidget(
+          const MaterialApp(
+            home: CallHistoryScreen(),
+          ),
+        );
+        await tester.pumpAndSettle();
+
+        // Verify zero mock contacts
+        expect(find.text('Ahmet Yılmaz (Rehber)'), findsNothing);
+        expect(find.text('0850 480 99 88'), findsNothing);
+        expect(find.text('905321112233'), findsNothing);
+
+        // Verify clean empty state
+        expect(find.text('Henüz arama kaydı yok'), findsOneWidget);
+        expect(find.text('Tüm gelen aramalar %100 çevrimdışı ve yapay zeka korumasıyla taranır.'), findsOneWidget);
+      });
+
+      test('FAZA 8 [Fix 3]: Raw enums are translated to Turkish friendly titles & tags', () {
+        expect(SpamCallerCategory.friendlyTitleTr(SpamCallerCategory.scam), equals('🚨 Dolandırıcılık Şüphesi'));
+        expect(SpamCallerCategory.friendlyTitleTr(SpamCallerCategory.telesales), equals('📢 Pazarlama & Reklam Araması'));
+        expect(SpamCallerCategory.friendlyTitleTr(SpamCallerCategory.robocall), equals('🤖 Otomatik Bot Araması'));
+        expect(SpamCallerCategory.friendlyTitleTr(SpamCallerCategory.clean), equals('✅ Güvenli Numara'));
+
+        expect(SpamCallerCategory.friendlyTagTr('FINANCE_SCAM'), equals('🏦 Finans/Banka'));
+        expect(SpamCallerCategory.friendlyTagTr('CARGO_SCAM'), equals('📦 Kargo'));
+        expect(SpamCallerCategory.friendlyTagTr('BETTING_SPAM'), equals('🎰 Kumar/Bahis'));
+        expect(SpamCallerCategory.friendlyTagTr('SCAM_FRAUD'), equals('🚨 Dolandırıcılık'));
+      });
+
+      test('FAZA 8 [Fix 4]: Real-time 0850 & +90 Normalization', () {
+        final res1 = VeroCallerIdEngine.lookup('+90 850 545 43 38');
+        expect(res1.isSuspicious, isTrue);
+        expect(res1.patternDescription, contains('0850 Hat'));
+
+        final res2 = VeroCallerIdEngine.lookup('0850 999 11 22');
+        expect(res2.isSuspicious, isTrue);
+        expect(res2.patternDescription, contains('0850 Hat'));
+
+        final res3 = VeroCallerIdEngine.lookup('850 532 00 10');
+        expect(res3.isSuspicious, isTrue);
+        expect(res3.patternDescription, contains('0850 Hat'));
+
+        // Whitelisted corporate 0850 numbers must NOT be flagged
+        final safeBank = VeroCallerIdEngine.lookup('0850 220 00 00');
+        expect(safeBank.isSpam, isFalse);
+        expect(safeBank.isSuspicious, isFalse);
       });
 
     });

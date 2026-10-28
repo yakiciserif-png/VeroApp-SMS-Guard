@@ -1,6 +1,7 @@
 import 'dart:io' show Platform;
 import 'package:flutter/material.dart';
 
+import '../engines/vero_caller_id_engine.dart';
 import '../engines/vero_caller_name_engine.dart';
 import 'cyberpunk_theme.dart';
 
@@ -248,7 +249,7 @@ class _CallOverlayScreenState extends State<CallOverlayScreen>
                     ),
                     const SizedBox(height: 10),
                     Text(
-                      'Kategori: ${widget.category}',
+                      'Kategori: ${SpamCallerCategory.friendlyTitleTr(widget.category)}',
                       style: const TextStyle(
                         color: CyberpunkColors.textPrimary,
                         fontSize: 14,

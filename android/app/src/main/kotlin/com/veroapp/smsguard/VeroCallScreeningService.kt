@@ -18,6 +18,12 @@ import androidx.annotation.RequiresApi
 @RequiresApi(Build.VERSION_CODES.Q)
 class VeroCallScreeningService : CallScreeningService() {
 
+    private val verifiedWhitelist = setOf(
+        "4440000", "908502200000", "08502200000", "908507240724", "08507240724",
+        "4440333", "4442525", "4440444", "908502220724", "08502220724",
+        "4449999", "4442552", "182"
+    )
+
     override fun onScreenCall(callDetails: Call.Details) {
         val handle = callDetails.handle
         val rawNumber = handle?.schemeSpecificPart ?: ""
@@ -43,37 +49,42 @@ class VeroCallScreeningService : CallScreeningService() {
 
     private fun isSpamNumber(number: String): Boolean {
         if (number.isBlank()) return false
-        val clean = number.replace(Regex("[^0-9+]"), "")
+        val digitsOnly = number.replace(Regex("[^0-9]"), "")
+        if (digitsOnly.isBlank()) return false
+
+        // Check verified corporate whitelist (legitimate banks, couriers, MHRS)
+        for (safe in verifiedWhitelist) {
+            val safeDigits = safe.replace(Regex("[^0-9]"), "")
+            if (digitsOnly == safeDigits || digitsOnly.endsWith(safeDigits)) {
+                return false
+            }
+        }
 
         // 1. Check synced custom blocked list from SharedPreferences
         try {
             val prefs = getSharedPreferences("vero_call_screening", Context.MODE_PRIVATE)
             val customBlocked = prefs.getStringSet("blocked_numbers", emptySet()) ?: emptySet()
-            val digitsOnly = clean.replace("+", "")
             for (blocked in customBlocked) {
-                val cleanBlocked = blocked.replace("+", "")
-                if (digitsOnly == cleanBlocked || digitsOnly.endsWith(cleanBlocked) || cleanBlocked.endsWith(digitsOnly)) {
+                val cleanBlocked = blocked.replace(Regex("[^0-9]"), "")
+                if (cleanBlocked.isNotBlank() && (digitsOnly == cleanBlocked || digitsOnly.endsWith(cleanBlocked) || cleanBlocked.endsWith(digitsOnly))) {
                     return true
                 }
             }
         } catch (_: Exception) {}
 
         // 2. High-risk international toll/Wangiri prefixes
-        val scamPrefixes = listOf("+63", "+62", "+234", "+212", "+359", "+370", "+375", "+880", "+254", "+91", "+92")
-        for (prefix in scamPrefixes) {
-            if (clean.startsWith(prefix)) return true
+        val intlPrefixes = listOf("63", "62", "234", "212", "359", "370", "375", "880", "254", "91", "92")
+        for (prefix in intlPrefixes) {
+            if (digitsOnly.startsWith(prefix) && digitsOnly.length >= 10) return true
         }
 
-        // 3. Unverified high-risk 0850 telemarketing blocks
-        if (clean.startsWith("+90850") || clean.startsWith("0850")) {
-            val sub = if (clean.startsWith("+90850")) clean.substring(6) else clean.substring(4)
-            if (sub.startsWith("532") || sub.startsWith("480") || sub.startsWith("901") || sub.startsWith("840")) {
-                return true
-            }
+        // 3. ALL Unverified 0850 / +90 850 / 850 lines!
+        if (digitsOnly.startsWith("90850") || digitsOnly.startsWith("0850") || digitsOnly.startsWith("850")) {
+            return true
         }
 
         // 4. 0212 9xx / 0216 9xx robocall PBX blocks
-        if (Regex("^(90|0)?21[26]9\\d{6}$").matches(clean)) {
+        if (Regex("^(90|0)?21[26]9\\d{6}$").matches(digitsOnly)) {
             return true
         }
 
