@@ -3283,6 +3283,52 @@ void main() {
         }
       });
 
+
+      testWidgets('KVKK Diyalog Buton Dokunma ve Aninda Kapanma Dogrulama Testi (UI Freeze Fix)', (tester) async {
+        SharedPreferences.setMockInitialValues({});
+        final state = AppState(
+          seedLoader: () async => '[]',
+          bridge: const NativeBridge(enabled: false),
+        );
+        await state.init();
+        expect(state.hasAcceptedKvkkConsent, isFalse);
+
+        await tester.pumpWidget(
+          AppScope(
+            state: state,
+            child: MaterialApp(
+              home: Builder(
+                builder: (context) => Scaffold(
+                  body: Center(
+                    child: ElevatedButton(
+                      onPressed: () => FirstLaunchConsentDialog.showIfNeeded(context),
+                      child: const Text('Show Consent'),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        );
+        await tester.pumpAndSettle();
+
+        // Trigger showIfNeeded
+        await tester.tap(find.text('Show Consent'));
+        await tester.pumpAndSettle();
+
+        // Verify dialog is visible
+        expect(find.byKey(const Key('firstLaunchConsentDialog')), findsOneWidget);
+        expect(find.byKey(const Key('consentAcceptBtn')), findsOneWidget);
+
+        // Tap the accept button
+        await tester.tap(find.byKey(const Key('consentAcceptBtn')));
+        await tester.pumpAndSettle();
+
+        // Verify dialog dismissed & state updated immediately
+        expect(find.byKey(const Key('firstLaunchConsentDialog')), findsNothing);
+        expect(state.hasAcceptedKvkkConsent, isTrue);
+      });
+
     });
   });
 }

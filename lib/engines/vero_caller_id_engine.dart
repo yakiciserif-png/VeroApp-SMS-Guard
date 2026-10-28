@@ -1,3 +1,4 @@
+import 'dart:isolate';
 import 'dart:typed_data';
 import 'package:flutter/services.dart';
 
@@ -121,12 +122,23 @@ class VeroCallerIdEngine {
     try {
       final targetBundle = bundle ?? rootBundle;
       final data = await targetBundle.load(assetPath);
-      final bytes = data.buffer.asUint8List(
+      final rawBytes = data.buffer.asUint8List(
         data.offsetInBytes,
         data.lengthInBytes,
       );
-      if (bytes.length >= 8) {
-        loadFromBytes(bytes);
+      if (rawBytes.length >= 8) {
+        Uint8List processed;
+        try {
+          processed = await Isolate.run<Uint8List>(() {
+            final alignedLen = (rawBytes.length ~/ 8) * 8;
+            return Uint8List.fromList(rawBytes.sublist(0, alignedLen));
+          });
+        } catch (_) {
+          final alignedLen = (rawBytes.length ~/ 8) * 8;
+          processed = Uint8List.fromList(rawBytes.sublist(0, alignedLen));
+        }
+        _sortedRecords = ByteData.sublistView(processed);
+        _recordCount = processed.lengthInBytes ~/ 8;
         _assetLoaded = true;
       }
     } catch (_) {

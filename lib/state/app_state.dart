@@ -153,10 +153,9 @@ class AppState extends ChangeNotifier {
     ready = true;
     notifyListeners();
 
-    // After Splash Screen closes and HomeScreen opens:
-    // Heavy databases (6.25MB Bloom Filter, 63K Spam DB, 38K Phishing Domains)
-    // are initialized lazily in the background on real devices without blocking the UI.
-    if (!isTest) {
+    // SADECE kullanıcı daha önceden KVKK kabul ettiyse arka plan motorlarını başlat.
+    // İlk açılışta KVKK diyaloğu ekrandayken HİÇBİR ağır yükleme yapılmaz!
+    if (!isTest && hasAcceptedKvkkConsent) {
       _initHeavyEnginesInBackground();
     }
   }
@@ -167,14 +166,15 @@ class AppState extends ChangeNotifier {
       ready = true;
       notifyListeners();
       final isTest = !kIsWeb && Platform.environment.containsKey('FLUTTER_TEST');
-      if (!isTest) {
+      if (!isTest && hasAcceptedKvkkConsent) {
         _initHeavyEnginesInBackground();
       }
     }
   }
 
   void _initHeavyEnginesInBackground() {
-    Future.microtask(() async {
+    // 300ms gecikme ile UI çizim ve diyalog kapanış animasyonunun takılmadan tamamlanmasını sağla
+    Future.delayed(const Duration(milliseconds: 300), () async {
       try {
         if (autoCleanOtp24h) {
           await runAutoCleaner();
@@ -503,8 +503,12 @@ class AppState extends ChangeNotifier {
 
   Future<void> acceptKvkkConsent() async {
     hasAcceptedKvkkConsent = true;
-    await _prefs.setBool(_kKvkkConsent, true);
     notifyListeners();
+    await _prefs.setBool(_kKvkkConsent, true);
+    final isTest = !kIsWeb && Platform.environment.containsKey('FLUTTER_TEST');
+    if (!isTest) {
+      _initHeavyEnginesInBackground();
+    }
   }
 
   Future<void> resetKvkkConsent() async {

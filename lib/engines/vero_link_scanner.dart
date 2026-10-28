@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:isolate';
 import 'package:flutter/services.dart';
 
 /// Threat level of a scanned URL.
@@ -261,8 +262,34 @@ class VeroLinkScanner {
 
     try {
       final raw = await rootBundle.loadString('assets/spam_db/phishing_domains.bin');
-      _loadFromString(raw);
-      _sortedDomainList = _phishingDomains.toList()..sort();
+      List<String> sortedList;
+      try {
+        sortedList = await Isolate.run<List<String>>(() {
+          final set = <String>{};
+          final lines = const LineSplitter().convert(raw);
+          for (final line in lines) {
+            final trimmed = line.trim().toLowerCase();
+            if (trimmed.isNotEmpty && !trimmed.startsWith('#')) {
+              set.add(trimmed);
+            }
+          }
+          return set.toList()..sort();
+        });
+      } catch (_) {
+        final set = <String>{};
+        final lines = const LineSplitter().convert(raw);
+        for (final line in lines) {
+          final trimmed = line.trim().toLowerCase();
+          if (trimmed.isNotEmpty && !trimmed.startsWith('#')) {
+            set.add(trimmed);
+          }
+        }
+        sortedList = set.toList()..sort();
+      }
+      _phishingDomains
+        ..clear()
+        ..addAll(sortedList);
+      _sortedDomainList = sortedList;
       _initialized = true;
     } catch (_) {
       // Fallback: load baseline fraudulent domains offline

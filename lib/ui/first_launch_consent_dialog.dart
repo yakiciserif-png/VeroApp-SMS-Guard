@@ -20,12 +20,21 @@ class FirstLaunchConsentDialog extends StatelessWidget {
     );
   }
 
+  void _handleAccept(BuildContext context) {
+    final app = AppScope.read(context);
+    // 1. Immediately dismiss dialog without blocking UI
+    if (Navigator.of(context, rootNavigator: true).canPop()) {
+      Navigator.of(context, rootNavigator: true).pop();
+    }
+    // 2. Synchronously set consent state and trigger background loaders
+    app.acceptKvkkConsent();
+  }
+
   @override
   Widget build(BuildContext context) {
     final l = AppLocalizations.of(context);
     final isTr = Localizations.localeOf(context).languageCode == 'tr';
     final theme = Theme.of(context);
-    final app = AppScope.read(context);
 
     return AlertDialog(
       key: const Key('firstLaunchConsentDialog'),
@@ -101,22 +110,31 @@ class FirstLaunchConsentDialog extends StatelessWidget {
         ),
       ),
       actions: [
-        FilledButton(
-          key: const Key('consentAcceptBtn'),
-          onPressed: () async {
-            await app.acceptKvkkConsent();
-            if (context.mounted && Navigator.of(context, rootNavigator: true).canPop()) {
-              Navigator.of(context, rootNavigator: true).pop();
-            }
-          },
-          style: FilledButton.styleFrom(
-            backgroundColor: CyberpunkColors.neonCyan,
-            foregroundColor: CyberpunkColors.backgroundDark,
-            minimumSize: const Size.fromHeight(42),
-          ),
-          child: Text(
-            l.t('firstLaunchConsentAccept'),
-            style: const TextStyle(fontWeight: FontWeight.bold),
+        GestureDetector(
+          behavior: HitTestBehavior.opaque,
+          onTap: () => _handleAccept(context),
+          child: SizedBox(
+            width: double.infinity,
+            child: FilledButton(
+              key: const Key('consentAcceptBtn'),
+              onPressed: () => _handleAccept(context),
+              style: FilledButton.styleFrom(
+                backgroundColor: CyberpunkColors.neonCyan,
+                foregroundColor: CyberpunkColors.backgroundDark,
+                minimumSize: const Size.fromHeight(52),
+                padding: const EdgeInsets.symmetric(vertical: 14),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              ),
+              child: Text(
+                l.t('firstLaunchConsentAccept'),
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15,
+                ),
+              ),
+            ),
           ),
         ),
       ],

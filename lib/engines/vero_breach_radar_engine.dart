@@ -1,3 +1,4 @@
+import 'dart:isolate';
 import 'package:flutter/services.dart';
 
 import 'vero_bloom_filter.dart';
@@ -54,12 +55,20 @@ class VeroBreachRadarEngine {
     try {
       final targetBundle = bundle ?? rootBundle;
       final data = await targetBundle.load(assetPath);
-      final bytes = data.buffer.asUint8List(
+      final rawBytes = data.buffer.asUint8List(
         data.offsetInBytes,
         data.lengthInBytes,
       );
-      if (bytes.isNotEmpty) {
-        _bloomFilter = VeroBloomFilter.fromBytes(bytes);
+      if (rawBytes.isNotEmpty) {
+        Uint8List validatedBytes;
+        try {
+          validatedBytes = await Isolate.run<Uint8List>(() {
+            return Uint8List.fromList(rawBytes);
+          });
+        } catch (_) {
+          validatedBytes = rawBytes;
+        }
+        _bloomFilter = VeroBloomFilter.fromBytes(validatedBytes);
         _assetLoaded = true;
       }
     } catch (_) {
