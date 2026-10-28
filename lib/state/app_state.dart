@@ -1,6 +1,8 @@
 import 'dart:convert';
+import 'dart:io' show Platform;
 import 'dart:math' as math;
 
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -13,6 +15,7 @@ import '../core/classifier/threat_database.dart';
 import '../core/monetization/purchase_service.dart';
 import '../core/platform/native_bridge.dart';
 import '../core/rules/rule_engine.dart';
+import '../engines/vero_caller_id_engine.dart';
 import '../engines/vero_community_shield.dart';
 import '../engines/vero_link_scanner.dart';
 import '../models/history_entry.dart';
@@ -63,7 +66,11 @@ class AppState extends ChangeNotifier {
   final SeedLoader _seedLoader;
   late SharedPreferences _prefs;
 
-  late SmartClassifier classifier;
+  SmartClassifier classifier = SmartClassifier(
+    model: NaiveBayesModel(),
+    rules: RuleEngine(const []),
+    shieldConfig: const ThreatShieldConfig(),
+  );
   final PurchaseService purchaseService = PurchaseService();
   final List<FilterRule> rules = [];
   final List<String> blacklist = [];
@@ -122,79 +129,174 @@ class AppState extends ChangeNotifier {
       ];
 
   Future<void> init() async {
-    _prefs = await SharedPreferences.getInstance();
-
-    final code = _prefs.getString(_kLocale);
-    if (code != null) locale = Locale(code);
-    autoDismissSpam = _prefs.getBool(_kAutoDismiss) ?? true;
-    autoCleanOtp24h = _prefs.getBool(_kAutoCleanOtp24h) ?? false;
-    callGuardEnabled = _prefs.getBool(_kCallGuard) ?? true;
-    hasAcceptedKvkkConsent = _prefs.getBool(_kKvkkConsent) ?? false;
-
-    final savedLinkMode = _prefs.getString(_kLinkScannerMode);
-    if (savedLinkMode != null) {
-      linkScannerMode = LinkScannerMode.values.firstWhere(
-        (m) => m.name == savedLinkMode,
-        orElse: () => LinkScannerMode.automatic,
+    final stopwatch = Stopwatch()..start();
+    try {
+      await _initCore().timeout(
+        const Duration(milliseconds: 1800),
+        onTimeout: () {
+          debugPrint('[AppState] _initCore timeout (1.8s) reached - proceeding');
+        },
       );
-      VeroLinkScanner.instance.setMode(linkScannerMode);
+    } catch (e, st) {
+      debugPrint('[AppState] _initCore error: $e\n$st');
     }
 
-    await VeroCommunityShield.init(_prefs);
-
-    final savedTier = _prefs.getString(_kSubTier);
-    if (savedTier != null) {
-      purchaseService.tier = VeroSubscriptionTier.values.firstWhere(
-        (t) => t.name == savedTier,
-        orElse: () => VeroSubscriptionTier.free,
-      );
-    }
-    purchaseService.isFamilyOwner = _prefs.getBool(_kFamilyOwner) ?? true;
-    purchaseService.isFamilyMember = _prefs.getBool(_kFamilyMember) ?? false;
-    purchaseService.familyCode = _prefs.getString(_kFamilyCode) ?? '892341';
-
-    final savedTheme = _prefs.getString(_kThemeMode);
-    if (savedTheme != null) {
-      themeMode = ThemeMode.values.firstWhere(
-        (m) => m.name == savedTheme,
-        orElse: () => ThemeMode.system,
-      );
-    }
-
-    final savedMode = _prefs.getString(_kProtectionMode);
-    if (savedMode != null) {
-      protectionMode = ProtectionMode.values.firstWhere(
-        (m) => m.name == savedMode,
-        orElse: () => ProtectionMode.balanced,
-      );
-    }
-
-    final rawShields = _prefs.getString(_kShields);
-    if (rawShields != null) {
-      try {
-        shieldConfig = ThreatShieldConfig.fromJson(
-          jsonDecode(rawShields) as Map<String, dynamic>,
-        );
-      } catch (_) {
-        shieldConfig = const ThreatShieldConfig();
+    // In real devices, ensure ~1.2s smooth branded splash presentation
+    final isTest = !kIsWeb && Platform.environment.containsKey('FLUTTER_TEST');
+    if (!isTest) {
+      final elapsed = stopwatch.elapsedMilliseconds;
+      if (elapsed < 1200) {
+        await Future.delayed(Duration(milliseconds: 1200 - elapsed));
       }
     }
 
-    blacklist
-      ..clear()
-      ..addAll(_prefs.getStringList(_kBlacklist) ?? const []);
-    whitelist
-      ..clear()
-      ..addAll(_prefs.getStringList(_kWhitelist) ?? const []);
+    ready = true;
+    notifyListeners();
 
-    rules
-      ..clear()
-      ..addAll(_decodeList(_prefs.getString(_kRules)).map(FilterRule.fromJson));
-    history
-      ..clear()
-      ..addAll(
-        _decodeList(_prefs.getString(_kHistory)).map(HistoryEntry.fromJson),
-      );
+    // After Splash Screen closes and HomeScreen opens:
+    // Heavy databases (6.25MB Bloom Filter, 63K Spam DB, 38K Phishing Domains)
+    // are initialized lazily in the background on real devices without blocking the UI.
+    if (!isTest) {
+      _initHeavyEnginesInBackground();
+    }
+  }
+
+  /// Failsafe trigger to dismiss splash screen and open HomeScreen within 2 seconds.
+  void forceReady() {
+    if (!ready) {
+      ready = true;
+      notifyListeners();
+      final isTest = !kIsWeb && Platform.environment.containsKey('FLUTTER_TEST');
+      if (!isTest) {
+        _initHeavyEnginesInBackground();
+      }
+    }
+  }
+
+  void _initHeavyEnginesInBackground() {
+    Future.microtask(() async {
+      try {
+        if (autoCleanOtp24h) {
+          await runAutoCleaner();
+        }
+      } catch (e) {
+        debugPrint('[LazyLoader] autoCleaner error: $e');
+      }
+
+      // 1. Offline Spam Phone DB (63K records)
+      try {
+        await VeroCallerIdEngine.initFromAsset();
+      } catch (e) {
+        debugPrint('[LazyLoader] CallerIdEngine asset error: $e');
+      }
+
+      // 2. Offline Phishing Domains DB (38K domains)
+      try {
+        await VeroLinkScanner.instance.initialize();
+      } catch (e) {
+        debugPrint('[LazyLoader] LinkScanner asset error: $e');
+      }
+
+      // 3. Offline Breach Radar (6.25 MB Bloom filter)
+      try {
+        await VeroBreachRadarEngine.initFromAsset();
+      } catch (e) {
+        debugPrint('[LazyLoader] BreachRadarEngine asset error: $e');
+      }
+
+      // 4. Platform status & Native hooks
+      try {
+        await refreshPlatformStatus();
+      } catch (e) {
+        debugPrint('[LazyLoader] refreshPlatformStatus error: $e');
+      }
+
+      try {
+        await syncNative();
+      } catch (e) {
+        debugPrint('[LazyLoader] syncNative error: $e');
+      }
+    });
+  }
+
+  Future<void> _initCore() async {
+    try {
+      _prefs = await SharedPreferences.getInstance();
+    } catch (_) {}
+
+    try {
+      final code = _prefs.getString(_kLocale);
+      if (code != null) locale = Locale(code);
+      autoDismissSpam = _prefs.getBool(_kAutoDismiss) ?? true;
+      autoCleanOtp24h = _prefs.getBool(_kAutoCleanOtp24h) ?? false;
+      callGuardEnabled = _prefs.getBool(_kCallGuard) ?? true;
+      hasAcceptedKvkkConsent = _prefs.getBool(_kKvkkConsent) ?? false;
+
+      final savedLinkMode = _prefs.getString(_kLinkScannerMode);
+      if (savedLinkMode != null) {
+        linkScannerMode = LinkScannerMode.values.firstWhere(
+          (m) => m.name == savedLinkMode,
+          orElse: () => LinkScannerMode.automatic,
+        );
+        VeroLinkScanner.instance.setMode(linkScannerMode);
+      }
+
+      await VeroCommunityShield.init(_prefs);
+
+      final savedTier = _prefs.getString(_kSubTier);
+      if (savedTier != null) {
+        purchaseService.tier = VeroSubscriptionTier.values.firstWhere(
+          (t) => t.name == savedTier,
+          orElse: () => VeroSubscriptionTier.free,
+        );
+      }
+      purchaseService.isFamilyOwner = _prefs.getBool(_kFamilyOwner) ?? true;
+      purchaseService.isFamilyMember = _prefs.getBool(_kFamilyMember) ?? false;
+      purchaseService.familyCode = _prefs.getString(_kFamilyCode) ?? '892341';
+
+      final savedTheme = _prefs.getString(_kThemeMode);
+      if (savedTheme != null) {
+        themeMode = ThemeMode.values.firstWhere(
+          (m) => m.name == savedTheme,
+          orElse: () => ThemeMode.system,
+        );
+      }
+
+      final savedMode = _prefs.getString(_kProtectionMode);
+      if (savedMode != null) {
+        protectionMode = ProtectionMode.values.firstWhere(
+          (m) => m.name == savedMode,
+          orElse: () => ProtectionMode.balanced,
+        );
+      }
+
+      final rawShields = _prefs.getString(_kShields);
+      if (rawShields != null) {
+        try {
+          shieldConfig = ThreatShieldConfig.fromJson(
+            jsonDecode(rawShields) as Map<String, dynamic>,
+          );
+        } catch (_) {
+          shieldConfig = const ThreatShieldConfig();
+        }
+      }
+
+      blacklist
+        ..clear()
+        ..addAll(_prefs.getStringList(_kBlacklist) ?? const []);
+      whitelist
+        ..clear()
+        ..addAll(_prefs.getStringList(_kWhitelist) ?? const []);
+
+      rules
+        ..clear()
+        ..addAll(_decodeList(_prefs.getString(_kRules)).map(FilterRule.fromJson));
+      history
+        ..clear()
+        ..addAll(
+          _decodeList(_prefs.getString(_kHistory)).map(HistoryEntry.fromJson),
+        );
+    } catch (_) {}
 
     NaiveBayesModel model;
     final savedModel = _prefs.getString(_kModel);
@@ -214,14 +316,6 @@ class AppState extends ChangeNotifier {
       rules: RuleEngine(effectiveRules),
       shieldConfig: shieldConfig,
     );
-
-    ready = true;
-    if (autoCleanOtp24h) {
-      await runAutoCleaner();
-    }
-    notifyListeners();
-    await refreshPlatformStatus();
-    await syncNative();
   }
 
   List<Map<String, dynamic>> _decodeList(String? raw) {

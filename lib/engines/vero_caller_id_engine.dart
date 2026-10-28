@@ -392,7 +392,10 @@ class VeroCallerIdEngine {
     }
 
     // 0850 sub-patterns & Rule 1: 0850[2-9]\d{6} → "⚠️ 0850 Yönlendirme"
-    if (digits.startsWith('90850') || digits.startsWith('850') || compact.startsWith('0850')) {
+    if (_regex0850.hasMatch(compact) ||
+        digits.startsWith('90850') ||
+        digits.startsWith('850') ||
+        compact.startsWith('0850')) {
       final sub = digits.startsWith('90850')
           ? digits.substring(5)
           : (digits.startsWith('850') ? digits.substring(3) : digits);

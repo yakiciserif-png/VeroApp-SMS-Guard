@@ -16,5 +16,11 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final state = AppState();
   runApp(VeroAppSmsGuardApp(state: state, appTitle: appPlatformTitle));
-  await state.init();
+
+  // Initialize app state asynchronously without blocking initial frame rendering.
+  // Internal 1.8s timeout + 2.0s splash screen failsafe guarantee transition within 2 seconds.
+  state.init().catchError((e, st) {
+    debugPrint('[main] state.init error: $e');
+    state.forceReady();
+  });
 }

@@ -1,3 +1,4 @@
+import 'dart:async' show Timer;
 import 'dart:io' show Platform;
 
 import 'package:flutter/foundation.dart' show kIsWeb;
@@ -79,8 +80,40 @@ class VeroAppSmsGuardApp extends StatelessWidget {
 }
 
 /// Cyberpunk Variant 3 Splash Screen (Hex Shield + AI Neural Core + VeroApp SMS Guard).
-class CyberSplashScreen extends StatelessWidget {
+class CyberSplashScreen extends StatefulWidget {
   const CyberSplashScreen({super.key});
+
+  @override
+  State<CyberSplashScreen> createState() => _CyberSplashScreenState();
+}
+
+class _CyberSplashScreenState extends State<CyberSplashScreen> {
+  Timer? _failsafeTimer;
+
+  @override
+  void initState() {
+    super.initState();
+    final isTest = !kIsWeb && Platform.environment.containsKey('FLUTTER_TEST');
+    if (!isTest) {
+      // TIMEOUT & ERROR HANDLER:
+      // Hard timeout of 2.0 seconds maximum.
+      // Under any circumstances, dismiss splash screen and proceed to HomeScreen/RootShell within 2s!
+      _failsafeTimer = Timer(const Duration(milliseconds: 2000), () {
+        if (mounted) {
+          final state = AppScope.read(context);
+          if (!state.ready) {
+            state.forceReady();
+          }
+        }
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    _failsafeTimer?.cancel();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) => Scaffold(

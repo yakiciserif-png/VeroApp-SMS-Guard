@@ -78,7 +78,7 @@ class VeroBloomFilter {
     return VeroBloomFilter(
       byteLength: bytes.length,
       hashCount: hashCount,
-      bytes: Uint8List.fromList(bytes),
+      bytes: bytes,
     );
   }
 

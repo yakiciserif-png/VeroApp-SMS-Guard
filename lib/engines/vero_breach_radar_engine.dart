@@ -35,10 +35,11 @@ class VeroBreachRadarEngine {
 
   static const String assetPath = 'assets/breach_db/bloom_filter.bin';
 
-  static VeroBloomFilter _bloomFilter = VeroBloomFilter.seededDefault();
+  static VeroBloomFilter? _bloomFilter;
   static bool _assetLoaded = false;
 
-  static VeroBloomFilter get bloomFilter => _bloomFilter;
+  static VeroBloomFilter get bloomFilter =>
+      _bloomFilter ??= VeroBloomFilter.seededDefault();
   static bool get isAssetLoaded => _assetLoaded;
 
   /// Lazy-loading entry point: loads bloom filter binary only when requested.
@@ -62,7 +63,7 @@ class VeroBreachRadarEngine {
         _assetLoaded = true;
       }
     } catch (_) {
-      _bloomFilter = VeroBloomFilter.seededDefault();
+      _bloomFilter ??= VeroBloomFilter.seededDefault();
     }
   }
 
@@ -83,16 +84,16 @@ class VeroBreachRadarEngine {
     }
 
     final sources = <String>[];
-    final directHit = _bloomFilter.contains(q);
+    final directHit = bloomFilter.contains(q);
 
     var patternHit = false;
-    if (q.startsWith('test@') && _bloomFilter.contains('pattern:test@')) {
+    if (q.startsWith('test@') && bloomFilter.contains('pattern:test@')) {
       patternHit = true;
     } else if (q.startsWith('admin@') &&
-        _bloomFilter.contains('pattern:admin@')) {
+        bloomFilter.contains('pattern:admin@')) {
       patternHit = true;
     } else if (q.contains('123456') &&
-        _bloomFilter.contains('pattern:123456')) {
+        bloomFilter.contains('pattern:123456')) {
       patternHit = true;
     }
 
@@ -100,7 +101,7 @@ class VeroBreachRadarEngine {
     final atIndex = q.indexOf('@');
     if (atIndex > 0 && atIndex < q.length - 1) {
       final domain = q.substring(atIndex + 1);
-      if (_bloomFilter.contains('domain:$domain') &&
+      if (bloomFilter.contains('domain:$domain') &&
           (directHit || patternHit)) {
         domainHit = true;
       }
