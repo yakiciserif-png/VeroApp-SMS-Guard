@@ -37,22 +37,28 @@ class SystemHooksStatus {
     this.notificationAccess = false,
     this.smsPermissionGranted = false,
     this.isDefaultSmsRoleHeld = false,
+    this.isCallScreeningRoleHeld = false,
     this.lastInterceptLatencyMs = 0.0,
   });
 
   final bool notificationAccess;
   final bool smsPermissionGranted;
   final bool isDefaultSmsRoleHeld;
+  final bool isCallScreeningRoleHeld;
   final double lastInterceptLatencyMs;
 
   bool get isAnyRealTimeHookActive =>
-      notificationAccess || smsPermissionGranted || isDefaultSmsRoleHeld;
+      notificationAccess ||
+      smsPermissionGranted ||
+      isDefaultSmsRoleHeld ||
+      isCallScreeningRoleHeld;
 
   factory SystemHooksStatus.fromMap(Map<dynamic, dynamic> m) =>
       SystemHooksStatus(
         notificationAccess: m['notificationAccess'] as bool? ?? false,
         smsPermissionGranted: m['smsPermissionGranted'] as bool? ?? false,
         isDefaultSmsRoleHeld: m['isDefaultSmsRoleHeld'] as bool? ?? false,
+        isCallScreeningRoleHeld: m['isCallScreeningRoleHeld'] as bool? ?? false,
         lastInterceptLatencyMs:
             (m['lastInterceptLatencyMs'] as num?)?.toDouble() ?? 0.0,
       );
@@ -125,6 +131,25 @@ class NativeBridge {
   Future<bool> requestSpamRole() async {
     if (!isAndroid) return false;
     return await _invoke<bool>('requestSpamRole') ?? false;
+  }
+
+  /// Checks if Android 10+ (API 29+) Call Screening role is held.
+  Future<bool> isCallScreeningRoleHeld() async {
+    if (!isAndroid) return false;
+    return await _invoke<bool>('isCallScreeningRoleHeld') ?? false;
+  }
+
+  /// Requests Android 10+ (API 29+) `RoleManager.ROLE_CALL_SCREENING`
+  /// ("Default Caller ID & Spam App") role gracefully. Returns `false` if cancelled/denied.
+  Future<bool> requestCallScreeningRole() async {
+    if (!isAndroid) return false;
+    return await _invoke<bool>('requestCallScreeningRole') ?? false;
+  }
+
+  /// Syncs custom user blocked phone numbers to the native call screening service.
+  Future<bool> syncBlockedNumbers(List<String> numbers) async {
+    if (!isAndroid) return false;
+    return await _invoke<bool>('syncBlockedNumbers', numbers) ?? false;
   }
 
   /// Pushes rules + exported model weights + semantic intent config to the

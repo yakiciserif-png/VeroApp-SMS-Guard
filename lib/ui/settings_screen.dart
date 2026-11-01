@@ -417,6 +417,17 @@ class _SettingsContent extends StatelessWidget {
               trailing: const Icon(Icons.admin_panel_settings_outlined),
               onTap: app.requestSpamRole,
             ),
+            ListTile(
+              key: const Key('settingsCallScreeningRoleTile'),
+              leading: const Icon(Icons.phone_locked_rounded),
+              title: Text(isTr ? 'Arama & 0850 Engelleme Rolü' : 'Call Screening Role'),
+              subtitle: Text(
+                '${isTr ? 'Gelen spam ve 0850 aramaları telefon çalmadan engelleme rolü' : 'Role to screen and block spam and 0850 calls'}\n${app.isCallScreeningRoleHeld ? l.t('granted') : l.t('notGranted')}',
+              ),
+              isThreeLine: true,
+              trailing: const Icon(Icons.admin_panel_settings_outlined),
+              onTap: app.requestCallScreeningRole,
+            ),
             SwitchListTile(
               secondary: const Icon(Icons.auto_delete_outlined),
               title: Text(l.t('settingsAutoDismiss')),

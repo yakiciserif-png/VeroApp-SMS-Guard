@@ -117,6 +117,7 @@ class _HomeScreenState extends State<HomeScreen> {
         padding: const EdgeInsets.all(16),
         children: [
           const OtpEmergencyAlertBanner(),
+          const RoleCallScreeningBanner(),
           // 1) BÜYÜK KALKAN İKONU + GÜVENDE / UYARI DURUMU
           Container(
             key: const Key('homeMainShieldContainer'),
@@ -940,6 +941,16 @@ class _ProtectionTile extends StatelessWidget {
                     onPressed: app.requestSpamRole,
                     icon: const Icon(Icons.verified_user_outlined, size: 16),
                     label: Text(l.t('requestRoleBtn')),
+                  ),
+                  OutlinedButton.icon(
+                    key: const Key('btnRequestCallScreeningRole'),
+                    onPressed: app.requestCallScreeningRole,
+                    icon: const Icon(Icons.phone_locked_rounded, size: 16),
+                    label: Text(
+                      Localizations.localeOf(context).languageCode == 'tr'
+                          ? 'Arama Koruması Rolü'
+                          : 'Call Screening Role',
+                    ),
                   ),
                 ],
               ),

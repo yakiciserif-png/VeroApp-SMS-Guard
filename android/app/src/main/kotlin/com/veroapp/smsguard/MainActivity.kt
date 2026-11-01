@@ -258,9 +258,34 @@ class MainActivity : FlutterActivity() {
                     return true
                 }
             }
-            false
+            try {
+                val fallback = Intent(Settings.ACTION_MANAGE_DEFAULT_APPS_SETTINGS).apply {
+                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                }
+                startActivity(fallback)
+                true
+            } catch (_: Exception) {
+                false
+            }
         } catch (_: Exception) {
-            false
+            try {
+                val fallback = Intent(Settings.ACTION_MANAGE_DEFAULT_APPS_SETTINGS).apply {
+                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                }
+                startActivity(fallback)
+                true
+            } catch (_: Exception) {
+                false
+            }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when (requestCode) {
+            REQ_CALL_SCREENING_ROLE, REQ_SPAM_ROLE -> {
+                // Role requested; status updated dynamically upon lifecycle resume
+            }
         }
     }
 

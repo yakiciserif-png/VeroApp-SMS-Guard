@@ -48,6 +48,7 @@ import 'package:veroapp_sms_guard/ui/call_overlay_screen.dart';
 
 import 'package:veroapp_sms_guard/ui/call_history_screen.dart';
 import 'package:veroapp_sms_guard/ui/settings_screen.dart';
+import 'package:veroapp_sms_guard/ui/widgets.dart';
 
 import 'package:veroapp_sms_guard/ui/post_call_report.dart';
 
@@ -3403,6 +3404,75 @@ void main() {
         final safeBank = VeroCallerIdEngine.lookup('0850 220 00 00');
         expect(safeBank.isSpam, isFalse);
         expect(safeBank.isSuspicious, isFalse);
+      });
+
+      test('FAZA 9 [Fix 1]: SharedPreferences Persistence (KVKK consent loaded synchronously in constructor)', () async {
+        SharedPreferences.setMockInitialValues({'vero.kvkkConsent': true});
+        final prefs = await SharedPreferences.getInstance();
+        final preloadedState = AppState(
+          seedLoader: () async => File('assets/model/seed_corpus.json').readAsStringSync(),
+          prefs: prefs,
+        );
+
+        // Must be true immediately upon instantiation without waiting for init()
+        expect(preloadedState.hasAcceptedKvkkConsent, isTrue);
+
+        // Also test acceptKvkkConsent persistence
+        final freshPrefs = await SharedPreferences.getInstance();
+        final stateToAccept = AppState(
+          seedLoader: () async => File('assets/model/seed_corpus.json').readAsStringSync(),
+          prefs: freshPrefs,
+        );
+        expect(stateToAccept.hasAcceptedKvkkConsent, isTrue);
+        await stateToAccept.resetKvkkConsent();
+        expect(stateToAccept.hasAcceptedKvkkConsent, isFalse);
+        await stateToAccept.acceptKvkkConsent();
+        expect(stateToAccept.hasAcceptedKvkkConsent, isTrue);
+        expect(freshPrefs.getBool('vero.kvkkConsent'), isTrue);
+      });
+
+      test('FAZA 9 [Fix 2]: RoleCallScreening and isRealTimeProtectionActive', () async {
+        final state = AppState(
+          seedLoader: () async => File('assets/model/seed_corpus.json').readAsStringSync(),
+          bridge: const NativeBridge(enabled: false),
+        );
+        expect(state.isCallScreeningRoleHeld, isFalse);
+        expect(state.isRealTimeProtectionActive, isFalse);
+
+        state.isCallScreeningRoleHeld = true;
+        expect(state.isRealTimeProtectionActive, isTrue);
+      });
+
+      testWidgets('FAZA 9 [Fix 3]: RoleCallScreeningBanner shown when Android and role missing, hidden when held', (tester) async {
+        final state = AppState(
+          seedLoader: () async => File('assets/model/seed_corpus.json').readAsStringSync(),
+          bridge: const NativeBridge(enabled: false, forceAndroidUi: true),
+        );
+        state.ready = true;
+        state.hasAcceptedKvkkConsent = true;
+        state.isCallScreeningRoleHeld = false;
+
+        await tester.pumpWidget(
+          AppScope(
+            state: state,
+            child: const MaterialApp(
+              home: Scaffold(
+                body: RoleCallScreeningBanner(),
+              ),
+            ),
+          ),
+        );
+        await tester.pumpAndSettle();
+
+        expect(find.byKey(const Key('roleCallScreeningBanner')), findsOneWidget);
+        expect(find.byKey(const Key('btnActivateCallScreeningRole')), findsOneWidget);
+
+        // When role is granted, banner disappears
+        state.isCallScreeningRoleHeld = true;
+        state.notifyListeners();
+        await tester.pumpAndSettle();
+
+        expect(find.byKey(const Key('roleCallScreeningBanner')), findsNothing);
       });
 
     });

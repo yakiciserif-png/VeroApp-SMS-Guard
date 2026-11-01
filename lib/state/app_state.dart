@@ -37,10 +37,35 @@ enum SmartInboxFolder {
 /// Central application state (rules, blacklist/whitelist, threat shields,
 /// protection mode, theme mode, history, model, preferences).
 class AppState extends ChangeNotifier {
-  AppState({NativeBridge bridge = const NativeBridge(), SeedLoader? seedLoader})
-      : _bridge = bridge,
+  AppState({
+    NativeBridge bridge = const NativeBridge(),
+    SeedLoader? seedLoader,
+    SharedPreferences? prefs,
+  })  : _bridge = bridge,
+        _prefs = prefs,
         _seedLoader = seedLoader ??
-            (() => rootBundle.loadString('assets/model/seed_corpus.json'));
+            (() => rootBundle.loadString('assets/model/seed_corpus.json')) {
+    if (prefs != null) {
+      hasAcceptedKvkkConsent = prefs.getBool(_kKvkkConsent) ?? false;
+      callGuardEnabled = prefs.getBool(_kCallGuard) ?? true;
+      autoDismissSpam = prefs.getBool(_kAutoDismiss) ?? true;
+      autoCleanOtp24h = prefs.getBool(_kAutoCleanOtp24h) ?? false;
+      final savedTheme = prefs.getString(_kThemeMode);
+      if (savedTheme != null) {
+        themeMode = ThemeMode.values.firstWhere(
+          (m) => m.name == savedTheme,
+          orElse: () => ThemeMode.system,
+        );
+      }
+      final savedTier = prefs.getString(_kSubTier);
+      if (savedTier != null) {
+        purchaseService.tier = VeroSubscriptionTier.values.firstWhere(
+          (t) => t.name == savedTier,
+          orElse: () => VeroSubscriptionTier.free,
+        );
+      }
+    }
+  }
 
   static const _kRules = 'tl.rules';
   static const _kBlacklist = 'tl.blacklist';
@@ -99,6 +124,7 @@ class AppState extends ChangeNotifier {
   bool notificationAccess = false;
   bool smsPermissionGranted = false;
   bool isDefaultSmsRoleHeld = false;
+  bool isCallScreeningRoleHeld = false;
   double lastInterceptLatencyMs = 0.0;
   ThreatShieldConfig shieldConfig = const ThreatShieldConfig();
 
@@ -112,7 +138,10 @@ class AppState extends ChangeNotifier {
 
   /// True when any OS-level real-time interception hook is active on Android.
   bool get isRealTimeProtectionActive =>
-      notificationAccess || smsPermissionGranted || isDefaultSmsRoleHeld;
+      notificationAccess ||
+      smsPermissionGranted ||
+      isDefaultSmsRoleHeld ||
+      isCallScreeningRoleHeld;
 
   /// Combines simple Whitelist + Blacklist items with advanced custom rules.
   List<FilterRule> get effectiveRules => [
@@ -229,9 +258,11 @@ class AppState extends ChangeNotifier {
   }
 
   Future<void> _initCore() async {
-    try {
-      _prefs = await SharedPreferences.getInstance();
-    } catch (_) {}
+    if (_prefs == null) {
+      try {
+        _prefs = await SharedPreferences.getInstance();
+      } catch (_) {}
+    }
 
     final p = _prefs;
     if (p == null) {
@@ -250,7 +281,7 @@ class AppState extends ChangeNotifier {
       autoDismissSpam = p.getBool(_kAutoDismiss) ?? true;
       autoCleanOtp24h = p.getBool(_kAutoCleanOtp24h) ?? false;
       callGuardEnabled = p.getBool(_kCallGuard) ?? true;
-      hasAcceptedKvkkConsent = p.getBool(_kKvkkConsent) ?? false;
+      hasAcceptedKvkkConsent = p.getBool(_kKvkkConsent) ?? hasAcceptedKvkkConsent;
 
       final savedLinkMode = p.getString(_kLinkScannerMode);
       if (savedLinkMode != null) {
@@ -525,8 +556,12 @@ class AppState extends ChangeNotifier {
   Future<void> acceptKvkkConsent() async {
     hasAcceptedKvkkConsent = true;
     notifyListeners();
-    await _ensurePrefs();
-    await _prefs?.setBool(_kKvkkConsent, true);
+    try {
+      final p = await _ensurePrefs();
+      await p?.setBool(_kKvkkConsent, true);
+    } catch (e) {
+      debugPrint('[AppState] Failed to persist KVKK consent: $e');
+    }
     final isTest = !kIsWeb && Platform.environment.containsKey('FLUTTER_TEST');
     if (!isTest) {
       _initHeavyEnginesInBackground();
@@ -892,14 +927,18 @@ class AppState extends ChangeNotifier {
     final hooks = await _bridge.getSystemHooksStatus();
     final granted = hooks.notificationAccess ||
         await _bridge.isNotificationAccessGranted();
+    final callRole = hooks.isCallScreeningRoleHeld ||
+        await _bridge.isCallScreeningRoleHeld();
     final changed = granted != notificationAccess ||
         hooks.smsPermissionGranted != smsPermissionGranted ||
         hooks.isDefaultSmsRoleHeld != isDefaultSmsRoleHeld ||
+        callRole != isCallScreeningRoleHeld ||
         hooks.lastInterceptLatencyMs != lastInterceptLatencyMs;
     if (changed) {
       notificationAccess = granted;
       smsPermissionGranted = hooks.smsPermissionGranted;
       isDefaultSmsRoleHeld = hooks.isDefaultSmsRoleHeld;
+      isCallScreeningRoleHeld = callRole;
       lastInterceptLatencyMs = hooks.lastInterceptLatencyMs;
       notifyListeners();
     }
@@ -918,6 +957,15 @@ class AppState extends ChangeNotifier {
   Future<bool> requestSpamRole() async {
     final held = await _bridge.requestSpamRole();
     isDefaultSmsRoleHeld = held;
+    notifyListeners();
+    await refreshPlatformStatus();
+    return held;
+  }
+
+  /// Requests Android 10+ Default Caller ID & Spam Filter Role via `RoleManager.ROLE_CALL_SCREENING`.
+  Future<bool> requestCallScreeningRole() async {
+    final held = await _bridge.requestCallScreeningRole();
+    isCallScreeningRoleHeld = held;
     notifyListeners();
     await refreshPlatformStatus();
     return held;
@@ -953,6 +1001,7 @@ class AppState extends ChangeNotifier {
   Future<void> syncNative() async {
     if (!ready) return;
     await _bridge.syncFilterConfig(jsonEncode(buildNativeConfig()));
+    await _bridge.syncBlockedNumbers(blacklist);
   }
 
   // --------------------------------------------------- Monetization & Call Guard

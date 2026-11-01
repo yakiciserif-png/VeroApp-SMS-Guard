@@ -1,6 +1,7 @@
 import 'dart:io' show Platform;
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'app.dart';
 import 'state/app_state.dart';
@@ -14,7 +15,16 @@ String get appPlatformTitle {
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  final state = AppState();
+
+  // Pre-load SharedPreferences before mounting UI to guarantee 100% persistence
+  SharedPreferences? prefs;
+  try {
+    prefs = await SharedPreferences.getInstance();
+  } catch (e) {
+    debugPrint('[main] SharedPreferences.getInstance error: $e');
+  }
+
+  final state = AppState(prefs: prefs);
   runApp(VeroAppSmsGuardApp(state: state, appTitle: appPlatformTitle));
 
   // Initialize app state asynchronously without blocking initial frame rendering.

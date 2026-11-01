@@ -716,6 +716,101 @@ class OtpEmergencyAlertBanner extends StatelessWidget {
   }
 }
 
+
+
+/// FAZA 9: Android RoleManager Call Screening Banner for 100% Live Call Blocking.
+class RoleCallScreeningBanner extends StatelessWidget {
+  const RoleCallScreeningBanner({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final app = AppScope.of(context);
+    // Show only on Android when role is not held yet
+    if (!app.bridge.isAndroid || app.isCallScreeningRoleHeld) {
+      return const SizedBox.shrink();
+    }
+
+    final isTr = Localizations.localeOf(context).languageCode == 'tr';
+
+    return Container(
+      key: const Key('roleCallScreeningBanner'),
+      margin: const EdgeInsets.only(bottom: 14),
+      padding: const EdgeInsets.all(14),
+      decoration: BoxDecoration(
+        color: CyberpunkColors.dangerRed.withValues(alpha: 0.12),
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(
+          color: CyberpunkColors.dangerRed.withValues(alpha: 0.8),
+          width: 1.5,
+        ),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              const Icon(
+                Icons.phone_locked_rounded,
+                color: CyberpunkColors.dangerRed,
+                size: 22,
+              ),
+              const SizedBox(width: 8),
+              Expanded(
+                child: Text(
+                  isTr
+                      ? '🚨 Canlı Arama ve 0850 Korumasını Etkinleştir'
+                      : '🚨 Activate Live Call & 0850 Protection',
+                  style: const TextStyle(
+                    color: CyberpunkColors.dangerRed,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 13,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 6),
+          Text(
+            isTr
+                ? 'Gelen 0850, dolandırıcı ve spam aramaların telefon çalmadan anında engellenmesi için VeroApp\'i "Varsayılan Arama Kimliği ve Spam Uygulaması" yapın.'
+                : 'Set VeroApp as your "Default Caller ID & Spam App" so incoming scam and 0850 calls are blocked before ringing.',
+            style: const TextStyle(
+              color: CyberpunkColors.textPrimary,
+              fontSize: 12,
+              height: 1.35,
+            ),
+          ),
+          const SizedBox(height: 10),
+          SizedBox(
+            width: double.infinity,
+            child: ElevatedButton.icon(
+              key: const Key('btnActivateCallScreeningRole'),
+              icon: const Icon(Icons.security, size: 18),
+              label: Text(
+                isTr
+                    ? 'Varsayılan Arama ve Spam Uygulaması Yap'
+                    : 'Set Default Caller ID & Spam App',
+                style: const TextStyle(fontWeight: FontWeight.bold),
+              ),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: CyberpunkColors.dangerRed,
+                foregroundColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                padding: const EdgeInsets.symmetric(vertical: 10),
+              ),
+              onPressed: () async {
+                await app.requestCallScreeningRole();
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 /// FAZ 5 — False Positive / Missed Spam Reporting & Local AI Training Sheet.
 class ReportFalsePositiveSheet extends StatefulWidget {
   const ReportFalsePositiveSheet({super.key, this.entry});

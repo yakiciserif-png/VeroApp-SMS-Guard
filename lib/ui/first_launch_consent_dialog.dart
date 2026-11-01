@@ -9,25 +9,37 @@ import 'cyberpunk_theme.dart';
 class FirstLaunchConsentDialog extends StatelessWidget {
   const FirstLaunchConsentDialog({super.key});
 
+  static bool _isDialogShowing = false;
+
   static Future<void> showIfNeeded(BuildContext context) async {
     final app = AppScope.read(context);
-    if (app.hasAcceptedKvkkConsent) return;
+    if (app.hasAcceptedKvkkConsent || _isDialogShowing) return;
 
-    await showDialog<void>(
-      context: context,
-      barrierDismissible: false,
-      builder: (_) => const FirstLaunchConsentDialog(),
-    );
+    _isDialogShowing = true;
+    try {
+      await showDialog<void>(
+        context: context,
+        barrierDismissible: false,
+        builder: (_) => const FirstLaunchConsentDialog(),
+      );
+    } finally {
+      _isDialogShowing = false;
+    }
   }
 
-  void _handleAccept(BuildContext context) {
+  Future<void> _handleAccept(BuildContext context) async {
     final app = AppScope.read(context);
     // 1. Immediately dismiss dialog without blocking UI
     if (Navigator.of(context, rootNavigator: true).canPop()) {
       Navigator.of(context, rootNavigator: true).pop();
     }
-    // 2. Synchronously set consent state and trigger background loaders
-    app.acceptKvkkConsent();
+    // 2. Persist consent to SharedPreferences
+    await app.acceptKvkkConsent();
+
+    // 3. If on Android and Call Screening role not yet held, prompt immediately
+    if (app.bridge.isAndroid && !app.isCallScreeningRoleHeld) {
+      await app.requestCallScreeningRole();
+    }
   }
 
   @override
@@ -110,29 +122,25 @@ class FirstLaunchConsentDialog extends StatelessWidget {
         ),
       ),
       actions: [
-        GestureDetector(
-          behavior: HitTestBehavior.opaque,
-          onTap: () => _handleAccept(context),
-          child: SizedBox(
-            width: double.infinity,
-            child: FilledButton(
-              key: const Key('consentAcceptBtn'),
-              onPressed: () => _handleAccept(context),
-              style: FilledButton.styleFrom(
-                backgroundColor: CyberpunkColors.neonCyan,
-                foregroundColor: CyberpunkColors.backgroundDark,
-                minimumSize: const Size.fromHeight(52),
-                padding: const EdgeInsets.symmetric(vertical: 14),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
+        SizedBox(
+          width: double.infinity,
+          child: FilledButton(
+            key: const Key('consentAcceptBtn'),
+            onPressed: () => _handleAccept(context),
+            style: FilledButton.styleFrom(
+              backgroundColor: CyberpunkColors.neonCyan,
+              foregroundColor: CyberpunkColors.backgroundDark,
+              minimumSize: const Size.fromHeight(52),
+              padding: const EdgeInsets.symmetric(vertical: 14),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
               ),
-              child: Text(
-                l.t('firstLaunchConsentAccept'),
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 15,
-                ),
+            ),
+            child: Text(
+              l.t('firstLaunchConsentAccept'),
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 15,
               ),
             ),
           ),
