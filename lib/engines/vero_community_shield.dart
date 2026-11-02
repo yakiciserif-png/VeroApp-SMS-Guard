@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'dart:typed_data';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../core/platform/vero_logger.dart';
+
 /// Community reported number entity with category and confidence score.
 class CommunityReportedNumber {
   const CommunityReportedNumber({
@@ -81,7 +83,9 @@ class VeroCommunityShield {
     try {
       final p = prefs ?? await SharedPreferences.getInstance();
       await p.setInt(prefsBlockedCountKey, _communityBlockedCount);
-    } catch (_) {}
+    } catch (e, st) {
+      VeroLogger.w('Failed to persist community blocked count', error: e, stackTrace: st);
+    }
   }
 
   /// Loads persisted user-reported numbers from [SharedPreferences].
@@ -227,6 +231,8 @@ class VeroCommunityShield {
         _reportedByDigits.values.map((e) => e.toJson()).toList(),
       );
       await p.setString(prefsKey, encoded);
-    } catch (_) {}
+    } catch (e, st) {
+      VeroLogger.w('Failed to persist community reported numbers', error: e, stackTrace: st);
+    }
   }
 }

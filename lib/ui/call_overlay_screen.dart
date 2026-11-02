@@ -1,6 +1,7 @@
 import 'dart:io' show Platform;
 import 'package:flutter/material.dart';
 
+import '../engines/vero_answer_bot.dart';
 import '../engines/vero_caller_id_engine.dart';
 import '../engines/vero_caller_name_engine.dart';
 import 'cyberpunk_theme.dart';
@@ -277,9 +278,11 @@ class _CallOverlayScreenState extends State<CallOverlayScreen>
                       child: OutlinedButton.icon(
                         key: const Key('callOverlayAnswerBotBtn'),
                         onPressed: () {
-                          Navigator.of(context).pop();
                           if (widget.onAnswerBot != null) {
+                            Navigator.of(context).pop();
                             widget.onAnswerBot!();
+                          } else {
+                            _showAnswerBotSheet(context);
                           }
                         },
                         icon: const Icon(Icons.smart_toy_outlined,
@@ -366,5 +369,113 @@ class _CallOverlayScreenState extends State<CallOverlayScreen>
 ),
       ),
     );
+  }
+
+  void _showAnswerBotSheet(BuildContext context) {
+    final bot = VeroAnswerBot(forceAndroid: true);
+    final transcript = <String>[];
+
+    showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: CyberpunkColors.bgSecondary,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+      ),
+      builder: (ctx) {
+        return StreamBuilder<String>(
+          stream: bot.transcriptStream,
+          builder: (ctx, snapshot) {
+            if (snapshot.hasData && !transcript.contains(snapshot.data)) {
+              transcript.add(snapshot.data!);
+            }
+            return Padding(
+              padding: const EdgeInsets.all(24),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Container(
+                    width: 40,
+                    height: 4,
+                    decoration: BoxDecoration(
+                      color: CyberpunkColors.borderSubtle,
+                      borderRadius: BorderRadius.circular(2),
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  const Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.smart_toy_rounded, color: CyberpunkColors.neonCyan),
+                      SizedBox(width: 8),
+                      Text(
+                        'Vero Spam Oyalama Botu (Answer Bot)',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    'Hedef: ${widget.phoneNumber} • Durum: ${bot.status.name.toUpperCase()}',
+                    style: const TextStyle(color: CyberpunkColors.textSecondary, fontSize: 12),
+                  ),
+                  const SizedBox(height: 16),
+                  Container(
+                    height: 140,
+                    width: double.infinity,
+                    padding: const EdgeInsets.all(12),
+                    decoration: BoxDecoration(
+                      color: CyberpunkColors.bgPrimary,
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(color: CyberpunkColors.borderSubtle),
+                    ),
+                    child: transcript.isEmpty
+                        ? const Center(
+                            child: Text(
+                              'Bot oyalama simülasyonu başlatılıyor...',
+                              style: TextStyle(color: CyberpunkColors.textSecondary),
+                            ),
+                          )
+                        : ListView.builder(
+                            itemCount: transcript.length,
+                            itemBuilder: (ctx, i) => Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 4),
+                              child: Text(
+                                transcript[i],
+                                style: const TextStyle(color: CyberpunkColors.safeGreen, fontSize: 13),
+                              ),
+                            ),
+                          ),
+                  ),
+                  const SizedBox(height: 16),
+                  SizedBox(
+                    width: double.infinity,
+                    height: 48,
+                    child: FilledButton(
+                      onPressed: () {
+                        bot.stop();
+                        bot.dispose();
+                        Navigator.of(ctx).pop();
+                      },
+                      style: FilledButton.styleFrom(
+                        backgroundColor: const Color(0xFFFF1744),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                      ),
+                      child: const Text('Oyalama Seansını Kapat'),
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
+        );
+      },
+    );
+
+    bot.startStallSequence(languageCode: 'tr');
   }
 }

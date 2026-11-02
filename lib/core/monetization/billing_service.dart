@@ -68,7 +68,7 @@ class VeroBillingService {
         _subscription = _iap.purchaseStream.listen(
           _handlePurchaseUpdates,
           onDone: () => _subscription?.cancel(),
-          onError: (error) {
+          onError: (Object error) {
             onPurchaseError?.call('Store purchase stream error: $error');
           },
         );

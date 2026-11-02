@@ -5,6 +5,7 @@ import '../engines/vero_caller_id_engine.dart';
 import '../engines/vero_community_shield.dart';
 import '../engines/vero_intent_engine.dart';
 import '../engines/vero_link_scanner.dart';
+import '../engines/vero_sms_categorizer.dart';
 
 /// SMS Message Entity representing incoming/outgoing messages in VeroApp.
 class VeroSmsMessage {
@@ -94,6 +95,8 @@ class VeroSmsService {
 
     final links = VeroLinkScanner.instance.scanText(body);
     final hasThreatLink = links.any((l) => l.isThreat);
+    final smsCategory = VeroSmsCategorizer.categorize(body, sender: sender);
+    final smsCategoryInfo = VeroSmsCategorizer.meta[smsCategory]!;
     final lower = body.toLowerCase();
     final hasBettingKeyword = lower.contains('deneme bonusu') ||
         lower.contains('kumar') ||
@@ -106,10 +109,13 @@ class VeroSmsService {
         communityLookup != null ||
         hasThreatLink ||
         hasBettingKeyword ||
+        smsCategory == VeroSmsCategory.spamTrap ||
         intent.confidence > 0.65;
 
     final category = intent.type?.titleTr ??
-        (senderLookup.isSpam ? senderLookup.category : 'GENEL');
+        (smsCategory != VeroSmsCategory.personalChat && smsCategory != VeroSmsCategory.spamTrap
+            ? smsCategoryInfo.titleTr
+            : (senderLookup.isSpam ? senderLookup.category : 'GENEL'));
 
     final msg = VeroSmsMessage(
       id: msgId,

@@ -190,7 +190,7 @@ class VeroThreatUpdater {
       }
 
       final bodyString = await response.transform(utf8.decoder).join();
-      final Map<String, dynamic> releaseJson = json.decode(bodyString);
+      final Map<String, dynamic> releaseJson = json.decode(bodyString) as Map<String, dynamic>;
       final tagName = releaseJson['tag_name'] as String? ?? '';
       final body = releaseJson['body'] as String? ?? '';
       final assets = releaseJson['assets'] as List<dynamic>? ?? [];

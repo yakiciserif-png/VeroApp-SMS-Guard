@@ -19,7 +19,7 @@ struct VeroHomeWidgetProvider: TimelineProvider {
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-        let defaults = UserDefaults(suiteName: "group.com.veroapp.smsguard")
+        let defaults = UserDefaults(suiteName: "group.com.veroapp.smsguard.filter") ?? UserDefaults(suiteName: "group.com.veroapp.smsguard")
         let today = defaults?.integer(forKey: "vero_stat_today") ?? 14
         let week = defaults?.integer(forKey: "vero_stat_week") ?? 89
 
