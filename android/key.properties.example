@@ -1,0 +1,8 @@
+# VeroApp SMS Guard — Android Release Signing Template
+# Copy this file to `android/key.properties` for local release builds.
+# NEVER commit `android/key.properties` or any `*.jks` / `*.keystore` file.
+
+storePassword=YOUR_KEYSTORE_PASSWORD
+keyPassword=YOUR_KEY_PASSWORD
+keyAlias=veroapp_sms_guard_upload
+storeFile=upload-keystore.jks

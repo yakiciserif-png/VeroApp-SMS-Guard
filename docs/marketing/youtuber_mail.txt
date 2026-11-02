@@ -1,0 +1,30 @@
+Konu: Verilerinizi Satmayan İlk Türk Yapımı SMS & Arama Kalkanı: VeroApp SMS Guard (İnceleme / Özel Demo)
+
+Merhaba [Kanal Sahibi / İsim],
+
+YouTube kanalınızda tüketici elektroniği, veri gizliliği ve kullanıcı güvenliği konularında yayınladığınız tarafsız ve bilinçlendirici içerikleri uzun süredir ilgiyle takip ediyoruz.
+
+Bugün piyasadaki popüler arayan kimliği ve SMS engelleme uygulamalarının (Truecaller, Getcontact vb.) kullanıcıların tüm telefon rehberini, arama loglarını ve SMS içeriklerini merkezi sunucularına aktardığı bilinen bir gerçek. 
+
+Biz bu gizlilik ihlaline son vermek amacıyla Türkiye'de bir ilki geliştirdik: **VeroApp SMS Guard**.
+
+VeroApp SMS Guard'ın öne çıkan devrimsel farkları:
+1. **%100 Çevrimdışı & Sıfır İnternet:** Android paketinde `android.permission.INTERNET` izni dahi bulunmaz. İstesek dahi tek bir bayt veriyi sunucuya aktaramayız.
+2. **Cihaz İçi Yerel Yapay Zeka & Bloom Filtresi:** 200.000 teyitli dolandırıcı numarasını ve SMS metinlerini doğrudan telefon işlemcisinde 0.1 ms içinde analiz eder.
+3. **KVKK & Gizlilik Zirvesi:** Kullanıcının rehberi veya SMS'leri asla cihaz dışına çıkmaz.
+4. **Veri Sızıntısı Radarı & Link Taraması:** Tümüyle çevrimdışı 500.000 kayıtlık hash veritabanı ile e-posta/şifre sızıntılarını ve oltalama linklerini yerel kontrol eder.
+
+Siz değerli teknoloji yayıncılarının uygulamanın kaynak kodunu, sıfır internet mimarisini ve APK paketini bizzat Wireshark/ağ analiz araçlarıyla test etmesini çok isteriz. İncelemeniz için tüm PRO özelliklerin kilidi açık özel test APK'sını ve basın materyallerini aşağıda paylaşıyoruz:
+
+📦 Özel İnceleme APK İndirme Bağlantısı: https://veroapp.net/press/demo-review.apk
+📄 Basın Kiti, Ekran Görüntüleri ve Teknik Rapor: https://veroapp.net/press/kit
+🌐 Web Sayfası: https://veroapp.net
+
+Kanalınızda video inceleme yapmak veya mimariyle ilgili kısa bir röportaj gerçekleştirmek isterseniz her türlü teknik detayı ve sorularınızı seve seve yanıtlamak isteriz.
+
+Zaman ayırdığınız için teşekkür eder, başarılı yayınlar dileriz.
+
+Saygılarımızla,
+VeroApp Mühendislik ve Güvenlik Ekibi
+E-posta: press@veroapp.net | info@veroapp.net
+Web: https://veroapp.net

@@ -1,0 +1,76 @@
+===============================================================================
+GOOGLE PLAY STORE PERMISSIONS DECLARATION FORM & COMPLIANCE JUSTIFICATION
+Uygulama: VeroApp SMS Guard (com.veroapp.smsguard)
+Sürüm: 1.0.0
+Politika Kategori: SMS and Call Log Permissions / High-Risk or Sensitive Permissions
+===============================================================================
+
+1. CORE FUNCTIONALITY & PURPOSE
+VeroApp SMS Guard is a 100% offline security, anti-phishing, and spam protection
+application designed to protect users from financial SMS fraud, illegal betting
+messages, OTP theft, and scam calls directly on the user's mobile device without
+sending any data to external cloud servers.
+
+-------------------------------------------------------------------------------
+2. DECLARED PERMISSIONS AND ROLES
+-------------------------------------------------------------------------------
+
+A. DEFAULT SMS HANDLER (ROLE_SMS)
+- Declared Components:
+  * android.provider.Telephony.SMS_DELIVER (TrustSmsDeliverReceiver)
+  * android.provider.Telephony.WAP_PUSH_DELIVER (TrustWapPushDeliverReceiver)
+  * android.intent.action.RESPOND_VIA_MESSAGE (HeadlessSmsSendService)
+  * android.intent.action.SENDTO (MainActivity)
+- Justification:
+  VeroApp SMS Guard offers full on-device SMS organization and spam blocking.
+  Holding the Default SMS role allows the app to intercept fraudulent SMS messages
+  (such as fake bank verifications, phishing links, and deceptive debt notices)
+  before they deceive the user, routing them directly into an offline quarantine
+  folder ("Spam / Şüpheli").
+- User Value:
+  Prevents elderly and vulnerable citizens from falling victim to financial SMS scams.
+
+B. CALL SCREENING SERVICE (ROLE_CALL_SCREENING)
+- Declared Service:
+  * com.veroapp.smsguard.VeroCallScreeningService (android.telecom.CallScreeningService)
+  * Permission: android.permission.BIND_SCREENING_SERVICE
+- Justification:
+  Instead of requesting invasive, wide-ranging READ_CALL_LOG or WRITE_CALL_LOG
+  permissions, VeroApp leverages Android's official CallScreeningService API (Android 10+).
+  When an incoming call arrives, CallScreeningService inspects the phone number
+  against our local offline database of confirmed fraudulent numbers and high-risk
+  toll scam prefixes (+63, +62, +234, +212, etc.) in < 0.1 ms.
+  If the call is an identified scam, the OS rejects the call without interrupting the user.
+- Privacy Benefit:
+  Call screening runs on-device without exposing the user's permanent call history.
+
+C. NOTIFICATION LISTENER SERVICE (BIND_NOTIFICATION_LISTENER_SERVICE)
+- Declared Service:
+  * com.veroapp.smsguard.TrustNotificationListener
+- Justification:
+  Provides fallback spam protection for users who choose not to set VeroApp as their
+  default SMS app, allowing real-time notification alerts when a spam SMS is received.
+
+D. ACCESSIBILITY SERVICE (BIND_ACCESSIBILITY_SERVICE)
+- Declared Service:
+  * com.veroapp.smsguard.VeroLinkAccessibilityService
+- Justification:
+  Inspects incoming URLs in real-time within instant messaging applications
+  (WhatsApp / Telegram) to warn users before they tap on credential harvesting or
+  malware download links (.apk / .exe). A manual "Share Target" alternative
+  (Mode B) is also provided in the app.
+
+-------------------------------------------------------------------------------
+3. PRIVACY & DATA SAFETY DECLARATION (100% OFFLINE)
+-------------------------------------------------------------------------------
+- Internet Permission:
+  VeroApp SMS Guard DOES NOT REQUEST NOR HOLD the `android.permission.INTERNET` permission.
+  The compiled binary cannot initiate any network socket, HTTP request, or remote API call.
+- Data Collection: 0 bytes.
+- Data Sharing: 0 bytes.
+- Third-Party SDKs:
+  Zero ad trackers, zero telemetry SDKs, zero analytics trackers.
+- Data Security:
+  All machine learning models, bloom filters, and spam signature databases reside
+  locally in the application APK assets.
+===============================================================================

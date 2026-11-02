@@ -1,0 +1,39 @@
+name: veroapp_sms_guard
+description: "VeroApp SMS Guard - 100% Offline On-Device Semantic Intent AI Spam & Security Shield."
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.3.0 <4.0.0'
+
+dependencies:
+  crypto: ^3.0.8
+  cryptography: ^2.9.0
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  in_app_purchase: ^3.3.1
+  shared_preferences: ^2.2.3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/locales/
+    - assets/model/
+    - assets/branding/
+    - assets/breach_db/bloom_filter.bin
+    - assets/spam_db/spam_numbers.bin
+    - assets/spam_db/phishing_domains.bin
+    - assets/audio/bot_responses/
+  fonts:
+    - family: Book Antiqua
+      fonts:
+        - asset: assets/fonts/BookAntiqua-Regular.ttf
+        - asset: assets/fonts/BookAntiqua-Bold.ttf
+          weight: 700

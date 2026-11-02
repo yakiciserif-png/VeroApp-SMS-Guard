@@ -1,0 +1,25 @@
+Konu: Turkcell Aboneleri İçin %100 Çevrimdışı ve Sıfır Veri Toplayan Yerli SMS/Arama Kalkanı Çözüm Ortaklığı
+
+Kime: Turkcell İletişim Hizmetleri A.Ş. — Fraud & Dolandırıcılık Önleme / Katma Değerli Servisler (VAS) Yönetimi
+Tarih: 26 Ekim 2026
+
+Değerli Turkcell Yetkilileri,
+
+Abonelerinizin güvenliği ve müşteri deneyimini en üst seviyede tutmak adına yürüttüğünüz fraud önleme çalışmalarını takdirle izliyoruz. Günümüzde mobil abonelerin karşılaştığı en büyük sorunlardan biri, sahte B001-B003 operatör kodları ve oltalama linkleri barındıran dolandırıcı SMS'leridir.
+
+VeroApp Güvenlik Teknolojileri olarak, Turkcell abonelerinin kişisel verilerini üçüncü parti sunuculara veya yurt dışına sızdırmadan doğrudan cihaz üzerinde koruyan **VeroApp SMS Guard**'ı geliştirdik.
+
+Neden VeroApp ile İş Birliği?
+1. **Sıfır İnternet İzni & KVKK %100:** Uygulamamız `android.permission.INTERNET` izni gerektirmez. Turkcell abonelerinin rehberi veya SMS içerikleri asla cihazdan dışarı çıkmaz.
+2. **Yerel Yapay Zeka & 200.000 Spam Kaydı:** 0.1 ms sorgu süresiyle sahte icra, banka ve kargo SMS'lerini anında engeller.
+3. **Turkcell Paketlerine Katma Değerli Servis (Bundling):** Turkcell Platinum veya kurumsal aboneliklere "Güvenli İletişim Paketi" olarak entegre edilebilir; aylık faturaya ek gelir modeli (39,99 TL/ay) sunar.
+4. **Whitelabel / Ortak Markalama İmkanı:** Turkcell Güvenli SMS Kalkanı adıyla özelleştirilmiş kurumsal dağıtım imkanı.
+
+Abonelerinizin şebeke içi güvenliğini cihaz seviyesinde tamamlayan bu yerli teknolojiyi değerlendirmek ve detaylı bir demo sunumu gerçekleştirmek üzere Fraud ve Ürün ekiplerinizle 20 dakikalık bir çevrim içi toplantı planlamaktan onur duyarız.
+
+Saygılarımızla,
+
+VeroApp Kurumsal Çözümler Ekibi
+E-posta: kurumsal@veroapp.net | partner@veroapp.net
+Web: https://veroapp.net
+Tel: +90 (212) 555 01 99

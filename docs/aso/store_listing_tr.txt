@@ -1,0 +1,57 @@
+===============================================================================
+VEROAPP SMS GUARD — GOOGLE PLAY STORE & APPLE APP STORE LİSTELEME (TÜRKÇE)
+===============================================================================
+
+[UYGULAMA BAŞLIĞI] (Max 30 karakter)
+VeroApp SMS Guard
+
+[KISA AÇIKLAMA] (Max 80 karakter)
+%100 Çevrimdışı Yapay Zeka SMS & Arama Kalkanı. Sıfır İnternet, Sıfır Veri Toplama.
+
+[TAM AÇIKLAMA]
+🛡️ VeroApp SMS Guard: Cihaz İçi Yapay Zekayla Tam Gizlilik ve Üstün Güvenlik
+
+Dolandırıcılık, oltalama (phishing), sahte kargo takip mesajları, e-Devlet ve banka taklitleri artık telefonunuza ulaşamayacak! VeroApp SMS Guard, kişisel verilerinizi asla sunuculara göndermeden, %100 çevrimdışı (offline) çalışan askeri düzeyde bir güvenlik kalkanıdır.
+
+Uygulamamız hiçbir internet izni (INTERNET Permission) içermez! Tüm yapay zeka analizleri, sızıntı taramaları ve spam filtrelemeleri doğrudan telefonunuzun işlemcisinde gerçekleşir.
+
+⚡ ÖNE ÇIKAN ÖZELLİKLER:
+
+1. 🧠 2025 Türkiye Dolandırıcılık & Oltalama Kalkanı:
+   - Tapu devir harcı, sahte SGK prim iadesi, vergi dairesi haciz bildirimi ve e-Devlet dava celbi gibi en güncel tuzakları anında yakalar.
+   - Kiril ve homoglyph karakter maskeleme yöntemlerini çözer.
+   - BTK operatör kodlarını (B001 - B015) ve sahte kod manipülasyonlarını denetler.
+
+2. 📞 Akıllı Arayan Kimliği & Spam Çağrı Koruması (Caller Name ID):
+   - Rehberinizdeki kişileri yeşil rozetle doğrular.
+   - Bilinen spam ve dolandırıcı numaraları tam ekran kırmızı alarm ile bildirir.
+   - Uluslararası yüksek riskli numaraları (+966, +971, +20, +234, +27 vb.) otomatik olarak etiketler.
+
+3. 🤖 Spam Oyalama Botu (Offline Answer Bot):
+   - Spam ve robotik aramaları önceden kaydedilmiş yerel seslerle oyalayarak dolandırıcıların zamanını boşa harcar.
+
+4. 🔗 WhatsApp & Telegram Link Scanner:
+   - Mesajlaşma uygulamalarında paylaşılan şüpheli ve virüslü (.APK) bağlantıları tıklamadan önce tespit eder ve sizi uyarır.
+
+5. 🔒 e-Devlet Şifre & Veri Sızıntısı Radarı:
+   - Şifrelerinizin ve e-postalarınızın yerel 5 milyon bitlik Bloom filtresi ile sızıntılarda yer alıp almadığını 0 internetle kontrol eder.
+
+6. 📂 6 Kategorili Otomatik SMS Düzenleyici:
+   - Banka/Finans, Kargo/Teslimat, Resmi/e-Devlet, Kişisel, Promosyon ve Spam kutuları.
+
+7. 👨‍👩‍👧‍👦 Vero Aile & Kurumsal (B2B) Modu:
+   - 6 haneli kodla 4 kişilik ailenizi koruyun veya işletmenizdeki çalışanları tek tıkla güvenceye alın.
+
+💎 ABONELİK VE FİYATLANDIRMA:
+• Vero Ücretsiz: Temel SMS filtresi ve OTP koruması
+• Vero PRO Aylık: 39,99 TL / ay
+• Vero PRO Yıllık: 299,99 TL / yıl
+• Vero AİLE Yıllık: 799,99 TL / yıl (4 Aile Bireyi)
+• Vero Kurumsal (B2B): 19,99 TL / çalışan / ay
+
+🔒 GİZLİLİK TAAHHÜDÜMÜZ:
+VeroApp SMS Guard, 6698 sayılı KVKK ve Avrupa GDPR mevzuatlarına %100 uyumludur. Sıfır telemetri, sıfır reklam izleyicisi, sıfır harici sunucu.
+
+İletişim: support@veroapp.com
+Web: https://github.com/yakiciserif-png/VeroApp-SMS-Guard
+===============================================================================

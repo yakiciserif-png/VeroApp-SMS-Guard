@@ -1,0 +1,48 @@
+===============================================================================
+VEROAPP SMS GUARD — APPLE APP STORE LİSTELEME (TÜRKÇE)
+===============================================================================
+
+[UYGULAMA BAŞLIĞI] (Max 30 karakter)
+VeroApp SMS Guard - AI Kalkan
+
+[KISA AÇIKLAMA / PROMOTIONAL TEXT] (Max 170 karakter)
+%100 Çevrimdışı SMS Filtreleme & Arama Koruması. Apple IdentityLookup Destekli, Sıfır İnternet, Sıfır Veri Toplama. iOS 16+ gereklidir.
+
+[TAM AÇIKLAMA]
+🛡️ VeroApp SMS Guard: Cihaz İçi Yerel Motorla SMS Filtreleme, Arama Koruması ve Tam Gizlilik
+
+SMS filtreleme, Arama koruması, Veri Sızıntısı Radarı, Link Tarama ve Aile Koruması tek bir güçlü yerel kalkan altında! VeroApp SMS Guard, kişisel verilerinizi asla harici sunuculara göndermeden, %100 çevrimdışı (offline) çalışan sertifikalı bir güvenlik uygulamasıdır.
+
+⚡ ÖNE ÇIKAN ÖZELLİKLER:
+
+1. 📨 Apple IdentityLookup SMS Filtreleme (Message Filter Extension):
+   - iOS Ayarlar > Mesajlar > Bilinmeyen ve İstenmeyenleri Filtrele üzerinden VeroApp'i aktifleştirin.
+   - Banka, kargo, sahte borç ve oltalama SMS'lerini cihazınızdan tek bir bayt veri çıkmadan yerel kurallarla otomatik olarak "İstenmeyen" klasörüne ayırır.
+
+2. 📞 Akıllı Arayan Kimliği & Çağrı Kalkanı:
+   - Rehberinizdeki doğrulanmış kişileri yeşil rozetle gösterir.
+   - Teyitli dolandırıcı veritabanı ve 0850/yurt dışı arama kurallarıyla şüpheli aramaları anında uyarır.
+   - Uluslararası yüksek riskli numaraları (+234, +63, +966, +212 vb.) doğrudan etiketler.
+
+3. 🔗 WhatsApp & Telegram Link Scanner (Paylaş Menüsü ile Tara):
+   - Paylaşılan şüpheli ve zararlı bağlantıları tıklamadan önce "VeroApp ile Tara" diyerek analiz edin.
+   - Oltalama (phishing) ve sahte banka/e-Devlet web sitelerini anında yakalar.
+
+4. 🔒 e-Devlet Şifre & Veri Sızıntısı Radarı:
+   - Şifrelerinizin global veri sızıntılarında yer alıp almadığını 50 milyon bitlik çevrimdışı Bloom filtresiyle sıfır internet kullanarak kontrol eder.
+
+5. 👨‍👩‍👧‍👦 Vero Aile Koruması:
+   - Ed25519 imzalı lisans ve Apple Aile Paylaşımı (Family Sharing) ile tek lisans altında ailenizi güvenceye alın.
+
+💎 ABONELİK VE FİYATLANDIRMA:
+• Vero Ücretsiz: Temel SMS ve çağrı koruması
+• Vero PRO Aylık: 39,99 TL / ay
+• Vero PRO Yıllık: 299,99 TL / yıl
+• Vero AİLE Yıllık: 799,99 TL / yıl (Family Sharing Destekli)
+
+🔒 GİZLİLİK VE KVKK TAAHHÜDÜ:
+VeroApp, 6698 sayılı KVKK ve Avrupa Birliği GDPR standartlarına %100 uyumludur. Cihazınızdan tek bir bayt veri dahi dışarı çıkmaz. İnternet izni istemez.
+
+İletişim: support@veroapp.com
+Web: https://github.com/yakiciserif-png/VeroApp-SMS-Guard
+===============================================================================

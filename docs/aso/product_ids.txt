@@ -1,0 +1,44 @@
+===============================================================================
+VEROAPP SMS GUARD — IN-APP PURCHASE & SUBSCRIPTION PRODUCT ID CATALOG
+Platformlar: Google Play Console (Android) & Apple App Store Connect (iOS)
+Para Birimi: TRY (Türk Lirası) / Global Tier Eşdeğerleri
+===============================================================================
+
+1. PRODUCT CATALOG TABLE
+-------------------------------------------------------------------------------
+Product ID                  | Tür         | Fiyat (TR)      | Family Sharing
+-------------------------------------------------------------------------------
+vero_pro_monthly            | Abonelik    | 39,99 TL / ay   | Devre Dışı
+vero_pro_yearly             | Abonelik    | 299,99 TL / yıl | Devre Dışı
+vero_family_yearly          | Abonelik    | 799,99 TL / yıl | AKTİF (4 Kişi / Aile)
+vero_enterprise_monthly     | Abonelik    | 19,99 TL / ay   | Kurumsal (Toplu)
+-------------------------------------------------------------------------------
+
+2. GOOGLE PLAY CONSOLE (ANDROID) YAPILANDIRMASI
+- Menü: Google Play Console > Monetize with Play > Products > Subscriptions
+- Abonelik Paketi 1 (Pro Aylık):
+  * Product ID: vero_pro_monthly
+  * Base Plan: auto-renewing, 1 month, 39,99 TRY
+- Abonelik Paketi 2 (Pro Yıllık):
+  * Product ID: vero_pro_yearly
+  * Base Plan: auto-renewing, 1 year, 299,99 TRY
+- Abonelik Paketi 3 (Aile Yıllık):
+  * Product ID: vero_family_yearly
+  * Base Plan: auto-renewing, 1 year, 799,99 TRY
+
+3. APPLE APP STORE CONNECT (IOS) YAPILANDIRMASI
+- Menü: App Store Connect > Apps > VeroApp Call Guard > Subscriptions
+- Subscription Group: "VeroApp Premium Shields"
+- Family Sharing Desteği:
+  * Ürün ID `vero_family_yearly` için "Family Sharing" kutucuğu İŞARETLENMELİDİR.
+  * Bu sayede Apple iCloud Aile Paylaşımı grubundaki 5 ek aile üyesi
+    ekstra ücret ödemeden StoreKit üzerinden lisansı paylaşabilir.
+
+4. OFFLINE / İNTERNETSİZ DOĞRULAMA FARKI
+- Normal Store Alımları:
+  Google Play ve App Store satın alma işlemi cihazdaki Google Play Hizmetleri
+  ve iOS StoreKit daemon'u tarafından yerel yönetilir.
+- Çevrimdışı Kurumsal ve Aile Lisans Kodları:
+  Mağaza dışı lisans alımları `scripts/license_tool.py` ile Ed25519 imzasıyla
+  üretilir ve uygulama içinde %100 çevrimdışı doğrulanır.
+===============================================================================
