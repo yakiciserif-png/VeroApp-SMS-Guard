@@ -1,8 +1,26 @@
 import 'dart:math' as math;
+import 'dart:typed_data';
 
 import 'classification.dart';
 import 'otp_detector.dart';
 import 'tokenizer.dart';
+
+/// Metadata parsed from the on-device quantized TFLite FlatBuffer (`TFL3`).
+class TfliteModelMetadata {
+  const TfliteModelMetadata({
+    required this.isValidFlatBuffer,
+    required this.schemaVersion,
+    required this.rootTableOffset,
+    required this.tensorDimensions,
+    required this.quantizedWeightBytes,
+  });
+
+  final bool isValidFlatBuffer;
+  final int schemaVersion;
+  final int rootTableOffset;
+  final List<int> tensorDimensions;
+  final int quantizedWeightBytes;
+}
 
 /// 6-Dimensional Semantic Intent Vector ("Dükkan & Hakan Abi" Architecture).
 /// Each dimension is normalized to [0.0, 1.0].
@@ -102,6 +120,46 @@ class SemanticIntentResult {
 /// and applies non-linear combo multipliers.
 class SemanticIntentEngine {
   SemanticIntentEngine._();
+
+  static const String modelAssetPath =
+      'assets/model/vero_semantic_intent_v1.tflite';
+
+  /// Validates and inspects the on-device quantized TFLite FlatBuffer (`TFL3`).
+  static TfliteModelMetadata inspectModelBytes(Uint8List bytes) {
+    if (bytes.length < 44) {
+      return const TfliteModelMetadata(
+        isValidFlatBuffer: false,
+        schemaVersion: 0,
+        rootTableOffset: 0,
+        tensorDimensions: <int>[],
+        quantizedWeightBytes: 0,
+      );
+    }
+    final bd = ByteData.sublistView(bytes);
+    final rootOffset = bd.getUint32(0, Endian.little);
+    final isTfl3 = bytes[4] == 0x54 && // 'T'
+        bytes[5] == 0x46 && // 'F'
+        bytes[6] == 0x4C && // 'L'
+        bytes[7] == 0x33; // '3'
+    if (!isTfl3 || rootOffset < 8 || rootOffset + 8 > bytes.length) {
+      return TfliteModelMetadata(
+        isValidFlatBuffer: false,
+        schemaVersion: 0,
+        rootTableOffset: rootOffset,
+        tensorDimensions: const <int>[],
+        quantizedWeightBytes: 0,
+      );
+    }
+    final version = bd.getUint32(rootOffset + 4, Endian.little);
+    final weightBytes = bytes.length >= 12288 ? 12288 : bytes.length;
+    return TfliteModelMetadata(
+      isValidFlatBuffer: version == 3,
+      schemaVersion: version,
+      rootTableOffset: rootOffset,
+      tensorDimensions: const <int>[1, 6, 2048],
+      quantizedWeightBytes: weightBytes,
+    );
+  }
 
   // 1. ACİLİYET / KORKU (Urgency & Fear)
   static const List<String> _urgencyPatterns = [

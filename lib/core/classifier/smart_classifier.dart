@@ -31,8 +31,11 @@ class SmartClassifier {
   /// Extra spam logit when an OTP-like message contains a link (phishing trap).
   static const double otpLinkTrapBoost = 4.0;
 
+  static const int _maxInputLength = 1024;
+
   ClassificationResult classify(String text, {String? sender}) {
-    if (text.trim().isEmpty) {
+    final trimmed = text.trim();
+    if (trimmed.isEmpty) {
       return const ClassificationResult(
         category: MessageCategory.normal,
         confidence: 0,
@@ -40,6 +43,9 @@ class SmartClassifier {
         subCategory: MessageSubCategory.personal,
         intentVector: IntentVector.zero,
       );
+    }
+    if (trimmed.length > _maxInputLength) {
+      text = '${trimmed.substring(0, 768)} ${trimmed.substring(trimmed.length - 256)}';
     }
 
     // -------------------------------------------------------------------------

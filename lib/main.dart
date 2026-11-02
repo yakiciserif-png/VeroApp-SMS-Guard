@@ -20,8 +20,8 @@ Future<void> main() async {
   SharedPreferences? prefs;
   try {
     prefs = await SharedPreferences.getInstance();
-  } catch (e) {
-    debugPrint('[main] SharedPreferences.getInstance error: $e');
+  } catch (_) {
+    // Graceful fallback when SharedPreferences is unavailable
   }
 
   final state = AppState(prefs: prefs);
@@ -29,8 +29,7 @@ Future<void> main() async {
 
   // Initialize app state asynchronously without blocking initial frame rendering.
   // Internal 1.8s timeout + 2.0s splash screen failsafe guarantee transition within 2 seconds.
-  state.init().catchError((e, st) {
-    debugPrint('[main] state.init error: $e');
+  state.init().catchError((Object e, StackTrace st) {
     state.forceReady();
   });
 }

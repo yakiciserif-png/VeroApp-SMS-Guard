@@ -29,7 +29,9 @@ flutter:
     - assets/branding/
     - assets/breach_db/bloom_filter.bin
     - assets/spam_db/spam_numbers.bin
+    - assets/spam_db/turkey_spam.bin
     - assets/spam_db/phishing_domains.bin
+    - assets/spam_db/threat_db_v2.bin
     - assets/audio/bot_responses/
   fonts:
     - family: Book Antiqua

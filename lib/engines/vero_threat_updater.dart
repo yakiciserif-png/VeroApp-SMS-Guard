@@ -5,6 +5,7 @@ import 'dart:typed_data';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'vero_caller_id_engine.dart';
+import 'vero_community_shield.dart';
 import 'vero_link_scanner.dart';
 
 /// Threat update metadata returned when a new release package is detected.
@@ -85,7 +86,7 @@ class ThreatApplyResult {
 /// - Atomic binary validation using 'VERO_UP' signature.
 class VeroThreatUpdater {
   static const String latestReleaseUrl =
-      'https://api.github.com/repos/yakiciserif-png/VeroApp-SMS-Guard/releases/latest';
+      'https://api.github.com/repos/yakiciserif-png/VeroAppSmsGuard/releases/latest';
 
   static const String prefAutoUpdate = 'vero_threat_auto_update_enabled';
   static const String prefCurrentVersion = 'vero_threat_current_version';
@@ -299,6 +300,16 @@ class VeroThreatUpdater {
     final before = totalSpamNumbers;
     final added = package.records.length;
     final after = before + added;
+
+    for (final rec in package.records) {
+      if (rec.phoneNumber > 0) {
+        VeroCommunityShield.reportNumberSync(
+          '+${rec.phoneNumber}',
+          category: SpamCallerCategory.fromCode(rec.category),
+          confidenceScore: rec.confidence,
+        );
+      }
+    }
 
     await _prefs?.setInt(prefCurrentVersion, package.version);
     await _prefs?.setInt(prefTotalThreatCount, after);

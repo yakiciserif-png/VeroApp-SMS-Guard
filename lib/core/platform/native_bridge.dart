@@ -92,11 +92,9 @@ class NativeBridge {
       return await _channel.invokeMethod<T>(method, args);
     } on MissingPluginException {
       return null;
-    } on PlatformException catch (e) {
-      debugPrint('NativeBridge.$method failed: ${e.message}');
+    } on PlatformException {
       return null;
-    } catch (e) {
-      debugPrint('NativeBridge.$method unexpected error: $e');
+    } catch (_) {
       return null;
     }
   }

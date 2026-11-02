@@ -342,14 +342,14 @@ class MainActivity : FlutterActivity() {
                 projection,
                 null,
                 null,
-                "${android.provider.CallLog.Calls.DATE} DESC LIMIT 100"
+                "${android.provider.CallLog.Calls.DATE} DESC"
             )
             cursor?.use {
                 val numIdx = it.getColumnIndex(android.provider.CallLog.Calls.NUMBER)
                 val dateIdx = it.getColumnIndex(android.provider.CallLog.Calls.DATE)
                 val durIdx = it.getColumnIndex(android.provider.CallLog.Calls.DURATION)
                 val typeIdx = it.getColumnIndex(android.provider.CallLog.Calls.TYPE)
-                while (it.moveToNext()) {
+                while (it.moveToNext() && list.size < 100) {
                     val num = if (numIdx >= 0) it.getString(numIdx) ?: "" else ""
                     val date = if (dateIdx >= 0) it.getLong(dateIdx) else 0L
                     val dur = if (durIdx >= 0) it.getLong(durIdx) else 0L

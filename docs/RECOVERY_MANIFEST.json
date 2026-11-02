@@ -1,1388 +1,1836 @@
 [
-    {
-        "source":  "Generated/Normalized in Staging (.env.example)",
-        "staged_as":  ".env.example",
-        "bytes":  670,
-        "sha256":  "6bdc65f043d70d41c7f3977714f68b8f2b5abea6370897b11318d04d3d685300"
-    },
-    {
-        "source":  "Generated/Normalized in Staging (.github/workflows/ci.yml)",
-        "staged_as":  ".github/workflows/ci.yml",
-        "bytes":  2983,
-        "sha256":  "7eec2d3655e8651e57d3034bbe45a81b73520b485e7b369a64ff703faf20d7e4"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\.github\\workflows\\weekly-threat-update.yml",
-        "staged_as":  ".github/workflows/weekly-threat-update.yml",
-        "bytes":  938,
-        "sha256":  "e70c9e74523c4b7ae0bce5e068db92c2d38a66a6cc92b5794a46e3c3f8880be1"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\.gitignore",
-        "staged_as":  ".gitignore",
-        "bytes":  2134,
-        "sha256":  "d00a0d3a744a420543597a618484f6a06ab073d7f582cc1ecb35e87540d581a9"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\.metadata",
-        "staged_as":  ".metadata",
-        "bytes":  1118,
-        "sha256":  "a19073f666689628141378a3ecde8b8867686a3ce3ae48aaf430a23ffa4ad2a4"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\analysis_options.yaml",
-        "staged_as":  "analysis_options.yaml",
-        "bytes":  1539,
-        "sha256":  "e8e748d5cc1ab574d77d61beb7afe4cd8335efddfd352d971b9a13e3b857ef14"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\android\\.gitignore",
-        "staged_as":  "android/.gitignore",
-        "bytes":  212,
-        "sha256":  "4b5a480e56e119de4d695821df2db34bf9a2da19ce0aef34aed6fabc91718606"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\android\\app\\build.gradle.kts",
-        "staged_as":  "android/app/build.gradle.kts",
-        "bytes":  1815,
-        "sha256":  "9c0775ac3bf745be9bbb2af6260acbbe659ed65c510c350234ca2c08bce0a6b9"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\android\\app\\src\\debug\\AndroidManifest.xml",
-        "staged_as":  "android/app/src/debug/AndroidManifest.xml",
-        "bytes":  385,
-        "sha256":  "b01a4541a8144c15bc617bab7eb267c99fa1476368fbbda5a12cdbf4e316a34c"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\android\\app\\src\\main\\AndroidManifest.xml",
-        "staged_as":  "android/app/src/main/AndroidManifest.xml",
-        "bytes":  6779,
-        "sha256":  "de0d96398773dc87e0f97768757da73b5b8e360f224e0873e42160972da3b4c5"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\android\\app\\src\\main\\kotlin\\com\\veroapp\\smsguard\\HeadlessSmsSendService.kt",
-        "staged_as":  "android/app/src/main/kotlin/com/veroapp/smsguard/HeadlessSmsSendService.kt",
-        "bytes":  386,
-        "sha256":  "866635ac66bae8791fc0f2ad001c4d789c1b27b2a7a645cdd6eee9cf17fbcabd"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\android\\app\\src\\main\\kotlin\\com\\veroapp\\smsguard\\MainActivity.kt",
-        "staged_as":  "android/app/src/main/kotlin/com/veroapp/smsguard/MainActivity.kt",
-        "bytes":  16521,
-        "sha256":  "fefa57f75bc76de7a56f6d4d2ec40b57424fb85204488f3c90fbdb24909a6a39"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\android\\app\\src\\main\\kotlin\\com\\veroapp\\smsguard\\TrustFilterEngine.kt",
-        "staged_as":  "android/app/src/main/kotlin/com/veroapp/smsguard/TrustFilterEngine.kt",
-        "bytes":  26055,
-        "sha256":  "760ee3069cbc4b4a352154e12fb72395f728d748aad2b37727897e46a48d9fd1"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\android\\app\\src\\main\\kotlin\\com\\veroapp\\smsguard\\TrustNotificationListener.kt",
-        "staged_as":  "android/app/src/main/kotlin/com/veroapp/smsguard/TrustNotificationListener.kt",
-        "bytes":  5739,
-        "sha256":  "1a80d6dca51445a4c5dd4fc6542fbb1230f1bbe816507dffc0d7f3dc128ed6f7"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\android\\app\\src\\main\\kotlin\\com\\veroapp\\smsguard\\TrustSmsDeliverReceiver.kt",
-        "staged_as":  "android/app/src/main/kotlin/com/veroapp/smsguard/TrustSmsDeliverReceiver.kt",
-        "bytes":  960,
-        "sha256":  "cd6c37597c71547c1231d7df4cf1ceef6282feb1e0eb6b0c56d6fc0907862ae7"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\android\\app\\src\\main\\kotlin\\com\\veroapp\\smsguard\\TrustSmsReceiver.kt",
-        "staged_as":  "android/app/src/main/kotlin/com/veroapp/smsguard/TrustSmsReceiver.kt",
-        "bytes":  3397,
-        "sha256":  "4fc76978269c13b7c1440e59f0e52320cd002d60cac2438a0161ac5c679dc2db"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\android\\app\\src\\main\\kotlin\\com\\veroapp\\smsguard\\TrustWapPushDeliverReceiver.kt",
-        "staged_as":  "android/app/src/main/kotlin/com/veroapp/smsguard/TrustWapPushDeliverReceiver.kt",
-        "bytes":  514,
-        "sha256":  "19c6dbd634903c1786a32110eb54fe5604d055bae9a5b142f998b66bb3b81fdd"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\android\\app\\src\\main\\kotlin\\com\\veroapp\\smsguard\\VeroCallScreeningService.kt",
-        "staged_as":  "android/app/src/main/kotlin/com/veroapp/smsguard/VeroCallScreeningService.kt",
-        "bytes":  3548,
-        "sha256":  "b478e5e121ee55c858da63d38e455c54af2ea9d50d82322a79d2dc55f66c882b"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\android\\app\\src\\main\\kotlin\\com\\veroapp\\smsguard\\VeroHomeWidgetProvider.kt",
-        "staged_as":  "android/app/src/main/kotlin/com/veroapp/smsguard/VeroHomeWidgetProvider.kt",
-        "bytes":  2023,
-        "sha256":  "6a5aa413fcac13315fa1b2689f819a2d6241cdd4fddae62e3c272e10a2da671b"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\android\\app\\src\\main\\res\\drawable\\launch_background.xml",
-        "staged_as":  "android/app/src/main/res/drawable/launch_background.xml",
-        "bytes":  323,
-        "sha256":  "d72620b26131f9d6ecc460c17f83917ae8bb065f6e51a0d171387c1154b9302d"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\android\\app\\src\\main\\res\\drawable-v21\\launch_background.xml",
-        "staged_as":  "android/app/src/main/res/drawable-v21/launch_background.xml",
-        "bytes":  323,
-        "sha256":  "d72620b26131f9d6ecc460c17f83917ae8bb065f6e51a0d171387c1154b9302d"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\android\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher.xml",
-        "staged_as":  "android/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml",
-        "bytes":  270,
-        "sha256":  "4d709b957b30828efc16ce39543c38a95983c1f4faff68c54407905d7de1a432"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\android\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher_round.xml",
-        "staged_as":  "android/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml",
-        "bytes":  270,
-        "sha256":  "4d709b957b30828efc16ce39543c38a95983c1f4faff68c54407905d7de1a432"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\android\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png",
-        "staged_as":  "android/app/src/main/res/mipmap-hdpi/ic_launcher.png",
-        "bytes":  8865,
-        "sha256":  "60cac93c4e485792c1b36fd411139cbedf87764dfe3b57c3116bf09dd4ce5a55"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\android\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher_foreground.png",
-        "staged_as":  "android/app/src/main/res/mipmap-hdpi/ic_launcher_foreground.png",
-        "bytes":  7607,
-        "sha256":  "e5b6fdfa411fb289f60dd0056be645a32bcb22be6bcad1e8251340934b59562c"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\android\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher_round.png",
-        "staged_as":  "android/app/src/main/res/mipmap-hdpi/ic_launcher_round.png",
-        "bytes":  9359,
-        "sha256":  "8a0140dc320f2c0a990297ad554f26eb214cf479c6eb72e6b9b20e3b7edfd57a"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\android\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png",
-        "staged_as":  "android/app/src/main/res/mipmap-mdpi/ic_launcher.png",
-        "bytes":  4856,
-        "sha256":  "a5f7079cd36e127479a27f3db38dab4f08e9d56b89500e133e0599abde54f17f"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\android\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher_foreground.png",
-        "staged_as":  "android/app/src/main/res/mipmap-mdpi/ic_launcher_foreground.png",
-        "bytes":  4695,
-        "sha256":  "c3bf4f5fe367e0850781ba6367a8dd0c2104e8e4e674422f5f7e0d9f21c9f193"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\android\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher_round.png",
-        "staged_as":  "android/app/src/main/res/mipmap-mdpi/ic_launcher_round.png",
-        "bytes":  4979,
-        "sha256":  "69382b563f013190a299aedbe7299d62d4dd291a736c4a1dcfb61514a1c67393"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\android\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher.png",
-        "staged_as":  "android/app/src/main/res/mipmap-xhdpi/ic_launcher.png",
-        "bytes":  13883,
-        "sha256":  "6ad0992a7880747143954dc7420f200e2a1e6ec313e1bb8474c2dcb2c59764f5"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\android\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher_foreground.png",
-        "staged_as":  "android/app/src/main/res/mipmap-xhdpi/ic_launcher_foreground.png",
-        "bytes":  10592,
-        "sha256":  "ce4165e5ea5d5ecc5dee188612b9c5d41b118d471c5f5324f680d195e7b321fc"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\android\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher_round.png",
-        "staged_as":  "android/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png",
-        "bytes":  14498,
-        "sha256":  "f5e60abc4ba4a086deffd67bbc21c2c1af5e4fb5a7bc99021b25f65c005e5122"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\android\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png",
-        "staged_as":  "android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png",
-        "bytes":  26599,
-        "sha256":  "5e3ca314e188293f0afae5bd6559e594a89ebcd5c5301108297c476a46b3bddd"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\android\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher_foreground.png",
-        "staged_as":  "android/app/src/main/res/mipmap-xxhdpi/ic_launcher_foreground.png",
-        "bytes":  17486,
-        "sha256":  "2edb6ace6a2b2c7595cb52b7e5c0e3a7f19e4664afd6f52fb248341bb97dcc49"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\android\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher_round.png",
-        "staged_as":  "android/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png",
-        "bytes":  27334,
-        "sha256":  "80e8a0b09e66cc359e46ca5f440856d16513435212f2ad16752b3d5790007a1f"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\android\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.png",
-        "staged_as":  "android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
-        "bytes":  40103,
-        "sha256":  "773f1053e03daae94ec639354aa16a2039847ddbe0ee1c9ca11b3a4909a4ae45"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\android\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher_foreground.png",
-        "staged_as":  "android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_foreground.png",
-        "bytes":  24069,
-        "sha256":  "10458073ac8577f900e4001c3d1e82e350460c4d050281bb5e1a29be9bfd393e"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\android\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher_round.png",
-        "staged_as":  "android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png",
-        "bytes":  41452,
-        "sha256":  "903f78e7678142ccb3ae7bc9f16ee859f193a9e1a131348518092ffef0b9e082"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\android\\app\\src\\main\\res\\values\\ic_launcher_background.xml",
-        "staged_as":  "android/app/src/main/res/values/ic_launcher_background.xml",
-        "bytes":  125,
-        "sha256":  "1487ce5363072690f06d2e5da2ed825076d95ea67055aa254c81a4859e57c452"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\android\\app\\src\\main\\res\\values\\strings.xml",
-        "staged_as":  "android/app/src/main/res/values/strings.xml",
-        "bytes":  277,
-        "sha256":  "da3536a807aab3129c27c041fe52a27e227f7e6705e039d8746398a01dea348d"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\android\\app\\src\\main\\res\\values\\styles.xml",
-        "staged_as":  "android/app/src/main/res/values/styles.xml",
-        "bytes":  405,
-        "sha256":  "672628198be07b7f969268fd572d8aec82346415f0254bfdee40de3d345793fb"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\android\\app\\src\\main\\res\\values-night\\styles.xml",
-        "staged_as":  "android/app/src/main/res/values-night/styles.xml",
-        "bytes":  1013,
-        "sha256":  "ea763597dc1a84c8034251caee98d7753e0fbf57340ffc94677427de4b537516"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\android\\app\\src\\main\\res\\xml\\accessibility_service_config.xml",
-        "staged_as":  "android/app/src/main/res/xml/accessibility_service_config.xml",
-        "bytes":  602,
-        "sha256":  "7598ff080cae493678533bf2365cf9206d201b1818916ec3a8516919fc98c1bd"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\android\\app\\src\\profile\\AndroidManifest.xml",
-        "staged_as":  "android/app/src/profile/AndroidManifest.xml",
-        "bytes":  385,
-        "sha256":  "b01a4541a8144c15bc617bab7eb267c99fa1476368fbbda5a12cdbf4e316a34c"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\android\\build.gradle.kts",
-        "staged_as":  "android/build.gradle.kts",
-        "bytes":  561,
-        "sha256":  "218f400e3fff31c9c986a2535dfb974560e1b4d33cc27b7c1fee96a2b7e44454"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\android\\gradle.properties",
-        "staged_as":  "android/gradle.properties",
-        "bytes":  306,
-        "sha256":  "7714698de712a7872e371f0dbae626c255fc83ac1c15e52e7cd9fcaa241b5092"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\android\\gradle\\wrapper\\gradle-wrapper.jar",
-        "staged_as":  "android/gradle/wrapper/gradle-wrapper.jar",
-        "bytes":  53636,
-        "sha256":  "16caeaf66d57a0d1d2087fef6a97efa62de8da69afa5b908f40db35afc4342da"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\android\\gradle\\wrapper\\gradle-wrapper.properties",
-        "staged_as":  "android/gradle/wrapper/gradle-wrapper.properties",
-        "bytes":  207,
-        "sha256":  "594a00250ef7a36609a01f3263bf5ed63963afaf9ca9f82f2cd1de0f6f056383"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\android\\gradlew",
-        "staged_as":  "android/gradlew",
-        "bytes":  4971,
-        "sha256":  "ec56c02543666d92d9ac5ae7fcc48f88ce4de0deb8b7f9b39928ca46f68c1b2b"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\android\\gradlew.bat",
-        "staged_as":  "android/gradlew.bat",
-        "bytes":  2404,
-        "sha256":  "c13c6e91b9a517783976de213d46398c661ea9e17651376d7301e839eaedcc62"
-    },
-    {
-        "source":  "Generated/Normalized in Staging (android/key.properties.example)",
-        "staged_as":  "android/key.properties.example",
-        "bytes":  336,
-        "sha256":  "81b698a9431cb220e78c44750c6969a1375fbbb5d3d7efc60b3cafec7a626a52"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\android\\settings.gradle.kts",
-        "staged_as":  "android/settings.gradle.kts",
-        "bytes":  796,
-        "sha256":  "092ba880c8d4a07591aafc082f45deedc9afcf60c113a4bb3d13cbe1a1fce9de"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\assets\\audio\\bot_responses\\ar_01_marhaba_intazir.mp3",
-        "staged_as":  "assets/audio/bot_responses/ar_01_marhaba_intazir.mp3",
-        "bytes":  4170,
-        "sha256":  "e54bc38eb4149d39f5dfe7bbd57546daf048739878283e7a9963e1f1d1d017b6"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\assets\\audio\\bot_responses\\en_01_hello_who_is_calling.mp3",
-        "staged_as":  "assets/audio/bot_responses/en_01_hello_who_is_calling.mp3",
-        "bytes":  4170,
-        "sha256":  "e54bc38eb4149d39f5dfe7bbd57546daf048739878283e7a9963e1f1d1d017b6"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\assets\\audio\\bot_responses\\tr_01_alo_buyurun.mp3",
-        "staged_as":  "assets/audio/bot_responses/tr_01_alo_buyurun.mp3",
-        "bytes":  4170,
-        "sha256":  "e54bc38eb4149d39f5dfe7bbd57546daf048739878283e7a9963e1f1d1d017b6"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\assets\\audio\\bot_responses\\tr_02_kim_ariyorsunuz.mp3",
-        "staged_as":  "assets/audio/bot_responses/tr_02_kim_ariyorsunuz.mp3",
-        "bytes":  4170,
-        "sha256":  "e54bc38eb4149d39f5dfe7bbd57546daf048739878283e7a9963e1f1d1d017b6"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\assets\\audio\\bot_responses\\tr_03_bir_saniye_bagliyorum.mp3",
-        "staged_as":  "assets/audio/bot_responses/tr_03_bir_saniye_bagliyorum.mp3",
-        "bytes":  4170,
-        "sha256":  "e54bc38eb4149d39f5dfe7bbd57546daf048739878283e7a9963e1f1d1d017b6"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\assets\\audio\\bot_responses\\tr_04_hat_mesgul_bekleyin.mp3",
-        "staged_as":  "assets/audio/bot_responses/tr_04_hat_mesgul_bekleyin.mp3",
-        "bytes":  4170,
-        "sha256":  "e54bc38eb4149d39f5dfe7bbd57546daf048739878283e7a9963e1f1d1d017b6"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\assets\\branding\\app_icon_cyberpunk_vA.png",
-        "staged_as":  "assets/branding/app_icon_cyberpunk_vA.png",
-        "bytes":  256944,
-        "sha256":  "116d6d42257cfea9d3cce21fca1dc7dab61d0b9567ca83d79deacf31f3ad4cda"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\assets\\branding\\vero_icon.ico",
-        "staged_as":  "assets/branding/vero_icon.ico",
-        "bytes":  370070,
-        "sha256":  "885531cdbbe2db368a51d7a3deee3cfc2d9d066195549c4f11361bc821e930fc"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\assets\\branding\\vero_icon.png",
-        "staged_as":  "assets/branding/vero_icon.png",
-        "bytes":  256944,
-        "sha256":  "116d6d42257cfea9d3cce21fca1dc7dab61d0b9567ca83d79deacf31f3ad4cda"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\assets\\breach_db\\bloom_filter.bin",
-        "staged_as":  "assets/breach_db/bloom_filter.bin",
-        "bytes":  6250000,
-        "sha256":  "178ade45878c21ddf17095e668be9202dafde3dc636f3408726e35c89f88bf7f"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\assets\\fonts\\BookAntiqua-Bold.ttf",
-        "staged_as":  "assets/fonts/BookAntiqua-Bold.ttf",
-        "bytes":  151000,
-        "sha256":  "134a9f8ecf618660305d7d34b6905375c1d5d7838ea15cdb2789ba94317f4117"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\assets\\fonts\\BookAntiqua-Regular.ttf",
-        "staged_as":  "assets/fonts/BookAntiqua-Regular.ttf",
-        "bytes":  155528,
-        "sha256":  "c019f155a0004760f32079c22c29ef0ddd223d0c2c79e2487122e66d38a53b32"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\assets\\locales\\ar.json",
-        "staged_as":  "assets/locales/ar.json",
-        "bytes":  9291,
-        "sha256":  "038829031137a39cb2b80ca0bf13e2f9194b4bbfad16580cb633a16b80750474"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\assets\\locales\\de.json",
-        "staged_as":  "assets/locales/de.json",
-        "bytes":  7294,
-        "sha256":  "d414d777e205d2742b93be2ed8d4733b773bee5d62abf04b29499b191af6e6b4"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\assets\\locales\\en.json",
-        "staged_as":  "assets/locales/en.json",
-        "bytes":  6989,
-        "sha256":  "fcaf14c79cf13e3b6e79ec13687614a874ac01ca05318787e148eb49e1739294"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\assets\\locales\\es.json",
-        "staged_as":  "assets/locales/es.json",
-        "bytes":  7299,
-        "sha256":  "e69ee18a43b58716cd7ffb029a61102b0bf120e3f2168fbd788fb27f14a07e50"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\assets\\locales\\fr.json",
-        "staged_as":  "assets/locales/fr.json",
-        "bytes":  7335,
-        "sha256":  "3226b5b3a498d1c215fb28f67f22508cc6b55daf01f6aca15ff83c2b2cde6141"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\assets\\locales\\hi.json",
-        "staged_as":  "assets/locales/hi.json",
-        "bytes":  8667,
-        "sha256":  "af735ef446263f7b622b64c05c4f4613f467fb5753301985a403e16977840ca2"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\assets\\locales\\it.json",
-        "staged_as":  "assets/locales/it.json",
-        "bytes":  7139,
-        "sha256":  "68871160ac0af17d8ee6b0da40f839e4253247e006eb94e6f8aa69de897f151c"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\assets\\locales\\pt.json",
-        "staged_as":  "assets/locales/pt.json",
-        "bytes":  7211,
-        "sha256":  "2d9f4c6409ac2711011f057ae71fd777ef610006e7cc36c52c4493a4de000c3e"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\assets\\locales\\ru.json",
-        "staged_as":  "assets/locales/ru.json",
-        "bytes":  9872,
-        "sha256":  "69d19ae5b520ef411a9b44623641458727b69fcbe9265af30643904953f8bc7d"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\assets\\locales\\tr.json",
-        "staged_as":  "assets/locales/tr.json",
-        "bytes":  7604,
-        "sha256":  "7c6d70106c22b1b4d06004f1e8ca6999aeb782934532d923587f656571a7a07a"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\assets\\locales\\zh.json",
-        "staged_as":  "assets/locales/zh.json",
-        "bytes":  6916,
-        "sha256":  "0f8d1d4e036076a83b5d8ddc64c5e12e3b0a57b9dc74ecdd82a395fe69d8588d"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\assets\\model\\seed_corpus.json",
-        "staged_as":  "assets/model/seed_corpus.json",
-        "bytes":  92149,
-        "sha256":  "86f36603f9d26ab2bb66759596b89cc374f99fc616db49c3811487e7d9c884af"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\assets\\model\\vero_semantic_intent_v1.tflite",
-        "staged_as":  "assets/model/vero_semantic_intent_v1.tflite",
-        "bytes":  16428,
-        "sha256":  "bbfb3fb6434c611d022908a9969686c4b6b168155b864446489ca0369861c1d7"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\assets\\spam_db\\phishing_domains.bin",
-        "staged_as":  "assets/spam_db/phishing_domains.bin",
-        "bytes":  950165,
-        "sha256":  "bd2d4cf60ca4339faba2de3cb2ce8b1d0605d83cc30b04f1d0e1a8078b9c4f24"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\assets\\spam_db\\spam_numbers.bin",
-        "staged_as":  "assets/spam_db/spam_numbers.bin",
-        "bytes":  504040,
-        "sha256":  "313ad70f18fd5d84064e9a7655e33a4b1c0d2f9c5aada9c5e24215e161f76da0"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\assets\\spam_db\\threat_db_v2.bin",
-        "staged_as":  "assets/spam_db/threat_db_v2.bin",
-        "bytes":  264,
-        "sha256":  "339ac2bdad408b4879e36853a9e073beff67062d4d0fc3d6fd049f419f28fe97"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\assets\\spam_db\\turkey_spam.bin",
-        "staged_as":  "assets/spam_db/turkey_spam.bin",
-        "bytes":  200016,
-        "sha256":  "ea1a775a28b42975114b8e005d803fcc4d269f0476212027591fabf927842e82"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\docs\\app_store_listing_ios.txt",
-        "staged_as":  "docs/app_store_listing_ios.txt",
-        "bytes":  2891,
-        "sha256":  "4cc4f3293a44c1f225d07cf4611935d1926bd4bdcbc3ef81a118d70bb740b80f"
-    },
-    {
-        "source":  "Generated/Normalized in Staging (docs/architecture/IOS_DEPLOYMENT_GUIDE.md)",
-        "staged_as":  "docs/architecture/IOS_DEPLOYMENT_GUIDE.md",
-        "bytes":  3202,
-        "sha256":  "5e0baabff1222287775eaa182048e31fd6dd9ce20285448c277a88a62b012b56"
-    },
-    {
-        "source":  "Generated/Normalized in Staging (docs/architecture/real_device_test.md)",
-        "staged_as":  "docs/architecture/real_device_test.md",
-        "bytes":  6770,
-        "sha256":  "5f0f416b8d979853bf06bd1d9ff33af687ae7fbf83ffaf74707a8649de63c1a9"
-    },
-    {
-        "source":  "Generated/Normalized in Staging (docs/architecture/SYSTEM_ARCHITECTURE.md)",
-        "staged_as":  "docs/architecture/SYSTEM_ARCHITECTURE.md",
-        "bytes":  3922,
-        "sha256":  "2e63ed786dd15adc3d6c9606954a3f215d52fed280a03ac1b1d76cf687da9f19"
-    },
-    {
-        "source":  "Generated/Normalized in Staging (docs/archive/FORENSIC_AUDIT_LOG.md)",
-        "staged_as":  "docs/archive/FORENSIC_AUDIT_LOG.md",
-        "bytes":  1192,
-        "sha256":  "ced78a73b2e884307075683938653dfc143c0eb5f518d5e0c529b417a0dabc50"
-    },
-    {
-        "source":  "Generated/Normalized in Staging (docs/aso/app_store_listing_ios.txt)",
-        "staged_as":  "docs/aso/app_store_listing_ios.txt",
-        "bytes":  2891,
-        "sha256":  "4cc4f3293a44c1f225d07cf4611935d1926bd4bdcbc3ef81a118d70bb740b80f"
-    },
-    {
-        "source":  "Generated/Normalized in Staging (docs/aso/MULTILINGUAL_ASO_CATALOG.md)",
-        "staged_as":  "docs/aso/MULTILINGUAL_ASO_CATALOG.md",
-        "bytes":  2564,
-        "sha256":  "c23fb966196ff827845ba01d446a0d4149e414f3f6d6d64421b75267378582ba"
-    },
-    {
-        "source":  "Generated/Normalized in Staging (docs/aso/play_store_listing_android.txt)",
-        "staged_as":  "docs/aso/play_store_listing_android.txt",
-        "bytes":  3130,
-        "sha256":  "66512b6860b01077ae99ed6ffab74c16b52b407594f3ba5f9f008e0e280d239e"
-    },
-    {
-        "source":  "Generated/Normalized in Staging (docs/aso/product_ids.txt)",
-        "staged_as":  "docs/aso/product_ids.txt",
-        "bytes":  2432,
-        "sha256":  "8d6aa8117ca74f325c92fc66ddb4e5e5b0eeba0d6aae078827fd7149444eb5c0"
-    },
-    {
-        "source":  "Generated/Normalized in Staging (docs/aso/store_listing_en.txt)",
-        "staged_as":  "docs/aso/store_listing_en.txt",
-        "bytes":  2842,
-        "sha256":  "6418ce10d62420438f19a3c877c8449952222ee4e0f786ce42ee2e01f9db8c90"
-    },
-    {
-        "source":  "Generated/Normalized in Staging (docs/aso/store_listing_tr.txt)",
-        "staged_as":  "docs/aso/store_listing_tr.txt",
-        "bytes":  3258,
-        "sha256":  "11fa5af3ae6a1a493d50314a7e085ef8cf1ce17b9623e6e779332de01f45d942"
-    },
-    {
-        "source":  "Generated/Normalized in Staging (docs/legal/play_permissions.txt)",
-        "staged_as":  "docs/legal/play_permissions.txt",
-        "bytes":  4049,
-        "sha256":  "9fc8e3a1069fc396979274f2b80bf6ddcb5ffbd99c9ea456d66a119543d712d8"
-    },
-    {
-        "source":  "Generated/Normalized in Staging (docs/legal/PRIVACY_POLICY.md)",
-        "staged_as":  "docs/legal/PRIVACY_POLICY.md",
-        "bytes":  3790,
-        "sha256":  "69d8e7dde99569e5b978db378528f19ebc2c2748e936aff8e3f92786d326c204"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\docs\\marketing\\eksisozluk_baslik.txt",
-        "staged_as":  "docs/marketing/eksisozluk_baslik.txt",
-        "bytes":  1975,
-        "sha256":  "61b0dd67407865f77d8a3142317a50384d3fb6e3891c06ebd7fab2ce476572b6"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\docs\\marketing\\press_release_tr.txt",
-        "staged_as":  "docs/marketing/press_release_tr.txt",
-        "bytes":  3198,
-        "sha256":  "373b0cea9c6dc419f7997d1bc7f57f677947e5ed3fda9dd3720ce359cad7a51f"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\docs\\marketing\\twitter_posts.txt",
-        "staged_as":  "docs/marketing/twitter_posts.txt",
-        "bytes":  3493,
-        "sha256":  "a48f7ae5374f693499a7aa2e454fee006dd31d0a04951fb260d09b5777fb9338"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\docs\\marketing\\youtuber_mail.txt",
-        "staged_as":  "docs/marketing/youtuber_mail.txt",
-        "bytes":  2328,
-        "sha256":  "733ff0b6ee44a8c5fe80c1b62dd07ba7b5c95f00f99aa967dc0e4de42d664786"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\docs\\partnership\\btk_basvuru.txt",
-        "staged_as":  "docs/partnership/btk_basvuru.txt",
-        "bytes":  2497,
-        "sha256":  "29b411e8a12eeccf1ca32db276fa0390ac034d010fdcc5d54b1481c45794c35b"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\docs\\partnership\\turkcell_mail.txt",
-        "staged_as":  "docs/partnership/turkcell_mail.txt",
-        "bytes":  1969,
-        "sha256":  "aa63438901357c3a2e0cfa9145729d1722632fd98c72ab7804592d87baed9451"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\docs\\partnership\\turktelekom_mail.txt",
-        "staged_as":  "docs/partnership/turktelekom_mail.txt",
-        "bytes":  1786,
-        "sha256":  "f70758cec2796b9ed6db9eb552a32e789256ec7ea874d7cc0c265ac27b8590ae"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\docs\\partnership\\vodafone_mail.txt",
-        "staged_as":  "docs/partnership/vodafone_mail.txt",
-        "bytes":  1821,
-        "sha256":  "4868a6990c9e2c253849b7b0faba64c17db8189e7d8e095e30110908f2c60d5c"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\docs\\play_permissions.txt",
-        "staged_as":  "docs/play_permissions.txt",
-        "bytes":  4049,
-        "sha256":  "9fc8e3a1069fc396979274f2b80bf6ddcb5ffbd99c9ea456d66a119543d712d8"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\docs\\play_store_listing_android.txt",
-        "staged_as":  "docs/play_store_listing_android.txt",
-        "bytes":  3130,
-        "sha256":  "66512b6860b01077ae99ed6ffab74c16b52b407594f3ba5f9f008e0e280d239e"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\docs\\product_ids.txt",
-        "staged_as":  "docs/product_ids.txt",
-        "bytes":  2432,
-        "sha256":  "8d6aa8117ca74f325c92fc66ddb4e5e5b0eeba0d6aae078827fd7149444eb5c0"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\docs\\real_device_test.md",
-        "staged_as":  "docs/real_device_test.md",
-        "bytes":  6770,
-        "sha256":  "5f0f416b8d979853bf06bd1d9ff33af687ae7fbf83ffaf74707a8649de63c1a9"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\docs\\store_listing_en.txt",
-        "staged_as":  "docs/store_listing_en.txt",
-        "bytes":  2842,
-        "sha256":  "6418ce10d62420438f19a3c877c8449952222ee4e0f786ce42ee2e01f9db8c90"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\docs\\store_listing_tr.txt",
-        "staged_as":  "docs/store_listing_tr.txt",
-        "bytes":  3258,
-        "sha256":  "11fa5af3ae6a1a493d50314a7e085ef8cf1ce17b9623e6e779332de01f45d942"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\IOS_DEPLOYMENT_GUIDE.md",
-        "staged_as":  "IOS_DEPLOYMENT_GUIDE.md",
-        "bytes":  3202,
-        "sha256":  "5e0baabff1222287775eaa182048e31fd6dd9ce20285448c277a88a62b012b56"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\ios\\MessageFilterExtension\\Info.plist",
-        "staged_as":  "ios/MessageFilterExtension/Info.plist",
-        "bytes":  1016,
-        "sha256":  "e1aa51c2cb3ee3a9c47cf6c1dd700f1e09d3971ffb08e46ccfce23f90a63dfdb"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\ios\\MessageFilterExtension\\MessageFilterExtension.swift",
-        "staged_as":  "ios/MessageFilterExtension/MessageFilterExtension.swift",
-        "bytes":  2095,
-        "sha256":  "06344e54e94652083621b591dd6f8c4586498694b42ba76abe829b4f674d3ccf"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\ios\\MessageFilterExtension\\TrustFilterEngine.swift",
-        "staged_as":  "ios/MessageFilterExtension/TrustFilterEngine.swift",
-        "bytes":  26456,
-        "sha256":  "313d98c6771718fd7eae2a9dd8d1a50caa3e8dab61abf6f4d4b2831207f07538"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\ios\\MessageFilterExtension\\VeroHomeWidget.swift",
-        "staged_as":  "ios/MessageFilterExtension/VeroHomeWidget.swift",
-        "bytes":  3192,
-        "sha256":  "e6c82a38cc6d60a7eb55b7678af29722b8249b6c7ca6b9672f3e96a0855cc017"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\ios\\Podfile",
-        "staged_as":  "ios/Podfile",
-        "bytes":  1493,
-        "sha256":  "eb0e7b95bbaedf61323af9942d08eafc2ed17d3dd9cf068db563f8808ebb9153"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\ios\\Runner\\AppDelegate.swift",
-        "staged_as":  "ios/Runner/AppDelegate.swift",
-        "bytes":  2247,
-        "sha256":  "9f3d11eef59db295efbf2b5817530581b06650854a9be5babfe52a1d64c13f46"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\ios\\Runner\\Assets.xcassets\\AppIcon.appiconset\\Contents.json",
-        "staged_as":  "ios/Runner/Assets.xcassets/AppIcon.appiconset/Contents.json",
-        "bytes":  1981,
-        "sha256":  "c23e267d668386af2f9f5ba1841f875de82d2a7c26a8750d6534d9bd20cd9df8"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\ios\\Runner\\Assets.xcassets\\AppIcon.appiconset\\Icon-App-1024x1024@1x.png",
-        "staged_as":  "ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-1024x1024@1x.png",
-        "bytes":  256944,
-        "sha256":  "116d6d42257cfea9d3cce21fca1dc7dab61d0b9567ca83d79deacf31f3ad4cda"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\ios\\Runner\\Assets.xcassets\\AppIcon.appiconset\\Icon-App-20x20@1x.png",
-        "staged_as":  "ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@1x.png",
-        "bytes":  1162,
-        "sha256":  "4b68acd8cbab0382056eb153b76c73f95c3b3f1fd6e3294cf8691019b7d3da0a"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\ios\\Runner\\Assets.xcassets\\AppIcon.appiconset\\Icon-App-20x20@2x.png",
-        "staged_as":  "ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@2x.png",
-        "bytes":  3453,
-        "sha256":  "5a98fadd8885f49cdf4c2dfba392b047004b3d14b7661529c6ff3d7b35a3f6fd"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\ios\\Runner\\Assets.xcassets\\AppIcon.appiconset\\Icon-App-20x20@3x.png",
-        "staged_as":  "ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@3x.png",
-        "bytes":  6810,
-        "sha256":  "57e208ac327191f7a48b0f3fecbfda69b7477a594547ff425f88d5a9261d111e"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\ios\\Runner\\Assets.xcassets\\AppIcon.appiconset\\Icon-App-29x29@1x.png",
-        "staged_as":  "ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@1x.png",
-        "bytes":  2137,
-        "sha256":  "ceb8731c295ee8add49e8df07bf433959460877d2703f3e0223b9da134c8de12"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\ios\\Runner\\Assets.xcassets\\AppIcon.appiconset\\Icon-App-29x29@2x.png",
-        "staged_as":  "ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@2x.png",
-        "bytes":  6510,
-        "sha256":  "42ca33afc09e4e04d074c111c9c1ee72de747a89b91e03e0cc5059396f45c153"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\ios\\Runner\\Assets.xcassets\\AppIcon.appiconset\\Icon-App-29x29@3x.png",
-        "staged_as":  "ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@3x.png",
-        "bytes":  12130,
-        "sha256":  "091cc491fc80558d9a8f85115ee60bcc4d5be548d28c151aee35984ac2d3f933"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\ios\\Runner\\Assets.xcassets\\AppIcon.appiconset\\Icon-App-40x40@1x.png",
-        "staged_as":  "ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@1x.png",
-        "bytes":  3453,
-        "sha256":  "5a98fadd8885f49cdf4c2dfba392b047004b3d14b7661529c6ff3d7b35a3f6fd"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\ios\\Runner\\Assets.xcassets\\AppIcon.appiconset\\Icon-App-40x40@2x.png",
-        "staged_as":  "ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@2x.png",
-        "bytes":  10429,
-        "sha256":  "1fd001d86bdd48bbd8096ffa1f3fda5e98f4dc86994ce01aadf9119b7722b137"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\ios\\Runner\\Assets.xcassets\\AppIcon.appiconset\\Icon-App-40x40@3x.png",
-        "staged_as":  "ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@3x.png",
-        "bytes":  19407,
-        "sha256":  "878e66989bd0d4375c2da20decdc5c9ab96968f35d9e9f4dc572b2da2bb8c956"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\ios\\Runner\\Assets.xcassets\\AppIcon.appiconset\\Icon-App-60x60@2x.png",
-        "staged_as":  "ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-60x60@2x.png",
-        "bytes":  19407,
-        "sha256":  "878e66989bd0d4375c2da20decdc5c9ab96968f35d9e9f4dc572b2da2bb8c956"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\ios\\Runner\\Assets.xcassets\\AppIcon.appiconset\\Icon-App-60x60@3x.png",
-        "staged_as":  "ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-60x60@3x.png",
-        "bytes":  35561,
-        "sha256":  "efe2615f05d6d2bc59c6d6c9d3f44d664562afac3b8de803b2f7e43531b65cdc"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\ios\\Runner\\Assets.xcassets\\AppIcon.appiconset\\Icon-App-76x76@1x.png",
-        "staged_as":  "ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-76x76@1x.png",
-        "bytes":  9706,
-        "sha256":  "a7d506e487a374beb4cb9bf161e23aae314c199a8f76a8aa4155ddc3e6ecc30f"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\ios\\Runner\\Assets.xcassets\\AppIcon.appiconset\\Icon-App-76x76@2x.png",
-        "staged_as":  "ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-76x76@2x.png",
-        "bytes":  28613,
-        "sha256":  "4a9047f056ee17374cd28fa54a8858fb0e40b7d026cdcd6995f35644f25eee48"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\ios\\Runner\\Assets.xcassets\\AppIcon.appiconset\\Icon-App-83.5x83.5@2x.png",
-        "staged_as":  "ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-83.5x83.5@2x.png",
-        "bytes":  32549,
-        "sha256":  "1bcabe6df24826ee1aae598e7d464b1c036f3ed43db019e924ef4c821933d0be"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\ios\\Runner\\Info.plist",
-        "staged_as":  "ios/Runner/Info.plist",
-        "bytes":  1371,
-        "sha256":  "2041aca79adc13edc62740c1a19fca2ddb7ba0874aabf2cc1054e729e06e9a42"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\ios\\SmsFilterExtension\\VeroHomeWidget.swift",
-        "staged_as":  "ios/SmsFilterExtension/VeroHomeWidget.swift",
-        "bytes":  3192,
-        "sha256":  "e6c82a38cc6d60a7eb55b7678af29722b8249b6c7ca6b9672f3e96a0855cc017"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\lib\\app.dart",
-        "staged_as":  "lib/app.dart",
-        "bytes":  8167,
-        "sha256":  "557d2158a222fd716dc805b807a0066543d92d4a469da82a71aa0a0d5c08724c"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\lib\\core\\classifier\\classification.dart",
-        "staged_as":  "lib/core/classifier/classification.dart",
-        "bytes":  3054,
-        "sha256":  "69d024d2deca46cd955abdbe8e6c863ce34461ef73fa2ef0e0099a3bfb87161d"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\lib\\core\\classifier\\naive_bayes.dart",
-        "staged_as":  "lib/core/classifier/naive_bayes.dart",
-        "bytes":  4134,
-        "sha256":  "eec797950e6a6a5a01a35f3dfbf793aac17434c4a8926befc3229a19f2dbf06a"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\lib\\core\\classifier\\otp_detector.dart",
-        "staged_as":  "lib/core/classifier/otp_detector.dart",
-        "bytes":  3911,
-        "sha256":  "6597356f08b876ffbd6617741a2f556427f82bfc296e717f8f7dd38e4866db25"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\lib\\core\\classifier\\safe_click_engine.dart",
-        "staged_as":  "lib/core/classifier/safe_click_engine.dart",
-        "bytes":  7316,
-        "sha256":  "b0cfdb6487078cf9daccaf89031bb192a2c5d6b33361c18f886523db7fc912cc"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\lib\\core\\classifier\\semantic_intent_engine.dart",
-        "staged_as":  "lib/core/classifier/semantic_intent_engine.dart",
-        "bytes":  20018,
-        "sha256":  "16670d9002ee85b09ccf91e6200cb384ec8c77fc9318e9425a00c3d8fa4ca427"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\lib\\core\\classifier\\smart_classifier.dart",
-        "staged_as":  "lib/core/classifier/smart_classifier.dart",
-        "bytes":  12385,
-        "sha256":  "ab484d9f50f7daf33d978daa8441fab7ca5238e1096cfc64ed0cd6a735d89a02"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\lib\\core\\classifier\\threat_database.dart",
-        "staged_as":  "lib/core/classifier/threat_database.dart",
-        "bytes":  12150,
-        "sha256":  "feb1d9ac32c2e8344128692dd564ac2a88f3f1b2ac87e26fc4663bba271e3246"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\lib\\core\\classifier\\tokenizer.dart",
-        "staged_as":  "lib/core/classifier/tokenizer.dart",
-        "bytes":  21682,
-        "sha256":  "68153e0d0666261244a5072487935d440bae2bd70a23180bd60e8d7bddb18df0"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\lib\\core\\classifier\\vero_call_guard.dart",
-        "staged_as":  "lib/core/classifier/vero_call_guard.dart",
-        "bytes":  52,
-        "sha256":  "71ef00c6b3ab0b182845b303ef7f5f506365d81ba1f0f5284d0b2e8d89968af1"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\lib\\core\\localization\\app_localizations.dart",
-        "staged_as":  "lib/core/localization/app_localizations.dart",
-        "bytes":  95515,
-        "sha256":  "085215c3abeac4ae2caaf7dfaa9e09cd6e30994a7d9ab5da8f7673ec2959adbe"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\lib\\core\\monetization\\billing_service.dart",
-        "staged_as":  "lib/core/monetization/billing_service.dart",
-        "bytes":  5315,
-        "sha256":  "1679fb5891cdc1d2748ba81a4e6145e30ab6fe73255111b427685503b963cd12"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\lib\\core\\monetization\\feature_gates.dart",
-        "staged_as":  "lib/core/monetization/feature_gates.dart",
-        "bytes":  5607,
-        "sha256":  "6bdb8a80d3dbeb900e875eebd1862c81d0fa58068e2a4c9ad63ac255de590dec"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\lib\\core\\monetization\\license_verifier.dart",
-        "staged_as":  "lib/core/monetization/license_verifier.dart",
-        "bytes":  5184,
-        "sha256":  "a3d60bd34d5b5982ff5d14a252ee8add699ce6bf0b0b3deadaac1a0c88c47e2b"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\lib\\core\\monetization\\purchase_service.dart",
-        "staged_as":  "lib/core/monetization/purchase_service.dart",
-        "bytes":  3361,
-        "sha256":  "20a4eb9ce5982c2f7141e84ed50c487dd0008252eca6d224b115643eb52a8a58"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\lib\\core\\platform\\native_bridge.dart",
-        "staged_as":  "lib/core/platform/native_bridge.dart",
-        "bytes":  7817,
-        "sha256":  "eb1d4663d489e7b20562a06683fb74e1cf5836991fb8afe78e9fd9da61df80a9"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\lib\\core\\rules\\rule_engine.dart",
-        "staged_as":  "lib/core/rules/rule_engine.dart",
-        "bytes":  8036,
-        "sha256":  "9941784ea4745503a48d3f46962c12e943dde1441e474468ad89784fffd0fac1"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\lib\\engines\\vero_answer_bot.dart",
-        "staged_as":  "lib/engines/vero_answer_bot.dart",
-        "bytes":  4374,
-        "sha256":  "fcc393e9d9d623d61ce614a616ac5bfe3f693f77cc5f01f17dd4854ee7d0c36c"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\lib\\engines\\vero_bloom_filter.dart",
-        "staged_as":  "lib/engines/vero_bloom_filter.dart",
-        "bytes":  6809,
-        "sha256":  "1b57ae00c5dea2da3668ed7160db04d5fd0a320e795c76e00af952c0fbb238bf"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\lib\\engines\\vero_breach_radar_engine.dart",
-        "staged_as":  "lib/engines/vero_breach_radar_engine.dart",
-        "bytes":  4213,
-        "sha256":  "18fc75f3078f512a737f0ee284dcb739cd0595f9f3b161f0256ef3e340b73e4a"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\lib\\engines\\vero_call_guard_engine.dart",
-        "staged_as":  "lib/engines/vero_call_guard_engine.dart",
-        "bytes":  9756,
-        "sha256":  "d56cbb927928d2af80e023bc1ed54a25730b7ca845c852f16b95504703ca2ca8"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\lib\\engines\\vero_caller_id_engine.dart",
-        "staged_as":  "lib/engines/vero_caller_id_engine.dart",
-        "bytes":  19068,
-        "sha256":  "e5ecec1c6d24745799d3a50e05442b61448b9488446276cf4a0e5386c7bfde98"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\lib\\engines\\vero_caller_name_engine.dart",
-        "staged_as":  "lib/engines/vero_caller_name_engine.dart",
-        "bytes":  7213,
-        "sha256":  "99a0ecd4b1ee88e911d0ce0437831b54f2b45134445ddfe9357bb3223eded264"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\lib\\engines\\vero_community_shield.dart",
-        "staged_as":  "lib/engines/vero_community_shield.dart",
-        "bytes":  8076,
-        "sha256":  "df3592992bea215927cc0451b7848d173b8d646d3a72ef32e11c177444c76b18"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\lib\\engines\\vero_crash_logger.dart",
-        "staged_as":  "lib/engines/vero_crash_logger.dart",
-        "bytes":  4056,
-        "sha256":  "6b7f226906ca4e74cc87edf8719f9a6b6daf05750ef2a06c1a1ffd35105c9298"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\lib\\engines\\vero_edevlet_guard.dart",
-        "staged_as":  "lib/engines/vero_edevlet_guard.dart",
-        "bytes":  4305,
-        "sha256":  "c404aa32de9532078f782ca67d7f0a3983dea8e4f41ed58078f91f881018edeb"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\lib\\engines\\vero_enterprise_engine.dart",
-        "staged_as":  "lib/engines/vero_enterprise_engine.dart",
-        "bytes":  3000,
-        "sha256":  "a94126a629d76fd01bb4f22879af64a36f4d3b8f977ddf94f04eba6252fdaea0"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\lib\\engines\\vero_intent_engine.dart",
-        "staged_as":  "lib/engines/vero_intent_engine.dart",
-        "bytes":  15881,
-        "sha256":  "41108e7b64a3a990caa4429331774e65a3f3e47052ba845b8fd7fe703d89968f"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\lib\\engines\\vero_link_scanner.dart",
-        "staged_as":  "lib/engines/vero_link_scanner.dart",
-        "bytes":  14453,
-        "sha256":  "7ab6ce7f8cb1c9da12bbdc5f356c0b429306a3c35deac9e9c25a77664bbd7ba3"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\lib\\engines\\vero_sms_categorizer.dart",
-        "staged_as":  "lib/engines/vero_sms_categorizer.dart",
-        "bytes":  5844,
-        "sha256":  "5a8c40b63bf7cfcda493d6b688ddc853f014273f601fc0562e1ebca4fe61805c"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\lib\\engines\\vero_threat_updater.dart",
-        "staged_as":  "lib/engines/vero_threat_updater.dart",
-        "bytes":  11282,
-        "sha256":  "cca81af270d4837601676c78976707d343be2d35c6c0d3c45d785c10a14f826c"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\lib\\engines\\vero_whatsapp_scanner.dart",
-        "staged_as":  "lib/engines/vero_whatsapp_scanner.dart",
-        "bytes":  6948,
-        "sha256":  "40231e368f3b42031f3aed5a8387bc8ea94c082592d79b4b8707be5efbdbf705"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\lib\\main.dart",
-        "staged_as":  "lib/main.dart",
-        "bytes":  1133,
-        "sha256":  "4c87d14d59c026e079b5e8380d9783f3c0592255e9371c0efc8b031858360333"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\lib\\models\\history_entry.dart",
-        "staged_as":  "lib/models/history_entry.dart",
-        "bytes":  4400,
-        "sha256":  "22275b8e29e1fe63fa72af1c98e264352d768ed30c24592954753d63c1dccdee"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\lib\\screens\\privacy_policy_screen.dart",
-        "staged_as":  "lib/screens/privacy_policy_screen.dart",
-        "bytes":  5610,
-        "sha256":  "94f6ffc5cc7b73682c4eb1476fb514dfd0071a7c37218f712d1206c342978211"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\lib\\screens\\screenshot_mode.dart",
-        "staged_as":  "lib/screens/screenshot_mode.dart",
-        "bytes":  18456,
-        "sha256":  "141341898df32c61f855e4ba4cafe211465d4213cc90dd5f1a5256cfaa3c4da4"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\lib\\screens\\terms_of_service_screen.dart",
-        "staged_as":  "lib/screens/terms_of_service_screen.dart",
-        "bytes":  4996,
-        "sha256":  "682a92491e31dfd6bf34c605293386f4a70719ebbcc3e4880feafffb25b2d5c1"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\lib\\security_audit.dart",
-        "staged_as":  "lib/security_audit.dart",
-        "bytes":  13570,
-        "sha256":  "70b6badaa1e0411feda904f4b481943ea99cbe14898ac73f7869139060bf5914"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\lib\\services\\purchase_service.dart",
-        "staged_as":  "lib/services/purchase_service.dart",
-        "bytes":  53,
-        "sha256":  "4a1c7450c9fd226d98e1367e9b1615f13a4b031790c6ec7d36974b6b9d020535"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\lib\\services\\vero_billing_service.dart",
-        "staged_as":  "lib/services/vero_billing_service.dart",
-        "bytes":  2435,
-        "sha256":  "ca956b5914fe86070a1ae01fe970c57ce5fba57d7a103410f499fdbd4229294d"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\lib\\services\\vero_sms_service.dart",
-        "staged_as":  "lib/services/vero_sms_service.dart",
-        "bytes":  5063,
-        "sha256":  "f8d65140473e9da2d53d6dbd868ee9395e62995e030d90c6266be5b02b3d2ddb"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\lib\\state\\app_state.dart",
-        "staged_as":  "lib/state/app_state.dart",
-        "bytes":  35750,
-        "sha256":  "451c87be58a58bdda4ae8e442f663e27dbe191268c1fb46574cf439f9581bc56"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\lib\\ui\\call_history_screen.dart",
-        "staged_as":  "lib/ui/call_history_screen.dart",
-        "bytes":  19285,
-        "sha256":  "bb54b5e29ff7aecce4d513bccdd9ceeebead323fad8855fea92a11df878f7d40"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\lib\\ui\\call_overlay_screen.dart",
-        "staged_as":  "lib/ui/call_overlay_screen.dart",
-        "bytes":  14087,
-        "sha256":  "9a1378003e1455970163bccb723457b1751b9c9e19417d42ebd3a6cd9491783b"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\lib\\ui\\crash_reports_screen.dart",
-        "staged_as":  "lib/ui/crash_reports_screen.dart",
-        "bytes":  8442,
-        "sha256":  "daec8b211c7d01d42d483127d7ff0d553bff194c530967e90471a1afba4363da"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\lib\\ui\\cyberpunk_theme.dart",
-        "staged_as":  "lib/ui/cyberpunk_theme.dart",
-        "bytes":  17204,
-        "sha256":  "c70ed66beefff798aa57eba2e590cafd2621bb4cdbd9f80fdeaceb5b415bde6a"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\lib\\ui\\database_stats_screen.dart",
-        "staged_as":  "lib/ui/database_stats_screen.dart",
-        "bytes":  17164,
-        "sha256":  "d5022867d3c5a8e8ba38deab73af4c41bb0cf821a5076a3acffec8843229520d"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\lib\\ui\\edevlet_guard_screen.dart",
-        "staged_as":  "lib/ui/edevlet_guard_screen.dart",
-        "bytes":  10489,
-        "sha256":  "25f1d8a3faedda652483e22efaf8dc6e2cd51c6d4edd25beb4fd271b91bae3ba"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\lib\\ui\\enterprise_screen.dart",
-        "staged_as":  "lib/ui/enterprise_screen.dart",
-        "bytes":  13857,
-        "sha256":  "38172dbdef3a9535853692b961eb86294fe918f381dc2c42568029eded3643ee"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\lib\\ui\\first_launch_consent_dialog.dart",
-        "staged_as":  "lib/ui/first_launch_consent_dialog.dart",
-        "bytes":  5657,
-        "sha256":  "cc5f51d5a3a6aecb1328352c3212834d21a0eb53845928d484467c85b5460194"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\lib\\ui\\history_screen.dart",
-        "staged_as":  "lib/ui/history_screen.dart",
-        "bytes":  31186,
-        "sha256":  "3c8753665e253086e0330597fd6a335f9eea29467a02b75d9a9f1f61678cc27b"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\lib\\ui\\home_screen.dart",
-        "staged_as":  "lib/ui/home_screen.dart",
-        "bytes":  54035,
-        "sha256":  "26eea1797ff703431cb19cdae7ffb60adc493d0edadae70e7ccab66c7911477b"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\lib\\ui\\link_scanner_screen.dart",
-        "staged_as":  "lib/ui/link_scanner_screen.dart",
-        "bytes":  11628,
-        "sha256":  "409f56168753640601611f3d4d864e1be744eca68a3f13e8ffbefb714e771290"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\lib\\ui\\paywall_screen.dart",
-        "staged_as":  "lib/ui/paywall_screen.dart",
-        "bytes":  17813,
-        "sha256":  "1fab8762d4c347651ee77704abaa7dd6652bafc16393348ff6d30dacf0d2a9b4"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\lib\\ui\\post_call_report.dart",
-        "staged_as":  "lib/ui/post_call_report.dart",
-        "bytes":  7225,
-        "sha256":  "dd2b89dc9da6c00c8fdff721f82d15f8459edc9fac031a1c4f57dfd8f76a92cf"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\lib\\ui\\privacy_and_terms.dart",
-        "staged_as":  "lib/ui/privacy_and_terms.dart",
-        "bytes":  98,
-        "sha256":  "96b9bb0f7fe3f96a0a0032b82a2a6220f3e937bc485b2980815af2b78f0061be"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\lib\\ui\\rate_dialog.dart",
-        "staged_as":  "lib/ui/rate_dialog.dart",
-        "bytes":  10661,
-        "sha256":  "6cd5649d75ebcdc83f6ef9f38914536e2656f93ab8f36c0b0e3d506bbdae354a"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\lib\\ui\\rules_screen.dart",
-        "staged_as":  "lib/ui/rules_screen.dart",
-        "bytes":  21028,
-        "sha256":  "2a656beda4e9d28678c77f68c99d80b1abe56e90c952facfac1027d0b4630de4"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\lib\\ui\\screenshot_mode.dart",
-        "staged_as":  "lib/ui/screenshot_mode.dart",
-        "bytes":  42,
-        "sha256":  "9fa2f9e8bcc9490a06a242cb6d9fc2203399d89c58022cc4d84fd3d8fcd78de6"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\lib\\ui\\settings_screen.dart",
-        "staged_as":  "lib/ui/settings_screen.dart",
-        "bytes":  58911,
-        "sha256":  "90c1378160ee0a35f2a9831c2bb71e0ad8a4a93e2c7a9de9e95e940fbaa2a89a"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\lib\\ui\\stats_screen.dart",
-        "staged_as":  "lib/ui/stats_screen.dart",
-        "bytes":  12580,
-        "sha256":  "a4350588c11cfa57af28ebee96889871b912168a55049b6e9b95aadd950dff18"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\lib\\ui\\whatsapp_scanner_screen.dart",
-        "staged_as":  "lib/ui/whatsapp_scanner_screen.dart",
-        "bytes":  11676,
-        "sha256":  "8515398d80ed65996dc4fdf9caba0afb37890fb4b0c2c5454718b037ae9634aa"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\lib\\ui\\widgets.dart",
-        "staged_as":  "lib/ui/widgets.dart",
-        "bytes":  32580,
-        "sha256":  "a950622117be3de8fa5be543b1f3567f56d542491c8b61cf02c72c34ffa79b1a"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\lib\\widgets\\vero_home_widget.dart",
-        "staged_as":  "lib/widgets/vero_home_widget.dart",
-        "bytes":  8114,
-        "sha256":  "bc35bcb32de1cd8c5231d812296ed9dc2a6ee70819148d2eb11d6918beb8b166"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\pubspec.lock",
-        "staged_as":  "pubspec.lock",
-        "bytes":  13135,
-        "sha256":  "b439f7371f1211e6fbec65012522665d80cdbb63114fb75fd6681ac82f4a0251"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\pubspec.yaml",
-        "staged_as":  "pubspec.yaml",
-        "bytes":  899,
-        "sha256":  "0d2c06eb25c0073bee0d3e045697dab44c40e3d9cb09ac1b08f38440572fb3c0"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\README.md",
-        "staged_as":  "README.md",
-        "bytes":  6606,
-        "sha256":  "3452cc46cc80a152603b737c433c0bdb33260ff259f844dafa94e4ee090a76f2"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\scripts\\latest_release_note.txt",
-        "staged_as":  "scripts/latest_release_note.txt",
-        "bytes":  82,
-        "sha256":  "aa526c02dd0276e2e5b73b6e1ab88d9e3bb1d14f2f3dfc25a7228f74e098993f"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\scripts\\license_tool.py",
-        "staged_as":  "scripts/license_tool.py",
-        "bytes":  5414,
-        "sha256":  "023d0f00494b571dd120a58bb78b9d4ce220dd5810f385d4617fbf65817a80c4"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\scripts\\prepare_threat_update.py",
-        "staged_as":  "scripts/prepare_threat_update.py",
-        "bytes":  2758,
-        "sha256":  "47b775cc1917d6462bb8b90207290f890f331b59baf0d1afb33729a9e38433f2"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\scripts\\spam_db_builder.py",
-        "staged_as":  "scripts/spam_db_builder.py",
-        "bytes":  14498,
-        "sha256":  "22accb1ae2b63e166dc6122e5bf30e18a74530e56e72e5f3845de9a232fbbe4f"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\scripts\\turkey_spam_collector.py",
-        "staged_as":  "scripts/turkey_spam_collector.py",
-        "bytes":  8805,
-        "sha256":  "788463c7905912b3905fdc9a54dbf6c080fe0eae22752e6e2ea1423571e88d1f"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\scripts\\weekly_update_pipeline.py",
-        "staged_as":  "scripts/weekly_update_pipeline.py",
-        "bytes":  4030,
-        "sha256":  "90a9e3e2805d77612cc52abbccfa4be3615fc8830da114a3eef912ff9ba0f11f"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\test\\app_state_test.dart",
-        "staged_as":  "test/app_state_test.dart",
-        "bytes":  11415,
-        "sha256":  "384fe025753cca921d8c2304786e878665a03dc719ecffaa043356c7c6625eef"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\test\\classifier_test.dart",
-        "staged_as":  "test/classifier_test.dart",
-        "bytes":  21893,
-        "sha256":  "4e8b03b4d6aeadb58876ce97a158fd391b6f22bce5e5d07420db273e7ee21441"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\test\\localization_test.dart",
-        "staged_as":  "test/localization_test.dart",
-        "bytes":  3558,
-        "sha256":  "57648f9cabd9e7ea19298b64b42e43f3b0496ce028b66937f67f4aafc7f6757d"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\test\\widget_test.dart",
-        "staged_as":  "test/widget_test.dart",
-        "bytes":  98817,
-        "sha256":  "df560ebbfc6cf02c85ecc5bdb2a7a298a0167d7cdeb2448d6db5d29e5927586b"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\tool\\apply_cyberpunk_icon_vA.ps1",
-        "staged_as":  "tool/apply_cyberpunk_icon_vA.ps1",
-        "bytes":  20493,
-        "sha256":  "d307cb47765ac50353a9e9771afc4427f99de7b081afe3bc9e0b584adb1abec0"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\tool\\VeroLauncher.cs",
-        "staged_as":  "tool/VeroLauncher.cs",
-        "bytes":  1917,
-        "sha256":  "393cce9d00a0fce20ff4ad25b48b290d72ed4ef066c45b2daa28aab6d89f5daf"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\web\\landing_page\\lib\\main.dart",
-        "staged_as":  "web/landing_page/lib/main.dart",
-        "bytes":  17038,
-        "sha256":  "e480f80e27b4d7783b65ff266ebd6c1d058c65dd279ca096d14da2f26c00be1c"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\web\\landing_page\\pubspec.lock",
-        "staged_as":  "web/landing_page/pubspec.lock",
-        "bytes":  5844,
-        "sha256":  "c4c1f0bdeec070ada4602cb3428eac561453ddf9b752dc32503cddfdd1ff6013"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\web\\landing_page\\pubspec.yaml",
-        "staged_as":  "web/landing_page/pubspec.yaml",
-        "bytes":  314,
-        "sha256":  "16b9a8493c93b55b6944c6cdbddf909727377df52d19ff1d12bb2c0c1343c98c"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\web\\landing_page\\web\\index.html",
-        "staged_as":  "web/landing_page/web/index.html",
-        "bytes":  713,
-        "sha256":  "b809d251b5d88a3bf57dd23b22c70943b4e591282c810adf0e048173fceea2ca"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\windows\\.gitignore",
-        "staged_as":  "windows/.gitignore",
-        "bytes":  308,
-        "sha256":  "955e3110cb16494ee76e1cd5df47e2c212309eb94a49a123fe87f718de413cb8"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\windows\\CMakeLists.txt",
-        "staged_as":  "windows/CMakeLists.txt",
-        "bytes":  4276,
-        "sha256":  "86d9b1d622118c54f6a5f6cd496d2b87a1b2916d36bae44d5621de8b355ced5a"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\windows\\flutter\\CMakeLists.txt",
-        "staged_as":  "windows/flutter/CMakeLists.txt",
-        "bytes":  3851,
-        "sha256":  "bd05e3268b2f246bcbafdb778165fe67a7bafdba04eb73599502563a67b8ae7e"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\windows\\runner\\CMakeLists.txt",
-        "staged_as":  "windows/runner/CMakeLists.txt",
-        "bytes":  1836,
-        "sha256":  "d765fdd05f63ad099e585a2cced0cbff13ec3229b7de68c8681b2107db850089"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\windows\\runner\\flutter_window.cpp",
-        "staged_as":  "windows/runner/flutter_window.cpp",
-        "bytes":  2193,
-        "sha256":  "d615eedc06ae37321e59c2c00c7687d1887dcd97904eb7225fafd8dcb5b83da6"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\windows\\runner\\flutter_window.h",
-        "staged_as":  "windows/runner/flutter_window.h",
-        "bytes":  961,
-        "sha256":  "0252b804f5da380c7709cbe1daff2b8d18daf6c49d7e6dd43e5af3c99c19f56c"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\windows\\runner\\main.cpp",
-        "staged_as":  "windows/runner/main.cpp",
-        "bytes":  1313,
-        "sha256":  "69bc38651e716de744206fa871df726b3a29928eae829d47f92205bfed6dfafb"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\windows\\runner\\resource.h",
-        "staged_as":  "windows/runner/resource.h",
-        "bytes":  448,
-        "sha256":  "d0e8bf7835468b4b6b1f8f0747f2e8f25c19841f2df2ac60aaa584ddae3aa7c6"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\windows\\runner\\resources\\app_icon.ico",
-        "staged_as":  "windows/runner/resources/app_icon.ico",
-        "bytes":  370070,
-        "sha256":  "885531cdbbe2db368a51d7a3deee3cfc2d9d066195549c4f11361bc821e930fc"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\windows\\runner\\runner.exe.manifest",
-        "staged_as":  "windows/runner/runner.exe.manifest",
-        "bytes":  616,
-        "sha256":  "639a56233fcd8cbcb8bbefcd93e4680ec2664f32d9acfb3d2ec1d8726a96e090"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\windows\\runner\\Runner.rc",
-        "staged_as":  "windows/runner/Runner.rc",
-        "bytes":  3197,
-        "sha256":  "2ac4f995e63f40929b5fc5aa7b48cc4d194764e52d422fcaa7003343b8735b22"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\windows\\runner\\utils.cpp",
-        "staged_as":  "windows/runner/utils.cpp",
-        "bytes":  2237,
-        "sha256":  "a128b67b9f3c2579e2ecef5b0dde2c33f222a097cdfe5da2a3067c73d1485b39"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\windows\\runner\\utils.h",
-        "staged_as":  "windows/runner/utils.h",
-        "bytes":  691,
-        "sha256":  "832e246b6758253f89016fb0374b30791242e97ad950d27fc678b3d9feacfdc4"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\windows\\runner\\win32_window.cpp",
-        "staged_as":  "windows/runner/win32_window.cpp",
-        "bytes":  8822,
-        "sha256":  "4e4f4dcf8e86ea6e097562cb3476039e693449bd8045367538afee579c017511"
-    },
-    {
-        "source":  "C:\\Users\\ASUS\\Desktop\\SPAM ENGELLEME\\trustlens_mobile\\windows\\runner\\win32_window.h",
-        "staged_as":  "windows/runner/win32_window.h",
-        "bytes":  3624,
-        "sha256":  "d154cf89ba85f820631a9b5bedacbe64fc5815e428fe6bc5da579ce649f69841"
-    }
+  {
+    "staged_as": ".env.example",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / .env.example)",
+    "bytes": 670,
+    "sha256": "6bdc65f043d70d41c7f3977714f68b8f2b5abea6370897b11318d04d3d685300",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": ".flutter-plugins-dependencies",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / .flutter-plugins-dependencies)",
+    "bytes": 4267,
+    "sha256": "45793b890fae5e176655270c4765c34b589c40d19518b250778b43b84d434ae6",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": ".github/workflows/ci.yml",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / .github/workflows/ci.yml)",
+    "bytes": 2983,
+    "sha256": "7eec2d3655e8651e57d3034bbe45a81b73520b485e7b369a64ff703faf20d7e4",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": ".github/workflows/weekly-threat-update.yml",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / .github/workflows/weekly-threat-update.yml)",
+    "bytes": 938,
+    "sha256": "e70c9e74523c4b7ae0bce5e068db92c2d38a66a6cc92b5794a46e3c3f8880be1",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": ".gitignore",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / .gitignore)",
+    "bytes": 2134,
+    "sha256": "d00a0d3a744a420543597a618484f6a06ab073d7f582cc1ecb35e87540d581a9",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": ".metadata",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / .metadata)",
+    "bytes": 1118,
+    "sha256": "a19073f666689628141378a3ecde8b8867686a3ce3ae48aaf430a23ffa4ad2a4",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "IOS_DEPLOYMENT_GUIDE.md",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / IOS_DEPLOYMENT_GUIDE.md)",
+    "bytes": 3202,
+    "sha256": "5e0baabff1222287775eaa182048e31fd6dd9ce20285448c277a88a62b012b56",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "README.md",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / README.md)",
+    "bytes": 6606,
+    "sha256": "3452cc46cc80a152603b737c433c0bdb33260ff259f844dafa94e4ee090a76f2",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "analysis_options.yaml",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / analysis_options.yaml)",
+    "bytes": 447,
+    "sha256": "ecab14cc729e078e30e9b66630d24ed26761089bd114f7ffccc34d6683f3ba39",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "android/.gitignore",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / android/.gitignore)",
+    "bytes": 212,
+    "sha256": "4b5a480e56e119de4d695821df2db34bf9a2da19ce0aef34aed6fabc91718606",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "android/.gradle/9.3.1/checksums/checksums.lock",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / android/.gradle/9.3.1/checksums/checksums.lock)",
+    "bytes": 17,
+    "sha256": "e7eecc40f0a44e88b9a05166d3b9dd50e25bdfe384545bb4d5dc12b5fbae6e92",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "android/.gradle/9.3.1/checksums/md5-checksums.bin",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / android/.gradle/9.3.1/checksums/md5-checksums.bin)",
+    "bytes": 18697,
+    "sha256": "071c63f50deedddcd2314f8713de0b3e6274a359a185b2c9fb287b987d16b9a2",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "android/.gradle/9.3.1/checksums/sha1-checksums.bin",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / android/.gradle/9.3.1/checksums/sha1-checksums.bin)",
+    "bytes": 19145,
+    "sha256": "bff6e287aefc9d870e51c48d2860320b714b6d384e9ad1b0fd2d6e8e0f11b425",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "android/.gradle/9.3.1/executionHistory/executionHistory.bin",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / android/.gradle/9.3.1/executionHistory/executionHistory.bin)",
+    "bytes": 1161754,
+    "sha256": "b05ec3de965090a1e81e3b2d1d19530195cf41194c342f9cb5d61c6523b411c2",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "android/.gradle/9.3.1/executionHistory/executionHistory.lock",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / android/.gradle/9.3.1/executionHistory/executionHistory.lock)",
+    "bytes": 17,
+    "sha256": "de3b4e0356a290212ddbd61f8f78ba00120e92fee76bdec04cba6b79f76b98f5",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "android/.gradle/9.3.1/fileChanges/last-build.bin",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / android/.gradle/9.3.1/fileChanges/last-build.bin)",
+    "bytes": 1,
+    "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "android/.gradle/9.3.1/fileHashes/fileHashes.bin",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / android/.gradle/9.3.1/fileHashes/fileHashes.bin)",
+    "bytes": 245469,
+    "sha256": "8110ee9b13db73b0386f24e4cc7f90d27cc0ea2b60de2fc6ea013cb0bc7ff49c",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "android/.gradle/9.3.1/fileHashes/fileHashes.lock",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / android/.gradle/9.3.1/fileHashes/fileHashes.lock)",
+    "bytes": 17,
+    "sha256": "eeefa4616400e6dee57033b4938d1811223e540a926e8144495d4f9591c678b3",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "android/.gradle/9.3.1/fileHashes/resourceHashesCache.bin",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / android/.gradle/9.3.1/fileHashes/resourceHashesCache.bin)",
+    "bytes": 22543,
+    "sha256": "0690d3759c31c75408cec189d5c031c7ca42f6b422db73d4d065b57b8f4b1eaa",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "android/.gradle/9.3.1/gc.properties",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / android/.gradle/9.3.1/gc.properties)",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "android/.gradle/buildOutputCleanup/buildOutputCleanup.lock",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / android/.gradle/buildOutputCleanup/buildOutputCleanup.lock)",
+    "bytes": 17,
+    "sha256": "e4e48d9f3101dc1be11b462a0a7cea873a08cd883c48aed670cb4a4e96e759ac",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "android/.gradle/buildOutputCleanup/cache.properties",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / android/.gradle/buildOutputCleanup/cache.properties)",
+    "bytes": 53,
+    "sha256": "6167d0decd7a572de7f3ab677e86af559066cb0eb4cc3270d994708ca0fe8654",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "android/.gradle/buildOutputCleanup/outputFiles.bin",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / android/.gradle/buildOutputCleanup/outputFiles.bin)",
+    "bytes": 26615,
+    "sha256": "9c7542d7c6fcacc13a3165d228ff0487dd81606a28f3b97b7c3a739b0b04b3bf",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "android/.gradle/file-system.probe",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / android/.gradle/file-system.probe)",
+    "bytes": 8,
+    "sha256": "8e40c5f0fa60b4d435e8e4bb069c571a24bb2c598782a275fb4a3d4432a66802",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "android/.gradle/noVersion/buildLogic.lock",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / android/.gradle/noVersion/buildLogic.lock)",
+    "bytes": 17,
+    "sha256": "4aabd9394600191362bb31bff9f897131fd4ba74e2ff1465e336a666a419dad9",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "android/.gradle/vcs-1/gc.properties",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / android/.gradle/vcs-1/gc.properties)",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "android/app/build.gradle.kts",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / android/app/build.gradle.kts)",
+    "bytes": 2147,
+    "sha256": "6a596b5179aee005c1c39fd646a676d5b129777b1114db3d4ed3b00690e4394d",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "android/app/proguard-rules.pro",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / android/app/proguard-rules.pro)",
+    "bytes": 425,
+    "sha256": "415fab928bc1288525374c689e7f5c15d388e4296a3f7e85a40407bd91d733f5",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "android/app/src/debug/AndroidManifest.xml",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / android/app/src/debug/AndroidManifest.xml)",
+    "bytes": 385,
+    "sha256": "b01a4541a8144c15bc617bab7eb267c99fa1476368fbbda5a12cdbf4e316a34c",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "android/app/src/main/AndroidManifest.xml",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / android/app/src/main/AndroidManifest.xml)",
+    "bytes": 6779,
+    "sha256": "de0d96398773dc87e0f97768757da73b5b8e360f224e0873e42160972da3b4c5",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java)",
+    "bytes": 1286,
+    "sha256": "c1e61c9a35b185c1f1309eb1cb8d365c60fd0440044c12c18037ff9182eabcb5",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "android/app/src/main/kotlin/com/veroapp/smsguard/HeadlessSmsSendService.kt",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / android/app/src/main/kotlin/com/veroapp/smsguard/HeadlessSmsSendService.kt)",
+    "bytes": 386,
+    "sha256": "866635ac66bae8791fc0f2ad001c4d789c1b27b2a7a645cdd6eee9cf17fbcabd",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "android/app/src/main/kotlin/com/veroapp/smsguard/MainActivity.kt",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / android/app/src/main/kotlin/com/veroapp/smsguard/MainActivity.kt)",
+    "bytes": 16530,
+    "sha256": "1fcded68c63b4316242bcc5c787e22a4f425eb4e49a90871194b9ab12fd0a311",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "android/app/src/main/kotlin/com/veroapp/smsguard/TrustFilterEngine.kt",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / android/app/src/main/kotlin/com/veroapp/smsguard/TrustFilterEngine.kt)",
+    "bytes": 26098,
+    "sha256": "5f3710b9644603ed984f780ce737c263d9ad6d55c7e77ead6054f71cd854af2f",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "android/app/src/main/kotlin/com/veroapp/smsguard/TrustNotificationListener.kt",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / android/app/src/main/kotlin/com/veroapp/smsguard/TrustNotificationListener.kt)",
+    "bytes": 5827,
+    "sha256": "85e17ac71805c63330c36014549d80265c8fcc15afd4ccbd9d0d968bbe50700f",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "android/app/src/main/kotlin/com/veroapp/smsguard/TrustSmsDeliverReceiver.kt",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / android/app/src/main/kotlin/com/veroapp/smsguard/TrustSmsDeliverReceiver.kt)",
+    "bytes": 960,
+    "sha256": "cd6c37597c71547c1231d7df4cf1ceef6282feb1e0eb6b0c56d6fc0907862ae7",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "android/app/src/main/kotlin/com/veroapp/smsguard/TrustSmsReceiver.kt",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / android/app/src/main/kotlin/com/veroapp/smsguard/TrustSmsReceiver.kt)",
+    "bytes": 3383,
+    "sha256": "9f00c90b19528dfe497dcca8c34db9ea71d40b5e85b643fea6470789e8020148",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "android/app/src/main/kotlin/com/veroapp/smsguard/TrustWapPushDeliverReceiver.kt",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / android/app/src/main/kotlin/com/veroapp/smsguard/TrustWapPushDeliverReceiver.kt)",
+    "bytes": 514,
+    "sha256": "19c6dbd634903c1786a32110eb54fe5604d055bae9a5b142f998b66bb3b81fdd",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "android/app/src/main/kotlin/com/veroapp/smsguard/VeroCallScreeningService.kt",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / android/app/src/main/kotlin/com/veroapp/smsguard/VeroCallScreeningService.kt)",
+    "bytes": 3548,
+    "sha256": "b478e5e121ee55c858da63d38e455c54af2ea9d50d82322a79d2dc55f66c882b",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "android/app/src/main/kotlin/com/veroapp/smsguard/VeroHomeWidgetProvider.kt",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / android/app/src/main/kotlin/com/veroapp/smsguard/VeroHomeWidgetProvider.kt)",
+    "bytes": 2023,
+    "sha256": "6a5aa413fcac13315fa1b2689f819a2d6241cdd4fddae62e3c272e10a2da671b",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "android/app/src/main/kotlin/com/veroapp/smsguard/VeroLinkAccessibilityService.kt",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / android/app/src/main/kotlin/com/veroapp/smsguard/VeroLinkAccessibilityService.kt)",
+    "bytes": 4076,
+    "sha256": "cf97860e61223d3ded136566d88b5efa7a15c8610532ee7ea014479576be9d40",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "android/app/src/main/res/drawable-v21/launch_background.xml",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / android/app/src/main/res/drawable-v21/launch_background.xml)",
+    "bytes": 323,
+    "sha256": "d72620b26131f9d6ecc460c17f83917ae8bb065f6e51a0d171387c1154b9302d",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "android/app/src/main/res/drawable/launch_background.xml",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / android/app/src/main/res/drawable/launch_background.xml)",
+    "bytes": 323,
+    "sha256": "d72620b26131f9d6ecc460c17f83917ae8bb065f6e51a0d171387c1154b9302d",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "android/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / android/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml)",
+    "bytes": 270,
+    "sha256": "4d709b957b30828efc16ce39543c38a95983c1f4faff68c54407905d7de1a432",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "android/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / android/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml)",
+    "bytes": 270,
+    "sha256": "4d709b957b30828efc16ce39543c38a95983c1f4faff68c54407905d7de1a432",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "android/app/src/main/res/mipmap-hdpi/ic_launcher.png",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / android/app/src/main/res/mipmap-hdpi/ic_launcher.png)",
+    "bytes": 8865,
+    "sha256": "60cac93c4e485792c1b36fd411139cbedf87764dfe3b57c3116bf09dd4ce5a55",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "android/app/src/main/res/mipmap-hdpi/ic_launcher_foreground.png",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / android/app/src/main/res/mipmap-hdpi/ic_launcher_foreground.png)",
+    "bytes": 7607,
+    "sha256": "e5b6fdfa411fb289f60dd0056be645a32bcb22be6bcad1e8251340934b59562c",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "android/app/src/main/res/mipmap-hdpi/ic_launcher_round.png",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / android/app/src/main/res/mipmap-hdpi/ic_launcher_round.png)",
+    "bytes": 9359,
+    "sha256": "8a0140dc320f2c0a990297ad554f26eb214cf479c6eb72e6b9b20e3b7edfd57a",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "android/app/src/main/res/mipmap-mdpi/ic_launcher.png",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / android/app/src/main/res/mipmap-mdpi/ic_launcher.png)",
+    "bytes": 4856,
+    "sha256": "a5f7079cd36e127479a27f3db38dab4f08e9d56b89500e133e0599abde54f17f",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "android/app/src/main/res/mipmap-mdpi/ic_launcher_foreground.png",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / android/app/src/main/res/mipmap-mdpi/ic_launcher_foreground.png)",
+    "bytes": 4695,
+    "sha256": "c3bf4f5fe367e0850781ba6367a8dd0c2104e8e4e674422f5f7e0d9f21c9f193",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "android/app/src/main/res/mipmap-mdpi/ic_launcher_round.png",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / android/app/src/main/res/mipmap-mdpi/ic_launcher_round.png)",
+    "bytes": 4979,
+    "sha256": "69382b563f013190a299aedbe7299d62d4dd291a736c4a1dcfb61514a1c67393",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "android/app/src/main/res/mipmap-xhdpi/ic_launcher.png",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / android/app/src/main/res/mipmap-xhdpi/ic_launcher.png)",
+    "bytes": 13883,
+    "sha256": "6ad0992a7880747143954dc7420f200e2a1e6ec313e1bb8474c2dcb2c59764f5",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "android/app/src/main/res/mipmap-xhdpi/ic_launcher_foreground.png",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / android/app/src/main/res/mipmap-xhdpi/ic_launcher_foreground.png)",
+    "bytes": 10592,
+    "sha256": "ce4165e5ea5d5ecc5dee188612b9c5d41b118d471c5f5324f680d195e7b321fc",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "android/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / android/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png)",
+    "bytes": 14498,
+    "sha256": "f5e60abc4ba4a086deffd67bbc21c2c1af5e4fb5a7bc99021b25f65c005e5122",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png)",
+    "bytes": 26599,
+    "sha256": "5e3ca314e188293f0afae5bd6559e594a89ebcd5c5301108297c476a46b3bddd",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "android/app/src/main/res/mipmap-xxhdpi/ic_launcher_foreground.png",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / android/app/src/main/res/mipmap-xxhdpi/ic_launcher_foreground.png)",
+    "bytes": 17486,
+    "sha256": "2edb6ace6a2b2c7595cb52b7e5c0e3a7f19e4664afd6f52fb248341bb97dcc49",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "android/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / android/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png)",
+    "bytes": 27334,
+    "sha256": "80e8a0b09e66cc359e46ca5f440856d16513435212f2ad16752b3d5790007a1f",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png)",
+    "bytes": 40103,
+    "sha256": "773f1053e03daae94ec639354aa16a2039847ddbe0ee1c9ca11b3a4909a4ae45",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_foreground.png",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_foreground.png)",
+    "bytes": 24069,
+    "sha256": "10458073ac8577f900e4001c3d1e82e350460c4d050281bb5e1a29be9bfd393e",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png)",
+    "bytes": 41452,
+    "sha256": "903f78e7678142ccb3ae7bc9f16ee859f193a9e1a131348518092ffef0b9e082",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "android/app/src/main/res/values-night/styles.xml",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / android/app/src/main/res/values-night/styles.xml)",
+    "bytes": 1013,
+    "sha256": "ea763597dc1a84c8034251caee98d7753e0fbf57340ffc94677427de4b537516",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "android/app/src/main/res/values/ic_launcher_background.xml",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / android/app/src/main/res/values/ic_launcher_background.xml)",
+    "bytes": 125,
+    "sha256": "1487ce5363072690f06d2e5da2ed825076d95ea67055aa254c81a4859e57c452",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "android/app/src/main/res/values/strings.xml",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / android/app/src/main/res/values/strings.xml)",
+    "bytes": 277,
+    "sha256": "da3536a807aab3129c27c041fe52a27e227f7e6705e039d8746398a01dea348d",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "android/app/src/main/res/values/styles.xml",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / android/app/src/main/res/values/styles.xml)",
+    "bytes": 405,
+    "sha256": "672628198be07b7f969268fd572d8aec82346415f0254bfdee40de3d345793fb",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "android/app/src/main/res/xml/accessibility_service_config.xml",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / android/app/src/main/res/xml/accessibility_service_config.xml)",
+    "bytes": 602,
+    "sha256": "7598ff080cae493678533bf2365cf9206d201b1818916ec3a8516919fc98c1bd",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "android/app/src/profile/AndroidManifest.xml",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / android/app/src/profile/AndroidManifest.xml)",
+    "bytes": 385,
+    "sha256": "b01a4541a8144c15bc617bab7eb267c99fa1476368fbbda5a12cdbf4e316a34c",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "android/build.gradle.kts",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / android/build.gradle.kts)",
+    "bytes": 561,
+    "sha256": "218f400e3fff31c9c986a2535dfb974560e1b4d33cc27b7c1fee96a2b7e44454",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "android/gradle.properties",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / android/gradle.properties)",
+    "bytes": 306,
+    "sha256": "7714698de712a7872e371f0dbae626c255fc83ac1c15e52e7cd9fcaa241b5092",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "android/gradle/wrapper/gradle-wrapper.jar",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / android/gradle/wrapper/gradle-wrapper.jar)",
+    "bytes": 53636,
+    "sha256": "16caeaf66d57a0d1d2087fef6a97efa62de8da69afa5b908f40db35afc4342da",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "android/gradle/wrapper/gradle-wrapper.properties",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / android/gradle/wrapper/gradle-wrapper.properties)",
+    "bytes": 207,
+    "sha256": "594a00250ef7a36609a01f3263bf5ed63963afaf9ca9f82f2cd1de0f6f056383",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "android/gradlew",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / android/gradlew)",
+    "bytes": 4971,
+    "sha256": "ec56c02543666d92d9ac5ae7fcc48f88ce4de0deb8b7f9b39928ca46f68c1b2b",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "android/gradlew.bat",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / android/gradlew.bat)",
+    "bytes": 2404,
+    "sha256": "c13c6e91b9a517783976de213d46398c661ea9e17651376d7301e839eaedcc62",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "android/key.properties.example",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / android/key.properties.example)",
+    "bytes": 336,
+    "sha256": "81b698a9431cb220e78c44750c6969a1375fbbb5d3d7efc60b3cafec7a626a52",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "android/local.properties",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / android/local.properties)",
+    "bytes": 154,
+    "sha256": "98d004100c053aaec13e7a9ae6f6153628797deaa6b2f76cfae80d710c13c072",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "android/settings.gradle.kts",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / android/settings.gradle.kts)",
+    "bytes": 796,
+    "sha256": "092ba880c8d4a07591aafc082f45deedc9afcf60c113a4bb3d13cbe1a1fce9de",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "assets/audio/bot_responses/ar_01_marhaba_intazir.mp3",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / assets/audio/bot_responses/ar_01_marhaba_intazir.mp3)",
+    "bytes": 50136,
+    "sha256": "bdef56da0cbf1b3f0fb85a6a1069617933f25f4cb5384297d605c55023153bee",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "assets/audio/bot_responses/en_01_hello_who_is_calling.mp3",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / assets/audio/bot_responses/en_01_hello_who_is_calling.mp3)",
+    "bytes": 45949,
+    "sha256": "51d0dc15f33f3710921082579a5c86d40af507469b5a0cf38ac9aa71689bac88",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "assets/audio/bot_responses/tr_01_alo_buyurun.mp3",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / assets/audio/bot_responses/tr_01_alo_buyurun.mp3)",
+    "bytes": 33423,
+    "sha256": "f97919203f54ad39fa7aab99684e4e7defe5dec45705cfd2653ac9e1cb39cdb5",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "assets/audio/bot_responses/tr_02_kim_ariyorsunuz.mp3",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / assets/audio/bot_responses/tr_02_kim_ariyorsunuz.mp3)",
+    "bytes": 41767,
+    "sha256": "1b06d5c34cf05945356c4c208a83b969931db47c84ef4f07016536e782a97fd8",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "assets/audio/bot_responses/tr_03_bir_saniye_bagliyorum.mp3",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / assets/audio/bot_responses/tr_03_bir_saniye_bagliyorum.mp3)",
+    "bytes": 54304,
+    "sha256": "6dce86698e87614640a2960815217137845e53013757336ad8072e7d6b13ebb6",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "assets/audio/bot_responses/tr_04_hat_mesgul_bekleyin.mp3",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / assets/audio/bot_responses/tr_04_hat_mesgul_bekleyin.mp3)",
+    "bytes": 66818,
+    "sha256": "15ffd168c9b92491e245ba0b30d345b324805cbd36ccf6ee3e964fa6311fa3e5",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "assets/branding/app_icon_cyberpunk_vA.png",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / assets/branding/app_icon_cyberpunk_vA.png)",
+    "bytes": 256944,
+    "sha256": "116d6d42257cfea9d3cce21fca1dc7dab61d0b9567ca83d79deacf31f3ad4cda",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "assets/branding/vero_icon.ico",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / assets/branding/vero_icon.ico)",
+    "bytes": 370070,
+    "sha256": "885531cdbbe2db368a51d7a3deee3cfc2d9d066195549c4f11361bc821e930fc",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "assets/branding/vero_icon.png",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / assets/branding/vero_icon.png)",
+    "bytes": 256944,
+    "sha256": "116d6d42257cfea9d3cce21fca1dc7dab61d0b9567ca83d79deacf31f3ad4cda",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "assets/breach_db/bloom_filter.bin",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / assets/breach_db/bloom_filter.bin)",
+    "bytes": 6250000,
+    "sha256": "178ade45878c21ddf17095e668be9202dafde3dc636f3408726e35c89f88bf7f",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "assets/fonts/BookAntiqua-Bold.ttf",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / assets/fonts/BookAntiqua-Bold.ttf)",
+    "bytes": 151000,
+    "sha256": "134a9f8ecf618660305d7d34b6905375c1d5d7838ea15cdb2789ba94317f4117",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "assets/fonts/BookAntiqua-Regular.ttf",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / assets/fonts/BookAntiqua-Regular.ttf)",
+    "bytes": 155528,
+    "sha256": "c019f155a0004760f32079c22c29ef0ddd223d0c2c79e2487122e66d38a53b32",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "assets/locales/ar.json",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / assets/locales/ar.json)",
+    "bytes": 9291,
+    "sha256": "038829031137a39cb2b80ca0bf13e2f9194b4bbfad16580cb633a16b80750474",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "assets/locales/de.json",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / assets/locales/de.json)",
+    "bytes": 7294,
+    "sha256": "d414d777e205d2742b93be2ed8d4733b773bee5d62abf04b29499b191af6e6b4",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "assets/locales/en.json",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / assets/locales/en.json)",
+    "bytes": 6989,
+    "sha256": "fcaf14c79cf13e3b6e79ec13687614a874ac01ca05318787e148eb49e1739294",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "assets/locales/es.json",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / assets/locales/es.json)",
+    "bytes": 7299,
+    "sha256": "e69ee18a43b58716cd7ffb029a61102b0bf120e3f2168fbd788fb27f14a07e50",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "assets/locales/fr.json",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / assets/locales/fr.json)",
+    "bytes": 7335,
+    "sha256": "3226b5b3a498d1c215fb28f67f22508cc6b55daf01f6aca15ff83c2b2cde6141",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "assets/locales/hi.json",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / assets/locales/hi.json)",
+    "bytes": 8667,
+    "sha256": "af735ef446263f7b622b64c05c4f4613f467fb5753301985a403e16977840ca2",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "assets/locales/it.json",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / assets/locales/it.json)",
+    "bytes": 7139,
+    "sha256": "68871160ac0af17d8ee6b0da40f839e4253247e006eb94e6f8aa69de897f151c",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "assets/locales/pt.json",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / assets/locales/pt.json)",
+    "bytes": 7211,
+    "sha256": "2d9f4c6409ac2711011f057ae71fd777ef610006e7cc36c52c4493a4de000c3e",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "assets/locales/ru.json",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / assets/locales/ru.json)",
+    "bytes": 9872,
+    "sha256": "69d19ae5b520ef411a9b44623641458727b69fcbe9265af30643904953f8bc7d",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "assets/locales/tr.json",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / assets/locales/tr.json)",
+    "bytes": 7604,
+    "sha256": "7c6d70106c22b1b4d06004f1e8ca6999aeb782934532d923587f656571a7a07a",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "assets/locales/zh.json",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / assets/locales/zh.json)",
+    "bytes": 6916,
+    "sha256": "0f8d1d4e036076a83b5d8ddc64c5e12e3b0a57b9dc74ecdd82a395fe69d8588d",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "assets/model/seed_corpus.json",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / assets/model/seed_corpus.json)",
+    "bytes": 92149,
+    "sha256": "86f36603f9d26ab2bb66759596b89cc374f99fc616db49c3811487e7d9c884af",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "assets/model/vero_semantic_intent_v1.tflite",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / assets/model/vero_semantic_intent_v1.tflite)",
+    "bytes": 12424,
+    "sha256": "4c26e5bc4757ba0e83b0f040d49d461c83f40f6d6439138303c2e7ddf9aa88e7",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "assets/spam_db/phishing_domains.bin",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / assets/spam_db/phishing_domains.bin)",
+    "bytes": 950165,
+    "sha256": "bd2d4cf60ca4339faba2de3cb2ce8b1d0605d83cc30b04f1d0e1a8078b9c4f24",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "assets/spam_db/spam_numbers.bin",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / assets/spam_db/spam_numbers.bin)",
+    "bytes": 504040,
+    "sha256": "313ad70f18fd5d84064e9a7655e33a4b1c0d2f9c5aada9c5e24215e161f76da0",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "assets/spam_db/threat_db_v2.bin",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / assets/spam_db/threat_db_v2.bin)",
+    "bytes": 264,
+    "sha256": "339ac2bdad408b4879e36853a9e073beff67062d4d0fc3d6fd049f419f28fe97",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "assets/spam_db/turkey_spam.bin",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / assets/spam_db/turkey_spam.bin)",
+    "bytes": 200016,
+    "sha256": "ea1a775a28b42975114b8e005d803fcc4d269f0476212027591fabf927842e82",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "docs/app_store_listing_ios.txt",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / docs/app_store_listing_ios.txt)",
+    "bytes": 2891,
+    "sha256": "4cc4f3293a44c1f225d07cf4611935d1926bd4bdcbc3ef81a118d70bb740b80f",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "docs/architecture/IOS_DEPLOYMENT_GUIDE.md",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / docs/architecture/IOS_DEPLOYMENT_GUIDE.md)",
+    "bytes": 3202,
+    "sha256": "5e0baabff1222287775eaa182048e31fd6dd9ce20285448c277a88a62b012b56",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "docs/architecture/SYSTEM_ARCHITECTURE.md",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / docs/architecture/SYSTEM_ARCHITECTURE.md)",
+    "bytes": 3922,
+    "sha256": "2e63ed786dd15adc3d6c9606954a3f215d52fed280a03ac1b1d76cf687da9f19",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "docs/architecture/real_device_test.md",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / docs/architecture/real_device_test.md)",
+    "bytes": 6770,
+    "sha256": "5f0f416b8d979853bf06bd1d9ff33af687ae7fbf83ffaf74707a8649de63c1a9",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "docs/archive/FORENSIC_AUDIT_LOG.md",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / docs/archive/FORENSIC_AUDIT_LOG.md)",
+    "bytes": 1192,
+    "sha256": "ced78a73b2e884307075683938653dfc143c0eb5f518d5e0c529b417a0dabc50",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "docs/aso/MULTILINGUAL_ASO_CATALOG.md",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / docs/aso/MULTILINGUAL_ASO_CATALOG.md)",
+    "bytes": 2564,
+    "sha256": "c23fb966196ff827845ba01d446a0d4149e414f3f6d6d64421b75267378582ba",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "docs/aso/app_store_listing_ios.txt",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / docs/aso/app_store_listing_ios.txt)",
+    "bytes": 2891,
+    "sha256": "4cc4f3293a44c1f225d07cf4611935d1926bd4bdcbc3ef81a118d70bb740b80f",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "docs/aso/play_store_listing_android.txt",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / docs/aso/play_store_listing_android.txt)",
+    "bytes": 3130,
+    "sha256": "66512b6860b01077ae99ed6ffab74c16b52b407594f3ba5f9f008e0e280d239e",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "docs/aso/product_ids.txt",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / docs/aso/product_ids.txt)",
+    "bytes": 2432,
+    "sha256": "8d6aa8117ca74f325c92fc66ddb4e5e5b0eeba0d6aae078827fd7149444eb5c0",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "docs/aso/store_listing_en.txt",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / docs/aso/store_listing_en.txt)",
+    "bytes": 2842,
+    "sha256": "6418ce10d62420438f19a3c877c8449952222ee4e0f786ce42ee2e01f9db8c90",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "docs/aso/store_listing_tr.txt",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / docs/aso/store_listing_tr.txt)",
+    "bytes": 3258,
+    "sha256": "11fa5af3ae6a1a493d50314a7e085ef8cf1ce17b9623e6e779332de01f45d942",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "docs/legal/PRIVACY_POLICY.md",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / docs/legal/PRIVACY_POLICY.md)",
+    "bytes": 3790,
+    "sha256": "69d8e7dde99569e5b978db378528f19ebc2c2748e936aff8e3f92786d326c204",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "docs/legal/play_permissions.txt",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / docs/legal/play_permissions.txt)",
+    "bytes": 4049,
+    "sha256": "9fc8e3a1069fc396979274f2b80bf6ddcb5ffbd99c9ea456d66a119543d712d8",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "docs/marketing/eksisozluk_baslik.txt",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / docs/marketing/eksisozluk_baslik.txt)",
+    "bytes": 1975,
+    "sha256": "61b0dd67407865f77d8a3142317a50384d3fb6e3891c06ebd7fab2ce476572b6",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "docs/marketing/press_release_tr.txt",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / docs/marketing/press_release_tr.txt)",
+    "bytes": 3198,
+    "sha256": "373b0cea9c6dc419f7997d1bc7f57f677947e5ed3fda9dd3720ce359cad7a51f",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "docs/marketing/twitter_posts.txt",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / docs/marketing/twitter_posts.txt)",
+    "bytes": 3493,
+    "sha256": "a48f7ae5374f693499a7aa2e454fee006dd31d0a04951fb260d09b5777fb9338",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "docs/marketing/youtuber_mail.txt",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / docs/marketing/youtuber_mail.txt)",
+    "bytes": 2328,
+    "sha256": "733ff0b6ee44a8c5fe80c1b62dd07ba7b5c95f00f99aa967dc0e4de42d664786",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "docs/partnership/btk_basvuru.txt",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / docs/partnership/btk_basvuru.txt)",
+    "bytes": 2497,
+    "sha256": "29b411e8a12eeccf1ca32db276fa0390ac034d010fdcc5d54b1481c45794c35b",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "docs/partnership/turkcell_mail.txt",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / docs/partnership/turkcell_mail.txt)",
+    "bytes": 1969,
+    "sha256": "aa63438901357c3a2e0cfa9145729d1722632fd98c72ab7804592d87baed9451",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "docs/partnership/turktelekom_mail.txt",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / docs/partnership/turktelekom_mail.txt)",
+    "bytes": 1786,
+    "sha256": "f70758cec2796b9ed6db9eb552a32e789256ec7ea874d7cc0c265ac27b8590ae",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "docs/partnership/vodafone_mail.txt",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / docs/partnership/vodafone_mail.txt)",
+    "bytes": 1821,
+    "sha256": "4868a6990c9e2c253849b7b0faba64c17db8189e7d8e095e30110908f2c60d5c",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "docs/play_permissions.txt",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / docs/play_permissions.txt)",
+    "bytes": 4049,
+    "sha256": "9fc8e3a1069fc396979274f2b80bf6ddcb5ffbd99c9ea456d66a119543d712d8",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "docs/play_store_listing_android.txt",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / docs/play_store_listing_android.txt)",
+    "bytes": 3130,
+    "sha256": "66512b6860b01077ae99ed6ffab74c16b52b407594f3ba5f9f008e0e280d239e",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "docs/product_ids.txt",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / docs/product_ids.txt)",
+    "bytes": 2432,
+    "sha256": "8d6aa8117ca74f325c92fc66ddb4e5e5b0eeba0d6aae078827fd7149444eb5c0",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "docs/real_device_test.md",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / docs/real_device_test.md)",
+    "bytes": 6770,
+    "sha256": "5f0f416b8d979853bf06bd1d9ff33af687ae7fbf83ffaf74707a8649de63c1a9",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "docs/store_listing_en.txt",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / docs/store_listing_en.txt)",
+    "bytes": 2842,
+    "sha256": "6418ce10d62420438f19a3c877c8449952222ee4e0f786ce42ee2e01f9db8c90",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "docs/store_listing_tr.txt",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / docs/store_listing_tr.txt)",
+    "bytes": 3258,
+    "sha256": "11fa5af3ae6a1a493d50314a7e085ef8cf1ce17b9623e6e779332de01f45d942",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "ios/Flutter/Generated.xcconfig",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / ios/Flutter/Generated.xcconfig)",
+    "bytes": 610,
+    "sha256": "b356ec2a1189cf49d8a64f1e8abb63ed17027c910b96ad7e1c332337004a07ff",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "ios/Flutter/ephemeral/flutter_lldb_helper.py",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / ios/Flutter/ephemeral/flutter_lldb_helper.py)",
+    "bytes": 1276,
+    "sha256": "05cfe3977fdee593efad2049a4f62d374e55c69cedc8aabeee5566b37acb8384",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "ios/Flutter/ephemeral/flutter_lldbinit",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / ios/Flutter/ephemeral/flutter_lldbinit)",
+    "bytes": 108,
+    "sha256": "eaec5f5268e3a5024d9703046f4097701107d574d0de7a2d8d81f0bf4644a333",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "ios/Flutter/ephemeral/flutter_native_integration.env",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / ios/Flutter/ephemeral/flutter_native_integration.env)",
+    "bytes": 460,
+    "sha256": "e8a8893ae96a121830bd7f53b1d79ff8ad5371e74ca0844b76158a47ba791761",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "ios/Flutter/flutter_export_environment.sh",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / ios/Flutter/flutter_export_environment.sh)",
+    "bytes": 649,
+    "sha256": "70a00a4a198cf1475d3a47ccea178ba3142b9713d21944a64209a829d7e17a32",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "ios/MessageFilterExtension/Info.plist",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / ios/MessageFilterExtension/Info.plist)",
+    "bytes": 1016,
+    "sha256": "e1aa51c2cb3ee3a9c47cf6c1dd700f1e09d3971ffb08e46ccfce23f90a63dfdb",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "ios/MessageFilterExtension/MessageFilterExtension.swift",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / ios/MessageFilterExtension/MessageFilterExtension.swift)",
+    "bytes": 2095,
+    "sha256": "06344e54e94652083621b591dd6f8c4586498694b42ba76abe829b4f674d3ccf",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "ios/MessageFilterExtension/TrustFilterEngine.swift",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / ios/MessageFilterExtension/TrustFilterEngine.swift)",
+    "bytes": 26456,
+    "sha256": "313d98c6771718fd7eae2a9dd8d1a50caa3e8dab61abf6f4d4b2831207f07538",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "ios/MessageFilterExtension/VeroHomeWidget.swift",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / ios/MessageFilterExtension/VeroHomeWidget.swift)",
+    "bytes": 3192,
+    "sha256": "e6c82a38cc6d60a7eb55b7678af29722b8249b6c7ca6b9672f3e96a0855cc017",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "ios/Podfile",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / ios/Podfile)",
+    "bytes": 1493,
+    "sha256": "eb0e7b95bbaedf61323af9942d08eafc2ed17d3dd9cf068db563f8808ebb9153",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "ios/Runner/AppDelegate.swift",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / ios/Runner/AppDelegate.swift)",
+    "bytes": 2247,
+    "sha256": "9f3d11eef59db295efbf2b5817530581b06650854a9be5babfe52a1d64c13f46",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "ios/Runner/Assets.xcassets/AppIcon.appiconset/Contents.json",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / ios/Runner/Assets.xcassets/AppIcon.appiconset/Contents.json)",
+    "bytes": 1981,
+    "sha256": "c23e267d668386af2f9f5ba1841f875de82d2a7c26a8750d6534d9bd20cd9df8",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-1024x1024@1x.png",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-1024x1024@1x.png)",
+    "bytes": 256944,
+    "sha256": "116d6d42257cfea9d3cce21fca1dc7dab61d0b9567ca83d79deacf31f3ad4cda",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@1x.png",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@1x.png)",
+    "bytes": 1162,
+    "sha256": "4b68acd8cbab0382056eb153b76c73f95c3b3f1fd6e3294cf8691019b7d3da0a",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@2x.png",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@2x.png)",
+    "bytes": 3453,
+    "sha256": "5a98fadd8885f49cdf4c2dfba392b047004b3d14b7661529c6ff3d7b35a3f6fd",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@3x.png",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@3x.png)",
+    "bytes": 6810,
+    "sha256": "57e208ac327191f7a48b0f3fecbfda69b7477a594547ff425f88d5a9261d111e",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@1x.png",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@1x.png)",
+    "bytes": 2137,
+    "sha256": "ceb8731c295ee8add49e8df07bf433959460877d2703f3e0223b9da134c8de12",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@2x.png",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@2x.png)",
+    "bytes": 6510,
+    "sha256": "42ca33afc09e4e04d074c111c9c1ee72de747a89b91e03e0cc5059396f45c153",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@3x.png",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@3x.png)",
+    "bytes": 12130,
+    "sha256": "091cc491fc80558d9a8f85115ee60bcc4d5be548d28c151aee35984ac2d3f933",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@1x.png",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@1x.png)",
+    "bytes": 3453,
+    "sha256": "5a98fadd8885f49cdf4c2dfba392b047004b3d14b7661529c6ff3d7b35a3f6fd",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@2x.png",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@2x.png)",
+    "bytes": 10429,
+    "sha256": "1fd001d86bdd48bbd8096ffa1f3fda5e98f4dc86994ce01aadf9119b7722b137",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@3x.png",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@3x.png)",
+    "bytes": 19407,
+    "sha256": "878e66989bd0d4375c2da20decdc5c9ab96968f35d9e9f4dc572b2da2bb8c956",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-60x60@2x.png",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-60x60@2x.png)",
+    "bytes": 19407,
+    "sha256": "878e66989bd0d4375c2da20decdc5c9ab96968f35d9e9f4dc572b2da2bb8c956",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-60x60@3x.png",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-60x60@3x.png)",
+    "bytes": 35561,
+    "sha256": "efe2615f05d6d2bc59c6d6c9d3f44d664562afac3b8de803b2f7e43531b65cdc",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-76x76@1x.png",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-76x76@1x.png)",
+    "bytes": 9706,
+    "sha256": "a7d506e487a374beb4cb9bf161e23aae314c199a8f76a8aa4155ddc3e6ecc30f",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-76x76@2x.png",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-76x76@2x.png)",
+    "bytes": 28613,
+    "sha256": "4a9047f056ee17374cd28fa54a8858fb0e40b7d026cdcd6995f35644f25eee48",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-83.5x83.5@2x.png",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-83.5x83.5@2x.png)",
+    "bytes": 32549,
+    "sha256": "1bcabe6df24826ee1aae598e7d464b1c036f3ed43db019e924ef4c821933d0be",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "ios/Runner/GeneratedPluginRegistrant.h",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / ios/Runner/GeneratedPluginRegistrant.h)",
+    "bytes": 378,
+    "sha256": "a5f88cc6415d2e639d2cb549348b84e02a7fdd0261603b0063abef6fa11f075a",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "ios/Runner/GeneratedPluginRegistrant.m",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / ios/Runner/GeneratedPluginRegistrant.m)",
+    "bytes": 802,
+    "sha256": "03c650f885e59d89459f001df8dfc6dbc7ad9e0be8c57fc99b9f135936feeba6",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "ios/Runner/Info.plist",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / ios/Runner/Info.plist)",
+    "bytes": 1371,
+    "sha256": "2041aca79adc13edc62740c1a19fca2ddb7ba0874aabf2cc1054e729e06e9a42",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "ios/SmsFilterExtension/VeroHomeWidget.swift",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / ios/SmsFilterExtension/VeroHomeWidget.swift)",
+    "bytes": 3192,
+    "sha256": "e6c82a38cc6d60a7eb55b7678af29722b8249b6c7ca6b9672f3e96a0855cc017",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "lib/app.dart",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / lib/app.dart)",
+    "bytes": 8167,
+    "sha256": "557d2158a222fd716dc805b807a0066543d92d4a469da82a71aa0a0d5c08724c",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "lib/core/classifier/classification.dart",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / lib/core/classifier/classification.dart)",
+    "bytes": 3054,
+    "sha256": "69d024d2deca46cd955abdbe8e6c863ce34461ef73fa2ef0e0099a3bfb87161d",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "lib/core/classifier/naive_bayes.dart",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / lib/core/classifier/naive_bayes.dart)",
+    "bytes": 4134,
+    "sha256": "eec797950e6a6a5a01a35f3dfbf793aac17434c4a8926befc3229a19f2dbf06a",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "lib/core/classifier/otp_detector.dart",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / lib/core/classifier/otp_detector.dart)",
+    "bytes": 3911,
+    "sha256": "6597356f08b876ffbd6617741a2f556427f82bfc296e717f8f7dd38e4866db25",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "lib/core/classifier/safe_click_engine.dart",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / lib/core/classifier/safe_click_engine.dart)",
+    "bytes": 7316,
+    "sha256": "b0cfdb6487078cf9daccaf89031bb192a2c5d6b33361c18f886523db7fc912cc",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "lib/core/classifier/semantic_intent_engine.dart",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / lib/core/classifier/semantic_intent_engine.dart)",
+    "bytes": 21919,
+    "sha256": "1d66714bc31a4f3b496fa525194d8c1c45620503db6855b5022ac8ff61f0b91f",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "lib/core/classifier/smart_classifier.dart",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / lib/core/classifier/smart_classifier.dart)",
+    "bytes": 12596,
+    "sha256": "261bf1480751ab0359f5e8bafde06dbeb66335130926aa610e0c5554bdc94dda",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "lib/core/classifier/threat_database.dart",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / lib/core/classifier/threat_database.dart)",
+    "bytes": 12150,
+    "sha256": "feb1d9ac32c2e8344128692dd564ac2a88f3f1b2ac87e26fc4663bba271e3246",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "lib/core/classifier/tokenizer.dart",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / lib/core/classifier/tokenizer.dart)",
+    "bytes": 21962,
+    "sha256": "e29f2c9a22abe0774102866afe03c133714f42cc716a0543bafca47bdac35044",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "lib/core/classifier/vero_call_guard.dart",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / lib/core/classifier/vero_call_guard.dart)",
+    "bytes": 52,
+    "sha256": "71ef00c6b3ab0b182845b303ef7f5f506365d81ba1f0f5284d0b2e8d89968af1",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "lib/core/localization/app_localizations.dart",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / lib/core/localization/app_localizations.dart)",
+    "bytes": 95515,
+    "sha256": "085215c3abeac4ae2caaf7dfaa9e09cd6e30994a7d9ab5da8f7673ec2959adbe",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "lib/core/monetization/billing_service.dart",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / lib/core/monetization/billing_service.dart)",
+    "bytes": 5362,
+    "sha256": "202e562af964a4dd5a0b6b0fad85968078c7e3a04111324e24f71212718c0578",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "lib/core/monetization/feature_gates.dart",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / lib/core/monetization/feature_gates.dart)",
+    "bytes": 5607,
+    "sha256": "6bdb8a80d3dbeb900e875eebd1862c81d0fa58068e2a4c9ad63ac255de590dec",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "lib/core/monetization/license_verifier.dart",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / lib/core/monetization/license_verifier.dart)",
+    "bytes": 5432,
+    "sha256": "d350db7b6fed5eb7006caa7898d800110e1cfcdb585469bfb8ad0e4033a313b7",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "lib/core/monetization/purchase_service.dart",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / lib/core/monetization/purchase_service.dart)",
+    "bytes": 3361,
+    "sha256": "20a4eb9ce5982c2f7141e84ed50c487dd0008252eca6d224b115643eb52a8a58",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "lib/core/platform/native_bridge.dart",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / lib/core/platform/native_bridge.dart)",
+    "bytes": 7681,
+    "sha256": "6e0f6c3d1ff0a2e82ef755b191fc3540acdae89ee4fd4cfaf1079f704c780071",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "lib/core/rules/rule_engine.dart",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / lib/core/rules/rule_engine.dart)",
+    "bytes": 8036,
+    "sha256": "9941784ea4745503a48d3f46962c12e943dde1441e474468ad89784fffd0fac1",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "lib/engines/vero_answer_bot.dart",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / lib/engines/vero_answer_bot.dart)",
+    "bytes": 4374,
+    "sha256": "fcc393e9d9d623d61ce614a616ac5bfe3f693f77cc5f01f17dd4854ee7d0c36c",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "lib/engines/vero_bloom_filter.dart",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / lib/engines/vero_bloom_filter.dart)",
+    "bytes": 6809,
+    "sha256": "1b57ae00c5dea2da3668ed7160db04d5fd0a320e795c76e00af952c0fbb238bf",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "lib/engines/vero_breach_radar_engine.dart",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / lib/engines/vero_breach_radar_engine.dart)",
+    "bytes": 4213,
+    "sha256": "18fc75f3078f512a737f0ee284dcb739cd0595f9f3b161f0256ef3e340b73e4a",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "lib/engines/vero_call_guard_engine.dart",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / lib/engines/vero_call_guard_engine.dart)",
+    "bytes": 9756,
+    "sha256": "d56cbb927928d2af80e023bc1ed54a25730b7ca845c852f16b95504703ca2ca8",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "lib/engines/vero_caller_id_engine.dart",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / lib/engines/vero_caller_id_engine.dart)",
+    "bytes": 20698,
+    "sha256": "c3e9365aeb73706782ecec9727001812327c1a3bc1bb0443a7174705a65c4c07",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "lib/engines/vero_caller_name_engine.dart",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / lib/engines/vero_caller_name_engine.dart)",
+    "bytes": 7213,
+    "sha256": "99a0ecd4b1ee88e911d0ce0437831b54f2b45134445ddfe9357bb3223eded264",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "lib/engines/vero_community_shield.dart",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / lib/engines/vero_community_shield.dart)",
+    "bytes": 8076,
+    "sha256": "df3592992bea215927cc0451b7848d173b8d646d3a72ef32e11c177444c76b18",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "lib/engines/vero_crash_logger.dart",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / lib/engines/vero_crash_logger.dart)",
+    "bytes": 4056,
+    "sha256": "6b7f226906ca4e74cc87edf8719f9a6b6daf05750ef2a06c1a1ffd35105c9298",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "lib/engines/vero_edevlet_guard.dart",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / lib/engines/vero_edevlet_guard.dart)",
+    "bytes": 4305,
+    "sha256": "c404aa32de9532078f782ca67d7f0a3983dea8e4f41ed58078f91f881018edeb",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "lib/engines/vero_enterprise_engine.dart",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / lib/engines/vero_enterprise_engine.dart)",
+    "bytes": 3000,
+    "sha256": "a94126a629d76fd01bb4f22879af64a36f4d3b8f977ddf94f04eba6252fdaea0",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "lib/engines/vero_intent_engine.dart",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / lib/engines/vero_intent_engine.dart)",
+    "bytes": 15883,
+    "sha256": "6187eddfde5684970367eaade4cc4714243ba9ddff2fc54c668beba50c63bef8",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "lib/engines/vero_link_scanner.dart",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / lib/engines/vero_link_scanner.dart)",
+    "bytes": 14465,
+    "sha256": "b0d9c8731662218c7f8e1cd3b3f0c9c0cbf233241b94adc912fdbc38322556b3",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "lib/engines/vero_sms_categorizer.dart",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / lib/engines/vero_sms_categorizer.dart)",
+    "bytes": 5844,
+    "sha256": "5a8c40b63bf7cfcda493d6b688ddc853f014273f601fc0562e1ebca4fe61805c",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "lib/engines/vero_threat_updater.dart",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / lib/engines/vero_threat_updater.dart)",
+    "bytes": 11602,
+    "sha256": "06ab192d7cc8b77435cd3bb2da608c59595fb0a8f85b8d0630c01f3dfce220fe",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "lib/engines/vero_whatsapp_scanner.dart",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / lib/engines/vero_whatsapp_scanner.dart)",
+    "bytes": 6948,
+    "sha256": "40231e368f3b42031f3aed5a8387bc8ea94c082592d79b4b8707be5efbdbf705",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "lib/main.dart",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / lib/main.dart)",
+    "bytes": 1101,
+    "sha256": "21fa6628c04e7ecd4c2ccce57230a3f8f0000cdee886825182f0be1986bc5404",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "lib/models/history_entry.dart",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / lib/models/history_entry.dart)",
+    "bytes": 4400,
+    "sha256": "22275b8e29e1fe63fa72af1c98e264352d768ed30c24592954753d63c1dccdee",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "lib/screens/privacy_policy_screen.dart",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / lib/screens/privacy_policy_screen.dart)",
+    "bytes": 5610,
+    "sha256": "94f6ffc5cc7b73682c4eb1476fb514dfd0071a7c37218f712d1206c342978211",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "lib/screens/screenshot_mode.dart",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / lib/screens/screenshot_mode.dart)",
+    "bytes": 18456,
+    "sha256": "141341898df32c61f855e4ba4cafe211465d4213cc90dd5f1a5256cfaa3c4da4",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "lib/screens/terms_of_service_screen.dart",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / lib/screens/terms_of_service_screen.dart)",
+    "bytes": 4996,
+    "sha256": "682a92491e31dfd6bf34c605293386f4a70719ebbcc3e4880feafffb25b2d5c1",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "lib/security_audit.dart",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / lib/security_audit.dart)",
+    "bytes": 13570,
+    "sha256": "70b6badaa1e0411feda904f4b481943ea99cbe14898ac73f7869139060bf5914",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "lib/services/purchase_service.dart",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / lib/services/purchase_service.dart)",
+    "bytes": 53,
+    "sha256": "4a1c7450c9fd226d98e1367e9b1615f13a4b031790c6ec7d36974b6b9d020535",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "lib/services/vero_billing_service.dart",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / lib/services/vero_billing_service.dart)",
+    "bytes": 2343,
+    "sha256": "26dbb5502913c4e47a9e7df99515b4b5e1b89c9b2701936e6c2f60b400d99ca0",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "lib/services/vero_sms_service.dart",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / lib/services/vero_sms_service.dart)",
+    "bytes": 5063,
+    "sha256": "f8d65140473e9da2d53d6dbd868ee9395e62995e030d90c6266be5b02b3d2ddb",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "lib/state/app_state.dart",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / lib/state/app_state.dart)",
+    "bytes": 35095,
+    "sha256": "dbe648bb538e868eaf9077793e5415c099f30907da5a9b90ea36f4689564e11b",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "lib/ui/call_history_screen.dart",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / lib/ui/call_history_screen.dart)",
+    "bytes": 19285,
+    "sha256": "bb54b5e29ff7aecce4d513bccdd9ceeebead323fad8855fea92a11df878f7d40",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "lib/ui/call_overlay_screen.dart",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / lib/ui/call_overlay_screen.dart)",
+    "bytes": 14087,
+    "sha256": "9a1378003e1455970163bccb723457b1751b9c9e19417d42ebd3a6cd9491783b",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "lib/ui/crash_reports_screen.dart",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / lib/ui/crash_reports_screen.dart)",
+    "bytes": 8442,
+    "sha256": "daec8b211c7d01d42d483127d7ff0d553bff194c530967e90471a1afba4363da",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "lib/ui/cyberpunk_theme.dart",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / lib/ui/cyberpunk_theme.dart)",
+    "bytes": 17204,
+    "sha256": "c70ed66beefff798aa57eba2e590cafd2621bb4cdbd9f80fdeaceb5b415bde6a",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "lib/ui/database_stats_screen.dart",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / lib/ui/database_stats_screen.dart)",
+    "bytes": 17164,
+    "sha256": "d5022867d3c5a8e8ba38deab73af4c41bb0cf821a5076a3acffec8843229520d",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "lib/ui/edevlet_guard_screen.dart",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / lib/ui/edevlet_guard_screen.dart)",
+    "bytes": 10489,
+    "sha256": "25f1d8a3faedda652483e22efaf8dc6e2cd51c6d4edd25beb4fd271b91bae3ba",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "lib/ui/enterprise_screen.dart",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / lib/ui/enterprise_screen.dart)",
+    "bytes": 13857,
+    "sha256": "38172dbdef3a9535853692b961eb86294fe918f381dc2c42568029eded3643ee",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "lib/ui/first_launch_consent_dialog.dart",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / lib/ui/first_launch_consent_dialog.dart)",
+    "bytes": 5657,
+    "sha256": "cc5f51d5a3a6aecb1328352c3212834d21a0eb53845928d484467c85b5460194",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "lib/ui/history_screen.dart",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / lib/ui/history_screen.dart)",
+    "bytes": 31186,
+    "sha256": "3c8753665e253086e0330597fd6a335f9eea29467a02b75d9a9f1f61678cc27b",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "lib/ui/home_screen.dart",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / lib/ui/home_screen.dart)",
+    "bytes": 54035,
+    "sha256": "26eea1797ff703431cb19cdae7ffb60adc493d0edadae70e7ccab66c7911477b",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "lib/ui/link_scanner_screen.dart",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / lib/ui/link_scanner_screen.dart)",
+    "bytes": 11628,
+    "sha256": "409f56168753640601611f3d4d864e1be744eca68a3f13e8ffbefb714e771290",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "lib/ui/paywall_screen.dart",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / lib/ui/paywall_screen.dart)",
+    "bytes": 17813,
+    "sha256": "1fab8762d4c347651ee77704abaa7dd6652bafc16393348ff6d30dacf0d2a9b4",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "lib/ui/post_call_report.dart",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / lib/ui/post_call_report.dart)",
+    "bytes": 7225,
+    "sha256": "dd2b89dc9da6c00c8fdff721f82d15f8459edc9fac031a1c4f57dfd8f76a92cf",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "lib/ui/privacy_and_terms.dart",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / lib/ui/privacy_and_terms.dart)",
+    "bytes": 98,
+    "sha256": "96b9bb0f7fe3f96a0a0032b82a2a6220f3e937bc485b2980815af2b78f0061be",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "lib/ui/rate_dialog.dart",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / lib/ui/rate_dialog.dart)",
+    "bytes": 10661,
+    "sha256": "6cd5649d75ebcdc83f6ef9f38914536e2656f93ab8f36c0b0e3d506bbdae354a",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "lib/ui/rules_screen.dart",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / lib/ui/rules_screen.dart)",
+    "bytes": 21028,
+    "sha256": "2a656beda4e9d28678c77f68c99d80b1abe56e90c952facfac1027d0b4630de4",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "lib/ui/screenshot_mode.dart",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / lib/ui/screenshot_mode.dart)",
+    "bytes": 42,
+    "sha256": "9fa2f9e8bcc9490a06a242cb6d9fc2203399d89c58022cc4d84fd3d8fcd78de6",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "lib/ui/settings_screen.dart",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / lib/ui/settings_screen.dart)",
+    "bytes": 58911,
+    "sha256": "90c1378160ee0a35f2a9831c2bb71e0ad8a4a93e2c7a9de9e95e940fbaa2a89a",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "lib/ui/stats_screen.dart",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / lib/ui/stats_screen.dart)",
+    "bytes": 12580,
+    "sha256": "a4350588c11cfa57af28ebee96889871b912168a55049b6e9b95aadd950dff18",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "lib/ui/whatsapp_scanner_screen.dart",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / lib/ui/whatsapp_scanner_screen.dart)",
+    "bytes": 11676,
+    "sha256": "8515398d80ed65996dc4fdf9caba0afb37890fb4b0c2c5454718b037ae9634aa",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "lib/ui/widgets.dart",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / lib/ui/widgets.dart)",
+    "bytes": 32580,
+    "sha256": "a950622117be3de8fa5be543b1f3567f56d542491c8b61cf02c72c34ffa79b1a",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "lib/widgets/vero_home_widget.dart",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / lib/widgets/vero_home_widget.dart)",
+    "bytes": 8114,
+    "sha256": "bc35bcb32de1cd8c5231d812296ed9dc2a6ee70819148d2eb11d6918beb8b166",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "pubspec.lock",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / pubspec.lock)",
+    "bytes": 13135,
+    "sha256": "b439f7371f1211e6fbec65012522665d80cdbb63114fb75fd6681ac82f4a0251",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "pubspec.yaml",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / pubspec.yaml)",
+    "bytes": 974,
+    "sha256": "b6e93d73a50202cba944acf2fb5c8f809e5cb1c7f7201acbd79b500352ad8e44",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "scripts/latest_release_note.txt",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / scripts/latest_release_note.txt)",
+    "bytes": 82,
+    "sha256": "aa526c02dd0276e2e5b73b6e1ab88d9e3bb1d14f2f3dfc25a7228f74e098993f",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "scripts/license_tool.py",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / scripts/license_tool.py)",
+    "bytes": 5414,
+    "sha256": "023d0f00494b571dd120a58bb78b9d4ce220dd5810f385d4617fbf65817a80c4",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "scripts/prepare_threat_update.py",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / scripts/prepare_threat_update.py)",
+    "bytes": 2758,
+    "sha256": "47b775cc1917d6462bb8b90207290f890f331b59baf0d1afb33729a9e38433f2",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "scripts/spam_db_builder.py",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / scripts/spam_db_builder.py)",
+    "bytes": 14498,
+    "sha256": "22accb1ae2b63e166dc6122e5bf30e18a74530e56e72e5f3845de9a232fbbe4f",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "scripts/turkey_spam_collector.py",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / scripts/turkey_spam_collector.py)",
+    "bytes": 8805,
+    "sha256": "788463c7905912b3905fdc9a54dbf6c080fe0eae22752e6e2ea1423571e88d1f",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "scripts/weekly_update_pipeline.py",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / scripts/weekly_update_pipeline.py)",
+    "bytes": 4030,
+    "sha256": "90a9e3e2805d77612cc52abbccfa4be3615fc8830da114a3eef912ff9ba0f11f",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "test/app_state_test.dart",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / test/app_state_test.dart)",
+    "bytes": 11415,
+    "sha256": "384fe025753cca921d8c2304786e878665a03dc719ecffaa043356c7c6625eef",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "test/classifier_test.dart",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / test/classifier_test.dart)",
+    "bytes": 21893,
+    "sha256": "4e8b03b4d6aeadb58876ce97a158fd391b6f22bce5e5d07420db273e7ee21441",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "test/localization_test.dart",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / test/localization_test.dart)",
+    "bytes": 3558,
+    "sha256": "57648f9cabd9e7ea19298b64b42e43f3b0496ce028b66937f67f4aafc7f6757d",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "test/widget_test.dart",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / test/widget_test.dart)",
+    "bytes": 116709,
+    "sha256": "080b2dff8a7023a1cd9b104197935f1c057837d97175aebaaf92f2d4d1b4fb41",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "tool/VeroLauncher.cs",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / tool/VeroLauncher.cs)",
+    "bytes": 1917,
+    "sha256": "393cce9d00a0fce20ff4ad25b48b290d72ed4ef066c45b2daa28aab6d89f5daf",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "tool/apply_cyberpunk_icon_vA.ps1",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / tool/apply_cyberpunk_icon_vA.ps1)",
+    "bytes": 20493,
+    "sha256": "d307cb47765ac50353a9e9771afc4427f99de7b081afe3bc9e0b584adb1abec0",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "web/landing_page/lib/main.dart",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / web/landing_page/lib/main.dart)",
+    "bytes": 17038,
+    "sha256": "e480f80e27b4d7783b65ff266ebd6c1d058c65dd279ca096d14da2f26c00be1c",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "web/landing_page/pubspec.lock",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / web/landing_page/pubspec.lock)",
+    "bytes": 5844,
+    "sha256": "c4c1f0bdeec070ada4602cb3428eac561453ddf9b752dc32503cddfdd1ff6013",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "web/landing_page/pubspec.yaml",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / web/landing_page/pubspec.yaml)",
+    "bytes": 314,
+    "sha256": "16b9a8493c93b55b6944c6cdbddf909727377df52d19ff1d12bb2c0c1343c98c",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "web/landing_page/web/index.html",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / web/landing_page/web/index.html)",
+    "bytes": 713,
+    "sha256": "b809d251b5d88a3bf57dd23b22c70943b4e591282c810adf0e048173fceea2ca",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "windows/.gitignore",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / windows/.gitignore)",
+    "bytes": 308,
+    "sha256": "955e3110cb16494ee76e1cd5df47e2c212309eb94a49a123fe87f718de413cb8",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "windows/CMakeLists.txt",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / windows/CMakeLists.txt)",
+    "bytes": 4276,
+    "sha256": "86d9b1d622118c54f6a5f6cd496d2b87a1b2916d36bae44d5621de8b355ced5a",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "windows/flutter/CMakeLists.txt",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / windows/flutter/CMakeLists.txt)",
+    "bytes": 3851,
+    "sha256": "bd05e3268b2f246bcbafdb778165fe67a7bafdba04eb73599502563a67b8ae7e",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "windows/flutter/generated_plugin_registrant.cc",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / windows/flutter/generated_plugin_registrant.cc)",
+    "bytes": 164,
+    "sha256": "82e02567f2faf5e732dc92a2fb0d01104f7ba8c48973f8cfd41a860b4fac3f3b",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "windows/flutter/generated_plugin_registrant.h",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / windows/flutter/generated_plugin_registrant.h)",
+    "bytes": 302,
+    "sha256": "dbc11635d7b1ba1887adf40df5b83d634e9c3ab0bee34510c71528bb4d73602a",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "windows/flutter/generated_plugins.cmake",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / windows/flutter/generated_plugins.cmake)",
+    "bytes": 749,
+    "sha256": "3f02c11f2d7c72d742dd5b3871def3dc815f3ab70615d4a3293e15e7b45eb0e7",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "windows/runner/CMakeLists.txt",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / windows/runner/CMakeLists.txt)",
+    "bytes": 1836,
+    "sha256": "d765fdd05f63ad099e585a2cced0cbff13ec3229b7de68c8681b2107db850089",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "windows/runner/Runner.rc",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / windows/runner/Runner.rc)",
+    "bytes": 3197,
+    "sha256": "2ac4f995e63f40929b5fc5aa7b48cc4d194764e52d422fcaa7003343b8735b22",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "windows/runner/flutter_window.cpp",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / windows/runner/flutter_window.cpp)",
+    "bytes": 2193,
+    "sha256": "d615eedc06ae37321e59c2c00c7687d1887dcd97904eb7225fafd8dcb5b83da6",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "windows/runner/flutter_window.h",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / windows/runner/flutter_window.h)",
+    "bytes": 961,
+    "sha256": "0252b804f5da380c7709cbe1daff2b8d18daf6c49d7e6dd43e5af3c99c19f56c",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "windows/runner/main.cpp",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / windows/runner/main.cpp)",
+    "bytes": 1313,
+    "sha256": "69bc38651e716de744206fa871df726b3a29928eae829d47f92205bfed6dfafb",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "windows/runner/resource.h",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / windows/runner/resource.h)",
+    "bytes": 448,
+    "sha256": "d0e8bf7835468b4b6b1f8f0747f2e8f25c19841f2df2ac60aaa584ddae3aa7c6",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "windows/runner/resources/app_icon.ico",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / windows/runner/resources/app_icon.ico)",
+    "bytes": 370070,
+    "sha256": "885531cdbbe2db368a51d7a3deee3cfc2d9d066195549c4f11361bc821e930fc",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "windows/runner/runner.exe.manifest",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / windows/runner/runner.exe.manifest)",
+    "bytes": 616,
+    "sha256": "639a56233fcd8cbcb8bbefcd93e4680ec2664f32d9acfb3d2ec1d8726a96e090",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "windows/runner/utils.cpp",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / windows/runner/utils.cpp)",
+    "bytes": 2237,
+    "sha256": "a128b67b9f3c2579e2ecef5b0dde2c33f222a097cdfe5da2a3067c73d1485b39",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "windows/runner/utils.h",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / windows/runner/utils.h)",
+    "bytes": 691,
+    "sha256": "832e246b6758253f89016fb0374b30791242e97ad950d27fc678b3d9feacfdc4",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "windows/runner/win32_window.cpp",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / windows/runner/win32_window.cpp)",
+    "bytes": 8822,
+    "sha256": "4e4f4dcf8e86ea6e097562cb3476039e693449bd8045367538afee579c017511",
+    "status": "Verified & Audited (Phase 2 Master)"
+  },
+  {
+    "staged_as": "windows/runner/win32_window.h",
+    "source": "Local Workspace Repository (VeroAppSmsGuard / windows/runner/win32_window.h)",
+    "bytes": 3624,
+    "sha256": "d154cf89ba85f820631a9b5bedacbe64fc5815e428fe6bc5da579ce649f69841",
+    "status": "Verified & Audited (Phase 2 Master)"
+  }
 ]

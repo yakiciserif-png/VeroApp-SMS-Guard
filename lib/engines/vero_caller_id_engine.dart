@@ -135,6 +135,7 @@ class VeroCallerIdEngine {
   VeroCallerIdEngine._();
 
   static const String assetPath = 'assets/spam_db/spam_numbers.bin';
+  static const String turkeyAssetPath = 'assets/spam_db/turkey_spam.bin';
 
   static ByteData _sortedRecords = _buildDefaultSeedTable();
   static int _recordCount = _sortedRecords.lengthInBytes ~/ 8;
@@ -160,7 +161,8 @@ class VeroCallerIdEngine {
     '182',
   };
 
-  /// Loads `assets/spam_db/spam_numbers.bin` (sorted 8-byte ULong records).
+  /// Loads `assets/spam_db/spam_numbers.bin` and merges `assets/spam_db/turkey_spam.bin`
+  /// (sorted 8-byte ULong records).
   static Future<void> initFromAsset([AssetBundle? bundle]) async {
     try {
       final targetBundle = bundle ?? rootBundle;
@@ -169,16 +171,25 @@ class VeroCallerIdEngine {
         data.offsetInBytes,
         data.lengthInBytes,
       );
+      Uint8List? turkeyBytes;
+      try {
+        final trData = await targetBundle.load(turkeyAssetPath);
+        turkeyBytes = trData.buffer.asUint8List(
+          trData.offsetInBytes,
+          trData.lengthInBytes,
+        );
+      } catch (_) {
+        turkeyBytes = null;
+      }
+
       if (rawBytes.length >= 8) {
         Uint8List processed;
         try {
           processed = await Isolate.run<Uint8List>(() {
-            final alignedLen = (rawBytes.length ~/ 8) * 8;
-            return Uint8List.fromList(rawBytes.sublist(0, alignedLen));
+            return _mergeSortedBuffers(rawBytes, turkeyBytes);
           });
         } catch (_) {
-          final alignedLen = (rawBytes.length ~/ 8) * 8;
-          processed = Uint8List.fromList(rawBytes.sublist(0, alignedLen));
+          processed = _mergeSortedBuffers(rawBytes, turkeyBytes);
         }
         _sortedRecords = ByteData.sublistView(processed);
         _recordCount = processed.lengthInBytes ~/ 8;
@@ -187,6 +198,53 @@ class VeroCallerIdEngine {
     } catch (_) {
       // Keep default seeded table if asset bundle is unavailable in unit test.
     }
+  }
+
+  static Uint8List _mergeSortedBuffers(Uint8List primary, Uint8List? secondary) {
+    final lenA = (primary.length ~/ 8) * 8;
+    if (secondary == null || secondary.length < 8) {
+      return Uint8List.fromList(primary.sublist(0, lenA));
+    }
+    final lenB = (secondary.length ~/ 8) * 8;
+    final bdA = ByteData.sublistView(primary, 0, lenA);
+    final bdB = ByteData.sublistView(secondary, 0, lenB);
+    final countA = lenA ~/ 8;
+    final countB = lenB ~/ 8;
+
+    final merged = <int>[];
+    var i = 0;
+    var j = 0;
+    while (i < countA && j < countB) {
+      final valA = bdA.getUint64(i * 8, Endian.little);
+      final valB = bdB.getUint64(j * 8, Endian.little);
+      final phoneA = valA >>> 2;
+      final phoneB = valB >>> 2;
+      if (phoneA < phoneB) {
+        merged.add(valA);
+        i++;
+      } else if (phoneB < phoneA) {
+        merged.add(valB);
+        j++;
+      } else {
+        merged.add(valA);
+        i++;
+        j++;
+      }
+    }
+    while (i < countA) {
+      merged.add(bdA.getUint64(i * 8, Endian.little));
+      i++;
+    }
+    while (j < countB) {
+      merged.add(bdB.getUint64(j * 8, Endian.little));
+      j++;
+    }
+
+    final out = ByteData(merged.length * 8);
+    for (var k = 0; k < merged.length; k++) {
+      out.setUint64(k * 8, merged[k], Endian.little);
+    }
+    return out.buffer.asUint8List();
   }
 
   /// Loads sorted 8-byte ULong binary buffer directly into memory.

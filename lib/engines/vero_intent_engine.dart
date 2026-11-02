@@ -357,7 +357,7 @@ class VeroIntentEngine {
     var financialTrap = 0.0;
     var rewardBetting = 0.0;
     var actionLink = 0.0;
-    var corporateOtp = 0.0;
+    const corporateOtp = 0.0;
     var personalChat = 0.0;
 
     if (detectedType != null) {

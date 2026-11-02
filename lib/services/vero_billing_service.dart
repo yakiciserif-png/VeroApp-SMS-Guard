@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:flutter/foundation.dart';
 
 import '../core/monetization/billing_service.dart';
 import '../core/monetization/purchase_service.dart';
@@ -60,11 +59,10 @@ class VeroBillingController {
   }
 
   void _onStorePurchaseSuccess(VeroSubscriptionTier tier) {
-    debugPrint('[VeroBilling] Purchase confirmed for tier: $tier');
     PurchaseService.instance.upgradeTo(tier);
   }
 
   void _onStorePurchaseError(String error) {
-    debugPrint('[VeroBilling] Purchase error: $error');
+    // Error handled via UI callback / state listener without logging PII
   }
 }

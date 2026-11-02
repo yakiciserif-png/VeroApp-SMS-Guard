@@ -113,8 +113,8 @@ class VeroLinkScanner {
     if (s1.isEmpty) return s2.length;
     if (s2.isEmpty) return s1.length;
 
-    List<int> v0 = List<int>.generate(s2.length + 1, (i) => i);
-    List<int> v1 = List<int>.filled(s2.length + 1, 0);
+    final List<int> v0 = List<int>.generate(s2.length + 1, (i) => i);
+    final List<int> v1 = List<int>.filled(s2.length + 1, 0);
 
     for (int i = 0; i < s1.length; i++) {
       v1[0] = i + 1;

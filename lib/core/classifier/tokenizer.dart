@@ -323,10 +323,18 @@ class Tokenizer {
   /// spaced-out words like "f r e e s p i n", symbol-injected words like
   /// "B.a.h.!.s" or "f*r*e*e*s*p*i*n", and leetspeak like "b0nus") into clean
   /// lower-case text (plus ASCII-folded mirror) for threat & semantic matching.
+  static const int _maxAnalysisLength = 2048;
+
+  static String _capLength(String text) =>
+      text.length > _maxAnalysisLength
+          ? text.substring(0, _maxAnalysisLength)
+          : text;
+
   static String normalizeObfuscation(String text) {
+    final bounded = _capLength(text);
     // 1. Homoglyph & zero-width normalization (forceAll=true so even all-Cyrillic
     // spoofed words like "bоnus" become "bonus")
-    var cleaned = normalizeHomoglyphs(text, forceAll: true)
+    var cleaned = normalizeHomoglyphs(bounded, forceAll: true)
         .replaceAll('İ', 'i')
         .toLowerCase();
 
@@ -449,8 +457,9 @@ class Tokenizer {
 
   /// Returns the ordered token list (may contain duplicates).
   static List<String> tokenize(String text, {String? sender}) {
+    final bounded = _capLength(text);
     final tokens = <String>[];
-    final cleaned = text.replaceAll(_zeroWidth, '');
+    final cleaned = bounded.replaceAll(_zeroWidth, '');
     final homoNormalized = normalizeHomoglyphs(cleaned, forceAll: true);
     final lower = homoNormalized.replaceAll('İ', 'i').toLowerCase();
 

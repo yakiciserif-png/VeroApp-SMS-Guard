@@ -171,13 +171,9 @@ class AppState extends ChangeNotifier {
     try {
       await _initCore().timeout(
         const Duration(milliseconds: 1800),
-        onTimeout: () {
-          debugPrint('[AppState] _initCore timeout (1.8s) reached - proceeding');
-        },
+        onTimeout: () {},
       );
-    } catch (e, st) {
-      debugPrint('[AppState] _initCore error: $e\n$st');
-    }
+    } catch (_) {}
 
     // In real devices, ensure ~1.2s smooth branded splash presentation
     final isTest = !kIsWeb && Platform.environment.containsKey('FLUTTER_TEST');
@@ -217,43 +213,31 @@ class AppState extends ChangeNotifier {
         if (autoCleanOtp24h) {
           await runAutoCleaner();
         }
-      } catch (e) {
-        debugPrint('[LazyLoader] autoCleaner error: $e');
-      }
+      } catch (_) {}
 
       // 1. Offline Spam Phone DB (63K records)
       try {
         await VeroCallerIdEngine.initFromAsset();
-      } catch (e) {
-        debugPrint('[LazyLoader] CallerIdEngine asset error: $e');
-      }
+      } catch (_) {}
 
       // 2. Offline Phishing Domains DB (38K domains)
       try {
         await VeroLinkScanner.instance.initialize();
-      } catch (e) {
-        debugPrint('[LazyLoader] LinkScanner asset error: $e');
-      }
+      } catch (_) {}
 
       // 3. Offline Breach Radar (6.25 MB Bloom filter)
       try {
         await VeroBreachRadarEngine.initFromAsset();
-      } catch (e) {
-        debugPrint('[LazyLoader] BreachRadarEngine asset error: $e');
-      }
+      } catch (_) {}
 
       // 4. Platform status & Native hooks
       try {
         await refreshPlatformStatus();
-      } catch (e) {
-        debugPrint('[LazyLoader] refreshPlatformStatus error: $e');
-      }
+      } catch (_) {}
 
       try {
         await syncNative();
-      } catch (e) {
-        debugPrint('[LazyLoader] syncNative error: $e');
-      }
+      } catch (_) {}
     });
   }
 
@@ -559,9 +543,7 @@ class AppState extends ChangeNotifier {
     try {
       final p = await _ensurePrefs();
       await p?.setBool(_kKvkkConsent, true);
-    } catch (e) {
-      debugPrint('[AppState] Failed to persist KVKK consent: $e');
-    }
+    } catch (_) {}
     final isTest = !kIsWeb && Platform.environment.containsKey('FLUTTER_TEST');
     if (!isTest) {
       _initHeavyEnginesInBackground();

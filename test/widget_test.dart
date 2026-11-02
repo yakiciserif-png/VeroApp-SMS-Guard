@@ -1,11 +1,18 @@
 
 import 'dart:convert';
-import 'dart:typed_data';
+import 'dart:typed_data' show Endian, Uint8List, ByteData;
+import 'package:cryptography/cryptography.dart' as crypto_pkg;
+import 'package:flutter/services.dart' hide Uint8List, ByteData;
+import 'package:veroapp_sms_guard/core/classifier/semantic_intent_engine.dart';
+import 'package:veroapp_sms_guard/core/classifier/smart_classifier.dart';
+import 'package:veroapp_sms_guard/core/classifier/naive_bayes.dart';
+import 'package:veroapp_sms_guard/core/classifier/classification.dart';
 import 'package:veroapp_sms_guard/engines/vero_threat_updater.dart';
 import 'package:veroapp_sms_guard/engines/vero_whatsapp_scanner.dart';
 import 'package:veroapp_sms_guard/services/vero_sms_service.dart';
 import 'package:veroapp_sms_guard/services/vero_billing_service.dart';
 import 'package:veroapp_sms_guard/ui/rate_dialog.dart';
+import 'package:veroapp_sms_guard/ui/whatsapp_scanner_screen.dart';
 import 'package:veroapp_sms_guard/ui/database_stats_screen.dart';
 import 'package:veroapp_sms_guard/core/localization/app_localizations.dart';
 import 'dart:io';
@@ -3477,6 +3484,345 @@ void main() {
         await tester.pumpAndSettle();
 
         expect(find.byKey(const Key('roleCallScreeningBanner')), findsNothing);
+      });
+
+      // ======================================================================
+      // FAZA 10 — MASTER PRODUCTION AUDIT & COVERAGE EXPANSION TESTS
+      // ======================================================================
+
+      test('FAZA 10 [Audit 1]: TFLite FlatBuffer (TFL3) Binary Integrity & Schema v3 Verification', () {
+        final modelFile = File('assets/model/vero_semantic_intent_v1.tflite');
+        expect(modelFile.existsSync(), isTrue);
+        final bytes = modelFile.readAsBytesSync();
+        final meta = SemanticIntentEngine.inspectModelBytes(bytes);
+        expect(meta.isValidFlatBuffer, isTrue);
+        expect(meta.schemaVersion, equals(3));
+        expect(meta.rootTableOffset, greaterThanOrEqualTo(8));
+        expect(meta.tensorDimensions, equals([1, 6, 2048]));
+        expect(meta.quantizedWeightBytes, equals(12288));
+
+        // Short/corrupted buffer safely returns invalid
+        final badMeta = SemanticIntentEngine.inspectModelBytes(Uint8List.fromList([1, 2, 3]));
+        expect(badMeta.isValidFlatBuffer, isFalse);
+      });
+
+      test('FAZA 10 [Audit 2]: Answer Bot MP3 Audio Assets ID3v2 & MPEG Frame Uniqueness Verification', () async {
+        final allPhrases = [
+          ...VeroAnswerBot.turkishPhrases,
+          ...VeroAnswerBot.englishPhrases,
+          ...VeroAnswerBot.arabicPhrases,
+        ];
+        final hashes = <String>{};
+        for (final p in allPhrases) {
+          final f = File(p.assetPath);
+          expect(f.existsSync(), isTrue, reason: 'Missing audio asset: ${p.assetPath}');
+          final bytes = f.readAsBytesSync();
+          expect(bytes.length, greaterThan(20000));
+          // Verify ID3v2 header ('ID3')
+          expect(bytes[0], equals(0x49));
+          expect(bytes[1], equals(0x44));
+          expect(bytes[2], equals(0x33));
+          hashes.add(base64.encode(bytes.sublist(0, 64)));
+        }
+        // Every audio file must be distinct
+        expect(hashes.length, equals(allPhrases.length));
+
+        // Test VeroAnswerBot execution lifecycle (TR, EN, AR, and unsupported platform)
+        final botUnsupported = VeroAnswerBot(forceAndroid: false);
+        if (!Platform.isAndroid) {
+          final started = await botUnsupported.startStallSequence();
+          expect(started, isFalse);
+          expect(botUnsupported.status, equals(AnswerBotStatus.aborted));
+        }
+        botUnsupported.dispose();
+
+        final bot = VeroAnswerBot(forceAndroid: true);
+        expect(bot.isSupported, isTrue);
+        final events = <String>[];
+        final sub = bot.transcriptStream.listen(events.add);
+        final startedTr = await bot.startStallSequence(languageCode: 'tr');
+        expect(startedTr, isTrue);
+        expect(bot.status, equals(AnswerBotStatus.running));
+        expect(bot.currentStepIndex, equals(0));
+        bot.stop();
+        expect(bot.status, equals(AnswerBotStatus.idle));
+
+        await bot.startStallSequence(languageCode: 'en');
+        bot.stop();
+        await bot.startStallSequence(languageCode: 'ar');
+        bot.stop();
+        await sub.cancel();
+        bot.dispose();
+        expect(events, isNotEmpty);
+      });
+
+      test('FAZA 10 [Audit 3]: 10 Spam Patterns, False-Positive Immunity, RTL/Emoji, Empty/Null & >10KB <50ms Performance', () {
+        final classifier = SmartClassifier(model: NaiveBayesModel());
+
+        // 10 distinct real-world spam/smishing patterns
+        final spamSamples = [
+          'Tebrikler! 5000 TL deneme bonusu kazandiniz, hemen tikla: https://casibom784.xyz',
+          'Sn. Musterimiz kartiniz bloke edilmistir, derhal dogrulayin: http://garanti-onay.top',
+          'HGS gecis borcunuz icra takibine dusmeden odemek icin tiklayin: https://ptthgs-odeme.click',
+          'Gumruk vergisi odenmemis kargonuz var, teslimat ucreti icin: http://aras-gumruk.xyz',
+          'Uzlastirma dosyasi kapsaminda son gun! Ceza dosyasi icin arayin: http://edevlet-iade.xyz',
+          'Evden calisarak gunluk 4500 TL kazanc firsati! Hemen katil: https://bit.ly/ekgelir2026',
+          'Congratulations! You have won a \$1000 free prize gift card! Claim now: http://tinyurl.com/win99',
+          'URGENT: Your bank account is suspended. Verify now immediately at http://secure-verify-login.xyz',
+          'Sweet Bonanza ve Gates of Olympus 250 freespin yatirimsiz cevrimsiz bonus! http://jojobet912.vip',
+          '🔥🎰💰 10.000₺ NAKİT BONUS KAZANDINIZ! Hemen oyna: https://onwin44.xyz 🎁🚀',
+        ];
+        for (final s in spamSamples) {
+          final res = classifier.classify(s, sender: '+639170009988');
+          expect(res.category, equals(MessageCategory.spam), reason: 'Failed to catch spam: $s');
+        }
+
+        // False-positive immunity (Bank OTP, Cargo Tracking, 2FA, Personal "Dükkan & Hakan Abi")
+        final cleanSamples = [
+          ('Garanti BBVA mobil giris icin tek kullanimlik dogrulama kodunuz: 849201. Kimseyle paylasmayin.', 'GARANTI'),
+          ('Yurtici Kargo 409281726312 takip numarali gonderiniz dagitima cikmistir. Teslimat kodunuz: 4912.', 'YURTICI'),
+          ('Google dogrulama kodunuz: G-582910. Do not share this code with anyone.', 'GOOGLE'),
+          ('Hakan abi anahtari dukkanin yanindaki firina biraktim, aksam eve gelirken ekmek alir misin?', '+905321112233'),
+        ];
+        for (final (msg, sender) in cleanSamples) {
+          final res = classifier.classify(msg, sender: sender);
+          expect(res.category, isNot(equals(MessageCategory.spam)), reason: 'False positive on clean SMS: $msg');
+        }
+
+        // RTL (Arabic & Hebrew) & Unicode safety
+        final rtlSpam = classifier.classify('عاجل: تم حظر حسابك المصرفي! اضغط هنا فوراً http://bank-alert-verify.xyz', sender: '+212600112233');
+        expect(rtlSpam.category, equals(MessageCategory.spam));
+        final hebrewText = classifier.classify('שלום דוד, ניפגש מחר במשרד בשעה עשר', sender: '+905321112233');
+        expect(hebrewText.category, isNotNull);
+
+        // Empty & whitespace-only SMS safety
+        final emptyRes = classifier.classify('', sender: '');
+        expect(emptyRes.category, equals(MessageCategory.normal));
+        final whitespaceRes = classifier.classify('   \n\t  ');
+        expect(whitespaceRes.category, equals(MessageCategory.normal));
+
+        // >10KB Long SMS performance (< 50ms)
+        final longSms = 'Merhaba Hakan abi nasilsin toplanti notlari: ' * 260; // > 11 KB
+        expect(longSms.length, greaterThan(10240));
+        final sw = Stopwatch()..start();
+        final longRes = classifier.classify(longSms, sender: '+905320000000');
+        sw.stop();
+        expect(longRes.category, isNotNull);
+        expect(sw.elapsedMilliseconds, lessThan(50));
+      });
+
+      test('FAZA 10 [Audit 4]: 1000 Sequential SMS Stress Test & Empirical Bloom Filter FPR < 2%', () {
+        final classifier = SmartClassifier(model: NaiveBayesModel());
+        final sw = Stopwatch()..start();
+        for (var i = 0; i < 1000; i++) {
+          final text = (i % 2 == 0)
+              ? 'Hakan abi yarin saat ${i % 12 + 1} gibi dukkana ugrayacagim haberin olsun.'
+              : 'Son 24 saat! $i TL deneme bonusu kazandiniz hemen tikla: https://casibom784.xyz';
+          final res = classifier.classify(text);
+          expect(res.confidence, inInclusiveRange(0.0, 1.0));
+        }
+        sw.stop();
+        expect(sw.elapsedMilliseconds, lessThan(5000));
+
+        // Bloom Filter empirical FPR test over 1,000 random uninserted items
+        final bloomFile = File('assets/breach_db/bloom_filter.bin');
+        final bloom = VeroBloomFilter.fromBytes(bloomFile.readAsBytesSync());
+        var falsePositives = 0;
+        for (var i = 0; i < 1000; i++) {
+          if (bloom.contains('uninserted_synthetic_probe_key_${i}_vero_audit_2026')) {
+            falsePositives++;
+          }
+        }
+        final empiricalFpr = falsePositives / 1000.0;
+        expect(empiricalFpr, lessThan(0.02));
+      });
+
+      test('FAZA 10 [Audit 5]: Ed25519 Expired License Rejection & FeatureGates / BillingService Full Coverage', () async {
+        final verifier = VeroLicenseVerifier.instance;
+        final algo = crypto_pkg.Ed25519();
+        final kp = await algo.newKeyPair();
+        final pubKey = await kp.extractPublicKey();
+        verifier.setCustomPublicKeyForTesting(pubKey);
+        addTearDown(() => verifier.setCustomPublicKeyForTesting(null));
+
+        // Create a cryptographically valid Ed25519 signature for an EXPIRED timestamp (exp: 1000000000 = year 2001)
+        final expiredPayload = utf8.encode(jsonEncode({
+          'id': 'VERO-EXP-01',
+          'tier': 'family',
+          'seats': 4,
+          'exp': 1000000000,
+        }));
+        final sig = await algo.sign(expiredPayload, keyPair: kp);
+        final payloadB64 = base64Url.encode(expiredPayload).replaceAll('=', '');
+        final sigB64 = base64Url.encode(sig.bytes).replaceAll('=', '');
+        final expiredCode = 'VERO-FAM-$payloadB64.$sigB64';
+
+        final res = await verifier.verifyCode(expiredCode);
+        expect(res.isValid, isFalse);
+        expect(res.isExpired, isTrue);
+        expect(res.errorMessage, contains('süresi dolmuş'));
+
+        // FeatureGates exhaustive verification
+        expect(VeroFeatureGates.isProOrHigher(VeroSubscriptionTier.free), isFalse);
+        expect(VeroFeatureGates.isProOrHigher(VeroSubscriptionTier.proMonthly), isTrue);
+        expect(VeroFeatureGates.isFamily(VeroSubscriptionTier.familyYearly), isTrue);
+        expect(VeroFeatureGates.canAnalyzeSms(VeroSubscriptionTier.free, 19), isTrue);
+        expect(VeroFeatureGates.canAnalyzeSms(VeroSubscriptionTier.free, 20), isFalse);
+        expect(VeroFeatureGates.canAnalyzeSms(VeroSubscriptionTier.proYearly, 999), isTrue);
+        expect(VeroFeatureGates.canScanLink(VeroSubscriptionTier.free, 4), isTrue);
+        expect(VeroFeatureGates.canScanLink(VeroSubscriptionTier.free, 5), isFalse);
+        expect(VeroFeatureGates.canQueryBreach(VeroSubscriptionTier.free, 0), isTrue);
+        expect(VeroFeatureGates.canQueryBreach(VeroSubscriptionTier.free, 1), isFalse);
+        expect(VeroFeatureGates.canShowCallerName(VeroSubscriptionTier.free), isFalse);
+        expect(VeroFeatureGates.canShowCallerName(VeroSubscriptionTier.proMonthly), isTrue);
+        expect(VeroFeatureGates.canUseAnswerBot(VeroSubscriptionTier.proMonthly), isTrue);
+        expect(VeroFeatureGates.canViewAdvancedStats(VeroSubscriptionTier.proYearly), isTrue);
+        expect(VeroFeatureGates.canUseWidgets(VeroSubscriptionTier.familyYearly), isTrue);
+        expect(VeroFeatureGates.canUseEDevletGuard(VeroSubscriptionTier.proMonthly), isTrue);
+        expect(VeroFeatureGates.canUseFamilyPlan(VeroSubscriptionTier.familyYearly), isTrue);
+        expect(VeroFeatureGates.comparisonRows.length, greaterThanOrEqualTo(8));
+
+        // VeroBillingController & VeroBillingService coverage
+        await VeroBillingController.instance.init();
+        expect(VeroBillingService.instance.isInitialized, isTrue);
+        final bought = await VeroBillingController.instance.purchase(VeroProductIds.proMonthly);
+        expect(bought, isFalse);
+        await VeroBillingController.instance.restore();
+        final renewed = await VeroBillingController.instance.checkSubscriptionRenewal();
+        expect(renewed, isA<bool>());
+      });
+
+      test('FAZA 10 [Audit 6]: VeroSmsService & ThreatUpdater Delta Merge into CommunityShield', () async {
+        TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+            .setMockMethodCallHandler(
+          const MethodChannel('com.veroapp.smsguard/telecom'),
+          (MethodCall call) async {
+            if (call.method == 'isDefaultSmsApp') return true;
+            if (call.method == 'requestDefaultSmsRole') return true;
+            if (call.method == 'sendSms') return true;
+            return null;
+          },
+        );
+        addTearDown(() {
+          TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+              .setMockMethodCallHandler(
+            const MethodChannel('com.veroapp.smsguard/telecom'),
+            null,
+          );
+        });
+
+        VeroSmsService.clear();
+        expect(await VeroSmsService.isDefaultSmsApp(), isTrue);
+        expect(await VeroSmsService.requestDefaultSmsRole(), isTrue);
+
+        final cleanMsg = VeroSmsService.processIncomingSms(
+          sender: '+905321112233',
+          body: 'Selam abi, toplanti saat 14:00 olarak guncellendi.',
+        );
+        expect(cleanMsg.isSpam, isFalse);
+        expect(VeroSmsService.inbox.length, equals(1));
+        expect(cleanMsg.toMap()['sender'], equals('+905321112233'));
+
+        final spamMsg = VeroSmsService.processIncomingSms(
+          sender: '+639170001122',
+          body: '1000 TL deneme bonusu casino slot hemen tikla https://casibom784.xyz',
+        );
+        expect(spamMsg.isSpam, isTrue);
+        expect(VeroSmsService.spamInbox.length, equals(1));
+
+        final sent = await VeroSmsService.sendSms(
+          recipient: '+905329998877',
+          body: 'Tamamdir tesekkurler.',
+        );
+        expect(sent, isTrue);
+        expect(VeroSmsService.inbox.length, equals(2));
+
+        // Verify threat_db_v2.bin parsing and delta registration into CommunityShield
+        final threatBytes = File('assets/spam_db/threat_db_v2.bin').readAsBytesSync();
+        final pkg = VeroThreatUpdater.parsePackageBytes(threatBytes);
+        expect(pkg, isNotNull);
+        expect(pkg!.version, equals(2));
+        expect(pkg.records.length, equals(6));
+
+        SharedPreferences.setMockInitialValues({});
+        final prefs = await SharedPreferences.getInstance();
+        final updater = VeroThreatUpdater(prefs: prefs);
+        final applyRes = await updater.applyPackage(pkg);
+        expect(applyRes.success, isTrue);
+        expect(applyRes.addedCount, equals(6));
+        final firstDeltaPhone = '+${pkg.records.first.phoneNumber}';
+        expect(VeroCommunityShield.lookupReported(firstDeltaPhone), isNotNull);
+
+        // Also test VeroCallerIdEngine.initFromAsset merging spam_numbers.bin + turkey_spam.bin (deduplicated 63,005 records)
+        await VeroCallerIdEngine.initFromAsset();
+        expect(VeroCallerIdEngine.isAssetLoaded, isTrue);
+        expect(VeroCallerIdEngine.recordCount, equals(63005));
+
+        // And VeroCrashLogger full lifecycle
+        VeroCrashLogger.clearLogs();
+        VeroCrashLogger.init();
+        VeroCrashLogger.recordError('TestException: simulated audit error', StackTrace.current, reason: 'AuditTest');
+        expect(VeroCrashLogger.count, equals(1));
+        expect(VeroCrashLogger.getLogCountLast7Days(), equals(1));
+        expect(VeroCrashLogger.exportLogsText(), contains('TestException'));
+        expect(VeroCrashLogger.generateMailtoUrl(), startsWith('mailto:'));
+        expect(VeroCrashLogger.records.first.toMap()['reason'], equals('AuditTest'));
+        VeroCrashLogger.clearLogs();
+        expect(VeroCrashLogger.exportLogsText(), contains('Temiz'));
+      });
+
+      testWidgets('FAZA 10 [Audit 7]: WhatsAppScannerScreen & RateDialog Full Interactive Widget Tests', (tester) async {
+        SharedPreferences.setMockInitialValues({});
+
+        await tester.pumpWidget(
+          const MaterialApp(
+            home: WhatsAppScannerScreen(
+              initialText: 'Tebrikler! 5000 TL deneme bonusu kazandiniz: https://casibom784.xyz',
+            ),
+          ),
+        );
+        await tester.pumpAndSettle();
+
+        expect(find.byKey(const Key('whatsAppScannerScreen')), findsOneWidget);
+        expect(find.byKey(const Key('whatsAppScanResultCard')), findsOneWidget);
+
+        // Clear and scan new text
+        await tester.tap(find.byIcon(Icons.cleaning_services_rounded));
+        await tester.pumpAndSettle();
+        expect(find.byKey(const Key('whatsAppScanResultCard')), findsNothing);
+
+        await tester.enterText(
+          find.byKey(const Key('whatsAppMessageInput')),
+          'Merhaba anne, aksam yemege gelecegim.',
+        );
+        await tester.tap(find.byKey(const Key('scanMessageBtn')));
+        await tester.pumpAndSettle();
+        expect(find.byKey(const Key('whatsAppScanResultCard')), findsOneWidget);
+
+        // RateDialog & VeroRateManager test
+        final prefs = await SharedPreferences.getInstance();
+        for (var i = 0; i < 9; i++) {
+          expect(await VeroRateManager.registerThreatBlocked(prefs), isFalse);
+        }
+        expect(await VeroRateManager.registerThreatBlocked(prefs), isTrue);
+        expect(await VeroRateManager.shouldShowPrompt(prefs), isTrue);
+
+        await tester.pumpWidget(
+          const MaterialApp(
+            home: Scaffold(
+              body: RateDialog(),
+            ),
+          ),
+        );
+        await tester.pumpAndSettle();
+        expect(find.byKey(const Key('rateDialog')), findsOneWidget);
+        await tester.tap(find.byKey(const Key('rateDialogNoBtn')));
+        await tester.pumpAndSettle();
+        expect(find.byKey(const Key('offlineFeedbackInput')), findsOneWidget);
+        await tester.enterText(find.byKey(const Key('offlineFeedbackInput')), 'Harika uygulama!');
+        await tester.tap(find.byKey(const Key('submitFeedbackBtn')));
+        await tester.pumpAndSettle();
+        expect(await VeroRateManager.shouldShowPrompt(prefs), isFalse);
       });
 
     });

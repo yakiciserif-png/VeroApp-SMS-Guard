@@ -49,8 +49,8 @@ class TrustNotificationListener : NotificationListenerService() {
                 }
                 // Clear pending once retrieved
                 prefs.edit().putString(KEY_PENDING_MESSAGES, "[]").apply()
-            } catch (e: Exception) {
-                e.printStackTrace()
+            } catch (_: Exception) {
+                // Silent fail-safe: never write notification content to logcat
             }
             return list
         }
@@ -102,8 +102,8 @@ class TrustNotificationListener : NotificationListenerService() {
                 }
 
                 prefs.edit().putString(KEY_PENDING_MESSAGES, arr.toString()).apply()
-            } catch (e: Exception) {
-                e.printStackTrace()
+            } catch (_: Exception) {
+                // Silent fail-safe: never write notification content to logcat
             }
         }
     }
@@ -137,8 +137,8 @@ class TrustNotificationListener : NotificationListenerService() {
             try {
                 cancelNotification(sbn.key)
                 dismissed = true
-            } catch (e: Exception) {
-                e.printStackTrace()
+            } catch (_: Exception) {
+                // Silent fail-safe
             }
         }
 

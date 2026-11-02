@@ -235,8 +235,8 @@ object TrustFilterEngine {
                 }
             }
             rules = rulesList
-        } catch (e: Exception) {
-            e.printStackTrace()
+        } catch (_: Exception) {
+            // Silent fail-safe: preserve existing rules on malformed JSON
         }
     }
 
