@@ -6,14 +6,14 @@ VEROAPP SMS GUARD — GOOGLE PLAY STORE LİSTELEME (TÜRKÇE)
 VeroApp: SMS & Arama Kalkanı
 
 [KISA AÇIKLAMA] (Max 80 karakter)
-%100 Çevrimdışı Yapay Zeka SMS & Arama Kalkanı. Sıfır İnternet, Sıfır Veri Toplama.
+%100 Çevrimdışı Yapay Zeka SMS & Arama Kalkanı. Sıfır Telemetri, Sıfır Veri Toplama.
 
 [TAM AÇIKLAMA]
 🛡️ VeroApp: SMS & Arama Kalkanı — Cihaz İçi Yapay Zeka ile Üstün Koruma
 
 Dolandırıcılık, sahte tapu harcı, SGK prim iadesi, oltalama linkleri ve sahte çağrı merkezleri artık telefonunuza sızamaz! VeroApp, kişisel mesaj ve arama verilerinizi asla harici sunuculara göndermeden, %100 çevrimdışı (offline) çalışan yerel güvenlik kalkanıdır.
 
-Uygulamamız hiçbir İNTERNET İZNİ (INTERNET Permission) içermez! Tüm yapay zeka sınıflandırmaları, veri sızıntısı taramaları ve spam filtrelemeleri doğrudan telefonunuzda çalışır.
+Uygulamamız mesaj veya arama verilerini harici sunuculara göndermez; sıfır telemetri ile çalışır! Tüm yapay zeka sınıflandırmaları, veri sızıntısı taramaları ve spam filtrelemeleri doğrudan telefonunuzda çalışır.
 
 ⚡ ÖNE ÇIKAN ÖZELLİKLER:
 

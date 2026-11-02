@@ -6,12 +6,12 @@ VEROAPP SMS GUARD — GOOGLE PLAY STORE & APPLE APP STORE LISTING (ENGLISH)
 VeroApp SMS Guard
 
 [SHORT DESCRIPTION] (Max 80 characters)
-100% Offline On-Device AI SMS & Call Shield. Zero Internet, Zero Data Collection.
+100% Offline On-Device AI SMS & Call Shield. Zero Telemetry, Zero Data Upload.
 
 [FULL DESCRIPTION]
 🛡️ VeroApp SMS Guard: Ultimate Privacy & On-Device AI Security Shield
 
-Protect yourself from smishing, phone scams, fake delivery links, and phishing attacks without sacrificing your personal privacy. VeroApp SMS Guard operates 100% offline with ZERO internet permission.
+Protect yourself from smishing, phone scams, fake delivery links, and phishing attacks without sacrificing your personal privacy. VeroApp SMS Guard operates 100% on-device with ZERO cloud telemetry or data harvesting.
 
 Your messages and call data NEVER leave your smartphone. All neural classifications, breach detections, and spam filtering algorithms execute directly on your local device CPU.
 

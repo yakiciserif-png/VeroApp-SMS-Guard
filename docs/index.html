@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VeroApp SMS Guard | 100% Offline AI Security Shield & Privacy Policy</title>
+  <meta name="description" content="VeroApp SMS Guard - 100% Offline Mobile SMS Spam Filter, Scam Call Shield & Local AI Guard. Zero cloud footprint, zero telemetry, on-device intelligence.">
+  <meta name="theme-color" content="#0B1020">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2300E5FF'><path d='M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z'/></svg>">
+  <style>
+    :root {
+      --bg-primary: #070B16;
+      --bg-card: #0F172A;
+      --bg-card-alt: #1E293B;
+      --neon-cyan: #00E5FF;
+      --neon-purple: #7C4DFF;
+      --neon-green: #00E676;
+      --neon-red: #FF1744;
+      --text-primary: #F8FAFC;
+      --text-secondary: #94A3B8;
+      --border-color: #334155;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      padding-bottom: 60px;
+    }
+    header {
+      background: rgba(11, 16, 32, 0.95);
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(8px);
+    }
+    .nav-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text-primary);
+      font-weight: 800;
+      font-size: 1.25rem;
+      letter-spacing: 0.5px;
+    }
+    .logo-badge {
+      background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+      color: #000;
+      padding: 6px 10px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 900;
+    }
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      margin-left: 20px;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover {
+      color: var(--neon-cyan);
+    }
+    .hero {
+      max-width: 1100px;
+      margin: 40px auto 20px;
+      padding: 0 20px;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: 2.6rem;
+      font-weight: 900;
+      background: linear-gradient(to right, #00E5FF, #A78BFA, #38BDF8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 16px;
+    }
+    .hero p {
+      font-size: 1.15rem;
+      color: var(--text-secondary);
+      max-width: 780px;
+      margin: 0 auto 30px;
+    }
+    .cert-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0, 229, 255, 0.1);
+      border: 1px solid var(--neon-cyan);
+      color: var(--neon-cyan);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      max-width: 1100px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 24px;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-2px);
+      border-color: var(--neon-cyan);
+    }
+    .card h3 {
+      font-size: 1.15rem;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-primary);
+    }
+    .card p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+    .section-title {
+      text-align: center;
+      margin: 60px 0 20px;
+      font-size: 2rem;
+      font-weight: 800;
+    }
+    .policy-container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 30px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+    }
+    .policy-header {
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 20px;
+      margin-bottom: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .policy-header h2 {
+      font-size: 1.6rem;
+      color: var(--neon-cyan);
+      margin-bottom: 8px;
+    }
+    .policy-meta {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+    .lang-switcher {
+      display: flex;
+      gap: 8px;
+      background: var(--bg-card-alt);
+      padding: 4px;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+    }
+    .lang-btn {
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .lang-btn.active {
+      background: var(--neon-cyan);
+      color: #000;
+    }
+    .policy-content h3 {
+      font-size: 1.25rem;
+      color: #FFF;
+      margin: 28px 0 10px;
+    }
+    .policy-content p, .policy-content ul, .policy-content ol {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      margin-bottom: 14px;
+    }
+    .policy-content ul, .policy-content ol {
+      padding-left: 24px;
+    }
+    .policy-content li {
+      margin-bottom: 6px;
+    }
+    .policy-content strong {
+      color: var(--text-primary);
+    }
+    .callout-box {
+      background: rgba(0, 230, 118, 0.08);
+      border-left: 4px solid var(--neon-green);
+      padding: 16px;
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+    .callout-box strong {
+      color: var(--neon-green);
+    }
+    .warning-box {
+      background: rgba(255, 23, 68, 0.08);
+      border-left: 4px solid var(--neon-red);
+      padding: 16px;
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+    .warning-box strong {
+      color: var(--neon-red);
+    }
+    .btn-action {
+      display: inline-block;
+      background: var(--neon-cyan);
+      color: #000;
+      padding: 12px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-top: 10px;
+      transition: opacity 0.2s;
+    }
+    .btn-action:hover {
+      opacity: 0.9;
+    }
+    footer {
+      max-width: 1100px;
+      margin: 60px auto 0;
+      padding: 20px;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+    }
+    @media (max-width: 640px) {
+      .hero h1 { font-size: 1.8rem; }
+      .hero p { font-size: 1rem; }
+      .policy-container { padding: 18px; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="nav-container">
+      <a href="#" class="logo">
+        <span class="logo-badge">VERO</span>
+        <span>VeroApp SMS Guard</span>
+      </a>
+      <nav class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#privacy">Privacy Policy</a>
+        <a href="#data-deletion">Data Deletion</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="cert-pill">
+        <span>🛡️ VERO-SEC-2026-OFFLINE-CERTIFIED</span>
+      </div>
+      <h1>100% Offline Mobile SMS & Call Security Shield</h1>
+      <p>
+        The privacy-first on-device AI protection system that never transmits a single byte of your SMS messages, 
+        caller identities, or contact list to external cloud servers. Zero cloud footprint, zero telemetry.
+      </p>
+      <div>
+        <a href="#privacy" class="btn-action">Read Official Privacy Policy</a>
+      </div>
+    </section>
+
+    <section id="features" class="grid">
+      <div class="card">
+        <h3>🔒 Zero-Data-Leak</h3>
+        <p>100% On-Device execution. No telemetry, no cloud transmission, no advertising SDKs, no behavioral tracking.</p>
+      </div>
+      <div class="card">
+        <h3>🧠 On-Device AI</h3>
+        <p>6D Semantic Intent Engine (< 0.1 ms inference) detects smishing, extortion threats, fake legal bailiff claims, and OTP fraud locally.</p>
+      </div>
+      <div class="card">
+        <h3>⚡ 126K+ Blocklist</h3>
+        <p>Offline binary database + Android 10+ CallScreeningService stops fraud calls at the telecom layer before the phone rings.</p>
+      </div>
+      <div class="card">
+        <h3>🔑 Offline Licensing</h3>
+        <p>Cryptographic Ed25519 signatures enable offline PRO and Family activation without contacting remote authentication servers.</p>
+      </div>
+    </section>
+
+    <h2 class="section-title" id="privacy">Official Privacy Policy & Legal Disclosure</h2>
+
+    <section class="policy-container">
+      <div class="policy-header">
+        <div>
+          <h2>VeroApp SMS Guard Privacy & Compliance Guarantee</h2>
+          <div class="policy-meta">
+            <strong>Package / Application ID:</strong> <code>com.veroapp.smsguard</code> | 
+            <strong>Version:</strong> 1.0.0 | 
+            <strong>Effective Date:</strong> November 2, 2026
+          </div>
+        </div>
+        <div class="lang-switcher">
+          <button class="lang-btn active" onclick="switchLang('en')" id="btn-en">English</button>
+          <button class="lang-btn" onclick="switchLang('tr')" id="btn-tr">Türkçe</button>
+        </div>
+      </div>
+
+      <!-- ENGLISH POLICY CONTENT -->
+      <div class="policy-content" id="policy-en">
+        <div class="callout-box">
+          <strong>Fundamental Principle: Absolute On-Device Processing & Zero Data Collection</strong><br>
+          VeroApp SMS Guard does not upload, collect, or transmit your text messages, call records, contacts, location, or biometric data to external servers or third parties. All filtering and classification engines execute strictly on your device's local processor.
+        </div>
+
+        <h3>1. Data Processed Locally On Your Device</h3>
+        <p>VeroApp SMS Guard processes the following data exclusively in local device volatile memory (RAM) or local SQLite storage to provide its core protection:</p>
+        <ul>
+          <li><strong>SMS Messages & Metadata:</strong> Incoming SMS bodies, sender addresses, and timestamps are transiently analyzed to identify phishing, illegal gambling spam, extortion threats, and OTP theft, routing them to the on-device Spam / Quarantine inbox.</li>
+          <li><strong>Incoming Telephone Numbers:</strong> Inspected against the bundled offline database (<code>spam_numbers.bin</code>) via the official Android <code>CallScreeningService</code> API in < 0.1 ms to reject nuisance and fraud calls.</li>
+          <li><strong>Contacts (READ_CONTACTS):</strong> Queried strictly on-device to whitelist known acquaintances with a green badge. Contacts are never duplicated, transmitted, or backed up remotely.</li>
+          <li><strong>Local Quarantine Logs:</strong> Stored strictly in local SQLite and SharedPreferences; zero external telemetry or analytics upload.</li>
+        </ul>
+
+        <h3>2. Data We NEVER Collect or Transmit</h3>
+        <ul>
+          <li>We <strong>DO NOT</strong> record, listen to, or process audio conversations or microphone data.</li>
+          <li>We <strong>DO NOT</strong> upload, store, or forward SMS text contents to cloud servers.</li>
+          <li>We <strong>DO NOT</strong> collect GPS location, Advertising IDs (AAID/IDFA), or device fingerprints.</li>
+          <li>We <strong>DO NOT</strong> bundle third-party analytics (Google Analytics, Firebase Analytics) or advertising SDKs.</li>
+        </ul>
+
+        <h3>3. Declared Permissions & Store Compliance Justification</h3>
+        <ul>
+          <li><code>android.permission.RECEIVE_SMS</code> & <code>android.permission.READ_SMS</code>: Required to perform real-time on-device spam detection and default SMS organization.</li>
+          <li><code>android.telecom.CallScreeningService</code> (<code>ROLE_CALL_SCREENING</code>): Utilized to evaluate and block known scam numbers without invasive access to permanent call history.</li>
+          <li><code>android.permission.INTERNET</code>: Utilized strictly for optional, user-initiated one-way binary threat signature updates from public GitHub releases; no user telemetry or identifiers are transmitted.</li>
+        </ul>
+
+        <h3 id="data-deletion">4. User Rights & Data Deletion Procedure</h3>
+        <p>
+          Because VeroApp SMS Guard operates with a <strong>Zero Cloud Footprint</strong>, no user data resides on remote servers. Users maintain full control over local data:
+        </p>
+        <ol>
+          <li><strong>In-App Log Clearance:</strong> Navigate to <strong>Settings &gt; Clear Scan History</strong> or <strong>Reset Database</strong> to immediately wipe local logs.</li>
+          <li><strong>Operating System Purge:</strong> Clear local storage via Android/iOS <strong>Settings &gt; Apps &gt; VeroApp SMS Guard &gt; Clear Storage</strong>.</li>
+          <li><strong>Application Uninstallation:</strong> Uninstalling the application permanently deletes all local SQLite databases, Bloom filters, and preference files from the device file system.</li>
+          <li><strong>Server-Side Requests:</strong> Since 0 bytes of user data exist on our infrastructure, no remote account deletion ticket is required.</li>
+        </ol>
+
+        <h3>5. Children's Online Privacy Protection (COPPA Compliance)</h3>
+        <p>VeroApp SMS Guard is not directed to children under 13 years of age. The application does not knowingly collect or solicit personal information from children.</p>
+
+        <h3>6. GDPR (EU) Articles 13 & 14 Disclosures</h3>
+        <p>
+          <strong>Data Controller:</strong> VeroApp Security Engineering Team.<br>
+          <strong>Legal Basis (GDPR Art. 6):</strong> User explicit consent (Art. 6(1)(a)) and legitimate interest in providing robust cyber-defense against extortion and financial fraud (Art. 6(1)(f)).<br>
+          <strong>User Rights:</strong> Under GDPR Chapter III, you have the right to access, rectify, restrict, and erase local data, as well as lodge a complaint with your national Data Protection Authority (DPA).
+        </p>
+
+        <h3 id="contact">7. Privacy & Data Protection Contact</h3>
+        <p>
+          For regulatory inquiries, compliance verification, or vulnerability disclosures:<br>
+          <strong>Data Protection Representative:</strong> <a href="mailto:privacy@veroapp.com" style="color: var(--neon-cyan);">privacy@veroapp.com</a><br>
+          <strong>Technical Support:</strong> <a href="mailto:support@veroapp.com" style="color: var(--neon-cyan);">support@veroapp.com</a>
+        </p>
+      </div>
+
+      <!-- TURKISH POLICY CONTENT -->
+      <div class="policy-content" id="policy-tr" style="display: none;">
+        <div class="callout-box">
+          <strong>Temel İlke: %100 Cihaz İçi Yerel İşleme ve Sıfır Veri Toplama Taahhüdü</strong><br>
+          VeroApp SMS Guard, kullanıcı gizliliğini temel hak kabul eder. Mesajlarınız, arama kayıtlarınız veya rehberiniz ASLA harici bulut sunucularına iletilmez. Tüm yapay zeka operasyonları yerel cihaz işlemcinizde çalışır.
+        </div>
+
+        <h3>1. Toplanan ve Yerel Olarak İşlenen Veriler</h3>
+        <ul>
+          <li><strong>SMS Meta Verileri ve İçerikleri:</strong> Gelen SMS'lerin dolandırıcılık, yasadışı bahis ve sahte bankacılık linkleri içerip içermediğini denetlemek amacıyla transient (geçici) olarak cihaz içinde taranır.</li>
+          <li><strong>Gelen Arama Numaraları:</strong> Arayan numara, yerel <code>spam_numbers.bin</code> veritabanı ile eşleştirilerek spam/dolandırıcılık tespiti yapılır.</li>
+          <li><strong>Rehber Kayıtları (READ_CONTACTS):</strong> Kayıtlı kişilerinize yeşil güven rozeti sağlamak amacıyla cihaz içinde karşılaştırılır; dışarı aktarılmaz.</li>
+          <li><strong>Filtreleme Geçmişi:</strong> Yalnızca yerel SQLite veritabanında saklanır; dış telemetri sunucusu bulunmaz.</li>
+        </ul>
+
+        <h3>2. KESİNLİKLE Toplanmayan Veriler</h3>
+        <ul>
+          <li>Sesli görüşme sesleri kaydedilmez veya dinlenmez.</li>
+          <li>SMS metinleri veya telefon numaraları harici veri merkezlerine iletilmez.</li>
+          <li>Konum (GPS) veya reklam kimlikleri (AAID/IDFA) toplanmaz.</li>
+          <li>Üçüncü taraf reklam veya izleme SDK'sı barındırılmaz.</li>
+        </ul>
+
+        <h3>3. İzinler ve Mağaza Gerekçeleri</h3>
+        <ul>
+          <li><code>RECEIVE_SMS</code>, <code>READ_SMS</code>, <code>ROLE_SMS</code>: Cihaz içi SMS koruması ve varsayılan SMS yöneticisi işlevi.</li>
+          <li><code>CallScreeningService</code>, <code>ROLE_CALL_SCREENING</code>: Dolandırıcı çağrıları telefon çalmadan telekom katmanında reddetme.</li>
+          <li><code>INTERNET</code>: Yalnızca kullanıcının açıkça onayladığı haftalık tek yönlü tehdit imzası paketi güncellemesi için kullanılır; kullanıcı verisi sızdırılmaz.</li>
+        </ul>
+
+        <h3 id="veri-silme">4. Kullanıcı Hakları ve Veri Silme Prosedürü (Data Deletion)</h3>
+        <p>
+          Uygulamamız harici sunucu veritabanı barındırmadığından ötürü sunucuda kullanıcı verisi bulunmamaktadır. 
+          Cihazınızdaki yerel filtreleme geçmişini dilediğiniz an <strong>Ayarlar &gt; Geçmişi Temizle</strong> veya 
+          <strong>Uygulamayı Kaldır</strong> yoluyla kalıcı olarak sıfırlayabilirsiniz.
+        </p>
+
+        <h3>5. Çocukların Gizliliği (COPPA)</h3>
+        <p>VeroApp SMS Guard, 13 yaşın altındaki çocuklara yönelik değildir ve çocuklara ait hiçbir veriyi bilerek veya isteyerek işlemez.</p>
+
+        <h3>6. KVKK (6698) ve GDPR Madde 13/14 Bildirimi</h3>
+        <p>
+          Veri Sorumlusu: VeroApp Security Engineering Team.<br>
+          Hukuki Dayanak: GDPR Madde 6(1)(a) açık rıza ve Madde 6(1)(f) siber suçlara karşı meşru menfaat; KVKK Madde 5 hükümleri.<br>
+          İlgili Kişi Hakları: KVKK Madde 11 ve GDPR Bölüm III uyarınca bilgi alma, silme ve şikayet haklarınız saklıdır.
+        </p>
+
+        <h3>7. İletişim ve Veri Koruma Temsilcisi</h3>
+        <p>
+          Gizlilik ve veri koruma başvurularınız için:<br>
+          <strong>E-posta:</strong> <a href="mailto:privacy@veroapp.com" style="color: var(--neon-cyan);">privacy@veroapp.com</a><br>
+          <strong>Destek:</strong> <a href="mailto:support@veroapp.com" style="color: var(--neon-cyan);">support@veroapp.com</a>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>&copy; 2026 VeroApp SMS Guard. All rights reserved.</div>
+    <div>100% Offline-First Architecture | Zero Cloud Footprint</div>
+  </footer>
+
+  <script>
+    function switchLang(lang) {
+      const enSection = document.getElementById('policy-en');
+      const trSection = document.getElementById('policy-tr');
+      const btnEn = document.getElementById('btn-en');
+      const btnTr = document.getElementById('btn-tr');
+
+      if (lang === 'tr') {
+        enSection.style.display = 'none';
+        trSection.style.display = 'block';
+        btnTr.classList.add('active');
+        btnEn.classList.remove('active');
+      } else {
+        enSection.style.display = 'block';
+        trSection.style.display = 'none';
+        btnEn.classList.add('active');
+        btnTr.classList.remove('active');
+      }
+    }
+
+    // Auto-detect anchor
+    if (window.location.hash === '#privacy-tr' || window.location.hash === '#veri-silme') {
+      switchLang('tr');
+    }
+  </script>
+
+</body>
+</html>

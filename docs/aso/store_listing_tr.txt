@@ -6,14 +6,14 @@ VEROAPP SMS GUARD — GOOGLE PLAY STORE & APPLE APP STORE LİSTELEME (TÜRKÇE)
 VeroApp SMS Guard
 
 [KISA AÇIKLAMA] (Max 80 karakter)
-%100 Çevrimdışı Yapay Zeka SMS & Arama Kalkanı. Sıfır İnternet, Sıfır Veri Toplama.
+%100 Çevrimdışı Yapay Zeka SMS & Arama Kalkanı. Sıfır Telemetri, Sıfır Veri Toplama.
 
 [TAM AÇIKLAMA]
 🛡️ VeroApp SMS Guard: Cihaz İçi Yapay Zekayla Tam Gizlilik ve Üstün Güvenlik
 
 Dolandırıcılık, oltalama (phishing), sahte kargo takip mesajları, e-Devlet ve banka taklitleri artık telefonunuza ulaşamayacak! VeroApp SMS Guard, kişisel verilerinizi asla sunuculara göndermeden, %100 çevrimdışı (offline) çalışan askeri düzeyde bir güvenlik kalkanıdır.
 
-Uygulamamız hiçbir internet izni (INTERNET Permission) içermez! Tüm yapay zeka analizleri, sızıntı taramaları ve spam filtrelemeleri doğrudan telefonunuzun işlemcisinde gerçekleşir.
+Uygulamamız mesaj veya arama verilerini harici sunuculara göndermez; sıfır telemetri ile çalışır! Tüm yapay zeka analizleri, sızıntı taramaları ve spam filtrelemeleri doğrudan telefonunuzun işlemcisinde gerçekleşir.
 
 ⚡ ÖNE ÇIKAN ÖZELLİKLER:
 
