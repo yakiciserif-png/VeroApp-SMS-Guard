@@ -14,6 +14,7 @@ import '../core/classifier/smart_classifier.dart';
 import '../core/classifier/threat_database.dart';
 import '../core/monetization/purchase_service.dart';
 import '../core/platform/native_bridge.dart';
+import '../core/platform/vero_logger.dart';
 import '../core/rules/rule_engine.dart';
 import '../engines/vero_caller_id_engine.dart';
 import '../engines/vero_community_shield.dart';
@@ -67,17 +68,17 @@ class AppState extends ChangeNotifier {
     }
   }
 
-  static const _kRules = 'tl.rules';
-  static const _kBlacklist = 'tl.blacklist';
-  static const _kWhitelist = 'tl.whitelist';
-  static const _kHistory = 'tl.history';
-  static const _kModel = 'tl.model';
-  static const _kLocale = 'tl.locale';
-  static const _kAutoDismiss = 'tl.autoDismiss';
-  static const _kAutoCleanOtp24h = 'tl.autoCleanOtp24h';
-  static const _kShields = 'tl.shields';
-  static const _kProtectionMode = 'tl.protectionMode';
-  static const _kThemeMode = 'tl.themeMode';
+  static const _kRules = 'vero.rules';
+  static const _kBlacklist = 'vero.blacklist';
+  static const _kWhitelist = 'vero.whitelist';
+  static const _kHistory = 'vero.history';
+  static const _kModel = 'vero.model';
+  static const _kLocale = 'vero.locale';
+  static const _kAutoDismiss = 'vero.autoDismiss';
+  static const _kAutoCleanOtp24h = 'vero.autoCleanOtp24h';
+  static const _kShields = 'vero.shields';
+  static const _kProtectionMode = 'vero.protectionMode';
+  static const _kThemeMode = 'vero.themeMode';
   static const _kSubTier = 'vero.subTier';
   static const _kFamilyOwner = 'vero.familyOwner';
   static const _kFamilyMember = 'vero.familyMember';
@@ -95,7 +96,9 @@ class AppState extends ChangeNotifier {
     if (_prefs == null) {
       try {
         _prefs = await SharedPreferences.getInstance();
-      } catch (_) {}
+      } catch (e, st) {
+        VeroLogger.w('SharedPreferences instance retrieval error', error: e, stackTrace: st);
+      }
     }
     return _prefs;
   }
@@ -171,12 +174,10 @@ class AppState extends ChangeNotifier {
     try {
       await _initCore().timeout(
         const Duration(milliseconds: 1800),
-        onTimeout: () {
-          debugPrint('[AppState] _initCore timeout (1.8s) reached - proceeding');
-        },
+        onTimeout: () {},
       );
     } catch (e, st) {
-      debugPrint('[AppState] _initCore error: $e\n$st');
+      VeroLogger.w('AppState init core timed out or failed', error: e, stackTrace: st);
     }
 
     // In real devices, ensure ~1.2s smooth branded splash presentation
@@ -217,42 +218,42 @@ class AppState extends ChangeNotifier {
         if (autoCleanOtp24h) {
           await runAutoCleaner();
         }
-      } catch (e) {
-        debugPrint('[LazyLoader] autoCleaner error: $e');
+      } catch (e, st) {
+        VeroLogger.w('Auto cleaner failed during background warmup', error: e, stackTrace: st);
       }
 
       // 1. Offline Spam Phone DB (63K records)
       try {
         await VeroCallerIdEngine.initFromAsset();
-      } catch (e) {
-        debugPrint('[LazyLoader] CallerIdEngine asset error: $e');
+      } catch (e, st) {
+        VeroLogger.w('VeroCallerIdEngine asset load failed', error: e, stackTrace: st);
       }
 
       // 2. Offline Phishing Domains DB (38K domains)
       try {
         await VeroLinkScanner.instance.initialize();
-      } catch (e) {
-        debugPrint('[LazyLoader] LinkScanner asset error: $e');
+      } catch (e, st) {
+        VeroLogger.w('VeroLinkScanner initialize failed', error: e, stackTrace: st);
       }
 
       // 3. Offline Breach Radar (6.25 MB Bloom filter)
       try {
         await VeroBreachRadarEngine.initFromAsset();
-      } catch (e) {
-        debugPrint('[LazyLoader] BreachRadarEngine asset error: $e');
+      } catch (e, st) {
+        VeroLogger.w('VeroBreachRadarEngine init failed', error: e, stackTrace: st);
       }
 
       // 4. Platform status & Native hooks
       try {
         await refreshPlatformStatus();
-      } catch (e) {
-        debugPrint('[LazyLoader] refreshPlatformStatus error: $e');
+      } catch (e, st) {
+        VeroLogger.w('refreshPlatformStatus failed', error: e, stackTrace: st);
       }
 
       try {
         await syncNative();
-      } catch (e) {
-        debugPrint('[LazyLoader] syncNative error: $e');
+      } catch (e, st) {
+        VeroLogger.w('syncNative failed', error: e, stackTrace: st);
       }
     });
   }
@@ -261,7 +262,9 @@ class AppState extends ChangeNotifier {
     if (_prefs == null) {
       try {
         _prefs = await SharedPreferences.getInstance();
-      } catch (_) {}
+      } catch (e, st) {
+        VeroLogger.w('SharedPreferences init error in _initCore', error: e, stackTrace: st);
+      }
     }
 
     final p = _prefs;
@@ -276,10 +279,10 @@ class AppState extends ChangeNotifier {
     }
 
     try {
-      final code = p.getString(_kLocale);
+      final code = p.getString(_kLocale) ?? p.getString('tl.locale');
       if (code != null) locale = Locale(code);
-      autoDismissSpam = p.getBool(_kAutoDismiss) ?? true;
-      autoCleanOtp24h = p.getBool(_kAutoCleanOtp24h) ?? false;
+      autoDismissSpam = p.getBool(_kAutoDismiss) ?? p.getBool('tl.autoDismiss') ?? true;
+      autoCleanOtp24h = p.getBool(_kAutoCleanOtp24h) ?? p.getBool('tl.autoCleanOtp24h') ?? false;
       callGuardEnabled = p.getBool(_kCallGuard) ?? true;
       hasAcceptedKvkkConsent = p.getBool(_kKvkkConsent) ?? hasAcceptedKvkkConsent;
 
@@ -305,7 +308,7 @@ class AppState extends ChangeNotifier {
       purchaseService.isFamilyMember = p.getBool(_kFamilyMember) ?? false;
       purchaseService.familyCode = p.getString(_kFamilyCode) ?? '892341';
 
-      final savedTheme = p.getString(_kThemeMode);
+      final savedTheme = p.getString(_kThemeMode) ?? p.getString('tl.themeMode');
       if (savedTheme != null) {
         themeMode = ThemeMode.values.firstWhere(
           (m) => m.name == savedTheme,
@@ -313,7 +316,7 @@ class AppState extends ChangeNotifier {
         );
       }
 
-      final savedMode = p.getString(_kProtectionMode);
+      final savedMode = p.getString(_kProtectionMode) ?? p.getString('tl.protectionMode');
       if (savedMode != null) {
         protectionMode = ProtectionMode.values.firstWhere(
           (m) => m.name == savedMode,
@@ -321,7 +324,7 @@ class AppState extends ChangeNotifier {
         );
       }
 
-      final rawShields = p.getString(_kShields);
+      final rawShields = p.getString(_kShields) ?? p.getString('tl.shields');
       if (rawShields != null) {
         try {
           shieldConfig = ThreatShieldConfig.fromJson(
@@ -334,23 +337,25 @@ class AppState extends ChangeNotifier {
 
       blacklist
         ..clear()
-        ..addAll(p.getStringList(_kBlacklist) ?? const []);
+        ..addAll(p.getStringList(_kBlacklist) ?? p.getStringList('tl.blacklist') ?? const []);
       whitelist
         ..clear()
-        ..addAll(p.getStringList(_kWhitelist) ?? const []);
+        ..addAll(p.getStringList(_kWhitelist) ?? p.getStringList('tl.whitelist') ?? const []);
 
       rules
         ..clear()
-        ..addAll(_decodeList(p.getString(_kRules)).map(FilterRule.fromJson));
+        ..addAll(_decodeList(p.getString(_kRules) ?? p.getString('tl.rules')).map(FilterRule.fromJson));
       history
         ..clear()
         ..addAll(
-          _decodeList(p.getString(_kHistory)).map(HistoryEntry.fromJson),
+          _decodeList(p.getString(_kHistory) ?? p.getString('tl.history')).map(HistoryEntry.fromJson),
         );
-    } catch (_) {}
+    } catch (e, st) {
+      VeroLogger.w('Failed to parse saved user history/rules from storage', error: e, stackTrace: st);
+    }
 
     NaiveBayesModel model;
-    final savedModel = p.getString(_kModel);
+    final savedModel = p.getString(_kModel) ?? p.getString('tl.model');
     if (savedModel != null) {
       try {
         model = NaiveBayesModel.fromJson(
@@ -559,8 +564,8 @@ class AppState extends ChangeNotifier {
     try {
       final p = await _ensurePrefs();
       await p?.setBool(_kKvkkConsent, true);
-    } catch (e) {
-      debugPrint('[AppState] Failed to persist KVKK consent: $e');
+    } catch (e, st) {
+      VeroLogger.w('Failed to persist KVKK consent state', error: e, stackTrace: st);
     }
     final isTest = !kIsWeb && Platform.environment.containsKey('FLUTTER_TEST');
     if (!isTest) {
@@ -1094,7 +1099,9 @@ class AppState extends ChangeNotifier {
     try {
       await _ensurePrefs();
       await _prefs?.setBool('vero_threat_auto_update_enabled', enabled);
-    } catch (_) {}
+    } catch (e, st) {
+      VeroLogger.w('Failed to persist threat auto update preference', error: e, stackTrace: st);
+    }
     notifyListeners();
   }
 }

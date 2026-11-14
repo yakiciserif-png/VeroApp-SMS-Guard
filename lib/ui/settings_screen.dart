@@ -10,6 +10,7 @@ import '../core/monetization/purchase_service.dart';
 import '../engines/vero_community_shield.dart';
 import '../engines/vero_link_scanner.dart';
 import '../state/app_state.dart';
+import 'call_overlay_screen.dart';
 import 'cyberpunk_theme.dart';
 import 'enterprise_screen.dart';
 import 'edevlet_guard_screen.dart';
@@ -372,6 +373,25 @@ class _SettingsContent extends StatelessWidget {
             onTap: () {
               Navigator.of(context).push(
                 MaterialPageRoute(builder: (_) => const LinkScannerScreen()),
+              );
+            },
+          ),
+          ListTile(
+            key: const Key('openAnswerBotTile'),
+            leading: const Icon(Icons.smart_toy_outlined, color: CyberpunkColors.neonCyan),
+            title: Text(isTr ? 'Spam Oyalama Laboratuvarı (Answer Bot)' : 'Spam Stall Laboratory (Answer Bot)'),
+            subtitle: Text(
+              isTr
+                  ? 'Yapay zeka sesli oyalama yanıtlarını simüle edin'
+                  : 'Simulate on-device AI voice stall phrases and transcript',
+            ),
+            trailing: const Icon(Icons.arrow_forward_ios, size: 14, color: CyberpunkColors.neonCyan),
+            onTap: () {
+              CallOverlayScreen.show(
+                context,
+                phoneNumber: '+908504809988',
+                category: 'SPAM_SCAM',
+                confidence: 0.99,
               );
             },
           ),

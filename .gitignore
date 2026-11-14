@@ -1,9 +1,15 @@
-# Miscellaneous
+# ===================================================================
+# VeroAppSmsGuard — Zero-Garbage & Secret Protection Policy
+# ===================================================================
+
+# Miscellaneous & OS Artifacts
 *.class
 *.log
 *.pyc
 *.swp
 .DS_Store
+Thumbs.db
+desktop.ini
 .atom/
 .build/
 .buildlog/
@@ -12,56 +18,112 @@
 .swiftpm/
 migrate_working_dir/
 
-# IntelliJ / IDE related
+# IntelliJ / IDE / Editor
 *.iml
 *.ipr
 *.iws
 .idea/
+.vscode/
 
-# Flutter/Dart/Pub related
+# Flutter / Dart / Pub Build & Tooling Artifacts
 **/doc/api/
 **/ios/Flutter/.last_build_id
 **/ios/Flutter/ephemeral/
+**/macos/Flutter/ephemeral/
 **/windows/flutter/ephemeral/
+**/linux/flutter/ephemeral/
+**/windows/flutter/generated_plugin*
+**/linux/flutter/generated_plugin*
+**/GeneratedPluginRegistrant.*
 .dart_tool/
+**/.dart_tool/
 .flutter-plugins
 .flutter-plugins-dependencies
+**/.flutter-plugins
+**/.flutter-plugins-dependencies
 .pub-cache/
 .pub/
 /build/
 build/
+**/build/
 /coverage/
+coverage/
+**/coverage/
+.widget_preview/
 
-# Android Gradle & local properties
-/android/.gradle/
-/android/captures/
-/android/local.properties
-/android/key.properties
-*.jks
-*.keystore
+# Flutter iOS Generated Configs
+/ios/Flutter/Generated.xcconfig
+/ios/Flutter/flutter_export_environment.sh
 
 # iOS CocoaPods
 /ios/Pods/
+**/ios/Pods/
 /ios/.symlinks/
 
-# Symbolication & Obfuscation related
-app.*.symbols
-app.*.map.json
-
-# Private Keys & Licensing Security (Ed25519)
-*.pem
-*.key
-scripts/.ed25519_private.key
-scripts/*.key
-
-# Android Studio build artifacts
+# Android Gradle & Local Properties (Note: gradlew & gradle-wrapper.jar are tracked for offline builds)
+/android/.gradle/
+**/.gradle/
+/android/captures/
+/android/local.properties
+**/local.properties
 /android/app/debug
 /android/app/profile
 /android/app/release
 
-# Widget Preview related
-.widget_preview/
+# Node / Python / Virtual Environments
+node_modules/
+**/node_modules/
+.venv/
+venv/
+**/.venv/
+**/venv/
+__pycache__/
+**/__pycache__/
+*.py[cod]
+.pytest_cache/
 
-# Flutter iOS generated
-/ios/Flutter/Generated.xcconfig
-/ios/Flutter/flutter_export_environment.sh
+# Desktop & Mobile Binary Build Outputs
+VeroAppSmsGuard.exe
+flutter_windows.dll
+dartjni.dll
+native_assets.json
+data/flutter_assets/
+*.apk
+*.aab
+*.ipa
+*.exe
+*.dll
+*.so
+*.msi
+
+# Secrets, Environment Variables & Signing Keys (STRICTLY BLOCKED)
+.env
+.env.*
+**/.env
+**/.env.*
+!.env.example
+!**/.env.example
+/android/key.properties
+**/key.properties
+!android/key.properties.example
+!**/key.properties.example
+*.jks
+**/*.jks
+*.keystore
+**/*.keystore
+*.p12
+*.pfx
+*.pem
+*.key
+**/*.key
+scripts/.ed25519_private.key
+scripts/*.key
+*.mobileprovision
+
+# Symbolication & Obfuscation
+app.*.symbols
+app.*.map.json
+
+# Local release signing & key backups
+release_artifacts/
+

@@ -1,0 +1,158 @@
+===============================================================================
+GOOGLE PLAY STORE SENSITIVE PERMISSIONS DECLARATION FORM & COMPLIANCE DOSSIER
+Application: VeroApp SMS Guard
+Package Name: com.veroapp.smsguard
+Target Version: 1.0.0 (API Level 34 / Android 14)
+Policy Categories: SMS and Call Log Permissions, Accessibility API, High-Risk Permissions
+===============================================================================
+
+1. CORE PURPOSE & APPLICATION PROFILE
+-------------------------------------------------------------------------------
+VeroApp SMS Guard is an offline-first mobile security, anti-phishing, and telecom fraud
+protection application. Its primary core functions are:
+  1. Real-time interception and local AI classification of fraudulent SMS messages (smishing,
+     bank verification theft, extortion).
+  2. Telecom-layer automated rejection of confirmed nuisance, phishing, and scam phone calls
+     using Android's official CallScreeningService.
+  3. Real-time on-device scanning of suspicious URLs shared via messaging applications.
+
+CRITICAL PRIVACY GUARANTEE:
+All inference, pattern matching, contact verification, and database lookups occur
+100% locally on the device processor and memory. Zero SMS texts, phone numbers, contacts,
+or call logs are transmitted to external servers.
+
+===============================================================================
+2. GOOGLE PLAY CONSOLE FORMULA DECLARATIONS (EXACT FORMULA FORMAT)
+===============================================================================
+
+A. RECEIVE_SMS
+"Our app uses android.permission.RECEIVE_SMS to detect incoming SMS messages in real-time
+because the app's primary core functionality is to classify fraudulent smishing and scam
+messages before the user interacts with them. No data is collected or transmitted off the device."
+
+B. READ_SMS
+"Our app uses android.permission.READ_SMS to display the user's SMS messages within its
+on-device Smart Inbox and categorize them into Clean and Spam/Suspicious folders because
+it serves as a full-featured Default SMS Handler. No data is collected or transmitted off the device."
+
+C. BROADCAST_SMS
+"Our app uses android.permission.BROADCAST_SMS to receive SMS delivery intents as the
+user-selected Default SMS application because Android platform architecture requires
+this permission for SMS_DELIVER intents. No data is collected or transmitted off the device."
+
+D. ROLE_SMS (DEFAULT SMS HANDLER)
+"Our app uses ROLE_SMS to act as the primary SMS management application because intercepting
+and isolating high-risk smishing messages before they trigger standard notification deception
+requires default SMS handler status. No data is collected or transmitted off the device."
+
+E. ROLE_CALL_SCREENING (android.telecom.CallScreeningService)
+"Our app uses ROLE_CALL_SCREENING to evaluate incoming telephone numbers against a local
+pre-packaged spam number database (126,000+ entries) because blocking fraudulent calls at the
+telecom layer prevents predatory toll fraud. No data is collected or transmitted off the device."
+
+F. READ_CALL_LOG
+"Our app uses android.permission.READ_CALL_LOG as a backward-compatibility fallback for
+devices running Android 9 (API 28) and below that lack CallScreeningService support to
+identify recent spam callers. No data is collected or transmitted off the device."
+
+G. READ_CONTACTS
+"Our app uses android.permission.READ_CONTACTS to match incoming messages and calls against
+the user's existing address book to display a verified 'Trusted Contact' green badge because
+users need immediate visual confirmation that a message is from an acquaintance. No data is
+collected or transmitted off the device."
+
+H. POST_NOTIFICATIONS
+"Our app uses android.permission.POST_NOTIFICATIONS to display urgent security warnings
+when a high-risk smishing or phishing attempt is detected on-device because immediate user
+alerting prevents accidental credential disclosure. No data is collected or transmitted off the device."
+
+I. BIND_NOTIFICATION_LISTENER_SERVICE
+"Our app uses BIND_NOTIFICATION_LISTENER_SERVICE to provide optional passive spam alerts for
+users who prefer not to set VeroApp as their default SMS handler because this allows notification-based
+threat warning without replacing their existing messaging app. No data is collected or transmitted off the device."
+
+J. BIND_ACCESSIBILITY_SERVICE
+"Our app uses BIND_ACCESSIBILITY_SERVICE to inspect URLs displayed on-screen in instant messaging
+apps (e.g. WhatsApp, Telegram) in real-time because malicious phishing links delivered through chat
+must be warned against before execution. A non-intrusive manual Share Target (Mode B) is also provided.
+No data is collected or transmitted off the device."
+
+K. INTERNET
+"Our app uses android.permission.INTERNET exclusively for optional, user-initiated one-way downloads
+of verified binary threat signature updates from public GitHub releases. No device identifiers,
+telemetry, analytics, or user data are ever uploaded or transmitted."
+
+===============================================================================
+3. REGULATORY COMPLIANCE QUESTIONS & ANSWERS
+===============================================================================
+
+Q1: What core feature requires the permission?
+A1: Real-time on-device smishing detection (ROLE_SMS / RECEIVE_SMS), automated fraudulent
+    call rejection (ROLE_CALL_SCREENING), and verified contact badging (READ_CONTACTS).
+
+Q2: Why can't the feature work without it?
+A2: Modern mobile operating systems restrict SMS interception and telecom-layer call rejection
+    exclusively to apps holding the respective Default SMS and Call Screening roles. Without these
+    permissions, an anti-fraud app cannot prevent the user from being exposed to fraudulent SMS
+    payloads or predatory phone calls.
+
+Q3: Is the permission used ONLY for that stated feature?
+A3: YES. Permissions are strictly mapped 1:1 to their respective defensive functions. No cross-purpose
+    utilization, data harvesting, or ad targeting is performed.
+
+Q4: Is user data transmitted off-device?
+A4: NO. VeroApp SMS Guard operates with a 100% Zero-Cloud Footprint. The application contains
+    zero analytical SDKs, zero advertising networks, and transmits zero user bytes off the device.
+
+===============================================================================
+4. GOOGLE PLAY VIDEO DEMONSTRATION SCRIPT & OUTLINE
+===============================================================================
+Google Play Console requires a public video URL demonstrating sensitive permission usage
+in action. Prior to submission, record and upload a 3-5 minute video following this exact script:
+
+VIDEO URL PLACEHOLDER:
+https://youtu.be/PENDING_RECORDING_VEROAPP_PLAY_DEMO
+(Note: Must be set to Public or Unlisted on YouTube / Google Drive with open access).
+
+RECORDING SPECIFICATIONS:
+- Resolution: 1080x1920 (Portrait) or 1920x1080 (Device Frame)
+- Audio: English narration or clear English subtitle overlays
+- Target Duration: 3 to 4 minutes
+
+SCENE-BY-SCENE WALKTHROUGH:
+-------------------------------------------------------------------------------
+SCENE 1: Application Launch & Prominent Disclosure (0:00 - 0:45)
+- Action: Open VeroApp SMS Guard for the first time.
+- Display: Show the onboarding screen clearly stating that SMS and Call permissions
+  are required strictly for local on-device filtering. Show the prominent "100% Offline /
+  Zero Data Collection" guarantee.
+- Text Overlay: "Prominent Disclosure: User is informed that SMS and Call data never leave the handset."
+
+SCENE 2: Requesting Default SMS Role (ROLE_SMS) (0:45 - 1:30)
+- Action: Tap "Enable SMS Shield". The system dialog asks to set VeroApp as the Default SMS app.
+- Action: Accept the dialog. Show the VeroApp inbox loading messages locally.
+- Action: Simulate or receive an incoming smishing SMS containing a fake banking link.
+- Display: Show VeroApp intercepting the SMS, tagging it as "High Risk Phishing", and routing
+  it to the Spam / Quarantine tab without notifying standard ringtones.
+- Text Overlay: "Core Feature: Default SMS Handler intercepts fraudulent SMS and quarantines threat locally."
+
+SCENE 3: Call Screening Service Demonstration (1:30 - 2:30)
+- Action: Navigate to Call Shield settings.
+- Action: Tap "Set as Default Caller ID & Spam App" (ROLE_CALL_SCREENING).
+- Action: Simulate an incoming call from a known scam prefix (+234 / +63) or confirmed scam number.
+- Display: Show the incoming call being rejected automatically by VeroCallScreeningService
+  without waking the ringtone. Open the app to show the blocked call log stored in local SQLite.
+- Text Overlay: "Core Feature: CallScreeningService blocks confirmed fraud callers in < 0.1 ms locally."
+
+SCENE 4: Address Book Whitelisting (READ_CONTACTS) (2:30 - 3:15)
+- Action: Open a message thread from a contact stored in the device address book.
+- Display: Highlight the green "Trusted Contact" badge next to the contact name.
+- Text Overlay: "READ_CONTACTS is used solely on-device to whitelist personal contacts with a green badge."
+
+SCENE 5: Verification of Offline Operation & Zero Network Activity (3:15 - 4:00)
+- Action: Turn on Airplane Mode (disable Wi-Fi and Mobile Data).
+- Action: Send a test spam message and verify that the local AI classifier still classifies
+  the message in 0.1 ms with full accuracy.
+- Action: Open Android App Info > Data Usage to prove 0 KB of background data transferred.
+- Text Overlay: "100% Offline Proof: All AI classification functions fully in Airplane Mode."
+===============================================================================

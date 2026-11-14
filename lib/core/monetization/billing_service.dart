@@ -31,7 +31,8 @@ class VeroBillingService {
   VeroBillingService._();
   static final VeroBillingService instance = VeroBillingService._();
 
-  final InAppPurchase _iap = InAppPurchase.instance;
+  InAppPurchase? _iapInstance;
+  InAppPurchase get _iap => _iapInstance ??= InAppPurchase.instance;
   StreamSubscription<List<PurchaseDetails>>? _subscription;
   bool _isAvailable = false;
   List<ProductDetails> _products = [];
@@ -67,7 +68,7 @@ class VeroBillingService {
         _subscription = _iap.purchaseStream.listen(
           _handlePurchaseUpdates,
           onDone: () => _subscription?.cancel(),
-          onError: (error) {
+          onError: (Object error) {
             onPurchaseError?.call('Store purchase stream error: $error');
           },
         );

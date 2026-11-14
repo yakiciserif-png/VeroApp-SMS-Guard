@@ -73,9 +73,8 @@ class TrustSmsReceiver : BroadcastReceiver() {
                     source = decision.source
                 )
             }
-        } catch (e: Exception) {
-            // Crash-free guarantee: never crash the system broadcast receiver
-            e.printStackTrace()
+        } catch (_: Exception) {
+            // Crash-free & KVKK guarantee: never crash the system broadcast receiver or log PII
         }
     }
 }

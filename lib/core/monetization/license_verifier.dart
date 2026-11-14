@@ -44,8 +44,15 @@ class VeroLicenseVerifier {
 
   final Ed25519 _algorithm = Ed25519();
   PublicKey? _cachedPublicKey;
+  PublicKey? _customPublicKey;
+
+  /// Allows injecting an ephemeral Ed25519 public key in unit tests.
+  void setCustomPublicKeyForTesting(PublicKey? key) {
+    _customPublicKey = key;
+  }
 
   Future<PublicKey> _getPublicKey() async {
+    if (_customPublicKey != null) return _customPublicKey!;
     if (_cachedPublicKey != null) return _cachedPublicKey!;
     final rawBytes = base64.decode(masterPublicKeyBase64);
     _cachedPublicKey = SimplePublicKey(rawBytes, type: KeyPairType.ed25519);
